@@ -2,28 +2,42 @@
 <meta charset="utf-8">
 <script src="./build/js/d3.min.js"></script>
 <script src="./build/js/js-yaml.min.js"></script>
-<script src="./build/fonts/azure.js"></script>
+
+<script>
+function cloneObject(obj) {
+    if (obj === null || typeof obj !== 'object') {
+        return obj;
+    }
+    var temp = obj.constructor(); // give temp the original obj's constructor
+    for (var key in obj) {
+        temp[key] = cloneObject(obj[key]);
+    }
+    return temp;
+}
+
+var module = {}
+var fonts = {}
+</script>
+<script src="./build/fonts/azure-enterprise.js"></script>
+<script>
+fonts['azure-enterprise'] = cloneObject(module.exports)
+</script>
+<script>
+</script>
+<script src="./build/fonts/cisco.js"></script>
+<script>
+fonts['cisco'] = cloneObject(module.exports)
+</script>
+
+<link rel="stylesheet" type="text/css" href="./build/fonts/azure-enterprise.css">
+<link rel="stylesheet" type="text/css" href="./build/fonts/cisco.css">
 
 <style> /* set the CSS */
-@font-face {
-	font-family:"azure";
-	src:url("build/fonts/azure.eot?6b44da37515b0e3a75b5ecd67ca334cf");
-	src:url("build/fonts/azure.eot?#iefix") format("embedded-opentype"),
-		url("build/fonts/azure.woff?6b44da37515b0e3a75b5ecd67ca334cf") format("woff"),
-		url("build/fonts/azure.ttf?6b44da37515b0e3a75b5ecd67ca334cf") format("truetype");
-	font-weight:normal;
-	font-style:normal;
-}
+
 
 body {
     font: normal 12px Verdana, Arial, sans-serif;
 }
-
-/*.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
-}*/
 
 .axisNone line{
   stroke: #AAAAAA;
@@ -53,6 +67,7 @@ body {
 
 <script>
 var yml = `
+backgroundColor: "#3d3935"
 diagramAspectRatio: "11:11"
 rows: 5
 columns: 5
@@ -63,31 +78,45 @@ margin:
   bottom: 50
   left: 20
 defaults: &defaults
-  font: "azure"
+  font: "azure-enterprise"
+cisco: &cisco
+  borderColor: "#004BAF"
+  color: "#004BAF"
+  iconColor: "#004BAF"
+  font: "cisco"
+  backgroundColor: "white"
 servers: &servers
   <<: *defaults
   type: "Webserver"
-  color: "pink"
+  backgroundColor: "#58585B"
 devices:
-  chddc1crt001: {x: 0, y: 4, font: "azure", type: "Gateway", color: "blue"}
-  chddc1crt004: {x: 2, y: 3, font: "azure", type: "Gateway", color: "Gold"}
-  chddc1sfw005: {x: 2, y: 2, font: "azure", type: "Firewall", color: "red"}
-  chddc1srt001: {x: 3, y: 2, font: "azure", type: "Gateway", color: "green"}
-  chddc1slb005: {x: 3, y: 1, font: "azure", type: "LoadbalancerGeneric", color: "black"}
+  firewall: {<<: *cisco, x: 4, y: 4, type: "firewall"}
+  chddc1crt001: {<<: *cisco, x: 0, y: 4, type: "router"}
+  chddc1crt004: {x: 2, y: 3, font: "azure-enterprise", type: "Gateway", backgroundColor: "Gold"}
+  chddc1sfw005: {x: 2, y: 2, font: "azure-enterprise", type: "Firewall", backgroundColor: "red"}
+  chddc1srt001: {x: 3, y: 2, font: "azure-enterprise", type: "Gateway", backgroundColor: "green"}
+  chddc1slb005: {x: 3, y: 1, font: "azure-enterprise", type: "LoadbalancerGeneric", backgroundColor: "#2E1700"}
   lx12300: {<<: *servers, x: 2, y: 0}
   lx12301: {<<: *servers, x: 3, y: 0}
   lx12302: {<<: *servers, x: 4, y: 0}
+
+connection: &connection
+  lineColor: "white"
+  strokeDashArray: "10,2"
 connections:
-  - { start: "chddc1crt001", finish: "chddc1crt004" }
-  - { start: "chddc1crt004", finish: "chddc1sfw005" }
-  - { start: "chddc1sfw005", finish: "chddc1srt001" }
-  - { start: "chddc1srt001", finish: "chddc1slb005" }
-  - { start: "chddc1slb005", finish: "lx12300" }
-  - { start: "chddc1slb005", finish: "lx12301" }
-  - { start: "chddc1slb005", finish: "lx12302" }
+  - { <<: *connection, start: "firewall", finish: "chddc1crt001" }
+  - { <<: *connection, start: "chddc1crt001", finish: "chddc1crt004" }
+  - { <<: *connection, start: "chddc1crt004", finish: "chddc1sfw005" }
+  - { <<: *connection, start: "chddc1sfw005", finish: "chddc1srt001" }
+  - { <<: *connection, start: "chddc1srt001", finish: "chddc1slb005" }
+  - { <<: *connection, start: "chddc1slb005", finish: "lx12300" }
+  - { <<: *connection, start: "chddc1slb005", finish: "lx12301" }
+  - { <<: *connection, start: "chddc1slb005", finish: "lx12302" }
 `;
 
 var doc = jsyaml.load(yml);
+document.body.style.background =  doc.backgroundColor || "red";
+
 var ratios = doc['diagramAspectRatio'].split(':')
 var margin = doc['margin'] || {top: 20, right: 20, bottom: 50, left: 20}
 
@@ -118,6 +147,7 @@ var y = d3.scaleBand()
 var svg = d3.select("body").append("svg")
   .attr("width", window.innerWidth )
   .attr("height", window.innerHeight )
+  .style("background-color", function(d) { return doc.backgroundColor || "white" })
   .append("g")
     .attr("transform", "translate(" + (window.innerWidth - width)/2 + "," + (window.innerHeight - height)/2 + ")");
 
@@ -167,7 +197,8 @@ if (doc.connections) {
     .append("line")
 
   var connectionAttributes = connectionsAll
-    .style("stroke", "black")
+    .style("stroke", function(d) { return d.lineColor || "orange" })
+    .style("stroke-dasharray", function(d) { return d.strokeDashArray || "0,0" } )
     .attr("x1", function(d) { return x(doc.devices[d.start].x) + x.bandwidth()/2 })
     .attr("y1", function(d) { return y(doc.devices[d.start].y) + y.bandwidth()/2 })
     .attr("x2", function(d) { return x(doc.devices[d.finish].x) + x.bandwidth()/2 })
@@ -187,7 +218,9 @@ var cellFill = cells
   .attr("ry", y.bandwidth() * .05)
   .attr("width", x.bandwidth() )
   .attr("height", y.bandwidth() )
-  .attr("fill", function(d) { return d.value.color })
+  .attr("fill", function(d) { return d.value.backgroundColor })
+  .style("stroke", function(d) { return d.value.borderColor || 'none' })
+
 
 var cellText = cells
   .append("text")
@@ -196,7 +229,7 @@ var cellText = cells
   .attr("y", y.bandwidth()*.95 )
   .attr("text-anchor", "middle")
   .style("font-size", function(d) { return Math.min(x.bandwidth()*.9 / this.getComputedTextLength() * 12, y.bandwidth()/3/2) + "px"; })
-  .attr("fill", "white");
+  .attr('fill', function(d) { return d.value.color || "white"} )
 
 var icon = cells
   .append('text')
@@ -206,9 +239,9 @@ var icon = cells
   .attr('dominant-baseline', 'central')
   .style('font-family', function(d) { return d.value.font })
   .style('font-size', Math.min(x.bandwidth()*.9,y.bandwidth()*.8*.9)  + 'px')
-  .attr('fill', "white" )
+  .attr('fill', function(d) { return d.value.iconColor || "white"} )
   .text(function (d) {
-       return azure[d.value.type];
+       return fonts[d.value.font][d.value.type];
     });
 
 </script>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 36.512501 31.200001"
+   height="31.200001"
+   width="36.512501"
+   xml:space="preserve"
+   version="1.1"
+   id="svg2"><metadata
+     id="metadata8"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs6"><clipPath
+       id="clipPath18"
+       clipPathUnits="userSpaceOnUse"><path
+         id="path20"
+         d="M 0,0 0,250 290,250 290,0 0,0 Z" /></clipPath></defs><g
+     transform="matrix(1.25,0,0,-1.25,0,31.2)"
+     id="g10"><g
+       transform="scale(0.1,0.1)"
+       id="g12"><g
+         id="g14"><g
+           clip-path="url(#clipPath18)"
+           id="g16"><path
+             id="path22"
+             style="fill:#036998;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             d="M 159.199,209.715 90,212.137 56.1445,176.055 77.0898,159.012 95.2422,178.758 137.129,177.305 91.3672,117.754 107.727,102.629 81.4648,67.4414 38.4258,68.9453 7.08203,54.9023 28.7969,9.89063 54.9688,8.97266 54.7266,18.8867 41.3555,19.3438 42.0508,39.1211 106.016,36.8945 141.887,80.4766 228.738,0 272.98,49.6953 262.273,59.9688 243.516,39.668 l -70.43,67.09 29.863,38.543 26.731,-18.399 61.582,-2.148 0.847,24.426 -44.14,1.543 -88.77,58.992" /><path
+             id="path24"
+             style="fill:#036998;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             d="m 188.672,249.648 51.172,-1.777 -1.895,-54.68 -51.179,1.789 1.902,54.668" /><path
+             id="path26"
+             style="fill:#036998;fill-opacity:1;fill-rule:nonzero;stroke:none"
+             d="M 34.0234,184.434 92.4219,135.438 58.3789,94.8711 0,143.867 34.0234,184.434" /></g></g></g></g></svg>

@@ -22,12 +22,27 @@ module.exports = function(grunt) {
    },
     webfont: {
         icons: {
-            src: 'azure/enterprise/*.svg',
+            src: 'build/fonts/azure/enterprise/*.svg',
             dest: 'build/fonts',
         },
         options: {
           engine: 'fontforge',
-          font: 'azure',
+          font: 'azure-enterprise',
+          normalize: true,
+          syntax: 'bem',
+            templateOptions: {
+                classPrefix: ''
+            }
+        }
+    },
+    webfont: {
+        icons: {
+            src: 'build/fonts/cisco/*.svg',
+            dest: 'build/fonts',
+        },
+        options: {
+          engine: 'fontforge',
+          font: 'cisco',
           normalize: true,
           syntax: 'bem',
             templateOptions: {
