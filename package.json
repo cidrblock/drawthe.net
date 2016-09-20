@@ -11,6 +11,8 @@
   "devDependencies": {
     "d3": "^4.2.4",
     "grunt": "^1.0.1",
+    "grunt-bower": "^0.21.2",
+    "grunt-bowercopy": "^1.2.4",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-webfont": "^1.6.0",

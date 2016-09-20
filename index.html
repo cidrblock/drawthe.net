@@ -1,73 +1,120 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<script src="./build/js/d3.min.js"></script>
-<script src="./build/js/js-yaml.min.js"></script>
+<html ng-app="subnetter">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="Visual design aid for subnets and network planner for IP space and IP schema">
 
-<script>
-function cloneObject(obj) {
-    if (obj === null || typeof obj !== 'object') {
-        return obj;
+    <title>design</title>
+
+    <link rel="stylesheet" href="build/css/bootstrap.min.css">
+    <link rel="stylesheet" href="build/css/app.css">
+    <link rel="stylesheet" type="text/css" href="./build/fonts/azure-enterprise.css">
+    <link rel="stylesheet" type="text/css" href="./build/fonts/cisco.css">
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="build/js/angular.min.js"></script>
+    <script type="text/javascript" src="build/js/angular-animate.min.js"></script>
+    <script type="text/javascript" src="build/js/ace.js"></script>
+    <script type="text/javascript" src="build/js/ui-ace.min.js"></script>
+    <script type="text/javascript" src="build/js/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="build/js/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="build/js/js-yaml.min.js"></script>
+    <script type="text/javascript" src="./build/js/d3.min.js"></script>
+    <script type="text/javascript" src="build/js/draw.js"></script>
+    <script type="text/javascript" src="build/js/app.js"></script>
+
+    <script>
+    function cloneObject(obj) {
+        if (obj === null || typeof obj !== 'object') {
+            return obj;
+        }
+        var temp = obj.constructor(); // give temp the original obj's constructor
+        for (var key in obj) {
+            temp[key] = cloneObject(obj[key]);
+        }
+        return temp;
     }
-    var temp = obj.constructor(); // give temp the original obj's constructor
-    for (var key in obj) {
-        temp[key] = cloneObject(obj[key]);
-    }
-    return temp;
-}
+    var module = {}
+    var fonts = {}
+    </script>
+    <script src="./build/fonts/azure-enterprise.js"></script>
+    <script>
+    fonts['azure-enterprise'] = cloneObject(module.exports)
+    </script>
+    <script>
+    </script>
+    <script src="./build/fonts/cisco.js"></script>
+    <script>
+    fonts['cisco'] = cloneObject(module.exports)
+    </script>
+</head>
+<body ng-controller="mainController">
+      <uib-alert class="col-sm-6 col-sm-offset-3" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+        <span ng-bind-html="alert.msg"></span>
+      </uib-alert>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="row">
+            <big><strong>Template</strong></big>
+            <div class="btn-toolbar pull-right">
+              <a href="./build/fonts/cisco.html" target="_blank" class="btn btn-black btn-xs">
+                <span class="fa fa-search"></span> cisco icons
+              </a>
+              <a href="./build/fonts/azure-enterprise.html" target="_blank" class="btn btn-black btn-xs">
+                <span class="fa fa-search"></span> azure enterprise icons
+              </a>
+              <button id="draw" type="submit" class="btn btn-black btn-xs pull-right" ng-click="draw(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
+                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true" ></span> draw
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div ui-ace="aceyamlOptions" ng-model="acedata"></div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+              <div class="btn-toolbar pull-right">
+                <a href="http://github.com/cidrblock/network_diagram" target="_blank" class="btn btn-black btn-xs">
+                  <span class="fa fa-github"></span> Github
+                </a>
+                <button type="submit" class="btn btn-black btn-xs" ng-click="opend3js()">
+                   <span class="glyphicon glyphicon glyphicon-new-window" aria-hidden="true"></span> new window
+                </button>
+              </div>
+          </div>
+          <div class="row">
+            <div class="drawing" id="svg"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
 
-var module = {}
-var fonts = {}
-</script>
-<script src="./build/fonts/azure-enterprise.js"></script>
 <script>
-fonts['azure-enterprise'] = cloneObject(module.exports)
-</script>
-<script>
-</script>
-<script src="./build/fonts/cisco.js"></script>
-<script>
-fonts['cisco'] = cloneObject(module.exports)
-</script>
 
-<link rel="stylesheet" type="text/css" href="./build/fonts/azure-enterprise.css">
-<link rel="stylesheet" type="text/css" href="./build/fonts/cisco.css">
+window.onerror = function(msg, url, line, col, error) {
+   var extra = !col ? '' : '\ncolumn: ' + col;
+   extra += !error ? '' : '\nerror: ' + error;
+   alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
+   var suppressErrorAlert = true;
+   return suppressErrorAlert;
+};
 
-<style> /* set the CSS */
+angular
+    .module("subnetter", ['ui.bootstrap', 'ui.ace'])
+    .controller("mainController", mainController);
 
+mainController.$inject = ["$scope", "$http", "$sce", "$log", "$window"];
 
-body {
-    font: normal 12px Verdana, Arial, sans-serif;
-}
-
-.axisNone line{
-  stroke: #AAAAAA;
-}
-
-.axisNone path{
-  stroke: none;
-}
-
-.axisNone text{
-  fill: #AAAAAA;
-}
-
-.grid line {
-  stroke: #AAAAAA;
-  stroke-opacity: 0.7;
-  stroke-width: 1px;
-  shape-rendering: crispEdges;
-}
-
-.grid path {
-  stroke-width: 0;
-}
-
-</style>
-<body>
-
-<script>
-var yml = `
-backgroundColor: "#3d3935"
+function mainController($scope, $http, $sce, $log, $window) {
+  $scope.design = "";
+  $scope.acedata = `backgroundColor: "#3d3935"
 diagramAspectRatio: "11:11"
 rows: 5
 columns: 5
@@ -112,136 +159,41 @@ connections:
   - { <<: *connection, start: "chddc1slb005", finish: "lx12300" }
   - { <<: *connection, start: "chddc1slb005", finish: "lx12301" }
   - { <<: *connection, start: "chddc1slb005", finish: "lx12302" }
-`;
+  `;
+  $scope.acejson ='';
+  $scope.acejsonOptions = {
+    onLoad: function (_ace) {
+      _ace.getSession().setMode("ace/mode/yaml");
+      _ace.$blockScrolling = Infinity;
+    }
+  };
+  $scope.aceyamlOptions = {
+    onLoad: function (_ace) {
+      _ace.getSession().setMode("ace/mode/yaml");
+      _ace.$blockScrolling = Infinity;
+    }
+  };
 
-var doc = jsyaml.load(yml);
-document.body.style.background =  doc.backgroundColor || "red";
+  $scope.opend3js = function(greeting) {
+    var w = $window.open("fullscreen.html");
+  };
 
-var ratios = doc['diagramAspectRatio'].split(':')
-var margin = doc['margin'] || {top: 20, right: 20, bottom: 50, left: 20}
-
-if (window.innerHeight < window.innerWidth) {
-  height = window.innerHeight - doc.margin.top - doc.margin.bottom
-  width = window.innerHeight/ratios[1] * ratios[0] - doc.margin.left - doc.margin.right
-} else if (window.innerWidth < window.innerHeight) {
-  width = window.innerWidth - doc.margin.left - doc.margin.right
-  height = window.innerWidth/ratios[0] * ratios[1] - doc.margin.top - doc.margin.bottom
-} else {
-  width = window.innerWidth
-  height = window.innerHeight
-}
-
-var rows = doc.rows || 10
-var columns = doc.columns || 10
-
-var x = d3.scaleBand()
-  .domain(Array.from(Array(columns).keys()))
-  .rangeRound([0,width])
-  .paddingInner(0.2);
-
-var y = d3.scaleBand()
-  .domain(Array.from(Array(rows).keys()).reverse())
-  .rangeRound([0,height])
-  .paddingInner(0.2);
-
-var svg = d3.select("body").append("svg")
-  .attr("width", window.innerWidth )
-  .attr("height", window.innerHeight )
-  .style("background-color", function(d) { return doc.backgroundColor || "white" })
-  .append("g")
-    .attr("transform", "translate(" + (window.innerWidth - width)/2 + "," + (window.innerHeight - height)/2 + ")");
-
-function make_x_gridlines() {
-  return d3.axisBottom(x)
-      .ticks(5)
-}
-
-// gridlines in y axis function
-function make_y_gridlines() {
-  return d3.axisLeft(y)
-      .ticks(5)
-}
-if (doc.gridLines) {
-  svg.append("g")
-    .attr("class", "grid")
-    .attr("transform", "translate(0," + height + ")")
-    .call(make_x_gridlines()
-      .tickSize(-height)
-      .tickFormat("")
-      .ticks(columns)
-    )
-  svg.append("g")
-    .attr("class", "grid")
-    .call(make_y_gridlines()
-      .tickSize(-width)
-      .tickFormat("")
-      .ticks(rows)
-    )
-
-    // add the X Axis
-  svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .attr("class", "axisNone")
-    .call(d3.axisBottom(x));
-
-    // add the Y Axis
-  svg.append("g")
-    .attr("class", "axisNone")
-    .call(d3.axisLeft(y));
-}
-
-if (doc.connections) {
-  var connectionsAll = svg.selectAll("connections")
-    .data(doc.connections)
-    .enter()
-    .append("line")
-
-  var connectionAttributes = connectionsAll
-    .style("stroke", function(d) { return d.lineColor || "orange" })
-    .style("stroke-dasharray", function(d) { return d.strokeDashArray || "0,0" } )
-    .attr("x1", function(d) { return x(doc.devices[d.start].x) + x.bandwidth()/2 })
-    .attr("y1", function(d) { return y(doc.devices[d.start].y) + y.bandwidth()/2 })
-    .attr("x2", function(d) { return x(doc.devices[d.finish].x) + x.bandwidth()/2 })
-    .attr("y2", function(d) { return y(doc.devices[d.finish].y) + y.bandwidth()/2 })
-}
-
-var deviceCellsAll = svg.selectAll("cells")
-  .data(d3.entries(doc.devices))
-  .enter()
-
-var cells = deviceCellsAll.append("g")
-  .attr("transform", function(d) { return "translate(" + x(d.value.x) + "," + y(d.value.y) + ")" })
-
-var cellFill = cells
-  .append("rect")
-  .attr("rx", x.bandwidth() * .05)
-  .attr("ry", y.bandwidth() * .05)
-  .attr("width", x.bandwidth() )
-  .attr("height", y.bandwidth() )
-  .attr("fill", function(d) { return d.value.backgroundColor })
-  .style("stroke", function(d) { return d.value.borderColor || 'none' })
-
-
-var cellText = cells
-  .append("text")
-  .text( function (d) { return d.key })
-  .attr("x", x.bandwidth()/2 )
-  .attr("y", y.bandwidth()*.95 )
-  .attr("text-anchor", "middle")
-  .style("font-size", function(d) { return Math.min(x.bandwidth()*.9 / this.getComputedTextLength() * 12, y.bandwidth()/3/2) + "px"; })
-  .attr('fill', function(d) { return d.value.color || "white"} )
-
-var icon = cells
-  .append('text')
-  .attr("x", x.bandwidth()/2 )
-  .attr("y", y.bandwidth() * .4 )
-  .attr('text-anchor', 'middle')
-  .attr('dominant-baseline', 'central')
-  .style('font-family', function(d) { return d.value.font })
-  .style('font-size', Math.min(x.bandwidth()*.9,y.bandwidth()*.8*.9)  + 'px')
-  .attr('fill', function(d) { return d.value.iconColor || "white"} )
-  .text(function (d) {
-       return fonts[d.value.font][d.value.type];
-    });
+  $scope.draw = function() {
+    try {
+      var design = jsyaml.load($scope.acedata);
+      var designtext = $scope.acedata;
+      design = jsyaml.load(designtext);
+      $window.design = design;
+      draw(design);
+      // $window.jsonData = json;
+      // $scope.acejson = angular.toJson(json, 2);
+    } //try
+    catch (error) {
+      alert(error);
+    } //catch
+  } //do
+};
 
 </script>
+
+</html>

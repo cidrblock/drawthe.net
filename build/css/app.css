@@ -1,0 +1,95 @@
+html {
+        overflow-y:scroll;
+        height: 100vh;
+}
+body {
+        padding-top:1vh;
+        height: 100vh;
+}
+.form-group { margin-bottom: 5px; }
+.ace_editor {
+      border: 1px solid lightgray;
+      height: 95vh;
+      width: 100%;
+}
+.drawing {
+      height: 95vh;
+      width: 100%;
+}
+.jsoneditor .menu {
+      background-color: #D5DDF6;
+      border-bottom: 1px solid #97B0F8;
+    }
+.row {
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+.btn-black {
+  color: #FFFFFF;
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.btn-black:hover,
+.btn-black:focus,
+.btn-black:active,
+.btn-black.active,
+.open .dropdown-toggle.btn-black {
+  color: #FFFFFF;
+  background-color: #333;
+  border-color: #000000;
+}
+
+.btn-black:active,
+.btn-black.active,
+.open .dropdown-toggle.btn-black {
+  background-image: none;
+}
+
+.btn-black.disabled,
+.btn-black[disabled],
+fieldset[disabled] .btn-black,
+.btn-black.disabled:hover,
+.btn-black[disabled]:hover,
+fieldset[disabled] .btn-black:hover,
+.btn-black.disabled:focus,
+.btn-black[disabled]:focus,
+fieldset[disabled] .btn-black:focus,
+.btn-black.disabled:active,
+.btn-black[disabled]:active,
+fieldset[disabled] .btn-black:active,
+.btn-black.disabled.active,
+.btn-black[disabled].active,
+fieldset[disabled] .btn-black.active {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.btn-black .badge {
+  color: #000000;
+  background-color: #FFFFFF;
+}
+
+
+.axisNone line{
+  stroke: #AAAAAA;
+}
+
+.axisNone path{
+  stroke: none;
+}
+
+.axisNone text{
+  fill: #AAAAAA;
+}
+
+.grid line {
+  stroke: #AAAAAA;
+  stroke-opacity: 0.7;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}

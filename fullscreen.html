@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="Visual design aid for subnets and network planner for IP space and IP schema">
+
+    <title>subnetter</title>
+
+    <link rel="stylesheet" href="build/css/bootstrap.min.css">
+    <link rel="stylesheet" href="build/css/app.css">
+    <link rel="stylesheet" type="text/css" href="./build/fonts/azure-enterprise.css">
+    <link rel="stylesheet" type="text/css" href="./build/fonts/cisco.css">
+    <script type="text/javascript" src="build/js/js-yaml.min.js"></script>
+    <script type="text/javascript" src="./build/js/d3.min.js"></script>
+    <script type="text/javascript" src="build/js/draw.js"></script>
+    <script type="text/javascript" src="build/js/app.js"></script>
+
+    <script>
+    function cloneObject(obj) {
+        if (obj === null || typeof obj !== 'object') {
+            return obj;
+        }
+        var temp = obj.constructor(); // give temp the original obj's constructor
+        for (var key in obj) {
+            temp[key] = cloneObject(obj[key]);
+        }
+        return temp;
+    }
+    var module = {}
+    var fonts = {}
+    </script>
+    <script src="./build/fonts/azure-enterprise.js"></script>
+    <script>
+    fonts['azure-enterprise'] = cloneObject(module.exports)
+    </script>
+    <script>
+    </script>
+    <script src="./build/fonts/cisco.js"></script>
+    <script>
+    fonts['cisco'] = cloneObject(module.exports)
+    </script>
+    <script>
+    document.onreadystatechange = () => {
+      if (document.readyState === 'complete') {
+        var design = window.opener.design;
+        console.log(design);
+        draw(design);
+      }
+    };
+    </script>
+</head>
+<body>
+<div class="drawing" id="svg"></div>
+</body>
+</html>
