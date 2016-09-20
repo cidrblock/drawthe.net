@@ -1,0 +1,21 @@
+{
+  "name": "network_diagram",
+  "version": "1.0.0",
+  "description": "http://r12a.github.io/apps/conversion/",
+  "main": "azure.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-jshint": "^1.0.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-webfont": "^1.6.0",
+    "iconfont": "^0.3.1"
+  }
+}

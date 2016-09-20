@@ -1,0 +1,6 @@
+instrumentation:
+    root: src/
+    extensions:
+        - .js
+    default-excludes: true
+    excludes: []

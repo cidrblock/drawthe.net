@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="azure.js" ></script>
+<script src="js-yaml.min.js"></script>
+<script src="./build/fonts/azure.js"></script>
+<link rel="stylesheet" type="text/css" href="azure.css">
+
+<style> /* set the CSS */
+@font-face {
+	font-family:"azure";
+	src:url("build/fonts/azure.eot?6b44da37515b0e3a75b5ecd67ca334cf");
+	src:url("build/fonts/azure.eot?#iefix") format("embedded-opentype"),
+		url("build/fonts/azure.woff?6b44da37515b0e3a75b5ecd67ca334cf") format("woff"),
+		url("build/fonts/azure.ttf?6b44da37515b0e3a75b5ecd67ca334cf") format("truetype");
+	font-weight:normal;
+	font-style:normal;
+}
+
+body {
+    font: normal 12px Verdana, Arial, sans-serif;
+}
+
+/*.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}*/
+
+.axisNone line{
+  stroke: #AAAAAA;
+}
+
+.axisNone path{
+  stroke: none;
+}
+
+.axisNone text{
+  fill: #AAAAAA;
+}
+
+.grid line {
+  stroke: #AAAAAA;
+  stroke-opacity: 0.7;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+</style>
+<body>
+
+<!-- load the d3.js library -->
+<script src="d3.v4.min.js"></script>
+<script>
+var yml = `
+diagramAspectRatio: "11:11"
+rows: 5
+columns: 5
+gridLines: false
+margin:
+  top: 20
+  right: 20
+  bottom: 50
+  left: 20
+defaults: &defaults
+  font: "azure"
+servers: &servers
+  <<: *defaults
+  type: "Webserver"
+  color: "pink"
+devices:
+  chddc1crt001: {x: 0, y: 4, font: "azure", type: "Gateway", color: "blue"}
+  chddc1crt004: {x: 2, y: 3, font: "azure", type: "Gateway", color: "Gold"}
+  chddc1sfw005: {x: 2, y: 2, font: "azure", type: "Firewall", color: "red"}
+  chddc1srt001: {x: 3, y: 2, font: "azure", type: "Gateway", color: "green"}
+  chddc1slb005: {x: 3, y: 1, font: "azure", type: "LoadbalancerGeneric", color: "black"}
+  lx12300: {<<: *servers, x: 2, y: 0}
+  lx12301: {<<: *servers, x: 3, y: 0}
+  lx12302: {<<: *servers, x: 4, y: 0}
+connections:
+  - { start: "chddc1crt001", finish: "chddc1crt004" }
+  - { start: "chddc1crt004", finish: "chddc1sfw005" }
+  - { start: "chddc1sfw005", finish: "chddc1srt001" }
+  - { start: "chddc1srt001", finish: "chddc1slb005" }
+  - { start: "chddc1slb005", finish: "lx12300" }
+  - { start: "chddc1slb005", finish: "lx12301" }
+  - { start: "chddc1slb005", finish: "lx12302" }
+`;
+
+var doc = jsyaml.load(yml);
+var ratios = doc['diagramAspectRatio'].split(':')
+var margin = doc['margin'] || {top: 20, right: 20, bottom: 50, left: 20}
+
+if (window.innerHeight < window.innerWidth) {
+  height = window.innerHeight - doc.margin.top - doc.margin.bottom
+  width = window.innerHeight/ratios[1] * ratios[0] - doc.margin.left - doc.margin.right
+} else if (window.innerWidth < window.innerHeight) {
+  width = window.innerWidth - doc.margin.left - doc.margin.right
+  height = window.innerWidth/ratios[0] * ratios[1] - doc.margin.top - doc.margin.bottom
+} else {
+  width = window.innerWidth
+  height = window.innerHeight
+}
+
+var rows = doc.rows || 10
+var columns = doc.columns || 10
+
+var x = d3.scaleBand()
+  .domain(Array.from(Array(columns).keys()))
+  .rangeRound([0,width])
+  .paddingInner(0.2);
+
+var y = d3.scaleBand()
+  .domain(Array.from(Array(rows).keys()).reverse())
+  .rangeRound([0,height])
+  .paddingInner(0.2);
+
+var svg = d3.select("body").append("svg")
+  .attr("width", window.innerWidth )
+  .attr("height", window.innerHeight )
+  .append("g")
+    .attr("transform", "translate(" + (window.innerWidth - width)/2 + "," + (window.innerHeight - height)/2 + ")");
+
+function make_x_gridlines() {
+  return d3.axisBottom(x)
+      .ticks(5)
+}
+
+// gridlines in y axis function
+function make_y_gridlines() {
+  return d3.axisLeft(y)
+      .ticks(5)
+}
+if (doc.gridLines) {
+  svg.append("g")
+    .attr("class", "grid")
+    .attr("transform", "translate(0," + height + ")")
+    .call(make_x_gridlines()
+      .tickSize(-height)
+      .tickFormat("")
+      .ticks(columns)
+    )
+  svg.append("g")
+    .attr("class", "grid")
+    .call(make_y_gridlines()
+      .tickSize(-width)
+      .tickFormat("")
+      .ticks(rows)
+    )
+
+    // add the X Axis
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .attr("class", "axisNone")
+    .call(d3.axisBottom(x));
+
+    // add the Y Axis
+  svg.append("g")
+    .attr("class", "axisNone")
+    .call(d3.axisLeft(y));
+}
+
+if (doc.connections) {
+  var connectionsAll = svg.selectAll("connections")
+    .data(doc.connections)
+    .enter()
+    .append("line")
+
+  var connectionAttributes = connectionsAll
+    .style("stroke", "black")
+    .attr("x1", function(d) { return x(doc.devices[d.start].x) + x.bandwidth()/2 })
+    .attr("y1", function(d) { return y(doc.devices[d.start].y) + y.bandwidth()/2 })
+    .attr("x2", function(d) { return x(doc.devices[d.finish].x) + x.bandwidth()/2 })
+    .attr("y2", function(d) { return y(doc.devices[d.finish].y) + y.bandwidth()/2 })
+}
+
+var deviceCellsAll = svg.selectAll("cells")
+  .data(d3.entries(doc.devices))
+  .enter()
+
+var cells = deviceCellsAll.append("g")
+  .attr("transform", function(d) { return "translate(" + x(d.value.x) + "," + y(d.value.y) + ")" })
+
+var cellFill = cells
+  .append("rect")
+  .attr("rx", x.bandwidth() * .05)
+  .attr("ry", y.bandwidth() * .05)
+  .attr("width", x.bandwidth() )
+  .attr("height", y.bandwidth() )
+  .attr("fill", function(d) { return d.value.color })
+
+var cellText = cells
+  .append("text")
+  .text( function (d) { return d.key })
+  .attr("x", x.bandwidth()/2 )
+  .attr("y", y.bandwidth()*.95 )
+  .attr("text-anchor", "middle")
+  .style("font-size", function(d) { return Math.min(x.bandwidth()*.9 / this.getComputedTextLength() * 12, y.bandwidth()/3/2) + "px"; })
+  .attr("fill", "white");
+
+var icon = cells
+  .append('text')
+  .attr("x", x.bandwidth()/2 )
+  .attr("y", y.bandwidth() * .4 )
+  .attr('text-anchor', 'middle')
+  .attr('dominant-baseline', 'central')
+  .style('font-family', function(d) { return d.value.font })
+  .style('font-size', Math.min(x.bandwidth()*.9,y.bandwidth()*.8*.9)  + 'px')
+  .attr('fill', "white" )
+  .text(function (d) {
+       return azure[d.value.type];
+    });
+
+</script>

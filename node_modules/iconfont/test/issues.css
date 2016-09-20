@@ -1,0 +1,36 @@
+@font-face {
+	font-family: 'Issues';
+	src:url('fonts/Issues.eot?-m09hd');
+	src:url('fonts/Issues.eot?#iefix-m09hd') format('embedded-opentype'),
+		url('fonts/Issues.woff?-m09hd') format('woff'),
+		url('fonts/Issues.ttf?-m09hd') format('truetype'),
+		url('fonts/Issues.svg?-m09hd#Issues') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'Issues';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	
+	/* Enable Ligatures ================ */
+	-webkit-font-feature-settings: "liga";
+	-moz-font-feature-settings: "liga=1";
+	-moz-font-feature-settings: "liga";
+	-ms-font-feature-settings: "liga" 1;
+	-o-font-feature-settings: "liga";
+	font-feature-settings: "liga";
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mixes-under_score-and-dashes-plus-uPer-Case:before {
+	content: "\e600";
+}
