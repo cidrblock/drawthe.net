@@ -8,14 +8,12 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
+    "d3": "^4.2.4",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
-    "grunt-contrib-jshint": "^1.0.0"
-  },
-  "devDependencies": {
-    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-webfont": "^1.6.0",
-    "iconfont": "^0.3.1"
+    "js-yaml": "^3.6.1"
   }
 }
