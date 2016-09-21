@@ -141,6 +141,7 @@ function draw(doc) {
       var xpad = (x.step() - x.bandwidth()) *.33
       var ypad = (y.step() - y.bandwidth()) *.33
       var members = d3.selectAll(group.members.map( function(name) { return "#" + name }).join(','))
+      alert(members.data())
       var bx = x(d3.min(members.data(), function(d) {return d.value.x})) - xpad
       var by = y(d3.max(members.data(), function(d) {return d.value.y})) - ypad
       var width = x(d3.max(members.data(), function(d) { return d.value.x })) - bx + x.bandwidth() + xpad
