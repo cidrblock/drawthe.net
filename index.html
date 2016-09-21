@@ -146,13 +146,6 @@ devices:
   lx12300: {<<: *servers, x: 2, y: 0}
   lx12301: {<<: *servers, x: 3, y: 0}
   lx12302: {<<: *servers, x: 4, y: 0}
-connection: &connection
-  lineColor: "white"
-  strokeDashArray: "10,2"
-groups:
-  - { borderColor: pink, members: ["chddc1crt004", "chddc1sfw005"] }
-  - { borderColor: yellow, members: ["chddc1crt001", "firewall"] }
-  - { borderColor: white, members: ["lx12300", "lx12301", "lx12302"] }
 
   `;
   $scope.acejson ='';
