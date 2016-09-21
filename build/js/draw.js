@@ -78,8 +78,6 @@ function draw(doc) {
   if (doc.connections) {
 
     doc.connections.forEach(function(connection) {
-      alert(connection);
-
       var data = connection.endpoints.map( function(device) {
               return { x: x(doc.devices[device].x) + x.bandwidth()/2,
                        y: y(doc.devices[device].y) + y.bandwidth()/2,
