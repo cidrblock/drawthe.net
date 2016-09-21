@@ -73,8 +73,8 @@ module.exports = function(grunt) {
                 'js/ui-bootstrap-tpls.min.js': 'angular-bootstrap/ui-bootstrap-tpls.min.js',
                 'css/bootstrap.min.css': 'bootstrap-css-only/css/bootstrap.min.css',
                 'fonts': 'bootstrap-css-only/fonts/*',
-
-
+                'css/font-awesome.min.css': 'components-font-awesome/css/font-awesome.min.css',
+                'fonts': 'components-font-awesome/fonts/*',
             }
         },
       }

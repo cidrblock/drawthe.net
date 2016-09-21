@@ -18,7 +18,7 @@ converting from eps to svg
 sudo ln -s /Applications/Inkscape.app/Contents/Resources/bin/inkscape /usr/local/bin
 
 ```
-for i in ~/Downloads/3015_eps/*.eps; do inkscape $i –export-plain-svg=”$i.svg”; done
+for i in ~/Downloads/3015_eps/*.eps; do inkscape $i –export-plain-svg=”/tmp/$i.svg”; done
 ```
 
 

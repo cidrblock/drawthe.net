@@ -76,18 +76,25 @@ function draw(doc) {
   }
 
   if (doc.connections) {
-    var connectionsAll = svg.selectAll("connections")
-      .data(doc.connections)
-      .enter()
-      .append("line")
 
-    var connectionAttributes = connectionsAll
-      .style("stroke", function(d) { return d.lineColor || "orange" })
-      .style("stroke-dasharray", function(d) { return d.strokeDashArray || "0,0" } )
-      .attr("x1", function(d) { return x(doc.devices[d.start].x) + x.bandwidth()/2 })
-      .attr("y1", function(d) { return y(doc.devices[d.start].y) + y.bandwidth()/2 })
-      .attr("x2", function(d) { return x(doc.devices[d.finish].x) + x.bandwidth()/2 })
-      .attr("y2", function(d) { return y(doc.devices[d.finish].y) + y.bandwidth()/2 })
+    doc.connections.forEach(function(connection) {
+      var data = connection.endpoints.map( function(device) {
+              return { x: x(doc.devices[device].x) + x.bandwidth()/2,
+                       y: y(doc.devices[device].y) + y.bandwidth()/2,
+                     }
+      });
+      var curve = d3[connection.curve] || d3.curveLinear
+      svg.append("path")
+        .datum(data)
+        .style("stroke", connection.lineColor || 'orange' )
+        .style("fill", "none")
+        .style("stroke-dasharray", connection.strokeDashArray || [0,0])
+        .attr("d", d3.line()
+                     .curve(curve)
+                     .x(function(d) { return d.x; })
+                     .y(function(d) { return d.y; })
+                 );
+    });
   }
 
   var deviceCellsAll = svg.selectAll("cells")
@@ -103,9 +110,9 @@ function draw(doc) {
     .attr("ry", y.bandwidth() * .05)
     .attr("width", x.bandwidth() )
     .attr("height", y.bandwidth() )
+    .attr("id", function(d) { return d.key })
     .attr("fill", function(d) { return d.value.backgroundColor })
     .style("stroke", function(d) { return d.value.borderColor || 'none' })
-
 
   var cellText = cells
     .append("text")
@@ -128,4 +135,23 @@ function draw(doc) {
     .text(function (d) {
          return fonts[d.value.font][d.value.type];
       });
+
+  if (doc.groups) {
+    doc.groups.forEach(function(group) {
+      var xpad = (x.step() - x.bandwidth()) *.33
+      var ypad = (x.step() - x.bandwidth()) *.33
+      var members = d3.selectAll(group.members.map( function(name) { return "#" + name }).join(','))
+      var bx = x(d3.min(members.data(), function(d) {return d.value.x})) - xpad
+      var by = y(d3.max(members.data(), function(d) {return d.value.y})) - ypad
+      var width = x(d3.max(members.data(), function(d) { return d.value.x })) - bx + x.bandwidth() + xpad
+      var height = y(d3.min(members.data(), function(d) { return d.value.y })) - by + y.bandwidth() + ypad
+      svg.append("rect")
+         .attr("x", bx)
+         .attr("y", by)
+         .attr("width", width )
+         .attr("height", height )
+         .attr("fill", 'none')
+         .style("stroke", function(d) { return group.borderColor || 'white' })
+    })
+  }
 };

@@ -10,12 +10,12 @@
     <title>design</title>
 
     <link rel="stylesheet" href="build/css/bootstrap.min.css">
+    <link rel="stylesheet" href="build/css/font-awesome.min.css">
     <link rel="stylesheet" href="build/css/app.css">
     <link rel="stylesheet" type="text/css" href="./build/fonts/azure-enterprise.css">
     <link rel="stylesheet" type="text/css" href="./build/fonts/cisco.css">
 
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <script type="text/javascript" src="build/js/angular.min.js"></script>
     <script type="text/javascript" src="build/js/angular-animate.min.js"></script>
@@ -98,13 +98,13 @@
 
 <script>
 
-window.onerror = function(msg, url, line, col, error) {
-   var extra = !col ? '' : '\ncolumn: ' + col;
-   extra += !error ? '' : '\nerror: ' + error;
-   alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
-   var suppressErrorAlert = true;
-   return suppressErrorAlert;
-};
+// window.onerror = function(msg, url, line, col, error) {
+//    var extra = !col ? '' : '\ncolumn: ' + col;
+//    extra += !error ? '' : '\nerror: ' + error;
+//    alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
+//    var suppressErrorAlert = true;
+//    return suppressErrorAlert;
+// };
 
 angular
     .module("subnetter", ['ui.bootstrap', 'ui.ace'])
@@ -151,14 +151,19 @@ connection: &connection
   lineColor: "white"
   strokeDashArray: "10,2"
 connections:
-  - { <<: *connection, start: "firewall", finish: "chddc1crt001" }
-  - { <<: *connection, start: "chddc1crt001", finish: "chddc1crt004" }
-  - { <<: *connection, start: "chddc1crt004", finish: "chddc1sfw005" }
-  - { <<: *connection, start: "chddc1sfw005", finish: "chddc1srt001" }
-  - { <<: *connection, start: "chddc1srt001", finish: "chddc1slb005" }
-  - { <<: *connection, start: "chddc1slb005", finish: "lx12300" }
-  - { <<: *connection, start: "chddc1slb005", finish: "lx12301" }
-  - { <<: *connection, start: "chddc1slb005", finish: "lx12302" }
+  - { <<: *connection, endpoints: ["firewall", "chddc1crt001"] }
+  - { <<: *connection, curve: curveStepBefore, endpoints: ["chddc1crt001", "chddc1crt004"] }
+  - { <<: *connection, endpoints: ["chddc1crt004", "chddc1sfw005"] }
+  - { <<: *connection, endpoints: ["chddc1sfw005", "chddc1srt001"] }
+  - { <<: *connection, endpoints: ["chddc1srt001", "chddc1slb005"] }
+  - { <<: *connection, endpoints: ["chddc1slb005", "lx12300"] }
+  - { <<: *connection, endpoints: ["chddc1slb005", "lx12301"] }
+  - { <<: *connection, endpoints: ["chddc1slb005", "lx12302"] }
+groups:
+  - { borderColor: pink, members: [chddc1crt004, chddc1sfw005] }
+  - { borderColor: yellow, members: [chddc1crt001, firewall] }
+  - { borderColor: white, members: [lx12300, lx12301, lx12302] }
+
   `;
   $scope.acejson ='';
   $scope.acejsonOptions = {
