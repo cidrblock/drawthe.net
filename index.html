@@ -146,19 +146,9 @@ devices:
   lx12300: {<<: *servers, x: 2, y: 0}
   lx12301: {<<: *servers, x: 3, y: 0}
   lx12302: {<<: *servers, x: 4, y: 0}
-
 connection: &connection
   lineColor: "white"
   strokeDashArray: "10,2"
-connections:
-  - { <<: *connection, endpoints: ["firewall", "chddc1crt001"] }
-  - { <<: *connection, curve: curveStepBefore, endpoints: ["chddc1crt001", "chddc1crt004"] }
-  - { <<: *connection, endpoints: ["chddc1crt004", "chddc1sfw005"] }
-  - { <<: *connection, endpoints: ["chddc1sfw005", "chddc1srt001"] }
-  - { <<: *connection, endpoints: ["chddc1srt001", "chddc1slb005"] }
-  - { <<: *connection, endpoints: ["chddc1slb005", "lx12300"] }
-  - { <<: *connection, endpoints: ["chddc1slb005", "lx12301"] }
-  - { <<: *connection, endpoints: ["chddc1slb005", "lx12302"] }
 groups:
   - { borderColor: pink, members: ["chddc1crt004", "chddc1sfw005"] }
   - { borderColor: yellow, members: ["chddc1crt001", "firewall"] }
