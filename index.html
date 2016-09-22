@@ -136,7 +136,7 @@ servers: &servers
   <<: *defaults
   type: "Webserver"
   backgroundColor: "#58585B"
-devices:
+objects:
   firewall: {<<: *cisco, x: 4, y: 4, type: "firewall"}
   chddc1crt001: {<<: *cisco, x: 0, y: 4, type: "router"}
   chddc1crt004: {x: 2, y: 3, font: "azure-enterprise", type: "Gateway", backgroundColor: "Gold"}
@@ -158,10 +158,12 @@ connections:
   - { <<: *connection, endpoints: ["chddc1slb005", "lx12300"] }
   - { <<: *connection, endpoints: ["chddc1slb005", "lx12301"] }
   - { <<: *connection, endpoints: ["chddc1slb005", "lx12302"] }
+group: &group
+  - { stroke: "#3d3935", fill: "rgba(0, 0, 0, 0.3)" }
 groups:
-  - { borderColor: pink, members: ["chddc1crt004", "chddc1sfw005"] }
-  - { borderColor: yellow, members: ["chddc1crt001", "firewall"] }
-  - { borderColor: white, members: ["lx12300", "lx12301", "lx12302"] }
+  - { <<: *group, name: "Chandler", members: ["chddc1crt004", "chddc1sfw005"] }
+  - { <<: *group, name: "Other group", textLocation: "leftMiddle", members: ["chddc1crt001", "firewall"] }
+  - { <<: *group, name: "Servers", textLocation: "bottomMiddle", members: ["lx12300", "lx12301", "lx12302"] }
   `;
   $scope.acejson ='';
   $scope.acejsonOptions = {

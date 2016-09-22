@@ -1,6 +1,31 @@
+function textPositions(x1, y1, x2, y2, xpad, ypad ) {
+  var positions = {
+    topLeft: { x: x1 + xpad, y: y1 + (ypad * 2.33), textAnchor: "start", rotate: 0 },
+    topMiddle: { x: (x2 - x1)/2 + x1 , y: y1 + (ypad * 2.33), textAnchor: "middle", rotate: 0},
+    topRight: { x: x2 - xpad, y: y1 + (ypad * 2.33), textAnchor: "end", rotate: 0 },
+    leftTop: { x: x1 + (xpad * 2.33), y: y1 + ypad, textAnchor: "end", rotate: -90},
+    leftMiddle: { x: x1 + (xpad * 2.33), y: (y2-y1)/2 + y1, textAnchor: "middle", rotate: -90},
+    leftBottom: { x: x1 + (xpad * 2.33), y: y2 - ypad, textAnchor: "start", rotate: -90},
+    rightTop: { x: x2 - (xpad * 2.33), y: y1 + ypad, textAnchor: "start", rotate: 90},
+    rightMiddle: { x: x2 - (xpad * 2.33), y: (y2-y1)/2 + y1, textAnchor: "middle", rotate: 90},
+    rightBottom: { x: x2 - (xpad * 2.33), y: y2 - ypad, textAnchor: "end", rotate: 90},
+    bottomLeft: { x: x1 + xpad, y: y2 - ypad, textAnchor: "start", rotate: 0 },
+    bottomMiddle: { x: (x2 - x1)/2 + x1 , y: y2 - ypad, textAnchor: "middle", rotate: 0},
+    bottomRight: { x: x2 - xpad, y: y2 - ypad, textAnchor: "end", rotate: 0 },
+  }
+  return positions
+}
+
+
 function draw(doc) {
 
-  document.body.style.background =  doc.backgroundColor || "red";
+  var rows = doc.rows || 10
+  var columns = doc.columns || 10
+  var backgroundColor = doc.backgroundColor || "white";
+  var groupPadding = doc.groupPadding || .33;
+  var gridPaddingInner = .4;
+
+  document.body.style.background = backgroundColor
   var ratios = doc['diagramAspectRatio'].split(':')
   var margin = doc['margin'] || {top: 20, right: 20, bottom: 50, left: 20}
 
@@ -16,18 +41,15 @@ function draw(doc) {
     height = parentBox.height
   }
 
-  var rows = doc.rows || 10
-  var columns = doc.columns || 10
-
   var x = d3.scaleBand()
     .domain(Array.from(Array(columns).keys()))
     .rangeRound([0,width])
-    .paddingInner(0.2);
+    .paddingInner(gridPaddingInner);
 
   var y = d3.scaleBand()
     .domain(Array.from(Array(rows).keys()).reverse())
     .rangeRound([0,height])
-    .paddingInner(0.2);
+    .paddingInner(gridPaddingInner);
 
   d3.select("svg").remove();
   var svg = d3.select("#svg").append("svg")
@@ -62,7 +84,6 @@ function draw(doc) {
         .tickFormat("")
         .ticks(rows)
       )
-
       // add the X Axis
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
@@ -75,12 +96,42 @@ function draw(doc) {
       .call(d3.axisLeft(y));
   }
 
-  if (doc.connections) {
+  if (doc.groups) {
+    doc.groups.forEach(function(group) {
+      var xpad = (x.step() - x.bandwidth()) * groupPadding
+      var ypad = (y.step() - y.bandwidth()) * groupPadding
+      var x1 = x(d3.min(group.members, function(d) {return doc.objects[d].x })) - xpad
+      var y1 = y(d3.max(group.members, function(d) { return doc.objects[d].y })) - ypad
+      var x2 = x(d3.max(group.members, function(d) { return doc.objects[d].x })) + xpad + x.bandwidth()
+      var y2 = y(d3.min(group.members, function(d) { return doc.objects[d].y })) + ypad + y.bandwidth()
+      var width = x2 - x1
+      var height = y2 - y1
+      svg.append("rect")
+         .attr("x", x1)
+         .attr("y", y1)
+         .attr("rx", x.bandwidth() * .05)
+         .attr("ry", y.bandwidth() * .05)
+         .attr("width", width )
+         .attr("height", height )
+         .attr("fill", function(d) { return d3.color(group.fill) || 'none' })
+         .style("stroke", function(d) { return d3.color(group.stroke) || 'white' })
+      if (group.name) {
+        var textLocation = textPositions(x1,y1,x2,y2, xpad/3, ypad/3 )[group.textLocation || 'topLeft']
+        svg.append("text")
+          .text( group.name )
+          .attr("transform", `translate(${textLocation.x},${textLocation.y})rotate(${textLocation.rotate})`)
+          .attr("text-anchor", textLocation.textAnchor)
+          .style("font-size", function(d) { return Math.min(x.bandwidth()*.9 / this.getComputedTextLength() * 12, y.bandwidth()/3/2) + "px"; })
+          .attr('fill', function(d) { return group.color || "white"} )
+      }
+    })
+  }
 
+  if (doc.connections) {
     doc.connections.forEach(function(connection) {
       var data = connection.endpoints.map( function(device) {
-              return { x: x(doc.devices[device].x) + x.bandwidth()/2,
-                       y: y(doc.devices[device].y) + y.bandwidth()/2,
+              return { x: x(doc.objects[device].x) + x.bandwidth()/2,
+                       y: y(doc.objects[device].y) + y.bandwidth()/2,
                      }
       });
       var curve = d3[connection.curve] || d3.curveLinear
@@ -98,7 +149,7 @@ function draw(doc) {
   }
 
   var deviceCellsAll = svg.selectAll("cells")
-    .data(d3.entries(doc.devices))
+    .data(d3.entries(doc.objects))
     .enter()
 
   var cells = deviceCellsAll.append("g")
@@ -136,22 +187,5 @@ function draw(doc) {
          return fonts[d.value.font][d.value.type];
       });
 
-  if (doc.groups) {
-    doc.groups.forEach(function(group) {
-      var xpad = (x.step() - x.bandwidth()) *.33
-      var ypad = (y.step() - y.bandwidth()) *.33
-      var members = d3.selectAll(group.members.map( function(name) { return "#" + name }).join(','))
-      var bx = x(d3.min(members.data(), function(d) {return d.value.x})) - xpad
-      var by = y(d3.max(members.data(), function(d) {return d.value.y})) - ypad
-      var width = x(d3.max(members.data(), function(d) { return d.value.x })) - bx + x.bandwidth() + xpad
-      var height = y(d3.min(members.data(), function(d) { return d.value.y })) - by + y.bandwidth() + ypad
-      svg.append("rect")
-         .attr("x", bx)
-         .attr("y", by)
-         .attr("width", width )
-         .attr("height", height )
-         .attr("fill", 'none')
-         .style("stroke", function(d) { return group.borderColor || 'white' })
-    })
-  }
+
 };
