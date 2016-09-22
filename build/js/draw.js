@@ -18,7 +18,6 @@ function textPositions(x1, y1, x2, y2, xpad, ypad ) {
 
 
 function draw(doc) {
-
   var rows = doc.rows || 10
   var columns = doc.columns || 10
   var backgroundColor = doc.backgroundColor || "white";
@@ -96,6 +95,7 @@ function draw(doc) {
       .call(d3.axisLeft(y));
   }
 
+// draw the groups
   if (doc.groups) {
     doc.groups.forEach(function(group) {
       var xpad = (x.step() - x.bandwidth()) * groupPadding
@@ -127,26 +127,59 @@ function draw(doc) {
     })
   }
 
-  if (doc.connections) {
-    doc.connections.forEach(function(connection) {
-      var data = connection.endpoints.map( function(device) {
-              return { x: x(doc.objects[device].x) + x.bandwidth()/2,
-                       y: y(doc.objects[device].y) + y.bandwidth()/2,
-                     }
-      });
-      var curve = d3[connection.curve] || d3.curveLinear
-      svg.append("path")
-        .datum(data)
-        .style("stroke", connection.lineColor || 'orange' )
-        .style("fill", "none")
-        .style("stroke-dasharray", connection.strokeDashArray || [0,0])
-        .attr("d", d3.line()
-                     .curve(curve)
-                     .x(function(d) { return d.x; })
-                     .y(function(d) { return d.y; })
-                 );
+// draw the connections
+
+if (doc.connections) {
+  doc.connections.forEach(function(connection) {
+    var data = connection.endpoints.map( function(device) {
+            return { x: x(doc.objects[device].x) + x.bandwidth()/2,
+                     y: y(doc.objects[device].y) + y.bandwidth()/2,
+                   }
     });
-  }
+    var curve = d3[connection.curve] || d3.curveLinear
+    var pathName = connection.endpoints.join('-')
+    svg.append("path")
+      .datum(data)
+      .attr("id", pathName)
+      .attr("clip-path", `url(#${connection.endpoints[0]})`) // clip the rectangle
+      .style("stroke", connection.lineColor || 'orange' )
+      .style("fill", "none")
+      .style("stroke-dasharray", connection.strokeDashArray || [0,0])
+      .attr("d", d3.line()
+                   .curve(curve)
+                   .x(function(d) { return d.x; })
+                   .y(function(d) { return d.y; })
+               );
+    svg.append("text")
+      .style("fill", "white")
+      .style('font-size', '8px')
+      .attr('dy', -1)
+      .attr('dx', 1)
+      .append("textPath")
+        .style("text-anchor","start")
+        .attr("startOffset", function(d) {
+          if (curve == d3.curveLinear) {
+            var angleRadians = Math.atan2(data[1].y - data[0].y, data[1].x - data[0].x);
+            var angleDegrees = angleRadians *180/Math.PI;
+            if (angleDegrees % 90 === 0){
+              return x.bandwidth()/2
+            } else if (( Math.abs(angleDegrees) <= 45) || ( Math.abs(angleDegrees) >= 135)) {
+              return Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
+            } else if (( Math.abs(angleDegrees) > 45) && ( Math.abs(angleDegrees) < 135)) {
+              return Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2)
+            } else {
+              // why am i here
+              console.log(`unk: ${connection.endpoints} is ${angleDegrees}`)
+            }
+          } else {
+            return x.bandwidth()/2
+          }}
+        )
+        .attr("xlink:href", "#" + pathName)
+        .text("eth0");
+  });
+}
+
 
   var deviceCellsAll = svg.selectAll("cells")
     .data(d3.entries(doc.objects))

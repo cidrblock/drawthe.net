@@ -150,16 +150,17 @@ connection: &connection
   lineColor: "white"
   strokeDashArray: "10,2"
 connections:
-  - { <<: *connection, endpoints: ["firewall", "chddc1crt001"] }
+  - { <<: *connection, endpoints: ["chddc1crt001", "firewall"] }
   - { <<: *connection, curve: curveStepBefore, endpoints: ["chddc1crt001", "chddc1crt004"] }
   - { <<: *connection, endpoints: ["chddc1crt004", "chddc1sfw005"] }
   - { <<: *connection, endpoints: ["chddc1sfw005", "chddc1srt001"] }
   - { <<: *connection, endpoints: ["chddc1srt001", "chddc1slb005"] }
+  - { <<: *connection, endpoints: ["chddc1srt001", "lx12302"] }
   - { <<: *connection, endpoints: ["chddc1slb005", "lx12300"] }
   - { <<: *connection, endpoints: ["chddc1slb005", "lx12301"] }
   - { <<: *connection, endpoints: ["chddc1slb005", "lx12302"] }
 group: &group
-  - { stroke: "#3d3935", fill: "rgba(0, 0, 0, 0.3)" }
+  - { stroke: "lightgrey", fill: "rgba(0, 0, 0, 0.3)" }
 groups:
   - { <<: *group, name: "Chandler", members: ["chddc1crt004", "chddc1sfw005"] }
   - { <<: *group, name: "Other group", textLocation: "leftMiddle", members: ["chddc1crt001", "firewall"] }
