@@ -158,7 +158,6 @@ if (doc.connections) {
 
     var firstLabel = connection.endpoints[0].split(':')[1]
     var secondLabel = connection.endpoints[1].split(':')[1]
-    if (firstLabel) {
       if (curve == d3.curveStepBefore) {
         startOffset = y.bandwidth()/2
       } else if (curve == d3.curveLinear) {
@@ -192,35 +191,9 @@ if (doc.connections) {
           .attr("startOffset", startOffset)
           .attr("xlink:href", "#" + pathName)
           .text(firstLabel);
-    }
 
-    if (secondLabel) {
-    // draw an invisible path
-      var data = endpoints.reverse().map( function(device) {
-              return { x: x(doc.objects[device].x) + x.bandwidth()/2,
-                       y: y(doc.objects[device].y) + y.bandwidth()/2,
-                     }
-      });
-      var pathName = "reverse-" + endpoints.join('-')
-      // fip the curve
-      if  (curve == d3.curveStepBefore) {
-         curve = d3.curveStepAfter
-       } else if (curve == d3.curveStepAfter) {
-         curve = d3.curveStepBefore
-       }
-      // draw a invisibile path
-      svg.append("path")
-        .datum(data)
-        .attr("id", pathName)
-        .style("stroke", "none") //connection.lineColor || 'orange' )
-        .style("fill", "none")
-        .attr("d", d3.line()
-                     .curve(curve)
-                     .x(function(d) { return d.x; })
-                     .y(function(d) { return d.y; })
-                 );
        if (curve == d3.curveStepBefore) {
-         startOffset = y.bandwidth()/2
+         startOffset = x.bandwidth()/2
        } else if (curve == d3.curveLinear) {
          if ([0,180].includes(angleDegrees)) {
            dy = -1
@@ -241,18 +214,21 @@ if (doc.connections) {
            console.log(`unk: ${connection.endpoints} is ${angleDegrees}`)
          }
        } else {
-         startOffset =  x.bandwidth()/2
+         startOffset =  y.bandwidth()/2
        }
        svg.append("text")
          .style("fill", "white")
          .style('font-size', '10px')
-         .attr('dy', -1)
+         .attr('dy', 10)
+         .attr('dx', function(d) {
+           return -startOffset - this.getComputedTextLength()
+         })
          .append("textPath")
-           .style("text-anchor","start")
-           .attr("startOffset", startOffset)
+           .style("text-anchor","end")
+           .attr("startOffset","100%")
            .attr("xlink:href", "#" + pathName)
            .text(secondLabel);
-    }
+
   });
 }
 
