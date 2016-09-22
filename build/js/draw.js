@@ -131,17 +131,19 @@ function draw(doc) {
 
 if (doc.connections) {
   doc.connections.forEach(function(connection) {
-    var data = connection.endpoints.map( function(device) {
+    var endpoints = connection.endpoints.map( function(device) { return device.split(':')[0]})
+
+    var data = endpoints.map( function(device) {
             return { x: x(doc.objects[device].x) + x.bandwidth()/2,
                      y: y(doc.objects[device].y) + y.bandwidth()/2,
                    }
     });
     var curve = d3[connection.curve] || d3.curveLinear
-    var pathName = connection.endpoints.join('-')
+    var pathName = endpoints.join('-')
+    // draw a visibile path
     svg.append("path")
       .datum(data)
       .attr("id", pathName)
-      .attr("clip-path", `url(#${connection.endpoints[0]})`) // clip the rectangle
       .style("stroke", connection.lineColor || 'orange' )
       .style("fill", "none")
       .style("stroke-dasharray", connection.strokeDashArray || [0,0])
@@ -153,39 +155,104 @@ if (doc.connections) {
     var angleRadians = Math.atan2(data[1].y - data[0].y, data[1].x - data[0].x);
     var angleDegrees = angleRadians *180/Math.PI;
     var startOffset
-    if (curve == d3.curveStepBefore) {
-      startOffset = y.bandwidth()/2
-    } else if (curve == d3.curveLinear) {
-      if ([0,180].includes(angleDegrees)) {
-        dy = -1
-        startOffset = x.bandwidth()/2
-      } else if ([-90,90].includes(angleDegrees)) {
-        dx = 1
+
+    var firstLabel = connection.endpoints[0].split(':')[1]
+    var secondLabel = connection.endpoints[1].split(':')[1]
+    if (firstLabel) {
+      if (curve == d3.curveStepBefore) {
         startOffset = y.bandwidth()/2
-      } else if ( Math.abs(angleDegrees) <= 45) {
-        startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
-      } else if (( Math.abs(angleDegrees) > 45) && ( Math.abs(angleDegrees) < 90)) {
-        startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2) + 4
-      } else if (( Math.abs(angleDegrees) > 90) && ( Math.abs(angleDegrees) < 135)) {
-        startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2)
-      } else if ( Math.abs(angleDegrees) >= 135) {
-        startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
+      } else if (curve == d3.curveLinear) {
+        if ([0,180].includes(angleDegrees)) {
+          dy = -1
+          startOffset = x.bandwidth()/2
+        } else if ([-90,90].includes(angleDegrees)) {
+          dx = 1
+          startOffset = y.bandwidth()/2
+        } else if ( Math.abs(angleDegrees) <= 45) {
+          startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
+        } else if (( Math.abs(angleDegrees) > 45) && ( Math.abs(angleDegrees) < 90)) {
+          startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2) + 4
+        } else if (( Math.abs(angleDegrees) > 90) && ( Math.abs(angleDegrees) < 135)) {
+          startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2)
+        } else if ( Math.abs(angleDegrees) >= 135) {
+          startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
+        } else {
+          // why am i here
+          console.log(`unk: ${connection.endpoints} is ${angleDegrees}`)
+        }
       } else {
-        // why am i here
-        console.log(`unk: ${connection.endpoints} is ${angleDegrees}`)
+        startOffset =  x.bandwidth()/2
       }
-    } else {
-      startOffset =  x.bandwidth()/2
+      svg.append("text")
+        .style("fill", "white")
+        .style('font-size', '10px')
+        .attr('dy', -1)
+        .append("textPath")
+          .style("text-anchor","start")
+          .attr("startOffset", startOffset)
+          .attr("xlink:href", "#" + pathName)
+          .text(firstLabel);
     }
-    svg.append("text")
-      .style("fill", "white")
-      .style('font-size', '8px')
-      .attr('dy', -1)
-      .append("textPath")
-        .style("text-anchor","start")
-        .attr("startOffset", startOffset)
-        .attr("xlink:href", "#" + pathName)
-        .text("eth0");
+
+    if (secondLabel) {
+    // draw an invisible path
+      var data = endpoints.reverse().map( function(device) {
+              return { x: x(doc.objects[device].x) + x.bandwidth()/2,
+                       y: y(doc.objects[device].y) + y.bandwidth()/2,
+                     }
+      });
+      var pathName = "reverse-" + endpoints.join('-')
+      // fip the curve
+      if  (curve == d3.curveStepBefore) {
+         curve = d3.curveStepAfter
+       } else if (curve == d3.curveStepAfter) {
+         curve = d3.curveStepBefore
+       }
+      // draw a invisibile path
+      svg.append("path")
+        .datum(data)
+        .attr("id", pathName)
+        .style("stroke", "none") //connection.lineColor || 'orange' )
+        .style("fill", "none")
+        .attr("d", d3.line()
+                     .curve(curve)
+                     .x(function(d) { return d.x; })
+                     .y(function(d) { return d.y; })
+                 );
+       if (curve == d3.curveStepBefore) {
+         startOffset = y.bandwidth()/2
+       } else if (curve == d3.curveLinear) {
+         if ([0,180].includes(angleDegrees)) {
+           dy = -1
+           startOffset = x.bandwidth()/2
+         } else if ([-90,90].includes(angleDegrees)) {
+           dx = 1
+           startOffset = y.bandwidth()/2
+         } else if ( Math.abs(angleDegrees) <= 45) {
+           startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
+         } else if (( Math.abs(angleDegrees) > 45) && ( Math.abs(angleDegrees) < 90)) {
+           startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2) + 4
+         } else if (( Math.abs(angleDegrees) > 90) && ( Math.abs(angleDegrees) < 135)) {
+           startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2)
+         } else if ( Math.abs(angleDegrees) >= 135) {
+           startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
+         } else {
+           // why am i here
+           console.log(`unk: ${connection.endpoints} is ${angleDegrees}`)
+         }
+       } else {
+         startOffset =  x.bandwidth()/2
+       }
+       svg.append("text")
+         .style("fill", "white")
+         .style('font-size', '10px')
+         .attr('dy', -1)
+         .append("textPath")
+           .style("text-anchor","start")
+           .attr("startOffset", startOffset)
+           .attr("xlink:href", "#" + pathName)
+           .text(secondLabel);
+    }
   });
 }
 
