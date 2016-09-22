@@ -150,31 +150,40 @@ if (doc.connections) {
                    .x(function(d) { return d.x; })
                    .y(function(d) { return d.y; })
                );
+    var angleRadians = Math.atan2(data[1].y - data[0].y, data[1].x - data[0].x);
+    var angleDegrees = angleRadians *180/Math.PI;
+    var startOffset
+    if (curve == d3.curveStepBefore) {
+      startOffset = y.bandwidth()/2
+    } else if (curve == d3.curveLinear) {
+      if ([0,180].includes(angleDegrees)) {
+        dy = -1
+        startOffset = x.bandwidth()/2
+      } else if ([-90,90].includes(angleDegrees)) {
+        dx = 1
+        startOffset = y.bandwidth()/2
+      } else if ( Math.abs(angleDegrees) <= 45) {
+        startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
+      } else if (( Math.abs(angleDegrees) > 45) && ( Math.abs(angleDegrees) < 90)) {
+        startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2) + 4
+      } else if (( Math.abs(angleDegrees) > 90) && ( Math.abs(angleDegrees) < 135)) {
+        startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2)
+      } else if ( Math.abs(angleDegrees) >= 135) {
+        startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
+      } else {
+        // why am i here
+        console.log(`unk: ${connection.endpoints} is ${angleDegrees}`)
+      }
+    } else {
+      startOffset =  x.bandwidth()/2
+    }
     svg.append("text")
       .style("fill", "white")
       .style('font-size', '8px')
       .attr('dy', -1)
-      .attr('dx', 1)
       .append("textPath")
         .style("text-anchor","start")
-        .attr("startOffset", function(d) {
-          if (curve == d3.curveLinear) {
-            var angleRadians = Math.atan2(data[1].y - data[0].y, data[1].x - data[0].x);
-            var angleDegrees = angleRadians *180/Math.PI;
-            if (angleDegrees % 90 === 0){
-              return x.bandwidth()/2
-            } else if (( Math.abs(angleDegrees) <= 45) || ( Math.abs(angleDegrees) >= 135)) {
-              return Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
-            } else if (( Math.abs(angleDegrees) > 45) && ( Math.abs(angleDegrees) < 135)) {
-              return Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2)
-            } else {
-              // why am i here
-              console.log(`unk: ${connection.endpoints} is ${angleDegrees}`)
-            }
-          } else {
-            return x.bandwidth()/2
-          }}
-        )
+        .attr("startOffset", startOffset)
         .attr("xlink:href", "#" + pathName)
         .text("eth0");
   });
