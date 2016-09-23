@@ -1,0 +1,57 @@
+title:
+  show: true
+  color: white
+  logo: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+  logoFill: white
+  text: "Sample Diagram"
+backgroundColor: "#3d3935"
+diagramAspectRatio: "11:11"
+rows: 5
+columns: 5
+gridLines: true
+margin:
+  top: 20
+  right: 20
+  bottom: 50
+  left: 20
+defaults: &defaults
+  font: "azure-enterprise"
+cisco: &cisco
+  borderColor: "#004BAF"
+  color: "#004BAF"
+  iconColor: "#004BAF"
+  font: "cisco"
+  backgroundColor: "white"
+servers: &servers
+  <<: *defaults
+  type: "Webserver"
+  backgroundColor: "#58585B"
+objects:
+  firewall: {<<: *cisco, x: 4, y: 4, type: "firewall"}
+  chddc1crt001: {<<: *cisco, x: 0, y: 4, type: "router"}
+  chddc1crt004: {x: 2, y: 3, font: "azure-enterprise", type: "Gateway", backgroundColor: "Gold"}
+  chddc1sfw005: {x: 2, y: 2, font: "azure-enterprise", type: "Firewall", backgroundColor: "red"}
+  chddc1srt001: {x: 3, y: 2, font: "azure-enterprise", type: "Gateway", backgroundColor: "green"}
+  chddc1slb005: {x: 3, y: 1, font: "azure-enterprise", type: "LoadbalancerGeneric", backgroundColor: "#2E1700"}
+  lx12300: {<<: *servers, x: 2, y: 0}
+  lx12301: {<<: *servers, x: 3, y: 0}
+  lx12302: {<<: *servers, x: 4, y: 0}
+connection: &connection
+  lineColor: "white"
+  strokeDashArray: "10,2"
+connections:
+  - { <<: *connection, endpoints: ["chddc1crt001:eth0", "firewall:eth1"] }
+  - { <<: *connection, curve: curveStepBefore, endpoints: ["chddc1crt001:eth5", "chddc1crt004:eth6"] }
+  - { <<: *connection, endpoints: ["chddc1crt004", "chddc1sfw005"] }
+  - { <<: *connection, endpoints: ["chddc1sfw005:XXXXXX", "chddc1srt001:YYYYY"] }
+  - { <<: *connection, endpoints: ["chddc1srt001", "chddc1slb005:443"] }
+  - { <<: *connection, endpoints: ["chddc1srt001", "lx12302"] }
+  - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12300:80"] }
+  - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12301:80"] }
+  - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12302:80"] }
+group: &group
+  - { stroke: "lightgrey", fill: "rgba(0, 0, 0, 0.3)" }
+groups:
+  - { <<: *group, name: "Chandler", members: ["chddc1crt004", "chddc1sfw005"] }
+  - { <<: *group, name: "Other group", textLocation: "leftMiddle", members: ["chddc1crt001", "firewall"] }
+  - { <<: *group, name: "Servers", textLocation: "bottomMiddle", members: ["lx12300", "lx12301", "lx12302"] }

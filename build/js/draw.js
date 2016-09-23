@@ -16,84 +16,140 @@ function textPositions(x1, y1, x2, y2, xpad, ypad ) {
   return positions
 }
 
-
 function draw(doc) {
   var rows = doc.rows || 10
   var columns = doc.columns || 10
   var backgroundColor = doc.backgroundColor || "white";
   var groupPadding = doc.groupPadding || .33;
   var gridPaddingInner = .4;
+  var connectionLabelFontSize = 10;
+  var gridLines = doc.gridLines || false;
+  var title = doc.title || false;
+  var titleHeight = 0
 
   document.body.style.background = backgroundColor
   var ratios = doc['diagramAspectRatio'].split(':')
   var margin = doc['margin'] || {top: 20, right: 20, bottom: 50, left: 20}
-
   var parentBox = d3.select("#svg").node().getBoundingClientRect()
-  if (parentBox.height < parentBox.width) {
-    height = parentBox.height - doc.margin.top - doc.margin.bottom
-    width = parentBox.height/ratios[1] * ratios[0] - doc.margin.left - doc.margin.right
-  } else if (parentBox.width < parentBox.height) {
-    width = parentBox.width - doc.margin.left - doc.margin.right
-    height = parentBox.width/ratios[0] * ratios[1] - doc.margin.top - doc.margin.bottom
+
+  // set the desired h/w
+  var availbleHeight = parentBox.height - margin.top - margin.bottom
+  var availbleWidth = parentBox.width - margin.left - margin.right
+
+  if (availbleHeight < availbleWidth) {
+    svgHeight = availbleHeight
+    svgWidth = svgHeight/ratios[1] * ratios[0]
+  } else if (availbleWidth < availbleHeight) {
+    svgWidth = availbleWidth
+    svgHeight = svgWidth/ratios[0] * ratios[1]
   } else {
-    width = parentBox.width
-    height = parentBox.height
+    svgWidth = availbleWidth
+    svgHeight = availbleHeight
   }
+  // downsize if outside the bounds
+  if (svgHeight > availbleHeight) {
+    svgHeight = availbleHeight
+    svgWidth = svgHeight/ratios[1] * ratios[0]
+  }
+  if (svgWidth > availbleWidth) {
+    svgWidth = availbleWidth
+    svgHeight = svgWidth/ratios[0] * ratios[1]
+  }
+
+  if (title) { titleHeight = svgHeight*.10 }
+  var drawingHeight = svgHeight - titleHeight
+  var drawingWidth = drawingHeight/ratios[1] * ratios[0]
+  var drawingX = (svgWidth - drawingWidth)/2
+  var drawingY = (svgHeight - titleHeight - drawingHeight)
+
 
   var x = d3.scaleBand()
     .domain(Array.from(Array(columns).keys()))
-    .rangeRound([0,width])
+    .rangeRound([drawingX,drawingWidth + drawingX])
     .paddingInner(gridPaddingInner);
 
   var y = d3.scaleBand()
     .domain(Array.from(Array(rows).keys()).reverse())
-    .rangeRound([0,height])
+    .rangeRound([drawingY,drawingHeight + drawingY])
     .paddingInner(gridPaddingInner);
 
+  // remove the old diagram
   d3.select("svg").remove();
   var svg = d3.select("#svg").append("svg")
     .attr("width", parentBox.width )
     .attr("height", parentBox.height )
-    .style("background-color", function(d) { return doc.backgroundColor || "white" })
+    .style("background-color", backgroundColor )
     .append("g")
-      .attr("transform", "translate(" + (parentBox.width - width)/2 + "," + (parentBox.height - height)/2 + ")");
+      .attr("transform", "translate(" + (parentBox.width - svgWidth)/2 + "," + (parentBox.height - svgHeight)/2 + ")");
+
+  // draw the title
+if (title) {
+  svg.append("line")
+    .attr("stroke", function(d) { return doc.title.color || "red" })
+    .attr("x1", drawingX - 20)
+    .attr("y1", drawingHeight + drawingY + 20)
+    .attr("x2", drawingX + drawingWidth + 20)
+    .attr("y2", drawingHeight + drawingY + 20)
+
+  svg.append("rect")
+      .attr("fill", function(d) { return doc.title.logoFill || "white" })
+       .attr('x', drawingX - 20 )
+       .attr('y', drawingHeight + drawingY + 20 + titleHeight * .05)
+       .attr('width', titleHeight * .95)
+       .attr('height', titleHeight * .95)
+  svg.append("svg:image")
+       .attr('x', drawingX - 20 )
+       .attr('y', drawingHeight + drawingY + 20 + titleHeight * .05)
+       .attr('width', titleHeight * .95)
+       .attr('height', titleHeight * .95)
+       .attr("xlink:href", function(d) { return doc.title.logo || "" })
+
+   svg.append("text")
+     .style("fill", function(d) { return doc.title.color || "red" })
+     .style('font-size', titleHeight * .5 + 'px')
+     .attr("x", drawingX - 20 + titleHeight)
+     .attr('y', drawingHeight + drawingY + 20 + (titleHeight * .5) + (titleHeight * .5)/2)
+     .text(function(d) { return doc.title.text || "Title text" })
+}
 
   function make_x_gridlines() {
     return d3.axisBottom(x)
-        .ticks(5)
   }
-  // gridlines in y axis function
   function make_y_gridlines() {
     return d3.axisLeft(y)
-        .ticks(5)
   }
-  if (doc.gridLines) {
+  if (gridLines) {
+    // X gridlines
     svg.append("g")
       .attr("class", "grid")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", `translate(0,${ drawingHeight + drawingY })`)
       .call(make_x_gridlines()
-        .tickSize(-height)
+        .tickSize(-drawingHeight)
         .tickFormat("")
         .ticks(columns)
       )
+
+    // Y gridlines
     svg.append("g")
       .attr("class", "grid")
+      .attr("transform", "translate(" + drawingX + "," + drawingY + ")")
       .call(make_y_gridlines()
-        .tickSize(-width)
+        .tickSize(-drawingWidth)
         .tickFormat("")
         .ticks(rows)
-      )
+       )
       // add the X Axis
     svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
+    .attr("transform", `translate(0,${ drawingHeight + drawingY })`)
       .attr("class", "axisNone")
       .call(d3.axisBottom(x));
 
       // add the Y Axis
     svg.append("g")
+    .attr("transform", `translate(${drawingX},0)`)
       .attr("class", "axisNone")
       .call(d3.axisLeft(y));
-  }
+   }
 
 // draw the groups
   if (doc.groups) {
@@ -130,7 +186,7 @@ function draw(doc) {
 // draw the connections
 
 if (doc.connections) {
-  doc.connections.forEach(function(connection) {
+  doc.connections.forEach(function(connection,index) {
     var endpoints = connection.endpoints.map( function(device) { return device.split(':')[0]})
 
     var data = endpoints.map( function(device) {
@@ -138,96 +194,84 @@ if (doc.connections) {
                      y: y(doc.objects[device].y) + y.bandwidth()/2,
                    }
     });
-    var curve = d3[connection.curve] || d3.curveLinear
-    var pathName = endpoints.join('-')
-    // draw a visibile path
-    svg.append("path")
-      .datum(data)
-      .attr("id", pathName)
-      .style("stroke", connection.lineColor || 'orange' )
-      .style("fill", "none")
-      .style("stroke-dasharray", connection.strokeDashArray || [0,0])
-      .attr("d", d3.line()
-                   .curve(curve)
-                   .x(function(d) { return d.x; })
-                   .y(function(d) { return d.y; })
-               );
     var angleRadians = Math.atan2(data[1].y - data[0].y, data[1].x - data[0].x);
     var angleDegrees = angleRadians *180/Math.PI;
-    var startOffset
 
+    // first, let get all the paths gong left to right & recompute
+    if ((angleDegrees >= 90) || (angleDegrees < -90)) {
+      connection.endpoints = connection.endpoints.reverse()
+      endpoints = endpoints.reverse()
+      data = data.reverse()
+      angleRadians = Math.atan2(data[1].y - data[0].y, data[1].x - data[0].x);
+      angleDegrees = angleRadians *180/Math.PI;
+    }
+    var curve = d3[connection.curve] || d3.curveLinear
+    var dxOffset = 0
     var firstLabel = connection.endpoints[0].split(':')[1]
     var secondLabel = connection.endpoints[1].split(':')[1]
-      if (curve == d3.curveStepBefore) {
-        startOffset = y.bandwidth()/2
-      } else if (curve == d3.curveLinear) {
-        if ([0,180].includes(angleDegrees)) {
-          dy = -1
-          startOffset = x.bandwidth()/2
-        } else if ([-90,90].includes(angleDegrees)) {
-          dx = 1
-          startOffset = y.bandwidth()/2
-        } else if ( Math.abs(angleDegrees) <= 45) {
-          startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
-        } else if (( Math.abs(angleDegrees) > 45) && ( Math.abs(angleDegrees) < 90)) {
-          startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2) + 4
-        } else if (( Math.abs(angleDegrees) > 90) && ( Math.abs(angleDegrees) < 135)) {
-          startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2)
-        } else if ( Math.abs(angleDegrees) >= 135) {
-          startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
-        } else {
-          // why am i here
-          console.log(`unk: ${connection.endpoints} is ${angleDegrees}`)
-        }
-      } else {
-        startOffset =  x.bandwidth()/2
+    var pathName = `path${index}`
+    if (curve == d3.curveStepBefore) { startOffset = y.bandwidth()/2 }
+    if (curve == d3.curveStepAfter) { startOffset = x.bandwidth()/2 }
+    if (curve == d3.curveStep) { startOffset = x.bandwidth()/2 }
+    if (curve == d3.curveLinear) {
+        // find the angle of the center to the corner
+        var c2cRadians = Math.atan2(y.bandwidth() - y.bandwidth()/2, x.bandwidth() - x.bandwidth()/2);
+        var c2cDegrees = c2cRadians *180/Math.PI
+        var A = Math.abs(c2cDegrees - Math.abs(angleDegrees))
+        var C = 90 - c2cDegrees
+        if (Math.abs(angleDegrees) > C ) { C = 90 - C }
+        var B = 180 - (A + C)
+        var b = Math.sqrt(Math.pow(x.bandwidth()/2,2) + Math.pow(y.bandwidth()/2,2))
+        var c = (Math.sin(C*(Math.PI / 180))*b)/Math.sin(B*(Math.PI / 180))
+        var startOffset = Math.abs(c)
+        // add a little padding if we're leaning in
+        if ((angleDegrees < 0) && (angleDegrees > -c2cDegrees)) {dxOffset = connectionLabelFontSize/2}
+        if ((angleDegrees > c2cDegrees) && (angleDegrees < 90)) {dxOffset = connectionLabelFontSize/2}
       }
+      // draw the path between the points
+      svg.append("path")
+        .datum(data)
+        .attr("id", pathName)
+        .style("stroke", connection.lineColor || 'orange' )
+        .style("fill", "none")
+        .style("stroke-dasharray", connection.strokeDashArray || [0,0])
+        .attr("d", d3.line()
+                     .curve(curve)
+                     .x(function(d) { return d.x; })
+                     .y(function(d) { return d.y; })
+                 );
+      // draw the text for the first label
       svg.append("text")
-        .style("fill", "white")
-        .style('font-size', '10px')
+        .style("fill", function(d) { return connection.color || "white" })
+        .style('font-size', connectionLabelFontSize + 'px')
         .attr('dy', -1)
+        .attr('dx', function(d) {
+          return startOffset + dxOffset
+        })
         .append("textPath")
           .style("text-anchor","start")
-          .attr("startOffset", startOffset)
           .attr("xlink:href", "#" + pathName)
           .text(firstLabel);
 
-       if (curve == d3.curveStepBefore) {
-         startOffset = x.bandwidth()/2
-       } else if (curve == d3.curveLinear) {
-         if ([0,180].includes(angleDegrees)) {
-           dy = -1
-           startOffset = x.bandwidth()/2
-         } else if ([-90,90].includes(angleDegrees)) {
-           dx = 1
-           startOffset = y.bandwidth()/2
-         } else if ( Math.abs(angleDegrees) <= 45) {
-           startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
-         } else if (( Math.abs(angleDegrees) > 45) && ( Math.abs(angleDegrees) < 90)) {
-           startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2) + 4
-         } else if (( Math.abs(angleDegrees) > 90) && ( Math.abs(angleDegrees) < 135)) {
-           startOffset = Math.abs(1/Math.sin(angleRadians) * y.bandwidth()/2)
-         } else if ( Math.abs(angleDegrees) >= 135) {
-           startOffset = Math.abs(1/Math.cos(angleRadians) * x.bandwidth()/2)
-         } else {
-           // why am i here
-           console.log(`unk: ${connection.endpoints} is ${angleDegrees}`)
-         }
-       } else {
-         startOffset =  y.bandwidth()/2
-       }
-       svg.append("text")
-         .style("fill", "white")
-         .style('font-size', '10px')
-         .attr('dy', 10)
-         .attr('dx', function(d) {
-           return -startOffset - this.getComputedTextLength()
-         })
-         .append("textPath")
-           .style("text-anchor","end")
-           .attr("startOffset","100%")
-           .attr("xlink:href", "#" + pathName)
-           .text(secondLabel);
+      //in theses we enter the 2nd node in a different direction
+      if (curve == d3.curveStepBefore) {
+        startOffset = x.bandwidth()/2
+      } else if (curve == d3.curveStepAfter) {
+        startOffset = y.bandwidth()/2
+      }
+      // draw the text for the second node
+      svg.append("text")
+      .style("fill", function(d) { return connection.color || "white" })
+       .style('font-size', connectionLabelFontSize + 'px')
+       .attr('dy', 8)
+       .attr('dx', function(d) {
+         return -startOffset - this.getComputedTextLength() - dxOffset
+       })
+       .append("textPath")
+         .style("text-anchor","end")
+         .attr("startOffset","100%")
+         .attr("xlink:href", "#" + pathName)
+         .text(secondLabel);
 
   });
 }

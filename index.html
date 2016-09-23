@@ -26,6 +26,7 @@
     <script type="text/javascript" src="build/js/js-yaml.min.js"></script>
     <script type="text/javascript" src="./build/js/d3.min.js"></script>
     <script type="text/javascript" src="build/js/draw.js"></script>
+    <script type="text/javascript" src="build/js/title.js"></script>
     <script type="text/javascript" src="build/js/app.js"></script>
 
     <script>
@@ -62,13 +63,27 @@
           <div class="row">
             <big><strong>Template</strong></big>
             <div class="btn-toolbar pull-right">
-              <a href="./build/fonts/cisco.html" target="_blank" class="btn btn-black btn-xs">
-                <span class="fa fa-search"></span> cisco icons
-              </a>
-              <a href="./build/fonts/azure-enterprise.html" target="_blank" class="btn btn-black btn-xs">
-                <span class="fa fa-search"></span> azure enterprise icons
-              </a>
-              <button id="draw" type="submit" class="btn btn-black btn-xs pull-right" ng-click="draw(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
+              <div class="btn-group" uib-dropdown is-open="status.isopen1">
+                <button id="examples" type="button" class="btn btn-black btn-xs pull-right" uib-dropdown-toggle ng-disabled="disabled">
+                  examples<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="examples">
+                  <li role="menuitem" ng-click="example('sample.yaml')"><a href="#">sample</a></li>
+                  <li role="menuitem" ng-click="example('groups.yaml')"><a href="#">groups</a></li>
+                  <li role="menuitem" ng-click="example('labels.yaml')"><a href="#">labels</a></li>
+                  <li role="menuitem" ng-click="example('curves.yaml')"><a href="#">curves</a></li>
+                </ul>
+              </div>
+              <div class="btn-group" uib-dropdown is-open="status.isopen2">
+                <button id="foo" type="button" class="btn btn-black btn-xs pull-right" uib-dropdown-toggle ng-disabled="disabled">
+                  icons<span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="icons">
+                  <li role="menuitem"><a href="./build/fonts/cisco.html" target="_blank">cisco</a></li>
+                  <li role="menuitem"><a href="./build/fonts/azure-enterprise.html" target="_blank" >azure enterprise</a></li>
+                </ul>
+              </div>
+              <button id="draw" type="submit" class="btn btn-black btn-xs pull-right" ng-click="drawClick(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
                  <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true" ></span> draw
               </button>
             </div>
@@ -114,85 +129,33 @@ mainController.$inject = ["$scope", "$http", "$sce", "$log", "$window"];
 
 function mainController($scope, $http, $sce, $log, $window) {
   $scope.design = "";
-  $scope.acedata = `backgroundColor: "#3d3935"
-diagramAspectRatio: "11:11"
-rows: 5
-columns: 5
-gridLines: false
-margin:
-  top: 20
-  right: 20
-  bottom: 50
-  left: 20
-defaults: &defaults
-  font: "azure-enterprise"
-cisco: &cisco
-  borderColor: "#004BAF"
-  color: "#004BAF"
-  iconColor: "#004BAF"
-  font: "cisco"
-  backgroundColor: "white"
-servers: &servers
-  <<: *defaults
-  type: "Webserver"
-  backgroundColor: "#58585B"
-objects:
-  firewall: {<<: *cisco, x: 4, y: 4, type: "firewall"}
-  chddc1crt001: {<<: *cisco, x: 0, y: 4, type: "router"}
-  chddc1crt004: {x: 2, y: 3, font: "azure-enterprise", type: "Gateway", backgroundColor: "Gold"}
-  chddc1sfw005: {x: 2, y: 2, font: "azure-enterprise", type: "Firewall", backgroundColor: "red"}
-  chddc1srt001: {x: 3, y: 2, font: "azure-enterprise", type: "Gateway", backgroundColor: "green"}
-  chddc1slb005: {x: 3, y: 1, font: "azure-enterprise", type: "LoadbalancerGeneric", backgroundColor: "#2E1700"}
-  lx12300: {<<: *servers, x: 2, y: 0}
-  lx12301: {<<: *servers, x: 3, y: 0}
-  lx12302: {<<: *servers, x: 4, y: 0}
-connection: &connection
-  lineColor: "white"
-  strokeDashArray: "10,2"
-connections:
-  - { <<: *connection, endpoints: ["chddc1crt001:eth0", "firewall:eth1"] }
-  - { <<: *connection, curve: curveStepBefore, endpoints: ["chddc1crt001:eth5", "chddc1crt004:eth6"] }
-  - { <<: *connection, endpoints: ["chddc1crt004", "chddc1sfw005"] }
-  - { <<: *connection, endpoints: ["chddc1sfw005:XXXXXX", "chddc1srt001:YYYYY"] }
-  - { <<: *connection, endpoints: ["chddc1srt001", "chddc1slb005:443"] }
-  - { <<: *connection, endpoints: ["chddc1srt001", "lx12302"] }
-  - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12300:80"] }
-  - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12301:80"] }
-  - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12302:80"] }
-group: &group
-  - { stroke: "lightgrey", fill: "rgba(0, 0, 0, 0.3)" }
-groups:
-  - { <<: *group, name: "Chandler", members: ["chddc1crt004", "chddc1sfw005"] }
-  - { <<: *group, name: "Other group", textLocation: "leftMiddle", members: ["chddc1crt001", "firewall"] }
-  - { <<: *group, name: "Servers", textLocation: "bottomMiddle", members: ["lx12300", "lx12301", "lx12302"] }
-  `;
-  $scope.acejson ='';
-  $scope.acejsonOptions = {
-    onLoad: function (_ace) {
-      _ace.getSession().setMode("ace/mode/yaml");
-      _ace.$blockScrolling = Infinity;
-    }
-  };
+  $http.get('sample.yaml')
+       .then(function(res){
+          $scope.acedata = res.data;
+        });
   $scope.aceyamlOptions = {
     onLoad: function (_ace) {
       _ace.getSession().setMode("ace/mode/yaml");
       _ace.$blockScrolling = Infinity;
     }
   };
-
   $scope.opend3js = function(greeting) {
     var w = $window.open("fullscreen.html");
   };
-
-  $scope.draw = function() {
+  $scope.example = function(file) {
+    $http.get(file)
+         .then(function(res){
+            $scope.acedata = res.data;
+            $scope.drawClick()
+          });
+  }
+  $scope.drawClick = function() {
     try {
       var design = jsyaml.load($scope.acedata);
       var designtext = $scope.acedata;
       design = jsyaml.load(designtext);
       $window.design = design;
       draw(design);
-      // $window.jsonData = json;
-      // $scope.acejson = angular.toJson(json, 2);
     } //try
     catch (error) {
       alert(error);
