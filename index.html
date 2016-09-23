@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html ng-app="subnetter">
+<html ng-app="dld4e">
 <head>
     <!-- META -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="index,follow">
-    <meta name="description" content="Visual design aid for subnets and network planner for IP space and IP schema">
+    <meta name="description" content="decent looking diagrams for engineers">
 
-    <title>design</title>
+    <title>dld4e</title>
 
     <link rel="stylesheet" href="build/css/bootstrap.min.css">
     <link rel="stylesheet" href="build/css/font-awesome.min.css">
@@ -124,7 +124,7 @@
 // };
 
 angular
-    .module("subnetter", ['ui.bootstrap', 'ui.ace'])
+    .module("dld4e", ['ui.bootstrap', 'ui.ace'])
     .controller("mainController", mainController);
 
 mainController.$inject = ["$scope", "$http", "$sce", "$log", "$window"];
