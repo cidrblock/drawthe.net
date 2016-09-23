@@ -1,0 +1,28 @@
+var drawTitle = function (svg, drawing, title) {
+    svg.append("line")
+      .attr("stroke", function(d) { return title.color || "red" })
+      .attr("x1", drawing.x - 20)
+      .attr("y1", drawing.height + drawing.y + 20)
+      .attr("x2", drawing.x + drawing.width + 20)
+      .attr("y2", drawing.height + drawing.y + 20)
+
+    svg.append("rect")
+        .attr("fill", function(d) { return title.logoFill || "white" })
+         .attr('x', drawing.x - 20 )
+         .attr('y', drawing.height + drawing.y + 20 + title.height * .05)
+         .attr('width', title.height * .95)
+         .attr('height', title.height * .95)
+    svg.append("svg:image")
+         .attr('x', drawing.x - 20 )
+         .attr('y', drawing.height + drawing.y + 20 + title.height * .05)
+         .attr('width', title.height * .95)
+         .attr('height', title.height * .95)
+         .attr("xlink:href", function(d) { return title.logo || "" })
+
+     svg.append("text")
+       .style("fill", function(d) { return title.color || "red" })
+       .style('font-size', title.height * .5 + 'px')
+       .attr("x", drawing.x - 20 + title.height)
+       .attr('y', drawing.height + drawing.y + 20 + (title.height * .5) + (title.height * .5)/2)
+       .text(function(d) { return title.text || "Title text" })
+}

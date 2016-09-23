@@ -57,10 +57,20 @@ function draw(doc) {
   }
 
   if (title) { titleHeight = svgHeight*.10 }
+  if (title) { title.height = svgHeight*.10 }
+
   var drawingHeight = svgHeight - titleHeight
   var drawingWidth = drawingHeight/ratios[1] * ratios[0]
   var drawingX = (svgWidth - drawingWidth)/2
   var drawingY = (svgHeight - titleHeight - drawingHeight)
+  var drawing = {
+    height: drawingHeight,
+    width: drawingWidth,
+    x: drawingX,
+    y: drawingY,
+    columns: columns,
+    rows: rows
+  }
 
 
   var x = d3.scaleBand()
@@ -84,72 +94,12 @@ function draw(doc) {
 
   // draw the title
 if (title) {
-  svg.append("line")
-    .attr("stroke", function(d) { return doc.title.color || "red" })
-    .attr("x1", drawingX - 20)
-    .attr("y1", drawingHeight + drawingY + 20)
-    .attr("x2", drawingX + drawingWidth + 20)
-    .attr("y2", drawingHeight + drawingY + 20)
-
-  svg.append("rect")
-      .attr("fill", function(d) { return doc.title.logoFill || "white" })
-       .attr('x', drawingX - 20 )
-       .attr('y', drawingHeight + drawingY + 20 + titleHeight * .05)
-       .attr('width', titleHeight * .95)
-       .attr('height', titleHeight * .95)
-  svg.append("svg:image")
-       .attr('x', drawingX - 20 )
-       .attr('y', drawingHeight + drawingY + 20 + titleHeight * .05)
-       .attr('width', titleHeight * .95)
-       .attr('height', titleHeight * .95)
-       .attr("xlink:href", function(d) { return doc.title.logo || "" })
-
-   svg.append("text")
-     .style("fill", function(d) { return doc.title.color || "red" })
-     .style('font-size', titleHeight * .5 + 'px')
-     .attr("x", drawingX - 20 + titleHeight)
-     .attr('y', drawingHeight + drawingY + 20 + (titleHeight * .5) + (titleHeight * .5)/2)
-     .text(function(d) { return doc.title.text || "Title text" })
+  drawTitle(svg, drawing, title)
 }
 
-  function make_x_gridlines() {
-    return d3.axisBottom(x)
-  }
-  function make_y_gridlines() {
-    return d3.axisLeft(y)
-  }
-  if (gridLines) {
-    // X gridlines
-    svg.append("g")
-      .attr("class", "grid")
-      .attr("transform", `translate(0,${ drawingHeight + drawingY })`)
-      .call(make_x_gridlines()
-        .tickSize(-drawingHeight)
-        .tickFormat("")
-        .ticks(columns)
-      )
-
-    // Y gridlines
-    svg.append("g")
-      .attr("class", "grid")
-      .attr("transform", "translate(" + drawingX + "," + drawingY + ")")
-      .call(make_y_gridlines()
-        .tickSize(-drawingWidth)
-        .tickFormat("")
-        .ticks(rows)
-       )
-      // add the X Axis
-    svg.append("g")
-    .attr("transform", `translate(0,${ drawingHeight + drawingY })`)
-      .attr("class", "axisNone")
-      .call(d3.axisBottom(x));
-
-      // add the Y Axis
-    svg.append("g")
-    .attr("transform", `translate(${drawingX},0)`)
-      .attr("class", "axisNone")
-      .call(d3.axisLeft(y));
-   }
+if (gridLines) {
+  drawGridLines(svg, drawing, x, y)
+}
 
 // draw the groups
   if (doc.groups) {
