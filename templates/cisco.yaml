@@ -1,0 +1,17 @@
+diagram:
+  rows: 5
+  columns: 5
+  gridPaddingInner: .05
+  aspectRatio: "17:11"
+  gridLines: false
+title:
+  color: black
+  logoFill: white
+  text: "Cisco Icons"
+  boxStroke: none
+icon:
+  borderColor: "black"
+  color: "#004BAF"
+  iconColor: "#004BAF"
+  font: "cisco"
+  backgroundColor: "white"

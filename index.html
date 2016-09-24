@@ -85,8 +85,8 @@
                   icons<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="icons">
-                  <li role="menuitem"><a href="./build/fonts/cisco.html" target="_blank">cisco</a></li>
-                  <li role="menuitem"><a href="./build/fonts/azure-enterprise.html" target="_blank" >azure enterprise</a></li>
+                  <li role="menuitem" ng-click="drawFont('cisco')"><a href="#">cisco</a></li>
+                  <li role="menuitem" ng-click="drawFont('azure-enterprise')"><a href="#">azure-enterprise</a></li>
                 </ul>
               </div>
               <button id="draw" type="submit" class="btn btn-black btn-xs pull-right" ng-click="drawClick(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
@@ -148,6 +148,33 @@ function mainController($scope, $http, $sce, $log, $window) {
   $scope.opend3js = function(greeting) {
     var w = $window.open("fullscreen.html");
   };
+  $scope.drawFont = function(font) {
+    var size = Object.keys(fonts[font]).length
+    var bestFit = Math.ceil(Math.sqrt(size))
+    $http.get(`templates/${font}.yaml`)
+         .then(function(res){
+            var doc = jsyaml.load(res.data);
+            var ratios = doc.diagram.aspectRatio.split(':')
+            var h = ratios[0]
+            var w = ratios[1]
+            doc.diagram.rows = Math.ceil(Math.sqrt(size*w/h))
+            doc.diagram.columns = Math.ceil(size/doc.diagram.rows)
+            var x = 0
+            var y = doc.diagram.rows - 1
+            doc.objects = {}
+            for (var key in fonts[font]){
+              doc.objects[key] = Object.assign( { x: x, y: y, type: key}, doc.icon)
+              x += 1
+              if (x == doc.diagram.columns) {
+                x = 0
+                y -= 1
+              }
+            }
+            $window.design = doc;
+            console.log(doc)
+            var w = $window.open("fullscreen.html");
+          });
+  }
   $scope.example = function(file) {
     $http.get("examples/" + file)
          .then(function(res){
