@@ -25,11 +25,13 @@
     <script type="text/javascript" src="build/js/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="build/js/js-yaml.min.js"></script>
     <script type="text/javascript" src="./build/js/d3.min.js"></script>
+
+    <script type="text/javascript" src="build/js/dld4e-connections.js"></script>
     <script type="text/javascript" src="build/js/dld4e-draw.js"></script>
-    <script type="text/javascript" src="build/js/dld4e-title.js"></script>
     <script type="text/javascript" src="build/js/dld4e-gridlines.js"></script>
     <script type="text/javascript" src="build/js/dld4e-groups.js"></script>
-    <script type="text/javascript" src="build/js/dld4e-connections.js"></script>
+    <script type="text/javascript" src="build/js/dld4e-objects.js"></script>
+    <script type="text/javascript" src="build/js/dld4e-title.js"></script>
 
     <script type="text/javascript" src="build/js/app.js"></script>
 
@@ -133,7 +135,7 @@ mainController.$inject = ["$scope", "$http", "$sce", "$log", "$window"];
 
 function mainController($scope, $http, $sce, $log, $window) {
   $scope.design = "";
-  $http.get('sample.yaml')
+  $http.get('examples/sample.yaml')
        .then(function(res){
           $scope.acedata = res.data;
         });
@@ -147,7 +149,7 @@ function mainController($scope, $http, $sce, $log, $window) {
     var w = $window.open("fullscreen.html");
   };
   $scope.example = function(file) {
-    $http.get(file)
+    $http.get("examples/" + file)
          .then(function(res){
             $scope.acedata = res.data;
             $scope.drawClick()
@@ -157,7 +159,7 @@ function mainController($scope, $http, $sce, $log, $window) {
     try {
       var design = jsyaml.load($scope.acedata);
       var designtext = $scope.acedata;
-      design = jsyaml.load(designtext);
+      design = jsyaml.load(designtext) || {};
       $window.design = design;
       draw(design);
     } //try

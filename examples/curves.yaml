@@ -1,7 +1,8 @@
 diagram:
   backgroundColor: "lightgrey"
   rows: 5
-  columns: 5
+  columns: 7
+  aspectRatio: "14:8.5"
 title:
   text: "Curves"
   color: black
@@ -16,8 +17,8 @@ azure: &azure
   backgroundColor: "darkgrey"
 objects:
   serverrack1: {<<: *azure, x: 0, y: 4, type: "Serverrack"}
-  serverrack2: {<<: *azure, x: 2, y: 2, type: "Serverrack"}
-  serverrack3: {<<: *azure, x: 4, y: 0, type: "Serverrack"}
+  serverrack2: {<<: *azure, x: 3, y: 2, type: "Serverrack"}
+  serverrack3: {<<: *azure, x: 6, y: 0, type: "Serverrack"}
 connection: &connection
   lineColor: "black"
   strokeDashArray: "0,0"
