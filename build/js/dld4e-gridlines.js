@@ -1,10 +1,10 @@
-var drawGridLines = function (svg, drawing, x, y) {
+var drawGridLines = function (svg, drawing) {
 
     function make_x_gridlines() {
-      return d3.axisBottom(x)
+      return d3.axisBottom(drawing.xBand)
     }
     function make_y_gridlines() {
-      return d3.axisLeft(y)
+      return d3.axisLeft(drawing.yBand)
     }
       // X gridlines
       svg.append("g")
@@ -29,11 +29,11 @@ var drawGridLines = function (svg, drawing, x, y) {
       svg.append("g")
       .attr("transform", `translate(0,${ drawing.height + drawing.y })`)
         .attr("class", "axisNone")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(drawing.xBand));
 
         // add the Y Axis
       svg.append("g")
       .attr("transform", `translate(${drawing.x},0)`)
         .attr("class", "axisNone")
-        .call(d3.axisLeft(y));
+        .call(d3.axisLeft(drawing.yBand));
 }
