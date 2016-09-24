@@ -1,11 +1,11 @@
-var drawConnections = function (svg, drawing, connections, objects) {
+var drawConnections = function (svg, diagram, connections, objects) {
 
     connections.forEach(function(connection,index) {
       var endpoints = connection.endpoints.map( function(device) { return device.split(':')[0]})
 
       var data = endpoints.map( function(device) {
-              return { x: drawing.xBand(doc.objects[device].x) + drawing.xBand.bandwidth()/2,
-                       y: drawing.yBand(doc.objects[device].y) + drawing.yBand.bandwidth()/2,
+              return { x: diagram.xBand(objects[device].x) + diagram.xBand.bandwidth()/2,
+                       y: diagram.yBand(objects[device].y) + diagram.yBand.bandwidth()/2,
                      }
       });
       var angleRadians = Math.atan2(data[1].y - data[0].y, data[1].x - data[0].x);
@@ -24,23 +24,23 @@ var drawConnections = function (svg, drawing, connections, objects) {
       var firstLabel = connection.endpoints[0].split(':')[1]
       var secondLabel = connection.endpoints[1].split(':')[1]
       var pathName = `path${index}`
-      if (curve == d3.curveStepBefore) { startOffset = drawing.yBand.bandwidth()/2 }
-      if (curve == d3.curveStepAfter) { startOffset = drawing.xBand.bandwidth()/2 }
-      if (curve == d3.curveStep) { startOffset = drawing.xBand.bandwidth()/2 }
+      if (curve == d3.curveStepBefore) { startOffset = diagram.yBand.bandwidth()/2 }
+      if (curve == d3.curveStepAfter) { startOffset = diagram.xBand.bandwidth()/2 }
+      if (curve == d3.curveStep) { startOffset = diagram.xBand.bandwidth()/2 }
       if (curve == d3.curveLinear) {
           // find the angle of the center to the corner
-          var c2cRadians = Math.atan2(drawing.yBand.bandwidth() - drawing.yBand.bandwidth()/2, drawing.xBand.bandwidth() - drawing.xBand.bandwidth()/2);
+          var c2cRadians = Math.atan2(diagram.yBand.bandwidth() - diagram.yBand.bandwidth()/2, diagram.xBand.bandwidth() - diagram.xBand.bandwidth()/2);
           var c2cDegrees = c2cRadians *180/Math.PI
           var A = Math.abs(c2cDegrees - Math.abs(angleDegrees))
           var C = 90 - c2cDegrees
           if (Math.abs(angleDegrees) > C ) { C = 90 - C }
           var B = 180 - (A + C)
-          var b = Math.sqrt(Math.pow(drawing.xBand.bandwidth()/2,2) + Math.pow(drawing.yBand.bandwidth()/2,2))
+          var b = Math.sqrt(Math.pow(diagram.xBand.bandwidth()/2,2) + Math.pow(diagram.yBand.bandwidth()/2,2))
           var c = (Math.sin(C*(Math.PI / 180))*b)/Math.sin(B*(Math.PI / 180))
           var startOffset = Math.abs(c)
           // add a little padding if we're leaning in
-          if ((angleDegrees < 0) && (angleDegrees > -c2cDegrees)) {dxOffset = connectionLabelFontSize/2}
-          if ((angleDegrees > c2cDegrees) && (angleDegrees < 90)) {dxOffset = connectionLabelFontSize/2}
+          if ((angleDegrees < 0) && (angleDegrees > -c2cDegrees)) {dxOffset = diagram.connectionLabelFontSize/2}
+          if ((angleDegrees > c2cDegrees) && (angleDegrees < 90)) {dxOffset = diagram.connectionLabelFontSize/2}
         }
         // draw the path between the points
         svg.append("path")
@@ -57,7 +57,7 @@ var drawConnections = function (svg, drawing, connections, objects) {
         // draw the text for the first label
         svg.append("text")
           .style("fill", function(d) { return connection.color || "white" })
-          .style('font-size', connectionLabelFontSize + 'px')
+          .style('font-size', diagram.connectionLabelFontSize + 'px')
           .attr('dy', -1)
           .attr('dx', function(d) {
             return startOffset + dxOffset
@@ -69,14 +69,14 @@ var drawConnections = function (svg, drawing, connections, objects) {
 
         //in theses we enter the 2nd node in a different direction
         if (curve == d3.curveStepBefore) {
-          startOffset = drawing.xBand.bandwidth()/2
+          startOffset = diagram.xBand.bandwidth()/2
         } else if (curve == d3.curveStepAfter) {
-          startOffset = drawing.yBand.bandwidth()/2
+          startOffset = diagram.yBand.bandwidth()/2
         }
         // draw the text for the second node
         svg.append("text")
         .style("fill", function(d) { return connection.color || "white" })
-         .style('font-size', connectionLabelFontSize + 'px')
+         .style('font-size', diagram.connectionLabelFontSize + 'px')
          .attr('dy', 8)
          .attr('dx', function(d) {
            return -startOffset - this.getComputedTextLength() - dxOffset
@@ -86,8 +86,5 @@ var drawConnections = function (svg, drawing, connections, objects) {
            .attr("startOffset","100%")
            .attr("xlink:href", "#" + pathName)
            .text(secondLabel);
-
     });
-  }
-
 }

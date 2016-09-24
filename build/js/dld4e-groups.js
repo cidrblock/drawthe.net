@@ -17,21 +17,21 @@ function textPositions(x1, y1, x2, y2, xpad, ypad ) {
 }
 
 
-var drawGroups = function (svg, drawing, groups, objects) {
+var drawGroups = function (svg, diagram, groups, objects) {
     groups.forEach(function(group) {
-      var xpad = (drawing.xBand.step() - drawing.xBand.bandwidth()) * groupPadding
-      var ypad = (drawing.yBand.step() - drawing.yBand.bandwidth()) * groupPadding
-      var x1 = drawing.xBand(d3.min(group.members, function(d) {return objects[d].x })) - xpad
-      var y1 = drawing.yBand(d3.max(group.members, function(d) { return objects[d].y })) - ypad
-      var x2 = drawing.xBand(d3.max(group.members, function(d) { return objects[d].x })) + xpad + drawing.xBand.bandwidth()
-      var y2 = drawing.yBand(d3.min(group.members, function(d) { return objects[d].y })) + ypad + drawing.yBand.bandwidth()
+      var xpad = (diagram.xBand.step() - diagram.xBand.bandwidth()) * diagram.groupPadding
+      var ypad = (diagram.yBand.step() - diagram.yBand.bandwidth()) * diagram.groupPadding
+      var x1 = diagram.xBand(d3.min(group.members, function(d) {return objects[d].x })) - xpad
+      var y1 = diagram.yBand(d3.max(group.members, function(d) { return objects[d].y })) - ypad
+      var x2 = diagram.xBand(d3.max(group.members, function(d) { return objects[d].x })) + xpad + diagram.xBand.bandwidth()
+      var y2 = diagram.yBand(d3.min(group.members, function(d) { return objects[d].y })) + ypad + diagram.yBand.bandwidth()
       var width = x2 - x1
       var height = y2 - y1
       svg.append("rect")
          .attr("x", x1)
          .attr("y", y1)
-         .attr("rx", drawing.xBand.bandwidth() * .05)
-         .attr("ry", drawing.yBand.bandwidth() * .05)
+         .attr("rx", diagram.xBand.bandwidth() * .05)
+         .attr("ry", diagram.yBand.bandwidth() * .05)
          .attr("width", width )
          .attr("height", height )
          .attr("fill", function(d) { return d3.color(group.fill) || 'none' })
@@ -42,7 +42,7 @@ var drawGroups = function (svg, drawing, groups, objects) {
           .text( group.name )
           .attr("transform", `translate(${textLocation.x},${textLocation.y})rotate(${textLocation.rotate})`)
           .attr("text-anchor", textLocation.textAnchor)
-          .style("font-size", function(d) { return Math.min(drawing.xBand.bandwidth()*.9 / this.getComputedTextLength() * 12, drawing.yBand.bandwidth()/3/2) + "px"; })
+          .style("font-size", function(d) { return Math.min(diagram.xBand.bandwidth()*.9 / this.getComputedTextLength() * 12, diagram.yBand.bandwidth()/3/2) + "px"; })
           .attr('fill', function(d) { return group.color || "white"} )
       }
     })
