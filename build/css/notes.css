@@ -22,6 +22,10 @@ h6[id^="notes-"] {
   font-size: .75em;
 }
 
+.notes pre {
+  font-size: 1em;
+}
+
 .notes ol, ul {
     margin: 0px;
     margin-top: 0px;
