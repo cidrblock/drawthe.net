@@ -30,6 +30,7 @@ function draw(doc) {
   // incase there are none
   var connections = doc.connections || [];
   var groups = doc.groups || [];
+  var notes = doc.notes || [];
   var objects = doc.objects || [];
 
   // merge the doc properties into the defaults
@@ -101,4 +102,6 @@ function draw(doc) {
   drawGroups(svg, diagram, groups, objects)
   drawConnections(svg, diagram, connections, objects)
   drawObjects(svg, diagram, objects)
+  drawNotes(svg, diagram, notes, title)
+
 };

@@ -86,6 +86,8 @@ module.exports = function(grunt) {
                 'js/ui-ace.min.js': 'angular-ui-ace/ui-ace.min.js',
                 'js/ui-bootstrap.min.js': 'angular-bootstrap/ui-bootstrap.min.js',
                 'js/ui-bootstrap-tpls.min.js': 'angular-bootstrap/ui-bootstrap-tpls.min.js',
+                'js/showdown.js': 'showdown/dist/showdown.min.js',
+                'js/showdown-prettify.min.js': 'showdown-prettify/dist/showdown-prettify.min.js',
                 'css/bootstrap.min.css': 'bootstrap-css-only/css/bootstrap.min.css',
                 'fonts': 'bootstrap-css-only/fonts/*',
                 'css/font-awesome.min.css': 'components-font-awesome/css/font-awesome.min.css',
@@ -100,7 +102,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-webfont');
   grunt.registerTask('default', [
     'copy',
-    'webfont'
+    'bowercopy'
   ]);
 
 };

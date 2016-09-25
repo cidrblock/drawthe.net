@@ -27,8 +27,7 @@ for i in `pwd`/*.eps; do inkscape $i -l ${i%.eps}.svg; done
 ```
 
 
-remove special characters
-```
+azure-clous```
 cp ~/Downloads/Microsoft_CloudnEnterprise_Symbols_v2.5_PUBLIC/Symbols/CnE_Cloud/SVG/*.svg .
 rename 's/[^a-zA-Z0-9_.]//g' *.svg
 rename 's/^Azure//g' *.svg
@@ -42,6 +41,10 @@ iconfont azure-cloud.css
 cp azure-cloud.js ../js/
 ```
 
+cisco
+cp ~/Downloads/3015_eps/*.eps .
+
+
 
 https://github.com/fokkezb/iconfont
 sudo npm install -g iconfont
@@ -49,3 +52,6 @@ sudo npm install -g iconfont
 --------------
 bthornto:cloud bthornto$
 for img in $(ls *.svg) ; do inkscape --verb=FitCanvasToDrawing --verb=FileSave --verb=FileClose --verb=FileQuit `pwd`/$img ; done
+
+
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/

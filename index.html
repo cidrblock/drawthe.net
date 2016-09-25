@@ -7,16 +7,19 @@
     <meta name="robots" content="index,follow">
     <meta name="description" content="decent looking diagrams for engineers">
 
-    <title>dld4e</title>
+    <link rel="icon"
+      type="image/png"
+      href="./build/images/radial.png" />
+
+    <title>Decenet looking diagrams for engineers</title>
 
     <link rel="stylesheet" href="build/css/bootstrap.min.css">
     <link rel="stylesheet" href="build/css/font-awesome.min.css">
     <link rel="stylesheet" href="build/css/app.css">
+    <link rel="stylesheet" href="build/css/notes.css">
     <link rel="stylesheet" type="text/css" href="./build/fonts/azure-enterprise.css">
     <link rel="stylesheet" type="text/css" href="./build/fonts/azure-cloud.css">
     <link rel="stylesheet" type="text/css" href="./build/fonts/cisco.css">
-
-
 
     <script type="text/javascript" src="build/js/angular.min.js"></script>
     <script type="text/javascript" src="build/js/angular-animate.min.js"></script>
@@ -26,6 +29,12 @@
     <script type="text/javascript" src="build/js/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="build/js/js-yaml.min.js"></script>
     <script type="text/javascript" src="./build/js/d3.min.js"></script>
+    <script type="text/javascript" src="./build/js/showdown.js"></script>
+    <script type="text/javascript" src="./build/js/showdown-prettify.min.js"></script>
+    <script type="text/javascript" src="./build/js/run_prettify.js"></script>
+
+
+
 
     <script type="text/javascript" src="build/js/dld4e-connections.js"></script>
     <script type="text/javascript" src="build/js/dld4e-draw.js"></script>
@@ -33,6 +42,7 @@
     <script type="text/javascript" src="build/js/dld4e-groups.js"></script>
     <script type="text/javascript" src="build/js/dld4e-objects.js"></script>
     <script type="text/javascript" src="build/js/dld4e-title.js"></script>
+    <script type="text/javascript" src="build/js/dld4e-notes.js"></script>
 
     <script type="text/javascript" src="build/js/app.js"></script>
 
@@ -58,10 +68,11 @@
                   examples<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="examples">
-                  <li role="menuitem" ng-click="example('sample.yaml')"><a href="#">sample</a></li>
+                  <li role="menuitem" ng-click="example('curves.yaml')"><a href="#">curves</a></li>
                   <li role="menuitem" ng-click="example('groups.yaml')"><a href="#">groups</a></li>
                   <li role="menuitem" ng-click="example('labels.yaml')"><a href="#">labels</a></li>
-                  <li role="menuitem" ng-click="example('curves.yaml')"><a href="#">curves</a></li>
+                  <li role="menuitem" ng-click="example('notes.yaml')"><a href="#">notes</a></li>
+                  <li role="menuitem" ng-click="example('sample.yaml')"><a href="#">sample</a></li>
                 </ul>
               </div>
               <div class="btn-group" uib-dropdown is-open="status.isopen2">
@@ -163,6 +174,7 @@ function mainController($scope, $http, $sce, $log, $window) {
   $scope.drawClick = function() {
     $window.design = jsyaml.load($scope.acedata) || {};
     draw($window.design);
+    PR.prettyPrint()
   } //do
 };
 

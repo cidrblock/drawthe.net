@@ -1,0 +1,39 @@
+[id^="notes-"] {
+   margin-top: 0px;
+   margin-bottom: 0px;
+ }
+
+h1[id^="notes-"] {
+   font-size: 2em;
+ }
+h2[id^="notes-"] {
+  font-size: 1.5em;
+}
+h3[id^="notes-"] {
+  font-size: 1.17em;
+}
+h4[id^="notes-"] {
+  font-size: 1.12em;
+}
+h5[id^="notes-"] {
+  font-size: .83em;
+}
+h6[id^="notes-"] {
+  font-size: .75em;
+}
+
+.notes ol, ul {
+    margin: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0em 0em 0em 2em;
+}
+.notes p {
+    margin: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+.notes code {
+    margin-left: -2px;
+}
