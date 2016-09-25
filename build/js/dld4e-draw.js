@@ -103,5 +103,7 @@ function draw(doc) {
   drawConnections(svg, diagram, connections, objects)
   drawObjects(svg, diagram, objects)
   drawNotes(svg, diagram, notes, title)
+  PR.prettyPrint()
+
 
 };
