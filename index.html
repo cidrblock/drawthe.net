@@ -37,17 +37,6 @@
     <script type="text/javascript" src="build/js/app.js"></script>
 
     <script>
-    function cloneObject(obj) {
-        if (obj === null || typeof obj !== 'object') {
-            return obj;
-        }
-        var temp = obj.constructor(); // give temp the original obj's constructor
-        for (var key in obj) {
-            temp[key] = cloneObject(obj[key]);
-        }
-        return temp;
-    }
-    var module = {}
     var fonts = {}
     </script>
     <script src="./build/js/azure-enterprise.js"></script>
@@ -115,14 +104,6 @@
 
 <script>
 
-// window.onerror = function(msg, url, line, col, error) {
-//    var extra = !col ? '' : '\ncolumn: ' + col;
-//    extra += !error ? '' : '\nerror: ' + error;
-//    alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
-//    var suppressErrorAlert = true;
-//    return suppressErrorAlert;
-// };
-
 angular
     .module("dld4e", ['ui.bootstrap', 'ui.ace'])
     .controller("mainController", mainController);
@@ -134,6 +115,7 @@ function mainController($scope, $http, $sce, $log, $window) {
   $http.get('examples/sample.yaml')
        .then(function(res){
           $scope.acedata = res.data;
+          $scope.drawClick()
         });
   $scope.aceyamlOptions = {
     onLoad: function (_ace) {
@@ -142,6 +124,7 @@ function mainController($scope, $http, $sce, $log, $window) {
     }
   };
   $scope.opend3js = function(greeting) {
+    $window.design = jsyaml.load($scope.acedata) || {};
     var w = $window.open("fullscreen.html");
   };
   $scope.drawFont = function(font) {
@@ -167,7 +150,6 @@ function mainController($scope, $http, $sce, $log, $window) {
               }
             }
             $window.design = doc;
-            console.log(doc)
             var w = $window.open("fullscreen.html");
           });
   }
@@ -179,16 +161,8 @@ function mainController($scope, $http, $sce, $log, $window) {
           });
   }
   $scope.drawClick = function() {
-    try {
-      var design = jsyaml.load($scope.acedata);
-      var designtext = $scope.acedata;
-      design = jsyaml.load(designtext) || {};
-      $window.design = design;
-      draw(design);
-    } //try
-    catch (error) {
-      alert(error);
-    } //catch
+    $window.design = jsyaml.load($scope.acedata) || {};
+    draw($window.design);
   } //do
 };
 
