@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 792 612" enable-background="new 0 0 792 612" xml:space="preserve">
-<g id="Layer_1_1_">
-	<g id="File_x2C__general">
-		<title>Sheet.1071</title>
-	</g>
-</g>
-<g id="Access_control">
-</g>
-<g id="Azure_active_directory">
-</g>
-<g id="Gateway">
-	<path fill="#2A3282" d="M396.1,117.1c-104.7,0-188.8,85-188.8,188.8s84.1,188.8,188.8,188.8S585,409.8,585,305.9
-		S500.9,117.1,396.1,117.1z M379,202.9v-60.1h34.3v60.1h17.2l-34.3,69.5l-34.3-69.5H379z M301.7,340.2l-69.5-34.3l69.5-34.3v17.2
-		h60.1v34.3h-60.1V340.2z M413.3,400.3v60.1H379v-60.1h-17.2l34.3-69.5l34.3,69.5H413.3z M490.6,340.2v-17.2h-60.1v-34.3h60.1v-17.2
-		l69.5,34.3L490.6,340.2z"/>
-</g>
-<g id="symbols">
-</g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 378.75 380"
+   height="380"
+   width="378.75"
+   xml:space="preserve"
+   version="1.1"
+   id="svg2"><metadata
+     id="metadata8"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs6" /><g
+     transform="matrix(1.25,0,0,-1.25,0,380)"
+     id="g10"><g
+       transform="scale(0.1,0.1)"
+       id="g12"><path
+         id="path14"
+         style="fill:#2a3282;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="M 1510.39,3030.8 C 672.809,3030.8 0,2350.8 0,1520.41 0,690.02 672.809,10.0195 1510.39,10.0195 c 837.62,0 1511.21,679.1795 1511.21,1510.3905 0,831.17 -672.81,1510.39 -1511.21,1510.39 z m -136.8,-686.41 0,480.82 274.42,0 0,-480.82 137.58,0 -274.38,-555.97 -274.41,555.97 136.79,0 z M 755.199,1246 l -555.98,274.41 555.98,274.37 0,-137.57 480.821,0 0,-274.42 -480.821,0 0,-136.79 z m 892.811,-480.789 0,-480.82 -274.42,0 0,480.82 -137.57,0 274.37,555.979 274.41,-555.979 -136.79,0 z m 618.4,480.789 0,137.61 -480.82,0 0,274.38 480.82,0 0,137.61 555.97,-274.41 L 2266.41,1246 Z" /></g></g></svg>

@@ -1,56 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 152 117.5" enable-background="new 0 0 152 117.5" xml:space="preserve">
-<g id="Layer_1">
-	<g id="Azure">
-	</g>
-	<g id="BizTalk_Services" transform="translate(37.3575,-2500.2)">
-	</g>
-</g>
-<g id="paths">
-	<g id="Access_control">
-	</g>
-	<g id="Azure_active_directory">
-	</g>
-	<g id="API_Management">
-	</g>
-	<g id="Azure_automation">
-	</g>
-	<g id="Azure_SQL_database">
-	</g>
-	<g id="Azure_subscription">
-	</g>
-	<g id="Backup_service">
-	</g>
-	<g id="Bitbucket_code_source">
-	</g>
-	<g id="Azure_cache">
-	</g>
-	<g id="Content_delivery_network__x28_CDN_x29_">
-	</g>
-	<g id="Cloud_service">
-	</g>
-	<g id="CodePlex">
-	</g>
-	<g id="Dropbox_code_source">
-	</g>
-	<g id="Express_route">
-	</g>
-	<g id="Git_repository">
-	</g>
-	<g id="GitHub_code">
-	</g>
-	<g id="HD_Insight">
-	</g>
-	<g id="Health_monitoring">
-	</g>
-	<g id="Healthy">
-		<path fill="#0078D7" d="M93.2,44.1c-4-4.4-12.3-2.5-17.1,4.3c-6.1-7.3-13.3-8.7-17.3-4.3C47.5,56.3,71.6,73.9,76,75.9l0,0
-			c0,0,0,0,0,0c0,0,0,0,0,0l0,0C80.4,73.9,104.5,56.3,93.2,44.1z M84.8,52.3l-9.6,12.3L69.1,58l-0.5-0.6c-0.1-0.2-0.1-0.4,0-0.5
-			l1.6-1.5c0.1-0.1,0.2-0.1,0.3-0.1s0.2,0,0.3,0.1l4.3,4.7l7.5-9.6c0.1-0.1,0.2-0.1,0.3-0.1c0.1,0,0.2,0,0.2,0.1l1.7,1.3
-			c0.1,0.1,0.1,0.2,0.1,0.3C84.9,52.1,84.9,52.2,84.8,52.3z"/>
-	</g>
-</g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 41.25 36.25"
+   height="36.25"
+   width="41.25"
+   xml:space="preserve"
+   version="1.1"
+   id="svg2"><metadata
+     id="metadata8"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs6" /><g
+     transform="matrix(1.25,0,0,-1.25,0,36.25)"
+     id="g10"><g
+       transform="scale(0.1,0.1)"
+       id="g12"><path
+         id="path14"
+         style="fill:#0078d7;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 299.102,264.379 c -32.032,35.242 -98.403,20 -136.801,-34.367 C 113.48,288.41 55.8984,299.621 23.9102,264.379 -66.5195,166.809 126.289,25.9883 161.48,10.0117 196.68,25.9883 389.488,166.809 299.102,264.379 Z m -67.223,-65.578 -76.801,-98.403 -48.789,52.813 -3.988,4.809 c -0.821,1.601 -0.821,3.16 0,3.98 l 12.777,11.988 c 0.82,0.821 1.602,0.821 2.422,0.821 0.781,0 1.602,0 2.379,-0.821 l 34.422,-37.566 60,76.789 c 0.777,0.777 1.597,0.777 2.379,0.777 0.82,0 1.601,0 1.601,-0.777 l 13.598,-10.43 c 0.82,-0.781 0.82,-1.601 0.82,-2.383 0,0 0,-0.777 -0.82,-1.597 z" /></g></g></svg>

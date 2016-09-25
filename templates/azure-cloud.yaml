@@ -1,0 +1,20 @@
+diagram:
+  backgroundColor: "#D2D2D2"
+  rows: 5
+  columns: 5
+  gridPaddingInner: .05
+  aspectRatio: "17:11"
+  gridLines: false
+title:
+  color: black
+  logoFill: none
+  text: "azure-cloud icons"
+  boxStroke: none
+  boxFillColor: none
+  barColor: black
+icon:
+  borderColor: none
+  color: "#332E2C"
+  iconColor: "white"
+  font: "azure-cloud"
+  backgroundColor: "#7cbb00"

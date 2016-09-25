@@ -28,9 +28,9 @@ var drawObjects = function (svg, drawing, objects) {
   var icon = cells
     .append('text')
     .attr("x", diagram.xBand.bandwidth()/2 )
-    .attr("y", diagram.yBand.bandwidth() * .4 )
+    .attr("y", diagram.yBand.bandwidth() * .7)
     .attr('text-anchor', 'middle')
-    .attr('dominant-baseline', 'central')
+    // .attr("dominant-baseline", "middle")
     .style('font-family', function(d) { return d.value.font })
     .style('font-size', Math.min(diagram.xBand.bandwidth()*.9,diagram.yBand.bandwidth()*.8*.9)  + 'px')
     .attr('fill', function(d) { return d.value.iconColor || "white"} )

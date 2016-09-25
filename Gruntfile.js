@@ -35,21 +35,36 @@ module.exports = function(grunt) {
             }
         }
     },
-    webfont: {
-        icons: {
-            src: 'build/fonts/cisco/*.svg',
-            dest: 'build/fonts',
-        },
-        options: {
-          engine: 'fontforge',
-          font: 'cisco',
-          normalize: true,
-          syntax: 'bem',
-            templateOptions: {
-                classPrefix: ''
-            }
-        }
-    },
+    // webfont: {
+    //     icons: {
+    //         src: 'build/fonts/azure/cloud/*.svg',
+    //         dest: 'build/fonts',
+    //     },
+    //     options: {
+    //       engine: 'fontforge',
+    //       font: 'azure-cloud',
+    //       normalize: true,
+    //       syntax: 'bem',
+    //         templateOptions: {
+    //             classPrefix: ''
+    //         }
+    //     }
+    // },
+    // webfont: {
+    //     icons: {
+    //         src: 'build/fonts/cisco/*.svg',
+    //         dest: 'build/fonts',
+    //     },
+    //     options: {
+    //       engine: 'fontforge',
+    //       font: 'cisco',
+    //       normalize: true,
+    //       syntax: 'bem',
+    //         templateOptions: {
+    //             classPrefix: ''
+    //         }
+    //     }
+    // },
     bowercopy: {
         options: {
             // Bower components folder will be removed afterwards

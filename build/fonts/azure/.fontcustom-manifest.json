@@ -1,0 +1,878 @@
+{
+  "checksum": {
+    "previous": "db56822f0d3be610a9020ad83cff3898a72f48c6cadc46b29cbeb624861ed998",
+    "current": "db56822f0d3be610a9020ad83cff3898a72f48c6cadc46b29cbeb624861ed998"
+  },
+  "fonts": [
+    "fontcustom/fontcustom_db56822f0d3be610a9020ad83cff3898.ttf",
+    "fontcustom/fontcustom_db56822f0d3be610a9020ad83cff3898.svg",
+    "fontcustom/fontcustom_db56822f0d3be610a9020ad83cff3898.woff",
+    "fontcustom/fontcustom_db56822f0d3be610a9020ad83cff3898.eot"
+  ],
+  "glyphs": {
+    "APIManagement": {
+      "codepoint": 61697,
+      "source": "cloudnew/APIManagement.svg"
+    },
+    "APIManagement_COLOR": {
+      "codepoint": 61698,
+      "source": "cloudnew/APIManagement_COLOR.svg"
+    },
+    "AccountsMicrosoftaccount": {
+      "codepoint": 61699,
+      "source": "cloudnew/AccountsMicrosoftaccount.svg"
+    },
+    "AccountsWorkAccount": {
+      "codepoint": 61700,
+      "source": "cloudnew/AccountsWorkAccount.svg"
+    },
+    "ActiveDirectory": {
+      "codepoint": 61696,
+      "source": "cloudnew/ActiveDirectory.svg"
+    },
+    "ActiveDirectoryAccessControl": {
+      "codepoint": 61701,
+      "source": "cloudnew/ActiveDirectoryAccessControl.svg"
+    },
+    "ActiveDirectoryHealthMonitoring": {
+      "codepoint": 61702,
+      "source": "cloudnew/ActiveDirectoryHealthMonitoring.svg"
+    },
+    "ActiveDirectoryHealthmonitoring_COLOR": {
+      "codepoint": 61703,
+      "source": "cloudnew/ActiveDirectoryHealthmonitoring_COLOR.svg"
+    },
+    "ActiveDirectory_COLOR": {
+      "codepoint": 61704,
+      "source": "cloudnew/ActiveDirectory_COLOR.svg"
+    },
+    "AppService": {
+      "codepoint": 61705,
+      "source": "cloudnew/AppService.svg"
+    },
+    "AppServiceAPIApps": {
+      "codepoint": 61706,
+      "source": "cloudnew/AppServiceAPIApps.svg"
+    },
+    "AppServiceAPIApps_COLOR": {
+      "codepoint": 61707,
+      "source": "cloudnew/AppServiceAPIApps_COLOR.svg"
+    },
+    "AppServiceLogicApp": {
+      "codepoint": 61708,
+      "source": "cloudnew/AppServiceLogicApp.svg"
+    },
+    "AppServiceLogicApp_COLOR": {
+      "codepoint": 61709,
+      "source": "cloudnew/AppServiceLogicApp_COLOR.svg"
+    },
+    "AppServiceMobileApp": {
+      "codepoint": 61710,
+      "source": "cloudnew/AppServiceMobileApp.svg"
+    },
+    "AppServiceMobileApp_COLOR": {
+      "codepoint": 61711,
+      "source": "cloudnew/AppServiceMobileApp_COLOR.svg"
+    },
+    "AppServiceWebApp_COLOR": {
+      "codepoint": 61712,
+      "source": "cloudnew/AppServiceWebApp_COLOR.svg"
+    },
+    "AppServiceWebAppwasWebsites": {
+      "codepoint": 61713,
+      "source": "cloudnew/AppServiceWebAppwasWebsites.svg"
+    },
+    "AppServiceWorkerPools": {
+      "codepoint": 61714,
+      "source": "cloudnew/AppServiceWorkerPools.svg"
+    },
+    "AppServiceWorkerPools_COLOR": {
+      "codepoint": 61715,
+      "source": "cloudnew/AppServiceWorkerPools_COLOR.svg"
+    },
+    "AppService_COLOR": {
+      "codepoint": 61716,
+      "source": "cloudnew/AppService_COLOR.svg"
+    },
+    "ApplicationGateway": {
+      "codepoint": 61717,
+      "source": "cloudnew/ApplicationGateway.svg"
+    },
+    "ApplicationGateway_COLOR": {
+      "codepoint": 61718,
+      "source": "cloudnew/ApplicationGateway_COLOR.svg"
+    },
+    "ApplicationInsights": {
+      "codepoint": 61719,
+      "source": "cloudnew/ApplicationInsights.svg"
+    },
+    "ApplicationInsights_COLOR": {
+      "codepoint": 61720,
+      "source": "cloudnew/ApplicationInsights_COLOR.svg"
+    },
+    "Automation": {
+      "codepoint": 61721,
+      "source": "cloudnew/Automation.svg"
+    },
+    "AutomationRunbooks": {
+      "codepoint": 61722,
+      "source": "cloudnew/AutomationRunbooks.svg"
+    },
+    "AutomationRunbooks_COLOR": {
+      "codepoint": 61723,
+      "source": "cloudnew/AutomationRunbooks_COLOR.svg"
+    },
+    "Automation_COLOR": {
+      "codepoint": 61724,
+      "source": "cloudnew/Automation_COLOR.svg"
+    },
+    "Backup": {
+      "codepoint": 61725,
+      "source": "cloudnew/Backup.svg"
+    },
+    "BackupBackupAgent": {
+      "codepoint": 61726,
+      "source": "cloudnew/BackupBackupAgent.svg"
+    },
+    "BackupRecoveryVault": {
+      "codepoint": 61727,
+      "source": "cloudnew/BackupRecoveryVault.svg"
+    },
+    "Backup_COLOR": {
+      "codepoint": 61728,
+      "source": "cloudnew/Backup_COLOR.svg"
+    },
+    "Batch": {
+      "codepoint": 61729,
+      "source": "cloudnew/Batch.svg"
+    },
+    "BizTalkServices": {
+      "codepoint": 61730,
+      "source": "cloudnew/BizTalkServices.svg"
+    },
+    "BizTalkServicesHybridConnections": {
+      "codepoint": 61731,
+      "source": "cloudnew/BizTalkServicesHybridConnections.svg"
+    },
+    "BizTalkServicesHybridConnections_COLOR": {
+      "codepoint": 61732,
+      "source": "cloudnew/BizTalkServicesHybridConnections_COLOR.svg"
+    },
+    "BizTalkServicesHybridconnectionmanager": {
+      "codepoint": 61733,
+      "source": "cloudnew/BizTalkServicesHybridconnectionmanager.svg"
+    },
+    "BizTalkServices_COLOR": {
+      "codepoint": 61734,
+      "source": "cloudnew/BizTalkServices_COLOR.svg"
+    },
+    "CacheRedisProducticon_COLOR": {
+      "codepoint": 61735,
+      "source": "cloudnew/CacheRedisProducticon_COLOR.svg"
+    },
+    "CacheincludingRedis": {
+      "codepoint": 61736,
+      "source": "cloudnew/CacheincludingRedis.svg"
+    },
+    "CacheincludingRedis_COLOR": {
+      "codepoint": 61737,
+      "source": "cloudnew/CacheincludingRedis_COLOR.svg"
+    },
+    "CloudOffice365": {
+      "codepoint": 61738,
+      "source": "cloudnew/CloudOffice365.svg"
+    },
+    "CloudService": {
+      "codepoint": 61739,
+      "source": "cloudnew/CloudService.svg"
+    },
+    "CloudService_COLOR": {
+      "codepoint": 61740,
+      "source": "cloudnew/CloudService_COLOR.svg"
+    },
+    "CloudServicesWebrole": {
+      "codepoint": 61741,
+      "source": "cloudnew/CloudServicesWebrole.svg"
+    },
+    "CloudServicesWebroles": {
+      "codepoint": 61742,
+      "source": "cloudnew/CloudServicesWebroles.svg"
+    },
+    "CloudServicesWorkerrole": {
+      "codepoint": 61743,
+      "source": "cloudnew/CloudServicesWorkerrole.svg"
+    },
+    "CloudServicesWorkerroles": {
+      "codepoint": 61744,
+      "source": "cloudnew/CloudServicesWorkerroles.svg"
+    },
+    "CognativeServices": {
+      "codepoint": 61745,
+      "source": "cloudnew/CognativeServices.svg"
+    },
+    "CognativeServicesComputerVision_COLOR": {
+      "codepoint": 61746,
+      "source": "cloudnew/CognativeServicesComputerVision_COLOR.svg"
+    },
+    "CognativeServicesSpeech_COLOR": {
+      "codepoint": 61747,
+      "source": "cloudnew/CognativeServicesSpeech_COLOR.svg"
+    },
+    "CognativeServices_COLOR": {
+      "codepoint": 61748,
+      "source": "cloudnew/CognativeServices_COLOR.svg"
+    },
+    "CognativeServicesemotion_COLOR": {
+      "codepoint": 61749,
+      "source": "cloudnew/CognativeServicesemotion_COLOR.svg"
+    },
+    "CognativeServicesluis_COLOR": {
+      "codepoint": 61750,
+      "source": "cloudnew/CognativeServicesluis_COLOR.svg"
+    },
+    "CognativeServicesrecommendations_COLOR": {
+      "codepoint": 61751,
+      "source": "cloudnew/CognativeServicesrecommendations_COLOR.svg"
+    },
+    "CognativeServicestextanalytics_COLOR": {
+      "codepoint": 61752,
+      "source": "cloudnew/CognativeServicestextanalytics_COLOR.svg"
+    },
+    "CognativeServicesweblanguagemodel_COLOR": {
+      "codepoint": 61753,
+      "source": "cloudnew/CognativeServicesweblanguagemodel_COLOR.svg"
+    },
+    "ComputeAutoscaling": {
+      "codepoint": 61754,
+      "source": "cloudnew/ComputeAutoscaling.svg"
+    },
+    "ContainerService": {
+      "codepoint": 61755,
+      "source": "cloudnew/ContainerService.svg"
+    },
+    "ContainerService_COLOR": {
+      "codepoint": 61756,
+      "source": "cloudnew/ContainerService_COLOR.svg"
+    },
+    "ContentDeliveryNetworkCDN": {
+      "codepoint": 61757,
+      "source": "cloudnew/ContentDeliveryNetworkCDN.svg"
+    },
+    "ContentDeliveryNetworkCDN_COLOR": {
+      "codepoint": 61758,
+      "source": "cloudnew/ContentDeliveryNetworkCDN_COLOR.svg"
+    },
+    "CortonaManagementSuite": {
+      "codepoint": 61759,
+      "source": "cloudnew/CortonaManagementSuite.svg"
+    },
+    "DNS": {
+      "codepoint": 61760,
+      "source": "cloudnew/DNS.svg"
+    },
+    "DNS_COLOR": {
+      "codepoint": 61761,
+      "source": "cloudnew/DNS_COLOR.svg"
+    },
+    "DataCatalog": {
+      "codepoint": 61762,
+      "source": "cloudnew/DataCatalog.svg"
+    },
+    "DataCatalog_COLOR": {
+      "codepoint": 61763,
+      "source": "cloudnew/DataCatalog_COLOR.svg"
+    },
+    "DataFactory": {
+      "codepoint": 61764,
+      "source": "cloudnew/DataFactory.svg"
+    },
+    "DataFactory_COLOR": {
+      "codepoint": 61765,
+      "source": "cloudnew/DataFactory_COLOR.svg"
+    },
+    "DataLake": {
+      "codepoint": 61766,
+      "source": "cloudnew/DataLake.svg"
+    },
+    "DataLakeAnalytics": {
+      "codepoint": 61767,
+      "source": "cloudnew/DataLakeAnalytics.svg"
+    },
+    "DataLakeAnalytics_COLOR": {
+      "codepoint": 61768,
+      "source": "cloudnew/DataLakeAnalytics_COLOR.svg"
+    },
+    "DataLakeStore": {
+      "codepoint": 61769,
+      "source": "cloudnew/DataLakeStore.svg"
+    },
+    "DataLakeStore_COLOR": {
+      "codepoint": 61770,
+      "source": "cloudnew/DataLakeStore_COLOR.svg"
+    },
+    "DataServicescategoryrollup": {
+      "codepoint": 61771,
+      "source": "cloudnew/DataServicescategoryrollup.svg"
+    },
+    "DataWarehouse": {
+      "codepoint": 61772,
+      "source": "cloudnew/DataWarehouse.svg"
+    },
+    "DataWarehouse_COLOR": {
+      "codepoint": 61773,
+      "source": "cloudnew/DataWarehouse_COLOR.svg"
+    },
+    "DatabaseGeneral_COLOR": {
+      "codepoint": 61774,
+      "source": "cloudnew/DatabaseGeneral_COLOR.svg"
+    },
+    "DevTestLabs": {
+      "codepoint": 61775,
+      "source": "cloudnew/DevTestLabs.svg"
+    },
+    "DevTestLabs_COLOR": {
+      "codepoint": 61776,
+      "source": "cloudnew/DevTestLabs_COLOR.svg"
+    },
+    "DocumentDB": {
+      "codepoint": 61777,
+      "source": "cloudnew/DocumentDB.svg"
+    },
+    "DocumentDBDocDBaccountLARGE": {
+      "codepoint": 61778,
+      "source": "cloudnew/DocumentDBDocDBaccountLARGE.svg"
+    },
+    "DocumentDBDocDBcollectionsLARGE": {
+      "codepoint": 61779,
+      "source": "cloudnew/DocumentDBDocDBcollectionsLARGE.svg"
+    },
+    "DocumentDB_COLOR": {
+      "codepoint": 61780,
+      "source": "cloudnew/DocumentDB_COLOR.svg"
+    },
+    "DocumentDBdatabaseLARGE": {
+      "codepoint": 61781,
+      "source": "cloudnew/DocumentDBdatabaseLARGE.svg"
+    },
+    "DocumentDBdocument2LARGE": {
+      "codepoint": 61782,
+      "source": "cloudnew/DocumentDBdocument2LARGE.svg"
+    },
+    "EventHubs": {
+      "codepoint": 61783,
+      "source": "cloudnew/EventHubs.svg"
+    },
+    "EventHubs_COLOR": {
+      "codepoint": 61784,
+      "source": "cloudnew/EventHubs_COLOR.svg"
+    },
+    "ExpressRoute": {
+      "codepoint": 61785,
+      "source": "cloudnew/ExpressRoute.svg"
+    },
+    "ExpressRoute_COLOR": {
+      "codepoint": 61786,
+      "source": "cloudnew/ExpressRoute_COLOR.svg"
+    },
+    "Functions": {
+      "codepoint": 61787,
+      "source": "cloudnew/Functions.svg"
+    },
+    "Functions_COLOR_LARGE": {
+      "codepoint": 61788,
+      "source": "cloudnew/Functions_COLOR_LARGE.svg"
+    },
+    "HDInsight": {
+      "codepoint": 61789,
+      "source": "cloudnew/HDInsight.svg"
+    },
+    "HDInsight_COLOR": {
+      "codepoint": 61790,
+      "source": "cloudnew/HDInsight_COLOR.svg"
+    },
+    "HockeyApp": {
+      "codepoint": 61791,
+      "source": "cloudnew/HockeyApp.svg"
+    },
+    "HockeyApp_COLOR": {
+      "codepoint": 61792,
+      "source": "cloudnew/HockeyApp_COLOR.svg"
+    },
+    "IoTHub": {
+      "codepoint": 61793,
+      "source": "cloudnew/IoTHub.svg"
+    },
+    "KeyVault": {
+      "codepoint": 61794,
+      "source": "cloudnew/KeyVault.svg"
+    },
+    "KeyVault_COLOR": {
+      "codepoint": 61795,
+      "source": "cloudnew/KeyVault_COLOR.svg"
+    },
+    "LoadBalancerfeature": {
+      "codepoint": 61796,
+      "source": "cloudnew/LoadBalancerfeature.svg"
+    },
+    "LoadBalancerfeature_COLOR": {
+      "codepoint": 61797,
+      "source": "cloudnew/LoadBalancerfeature_COLOR.svg"
+    },
+    "MachineLearning": {
+      "codepoint": 61798,
+      "source": "cloudnew/MachineLearning.svg"
+    },
+    "MachineLearning_COLOR": {
+      "codepoint": 61799,
+      "source": "cloudnew/MachineLearning_COLOR.svg"
+    },
+    "ManagementPortal": {
+      "codepoint": 61800,
+      "source": "cloudnew/ManagementPortal.svg"
+    },
+    "ManagementPortal_COLOR": {
+      "codepoint": 61801,
+      "source": "cloudnew/ManagementPortal_COLOR.svg"
+    },
+    "MediaServices": {
+      "codepoint": 61802,
+      "source": "cloudnew/MediaServices.svg"
+    },
+    "MediaServices_COLOR": {
+      "codepoint": 61803,
+      "source": "cloudnew/MediaServices_COLOR.svg"
+    },
+    "Microsoft": {
+      "codepoint": 61804,
+      "source": "cloudnew/Microsoft.svg"
+    },
+    "MobileEngagement": {
+      "codepoint": 61805,
+      "source": "cloudnew/MobileEngagement.svg"
+    },
+    "MobileEngagement_COLOR": {
+      "codepoint": 61806,
+      "source": "cloudnew/MobileEngagement_COLOR.svg"
+    },
+    "MultiFactorAuthentication": {
+      "codepoint": 61807,
+      "source": "cloudnew/MultiFactorAuthentication.svg"
+    },
+    "MultiFactorAuthentication_COLOR": {
+      "codepoint": 61808,
+      "source": "cloudnew/MultiFactorAuthentication_COLOR.svg"
+    },
+    "MySQLClearDBdatabase": {
+      "codepoint": 61809,
+      "source": "cloudnew/MySQLClearDBdatabase.svg"
+    },
+    "MySQLClearDBdatabase_COLOR": {
+      "codepoint": 61810,
+      "source": "cloudnew/MySQLClearDBdatabase_COLOR.svg"
+    },
+    "NotificationHubs": {
+      "codepoint": 61811,
+      "source": "cloudnew/NotificationHubs.svg"
+    },
+    "NotificationHubs_COLOR": {
+      "codepoint": 61812,
+      "source": "cloudnew/NotificationHubs_COLOR.svg"
+    },
+    "OMSLogAnalytics": {
+      "codepoint": 61813,
+      "source": "cloudnew/OMSLogAnalytics.svg"
+    },
+    "OSimage": {
+      "codepoint": 61814,
+      "source": "cloudnew/OSimage.svg"
+    },
+    "Office365": {
+      "codepoint": 61815,
+      "source": "cloudnew/Office365.svg"
+    },
+    "Office365subscription": {
+      "codepoint": 61816,
+      "source": "cloudnew/Office365subscription.svg"
+    },
+    "OperationsManagementSuiteOMS": {
+      "codepoint": 61817,
+      "source": "cloudnew/OperationsManagementSuiteOMS.svg"
+    },
+    "OperationsManagementSuiteOMS_COLOR": {
+      "codepoint": 61818,
+      "source": "cloudnew/OperationsManagementSuiteOMS_COLOR.svg"
+    },
+    "PowerBIEmbedded": {
+      "codepoint": 61819,
+      "source": "cloudnew/PowerBIEmbedded.svg"
+    },
+    "RemoteApp": {
+      "codepoint": 61820,
+      "source": "cloudnew/RemoteApp.svg"
+    },
+    "RemoteApp_COLOR": {
+      "codepoint": 61821,
+      "source": "cloudnew/RemoteApp_COLOR.svg"
+    },
+    "ResourceGroup": {
+      "codepoint": 61822,
+      "source": "cloudnew/ResourceGroup.svg"
+    },
+    "ResourceGroup_COLOR": {
+      "codepoint": 61823,
+      "source": "cloudnew/ResourceGroup_COLOR.svg"
+    },
+    "RightsManagementRMS": {
+      "codepoint": 61824,
+      "source": "cloudnew/RightsManagementRMS.svg"
+    },
+    "SDK": {
+      "codepoint": 61825,
+      "source": "cloudnew/SDK.svg"
+    },
+    "SDK_COLOR": {
+      "codepoint": 61826,
+      "source": "cloudnew/SDK_COLOR.svg"
+    },
+    "SQLDataSync": {
+      "codepoint": 61827,
+      "source": "cloudnew/SQLDataSync.svg"
+    },
+    "SQLDataWarehouse": {
+      "codepoint": 61828,
+      "source": "cloudnew/SQLDataWarehouse.svg"
+    },
+    "SQLDataWarehouse_COLOR": {
+      "codepoint": 61829,
+      "source": "cloudnew/SQLDataWarehouse_COLOR.svg"
+    },
+    "SQLDatabase": {
+      "codepoint": 61830,
+      "source": "cloudnew/SQLDatabase.svg"
+    },
+    "SQLDatabasePremium": {
+      "codepoint": 61831,
+      "source": "cloudnew/SQLDatabasePremium.svg"
+    },
+    "SQLDatabasegeneric_COLOR": {
+      "codepoint": 61832,
+      "source": "cloudnew/SQLDatabasegeneric_COLOR.svg"
+    },
+    "SQLStretchDatabase": {
+      "codepoint": 61833,
+      "source": "cloudnew/SQLStretchDatabase.svg"
+    },
+    "SQLStretchDatabase_COLOR": {
+      "codepoint": 61834,
+      "source": "cloudnew/SQLStretchDatabase_COLOR.svg"
+    },
+    "SQLdatabasegeneric": {
+      "codepoint": 61835,
+      "source": "cloudnew/SQLdatabasegeneric.svg"
+    },
+    "Scheduler": {
+      "codepoint": 61836,
+      "source": "cloudnew/Scheduler.svg"
+    },
+    "Search": {
+      "codepoint": 61837,
+      "source": "cloudnew/Search.svg"
+    },
+    "Search_COLOR": {
+      "codepoint": 61838,
+      "source": "cloudnew/Search_COLOR.svg"
+    },
+    "SecurityCenter": {
+      "codepoint": 61839,
+      "source": "cloudnew/SecurityCenter.svg"
+    },
+    "SecurityCenter_COLOR": {
+      "codepoint": 61840,
+      "source": "cloudnew/SecurityCenter_COLOR.svg"
+    },
+    "ServiceBus": {
+      "codepoint": 61841,
+      "source": "cloudnew/ServiceBus.svg"
+    },
+    "ServiceBusQueues": {
+      "codepoint": 61842,
+      "source": "cloudnew/ServiceBusQueues.svg"
+    },
+    "ServiceBusQueues_COLOR": {
+      "codepoint": 61843,
+      "source": "cloudnew/ServiceBusQueues_COLOR.svg"
+    },
+    "ServiceBusRelay": {
+      "codepoint": 61844,
+      "source": "cloudnew/ServiceBusRelay.svg"
+    },
+    "ServiceBusRelay_COLOR": {
+      "codepoint": 61845,
+      "source": "cloudnew/ServiceBusRelay_COLOR.svg"
+    },
+    "ServiceBusTopics": {
+      "codepoint": 61846,
+      "source": "cloudnew/ServiceBusTopics.svg"
+    },
+    "ServiceBusTopics_COLOR": {
+      "codepoint": 61847,
+      "source": "cloudnew/ServiceBusTopics_COLOR.svg"
+    },
+    "ServiceBus_COLOR": {
+      "codepoint": 61848,
+      "source": "cloudnew/ServiceBus_COLOR.svg"
+    },
+    "ServiceEndpoint": {
+      "codepoint": 61849,
+      "source": "cloudnew/ServiceEndpoint.svg"
+    },
+    "ServiceFabric": {
+      "codepoint": 61850,
+      "source": "cloudnew/ServiceFabric.svg"
+    },
+    "ServiceFabric_COLOR": {
+      "codepoint": 61851,
+      "source": "cloudnew/ServiceFabric_COLOR.svg"
+    },
+    "SiteRecovery": {
+      "codepoint": 61852,
+      "source": "cloudnew/SiteRecovery.svg"
+    },
+    "SiteRecovery_COLOR": {
+      "codepoint": 61853,
+      "source": "cloudnew/SiteRecovery_COLOR.svg"
+    },
+    "StorSimple": {
+      "codepoint": 61854,
+      "source": "cloudnew/StorSimple.svg"
+    },
+    "StorSimple_COLOR": {
+      "codepoint": 61855,
+      "source": "cloudnew/StorSimple_COLOR.svg"
+    },
+    "Storage": {
+      "codepoint": 61856,
+      "source": "cloudnew/Storage.svg"
+    },
+    "StorageBlob": {
+      "codepoint": 61857,
+      "source": "cloudnew/StorageBlob.svg"
+    },
+    "StorageFiles": {
+      "codepoint": 61858,
+      "source": "cloudnew/StorageFiles.svg"
+    },
+    "StorageQueue": {
+      "codepoint": 61859,
+      "source": "cloudnew/StorageQueue.svg"
+    },
+    "StorageTable": {
+      "codepoint": 61860,
+      "source": "cloudnew/StorageTable.svg"
+    },
+    "Store_Marketplace": {
+      "codepoint": 61861,
+      "source": "cloudnew/Store_Marketplace.svg"
+    },
+    "Store_Marketplace_COLOR": {
+      "codepoint": 61862,
+      "source": "cloudnew/Store_Marketplace_COLOR.svg"
+    },
+    "StreamAnalytics": {
+      "codepoint": 61863,
+      "source": "cloudnew/StreamAnalytics.svg"
+    },
+    "StreamAnalytics_COLOR": {
+      "codepoint": 61864,
+      "source": "cloudnew/StreamAnalytics_COLOR.svg"
+    },
+    "TrafficManager": {
+      "codepoint": 61865,
+      "source": "cloudnew/TrafficManager.svg"
+    },
+    "TrafficManager_COLOR": {
+      "codepoint": 61866,
+      "source": "cloudnew/TrafficManager_COLOR.svg"
+    },
+    "Unidentifiedfeatureobject": {
+      "codepoint": 61867,
+      "source": "cloudnew/Unidentifiedfeatureobject.svg"
+    },
+    "Unidentifiedfeatureobject_COLOR": {
+      "codepoint": 61868,
+      "source": "cloudnew/Unidentifiedfeatureobject_COLOR.svg"
+    },
+    "VHD": {
+      "codepoint": 61869,
+      "source": "cloudnew/VHD.svg"
+    },
+    "VHDdatadisk": {
+      "codepoint": 61870,
+      "source": "cloudnew/VHDdatadisk.svg"
+    },
+    "VMScaleSet": {
+      "codepoint": 61871,
+      "source": "cloudnew/VMScaleSet.svg"
+    },
+    "VMScaleSet_COLOR": {
+      "codepoint": 61872,
+      "source": "cloudnew/VMScaleSet_COLOR.svg"
+    },
+    "VMcontainer": {
+      "codepoint": 61873,
+      "source": "cloudnew/VMcontainer.svg"
+    },
+    "VMsymbolonly": {
+      "codepoint": 61874,
+      "source": "cloudnew/VMsymbolonly.svg"
+    },
+    "VPNGateway": {
+      "codepoint": 61875,
+      "source": "cloudnew/VPNGateway.svg"
+    },
+    "VPNGateway_color": {
+      "codepoint": 61876,
+      "source": "cloudnew/VPNGateway_color.svg"
+    },
+    "VirtualMachine": {
+      "codepoint": 61877,
+      "source": "cloudnew/VirtualMachine.svg"
+    },
+    "VirtualMachine2_COLOR": {
+      "codepoint": 61878,
+      "source": "cloudnew/VirtualMachine2_COLOR.svg"
+    },
+    "VirtualMachine_COLOR": {
+      "codepoint": 61879,
+      "source": "cloudnew/VirtualMachine_COLOR.svg"
+    },
+    "VirtualMachinesAvailabilitySet": {
+      "codepoint": 61880,
+      "source": "cloudnew/VirtualMachinesAvailabilitySet.svg"
+    },
+    "VirtualMachinesAvailabilitySet_COLOR": {
+      "codepoint": 61881,
+      "source": "cloudnew/VirtualMachinesAvailabilitySet_COLOR.svg"
+    },
+    "VirtualMachinesLinuxPenguinshadow_COLOR2": {
+      "codepoint": 61882,
+      "source": "cloudnew/VirtualMachinesLinuxPenguinshadow_COLOR2.svg"
+    },
+    "VirtualNetwork": {
+      "codepoint": 61883,
+      "source": "cloudnew/VirtualNetwork.svg"
+    },
+    "VirtualNetwork_COLOR": {
+      "codepoint": 61884,
+      "source": "cloudnew/VirtualNetwork_COLOR.svg"
+    },
+    "VisualStudioTeamServices": {
+      "codepoint": 61885,
+      "source": "cloudnew/VisualStudioTeamServices.svg"
+    },
+    "VisualStudioTeamServicesBitbucketcodesource": {
+      "codepoint": 61886,
+      "source": "cloudnew/VisualStudioTeamServicesBitbucketcodesource.svg"
+    },
+    "VisualStudioTeamServicesBitbucketcodesource_COLOR": {
+      "codepoint": 61887,
+      "source": "cloudnew/VisualStudioTeamServicesBitbucketcodesource_COLOR.svg"
+    },
+    "VisualStudioTeamServicesCodePlexsource": {
+      "codepoint": 61888,
+      "source": "cloudnew/VisualStudioTeamServicesCodePlexsource.svg"
+    },
+    "VisualStudioTeamServicesCodePlexsource_COLOR": {
+      "codepoint": 61889,
+      "source": "cloudnew/VisualStudioTeamServicesCodePlexsource_COLOR.svg"
+    },
+    "VisualStudioTeamServicesDropboxcodesource": {
+      "codepoint": 61890,
+      "source": "cloudnew/VisualStudioTeamServicesDropboxcodesource.svg"
+    },
+    "VisualStudioTeamServicesDropboxcodesource_COLOR": {
+      "codepoint": 61891,
+      "source": "cloudnew/VisualStudioTeamServicesDropboxcodesource_COLOR.svg"
+    },
+    "VisualStudioTeamServicesGitHub": {
+      "codepoint": 61892,
+      "source": "cloudnew/VisualStudioTeamServicesGitHub.svg"
+    },
+    "VisualStudioTeamServicesGitHub_COLOR": {
+      "codepoint": 61893,
+      "source": "cloudnew/VisualStudioTeamServicesGitHub_COLOR.svg"
+    },
+    "VisualStudioTeamServicesGitrepository": {
+      "codepoint": 61894,
+      "source": "cloudnew/VisualStudioTeamServicesGitrepository.svg"
+    },
+    "VisualStudioTeamServicesGitrepository_COLOR": {
+      "codepoint": 61895,
+      "source": "cloudnew/VisualStudioTeamServicesGitrepository_COLOR.svg"
+    },
+    "VisualStudioTeamServices_COLOR": {
+      "codepoint": 61896,
+      "source": "cloudnew/VisualStudioTeamServices_COLOR.svg"
+    },
+    "WebAppWebJobs": {
+      "codepoint": 61897,
+      "source": "cloudnew/WebAppWebJobs.svg"
+    },
+    "WebAppWebJobs_COLOR": {
+      "codepoint": 61898,
+      "source": "cloudnew/WebAppWebJobs_COLOR.svg"
+    },
+    "alert": {
+      "codepoint": 61899,
+      "source": "cloudnew/alert.svg"
+    },
+    "loadbalancerautomatic": {
+      "codepoint": 61900,
+      "source": "cloudnew/loadbalancerautomatic.svg"
+    },
+    "subscription": {
+      "codepoint": 61901,
+      "source": "cloudnew/subscription.svg"
+    },
+    "webhooks": {
+      "codepoint": 61902,
+      "source": "cloudnew/webhooks.svg"
+    },
+    "webhooks_COLOR": {
+      "codepoint": 61903,
+      "source": "cloudnew/webhooks_COLOR.svg"
+    }
+  },
+  "options": {
+    "autowidth": true,
+    "config": false,
+    "css_selector": ".icon-{{glyph}}",
+    "debug": false,
+    "font_ascent": 448,
+    "font_descent": 64,
+    "font_design_size": 16,
+    "font_em": 512,
+    "font_name": "fontcustom",
+    "force": false,
+    "input": {
+      "templates": "cloudnew/",
+      "vectors": "cloudnew/"
+    },
+    "no_hash": false,
+    "output": {
+      "css": "fontcustom",
+      "fonts": "fontcustom",
+      "preview": "fontcustom"
+    },
+    "preprocessor_path": null,
+    "quiet": false,
+    "templates": [
+      "css",
+      "preview"
+    ]
+  },
+  "templates": [
+    "fontcustom/fontcustom.css",
+    "fontcustom/fontcustom-preview.html"
+  ]
+}

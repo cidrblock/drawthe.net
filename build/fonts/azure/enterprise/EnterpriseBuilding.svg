@@ -1,25 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 792 612" enable-background="new 0 0 792 612" xml:space="preserve">
-<g id="Layer_1_1_">
-</g>
-<g id="Access_control">
-</g>
-<g id="Azure_active_directory">
-</g>
-<g id="Enterprise">
-	<g id="shape407-840_2_" transform="translate(43.4497,-3260.93)">
-		<title>Sheet.407</title>
-		<path fill="#2A3282" d="M216.5,3769.6h130v-404.6h-130V3769.6z M324.3,3536h-35.1V3501h35.1V3536z M237,3483.9v-35.1h35.1v35.1
-			H237z M290,3483.9v-35.1h35.1v35.1H290z M289.2,3396.6h35.1v35.1h-35.1V3396.6z M237,3396.6h35.1v35.1H237V3396.6z M237,3501h35.1
-			v35.1H237V3501z M324.3,3693.4h-35.1v-35.1h35.1V3693.4z M237,3641.3v-35.1h35.1v35.1H237z M290,3641.3v-35.1h35.1v35.1H290z
-			 M289.2,3554h35.1v35.1h-35.1V3554z M237,3554h35.1v35.1H237V3554z M237,3658.4h35.1v35.1H237V3658.4z M455.1,3496.7v-41.9h-18.8
-			v-40.2h-13.7v-37.6h-11.1v37.6h-13.7v40.2H379v41.9h-15.4v272.9h107.8v-272.9H455.1z M415.8,3660.9h-35.1v-35.1h35.1V3660.9z
-			 M415.8,3554h-35.1v-35.1h35.1V3554z M456.8,3607h-35.1V3572h35.1C456.8,3572,456.8,3607,456.8,3607z"/>
-	</g>
-</g>
-<g id="symbols">
-</g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 255 406.25"
+   height="406.25"
+   width="255"
+   xml:space="preserve"
+   version="1.1"
+   id="svg2"><metadata
+     id="metadata8"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs6" /><g
+     transform="matrix(1.25,0,0,-1.25,0,406.25)"
+     id="g10"><g
+       transform="scale(0.1,0.1)"
+       id="g12"><path
+         id="path14"
+         style="fill:#2a3282;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 0,10 1040,0 0,3236.8 -1040,0 L 0,10 Z m 862.379,1868.79 -280.777,0 0,280 280.777,0 0,-280 z m -698.399,416.8 0,280.82 280.821,0 0,-280.82 -280.821,0 z m 424.032,0 0,280.82 280.777,0 0,-280.82 -280.777,0 z m -6.41,698.4 280.777,0 0,-280.78 -280.777,0 0,280.78 z m -417.622,0 280.821,0 0,-280.78 -280.821,0 0,280.78 z m 0,-835.2 280.821,0 0,-280.78 -280.821,0 0,280.78 z m 698.399,-1539.181 -280.777,0 0,280.782 280.777,0 0,-280.782 z m -698.399,416.801 0,280.78 280.821,0 0,-280.78 -280.821,0 z m 424.032,0 0,280.78 280.777,0 0,-280.78 -280.777,0 z m -6.41,698.4 280.777,0 0,-280.82 -280.777,0 0,280.82 z m -417.622,0 280.821,0 0,-280.82 -280.821,0 0,280.82 z m 0,-835.201 280.821,0 0,-280.82 -280.821,0 0,280.82 z m 1744.81,1293.601 0,335.19 -150.39,0 0,321.6 -109.61,0 0,300.78 -88.79,0 0,-300.78 -109.61,0 0,-321.6 -150.39,0 0,-335.19 -123.2,0 0,-2183.21 862.42,0 0,2183.21 -130.43,0 z m -314.38,-1313.601 -280.82,0 0,280.781 280.82,0 0,-280.781 z m 0,855.201 -280.82,0 0,280.78 280.82,0 0,-280.78 z m 327.97,-424.03 -280.78,0 0,280 280.78,0 0,-280 z" /></g></g></svg>

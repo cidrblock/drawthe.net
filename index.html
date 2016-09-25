@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="build/css/font-awesome.min.css">
     <link rel="stylesheet" href="build/css/app.css">
     <link rel="stylesheet" type="text/css" href="./build/fonts/azure-enterprise.css">
+    <link rel="stylesheet" type="text/css" href="./build/fonts/azure-cloud.css">
     <link rel="stylesheet" type="text/css" href="./build/fonts/cisco.css">
 
 
@@ -49,16 +50,10 @@
     var module = {}
     var fonts = {}
     </script>
-    <script src="./build/fonts/azure-enterprise.js"></script>
-    <script>
-    fonts['azure-enterprise'] = cloneObject(module.exports)
-    </script>
-    <script>
-    </script>
-    <script src="./build/fonts/cisco.js"></script>
-    <script>
-    fonts['cisco'] = cloneObject(module.exports)
-    </script>
+    <script src="./build/js/azure-enterprise.js"></script>
+    <script src="./build/js/azure-cloud.js"></script>
+    <script src="./build/js/cisco.js"></script>
+
 </head>
 <body ng-controller="mainController">
       <uib-alert class="col-sm-6 col-sm-offset-3" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
@@ -87,6 +82,7 @@
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="icons">
                   <li role="menuitem" ng-click="drawFont('cisco')"><a href="#">cisco</a></li>
                   <li role="menuitem" ng-click="drawFont('azure-enterprise')"><a href="#">azure-enterprise</a></li>
+                  <li role="menuitem" ng-click="drawFont('azure-cloud')"><a href="#">azure-cloud</a></li>
                 </ul>
               </div>
               <button id="draw" type="submit" class="btn btn-black btn-xs pull-right" ng-click="drawClick(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
@@ -105,7 +101,7 @@
                   <span class="fa fa-github"></span> Github
                 </a>
                 <button type="submit" class="btn btn-black btn-xs" ng-click="opend3js()">
-                   <span class="glyphicon glyphicon glyphicon-new-window" aria-hidden="true"></span> new window
+                   <span class="glyphicon glyphicon glyphicon-new-window" aria-hidden="true"></span>fullscreen
                 </button>
               </div>
           </div>

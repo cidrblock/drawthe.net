@@ -1,45 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 71.2 71.3" enable-background="new 0 0 71.2 71.3" xml:space="preserve">
-<g id="Layer_1">
-	<g id="File_x2C__general">
-		<title>Sheet.1071</title>
-	</g>
-	<g id="Message">
-	</g>
-	<g id="Monitor">
-	</g>
-	<g id="Monitor_running_apps">
-	</g>
-	<g id="Mouse">
-		<g>
-			<path fill="#2A3282" d="M36.4,19c1.6,0,2.9,1.3,2.9,2.9v5.8c0,1.6-1.3,2.9-2.9,2.9v4.1h11.8v-7c0-6.4-2.9-13-11.8-13V19z"/>
-			<path fill="#2A3282" d="M33.4,21.9v5.8c0,0.8,0.7,1.4,1.5,1.4h1.5l0,0v0c0.8,0,1.5-0.7,1.5-1.4v-5.8c0-0.8-0.7-1.4-1.5-1.4h-1.5
-				C34.1,20.4,33.4,21.1,33.4,21.9z"/>
-			<path fill="#2A3282" d="M23.1,36.6v8.4c0,6.5,4.4,11.6,11.8,11.6h1.5c7.4,0,11.8-5.1,11.8-11.6v-8.4H23.1z"/>
-			<path fill="#2A3282" d="M34.9,34.6v-4.1c-1.6,0-2.9-1.3-2.9-2.9v-5.8c0-1.6,1.3-2.9,2.9-2.9v-4.3c-8.8,0-11.8,6.5-11.8,13v7H34.9
-				z"/>
-		</g>
-	</g>
-</g>
-<g id="paths">
-	<g id="Access_control">
-	</g>
-	<g id="Azure_active_directory">
-	</g>
-	<g id="Generic_code">
-	</g>
-	<g id="Laptop">
-	</g>
-	<g id="Load_balancer">
-	</g>
-	<g id="Lock_x2C__protected">
-	</g>
-</g>
-<g id="symbols">
-</g>
-<g id="slices">
-</g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 26.25 43.75"
+   height="43.75"
+   width="26.25"
+   xml:space="preserve"
+   version="1.1"
+   id="svg2"><metadata
+     id="metadata8"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+     id="defs6" /><g
+     transform="matrix(1.25,0,0,-1.25,0,43.75)"
+     id="g10"><g
+       transform="scale(0.1,0.1)"
+       id="g12"><path
+         id="path14"
+         style="fill:#2a3282;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 106.41,310.801 c 12.809,0 23.199,-10.391 23.199,-23.199 l 0,-46.403 c 0,-12.82 -10.39,-23.211 -23.199,-23.211 l 0,-32.769 94.371,0 0,55.98 c 0,51.211 -23.16,104.02 -94.371,104.02 l 0,-34.418 z" /><path
+         id="path16"
+         style="fill:#2a3282;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 82.3789,287.602 0,-46.403 c 0,-6.41 5.6328,-11.219 12.0313,-11.219 l 11.9998,0 c 6.399,0 11.988,5.629 11.988,11.219 l 0,46.403 c 0,6.41 -5.589,11.207 -11.988,11.207 l -11.9998,0 c -6.3985,0.781 -12.0313,-4.797 -12.0313,-11.207 z" /><path
+         id="path18"
+         style="fill:#2a3282;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="M 0,169.98 0,102.801 C 0,50.8008 35.1992,9.98047 94.4102,9.98047 l 11.9998,0 c 59.18,0 94.371,40.82033 94.371,92.82053 l 0,67.179 -200.781,0 z" /><path
+         id="path20"
+         style="fill:#2a3282;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         d="m 94.4102,186 0,32.809 c -12.8086,0 -23.1993,10.39 -23.1993,23.211 l 0,46.359 c 0,12.82 10.3907,23.211 23.1993,23.211 l 0,34.41 C 23.9805,346 0,294.012 0,242.02 L 0,186 l 94.4102,0 z" /></g></g></svg>
