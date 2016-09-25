@@ -16,19 +16,6 @@ colors: &colors
   borderColor: "#DFBFBF"
   color: "white"
   backgroundColor: "#28738A"
-xCenterYCenter: &xCenterYCenter
-  textAlign: center
-  justifyContent: center
-  alignItems: center
-xCenterYTop: &xCenterYTop
-  textAlign: center
-  alignItems: center
-xRightYCenter: &xRightYCenter
-  textAlign: right
-  justifyContent: center
-  alignItems: flex-end
-xLeftYCenter: &xLeftYCenter
-  justifyContent: center
 headings: &headings
   text: |
       `Headings`
@@ -40,7 +27,6 @@ code: &code
   borderColor: "DFBFBF"
   color: "white"
   backgroundColor: "none"
-  alignItems: stretch
   justifyContent: center
   text: |
     `code`
@@ -50,23 +36,56 @@ code: &code
       return bar;
     }
     ```
-leftToRight: &leftToRight
-    flexDirection: row
-    justifyContent: space-around
-    alignItems: center
 notes:
-  xCenterYCenter: {<<: *colors, <<: *xCenterYCenter, x: 0, y: 6, w: 2, h: 2, text: "`xCenterYCenter`\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
-  xCenterYTop: {<<: *colors, <<: *xCenterYTop, x: 2, y: 6, h: 2, text: "`xCenterYTop`\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
-  xRightYCenter: {<<: *colors, <<: *xRightYCenter, x: 3, y: 6, h: 2, text: "`xRightYCenter`\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
-  xLeftYCenter: {<<: *colors, <<: *xLeftYCenter, x: 4, y: 6, h: 2, text: "`xLeftYCenter`\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }
-
+  xCenterYCenter: { <<: *colors, x: 0, y: 6, w: 2, h: 2,
+    xAlign: center,
+    yAlign: center,
+    text: "`xCenterYCenter`\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  xCenterYTop: { <<: *colors, x: 2, y: 6, h: 2,
+    xAlign: center,
+    yAlign: top,
+    text: "`xCenterYTop`\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  xRightYCenter: {<<: *colors, x: 3, y: 6, h: 2,
+    xAlign: right,
+    yAlign: center,
+    text: "`xRightYCenter`\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
+  xLeftYCenter: {<<: *colors, x: 4, y: 6, h: 2,
+    xAlign: left,
+    yAlign: center,
+    text: "`xLeftYCenter`\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  }
   headings: {<<: *colors, <<: *headings, x: 0, y: 4, w: 1, h: 1 }
   orderedList: {<<: *colors, x: 1, y: 4, w: 1, h: 1, text: "`Ordered Lists`\n\n1.  One\n\n2. Two\n\n3. Three"}
   unorderedList: {<<: *colors, x: 2, y: 4, w: 3, h: 1, text: "`Unordered Lists`\n\n- One\n\n- Two\n\n- Three"}
-  code: {<<: *code, x: 0, y: 3, w: 5, h: 2 }
-  leftToRight: {<<: *colors, <<: *headings, <<: *leftToRight, x: 0, y: 1, w: 5, h: 1 }
+  defaults: {<<: *colors, x: 4, y: 4, h: 3, text: "`defaults`\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}
+  code: {<<: *code, x: 0, y: 3, w: 4, h: 2,
+    yAlign: center,
+    alignItems: stretch
+  }
+  leftToRight:
+    <<: *colors
+    <<: *headings
+    x: 0
+    y: 1
+    w: 5
+    h: 1
+    flexDirection: row
+    justifyContent: space-around
+    alignItems: center
+    text: |
+        `leftToRight`
+        #H1
+        - One
+        - Two
+        - Three
 
+        Lorem ipsum dolor sit amet
 
+# Each note is an html flexbox, so you can override the defaults if needed:
+#
 # flexDirection: (defualt: column)
 #   row: left to right in ltr; right to left in rtl
 #   row-reverse: right to left in ltr; left to right in rtl
@@ -87,7 +106,7 @@ notes:
 #   baseline: items are aligned such as their baselines align
 #   stretch: stretch to fill the container (still respect min-width/max-width)
 #
-# text-align: (default: left)
+# textAlign: (default: left)
 #   left:	Aligns the text to the left
 #   right:	Aligns the text to the right
 #   center:	Centers the text

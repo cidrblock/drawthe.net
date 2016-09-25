@@ -40,4 +40,5 @@ h6[id^="notes-"] {
 }
 .notes code {
     margin-left: -2px;
+    padding: .15em .15em;
 }
