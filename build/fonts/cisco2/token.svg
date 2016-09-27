@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.25 37.5" height="37.5" width="36.25">
-    <path d="M17.925 36.001c9.76 0 17.675-7.915 17.675-17.675C35.6 8.565 27.685.65 17.925.65 8.164.65.249 8.565.249 18.326c0 9.76 7.915 17.675 17.676 17.675" fill="#fff"/>
-    <path d="M17.925 36.001c9.76 0 17.675-7.915 17.675-17.675C35.6 8.564 27.685.649 17.925.649 8.164.65.249 8.564.249 18.326.249 28.086 8.164 36 17.925 36z" fill="none" stroke="#036998" stroke-width=".5"/>
-    <text style="-inkscape-font-specification:Helvetica" transform="matrix(1.25 0 0 1.25 5.758 15.826)" font-weight="400" font-size="7" font-family="Helvetica" fill="#036998">
-        <tspan y="0" x="0 4.277 8.1689997 11.669 15.561">Token</tspan><tspan y="8" x="2.5308599 7.5848598 9.1388597 13.03086">Ring</tspan>
-    </text>
-</svg>

@@ -17,9 +17,6 @@
     <link rel="stylesheet" href="build/css/font-awesome.min.css">
     <link rel="stylesheet" href="build/css/app.css">
     <link rel="stylesheet" href="build/css/notes.css">
-    <link rel="stylesheet" type="text/css" href="./build/fonts/azure-enterprise.css">
-    <link rel="stylesheet" type="text/css" href="./build/fonts/azure-cloud.css">
-    <link rel="stylesheet" type="text/css" href="./build/fonts/cisco.css">
 
     <script type="text/javascript" src="build/js/angular.min.js"></script>
     <script type="text/javascript" src="build/js/angular-animate.min.js"></script>
@@ -47,13 +44,6 @@
 
 
     <script type="text/javascript" src="build/js/app.js"></script>
-
-    <script>
-    var fonts = {}
-    </script>
-    <script src="./build/js/azure-enterprise.js"></script>
-    <script src="./build/js/azure-cloud.js"></script>
-    <script src="./build/js/cisco.js"></script>
 
 </head>
 <body ng-controller="mainController">
@@ -143,30 +133,35 @@ function mainController($scope, $http, $sce, $log, $window) {
     var w = $window.open("fullscreen.html");
   };
   $scope.drawFont = function(font) {
-    var size = Object.keys(fonts[font]).length
-    var bestFit = Math.ceil(Math.sqrt(size))
-    $http.get(`templates/${font}.yaml`)
-         .then(function(res){
-            var doc = jsyaml.load(res.data);
-            var ratios = doc.diagram.aspectRatio.split(':')
-            var h = ratios[0]
-            var w = ratios[1]
-            doc.diagram.rows = Math.ceil(Math.sqrt(size*w/h))
-            doc.diagram.columns = Math.ceil(size/doc.diagram.rows)
-            var x = 0
-            var y = doc.diagram.rows - 1
-            doc.objects = {}
-            for (var key in fonts[font]){
-              doc.objects[key] = Object.assign( { x: x, y: y, type: key}, doc.icon)
-              x += 1
-              if (x == doc.diagram.columns) {
-                x = 0
-                y -= 1
-              }
-            }
-            $window.design = doc;
-            var w = $window.open("fullscreen.html");
-          });
+    $http.get('build/js/fonts.json')
+     .then(function(res){
+       var fonts = res.data
+       var size = fonts[font].length
+       var bestFit = Math.ceil(Math.sqrt(size))
+       $http.get(`templates/${font}.yaml`)
+            .then(function(res){
+               var doc = jsyaml.load(res.data);
+               var ratios = doc.diagram.aspectRatio.split(':')
+               var h = ratios[0]
+               var w = ratios[1]
+               doc.diagram.rows = Math.ceil(Math.sqrt(size*w/h))
+               doc.diagram.columns = Math.ceil(size/doc.diagram.rows)
+               var x = 0
+               var y = doc.diagram.rows - 1
+               doc.objects = {}
+               for (var icon in fonts[font]){
+                 doc.objects[fonts[font][icon]] = Object.assign( { x: x, y: y, type: fonts[font][icon]}, doc.icon)
+                 x += 1
+                 if (x == doc.diagram.columns) {
+                   x = 0
+                   y -= 1
+                 }
+               }
+               $window.design = doc;
+               var w = $window.open("fullscreen.html");
+             });
+        $scope.todos = res.data;
+    });
   }
   $scope.example = function(file) {
     $http.get("examples/" + file)

@@ -1,14 +1,17 @@
 diagram:
+  fill: white
   rows: 5
   columns: 5
   gridPaddingInner: .05
   aspectRatio: "17:11"
   gridLines: false
 title:
+  type: bar
   color: black
   logoFill: white
   text: "Cisco Icons"
-  boxStroke: none
+  stroke: black
+  fill: none
 icon:
   color: "#004BAF"
   fill: "white"

@@ -30,7 +30,7 @@ var drawObjects = function (svg, objects) {
     .attr("y", function(d) { return d.value.height*.2})
 
   for (let key in objects ) {
-    d3.xml(`build/fonts/${objects[key].font}/${objects[key].type}.svg`).mimeType("image/svg+xml").get(function(error, xml) {
+    d3.xml(`build/images/${objects[key].font}/${objects[key].type}.svg`).mimeType("image/svg+xml").get(function(error, xml) {
       var svg = xml.getElementsByTagName("svg")[0]
       svg.setAttribute("x", objects[key].width * .1)
       svg.setAttribute("y", objects[key].height * .05)
