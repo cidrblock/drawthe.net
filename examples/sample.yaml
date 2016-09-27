@@ -2,6 +2,7 @@ diagram:
   backgroundColor: "#3d3935"
   rows: 5
   columns: 5
+  gridLines: false
 title:
   color: lightgrey
   heightPercentage: 6
@@ -33,6 +34,9 @@ objects:
   lx12300: {<<: *servers, x: 2, y: 0}
   lx12301: {<<: *servers, x: 3, y: 0}
   lx12302: {<<: *servers, x: 4, y: 0}
+notes:
+  firewallComment: { x: 0, y: 2, h: 2, xAlign: center, yAlign: center, borderColor: "red", backgroundColor: "#660000",
+    text: "#NOTE:\n\nThis is a redundant HA pair. More text could go here to completely fill up this box." }
 connection: &connection
   lineColor: "white"
   strokeDashArray: "10,2"
@@ -45,7 +49,7 @@ connections:
   - { <<: *connection, endpoints: ["chddc1srt001", "lx12302"] }
   - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12300:80"] }
   - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12301:80"] }
-  - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12302:80"] }
+  - { endpoints: ["firewallComment", "chddc1sfw005"],   lineColor: "red" }
 group: &group
   - { stroke: "lightgrey", fill: "rgba(0, 0, 0, 0.3)" }
 groups:

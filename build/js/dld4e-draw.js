@@ -6,7 +6,7 @@ function draw(doc) {
     aspectRatio: "1:1",
     rows: 10,
     columns: 10,
-    groupPadding: .33,
+    groupPadding: .25,
     gridLines: true,
     gridPaddingInner: .4, // the space between objects (%)
     margins: {top: 20, right: 20, bottom: 50, left: 20 }
@@ -96,13 +96,20 @@ function draw(doc) {
     .append("g")
       .attr("transform", "translate(" + (parentBox.width - svgWidth)/2 + "," + (parentBox.height - svgHeight)/2 + ")");
 
+  // set x1,y1,x2,y2,width,height,centerX and centerY for all the stuff
+  notes = processEntities(svg, diagram, notes)
+  objects = processEntities(svg, diagram, objects)
+  connections = processConnections(connections, groups, objects)
+  groups = processGroups(groups, objects)
+
+
   // draw all the things
   drawTitle(svg, diagram, title)
   drawGridLines(svg, diagram)
   drawGroups(svg, diagram, groups, objects)
-  drawConnections(svg, diagram, connections, objects)
-  drawObjects(svg, diagram, objects)
-  drawNotes(svg, diagram, notes, title)
+  drawConnections(svg, diagram, connections, objects, notes)
+  drawObjects(svg, objects)
+  drawNotes(svg, notes)
   PR.prettyPrint()
 
 

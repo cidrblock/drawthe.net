@@ -1,0 +1,163 @@
+diagram:
+  backgroundColor: "linen"
+  rows: 9
+  columns: 14
+  aspectRatio: "14:8.5"
+  gridLines: false
+  gridPaddingInner: .2
+  groupPadding: .8
+
+title:
+  text: "Relative Positioning"
+  color: black
+  logoFill: none
+  boxFillColor: none
+  boxStroke: none
+person: &person
+  borderColor: "none"
+  color: "white"
+  iconColor: "white"
+  font: "azure-enterprise"
+  type: "UserEnterprise"
+  backgroundColor: "slategrey"
+teamA: &teamA
+  <<: *person
+  backgroundColor: "turquoise"
+  color: black
+teamB: &teamB
+  <<: *person
+  backgroundColor: "lightseagreen"
+  color: black
+teamC: &teamC
+  <<: *person
+  backgroundColor: "skyblue"
+  color: black
+teamD: &teamD
+  <<: *person
+  backgroundColor: "burlywood"
+  color: black
+teamE: &teamE
+  <<: *person
+  backgroundColor: "thistle"
+  color: black
+objects:
+  Richard Harris: {<<: *person, x: 5, y: 8, type: "UserEnterprise"}
+  Laura Hill: {<<: *person, x: "2", y: "-1", type: "UserEnterprise"}
+  Maria Young: {<<: *person, x: "+3", type: "UserEnterprise"}
+  Thomas Lewis:  {<<: *person, x: "+4", type: "UserEnterprise"}
+  Patricia Diaz: {<<: *person, x: "1", y: "-1"}
+  Juan Ward: {<<: *person, x: "+3"}
+  Willie Collins: {<<: *person, x: "+3"}
+  Andrew Murphy: {<<: *person, x: "+3"}
+  Norma Jackson: {<<: *teamA, x: "0", y: "-1"}
+  Kelly Mitchell: {<<: *teamA, y: "-1"}
+  Carl Martil: {<<: *teamA, y: "-1"}
+  Terry Perez: {<<: *teamA, y: "-1"}
+  Cheryl Lee: {<<: *teamA, y: "-1"}
+  Christina Barnes: {<<: *teamA, y: "-1"}
+  Julie Cook: {<<: *teamB, x: "2", y: "5"}
+  Steve Parker: {<<: *teamB, y: "-1"}
+  Kathy Griffin: {<<: *teamB, y: "-1"}
+  Benjamin Howard: {<<: *teamB, y: "-1"}
+  Emily King: {<<: *teamB, y: "-1"}
+  John Hall: {<<: *teamC, x: "4", y: "5"}
+  Fred Phillips: {<<: *teamC, y: "-1"}
+  Gloria Davis: {<<: *teamC, y: "-1"}
+  Wanda Watson: {<<: *teamC, y: "-1"}
+  Dorothy Henderson: {<<: *teamD, x: "6", y: "5"}
+  Joan Perry: {<<: *teamD, y: "-1"}
+  Martin Brooks: {<<: *teamD, y: "-1"}
+  Sean Peterson: {<<: *teamD, y: "-1"}
+  Gerald Richardson: {<<: *teamD, x: "+2", y: "+3"}
+  Theresa James: {<<: *teamD, y: "-1"}
+  Victor Rodriguez : {<<: *teamD, y: "-1"}
+  Gary Wilson: {<<: *teamD, y: "-1"}
+  Jean Jones: {<<: *teamE, x: "10", y: "5"}
+  Jessica Roberts: {<<: *teamE, y: "-1"}
+  Ruth Wood: {<<: *teamE, y: "-1"}
+  Wayne Flores: {<<: *teamE, y: "-1"}
+  Frank Gonzales: {<<: *teamE, y: "-1"}
+  Shirley Washington: {<<: *teamE, y: "-1"}
+connection: &connection
+  lineColor: "black"
+  strokeDashArray: "0,0"
+  color: "black"
+connections:
+  - { <<: *connection, curve: curveStepBefore, endpoints: ["Richard Harris", "Laura Hill"] }
+  - { <<: *connection, curve: curveLinear, endpoints: ["Richard Harris", "Maria Young"] }
+  - { <<: *connection, curve: curveStepBefore, endpoints: ["Richard Harris", "Thomas Lewis"] }
+  - { <<: *connection, curve: curveLinear, endpoints: ["Laura Hill", "Patricia Diaz"] }
+  - { <<: *connection, curve: curveLinear, endpoints: ["Maria Young", "Willie Collins"] }
+  - { <<: *connection, curve: curveLinear, endpoints: ["Maria Young", "Juan Ward"] }
+  - { <<: *connection, curve: curveLinear, endpoints: ["Thomas Lewis", "Andrew Murphy"] }
+  - { <<: *connection, curve: curveStepBefore, endpoints: ["Patricia Diaz", "TeamA"] }
+  - { <<: *connection, curve: curveStepBefore, endpoints: ["Patricia Diaz", "TeamB"] }
+  - { <<: *connection, curve: curveLinear, endpoints: ["Juan Ward", "TeamC"] }
+  - { <<: *connection, curve: curveStepBefore, endpoints: ["Willie Collins", "TeamD"] }
+  - { <<: *connection, curve: curveLinear, endpoints: ["Andrew Murphy", "TeamE"] }
+
+group: &group
+  stroke: "darkgrey"
+  fill: "none"
+  color: black
+groups:
+  TeamA: { <<: *group, name: Team A, members: [Norma Jackson,Kelly Mitchell,Carl Martil,Terry Perez,Cheryl Lee,Christina Barnes] }
+  TeamB: { <<: *group, name: Team B, members: [Julie Cook,Steve Parker,Kathy Griffin,Benjamin Howard,Emily King] }
+  TeamC: { <<: *group, name: Team C, members: [John Hall,Fred Phillips,Gloria Davis,Wanda Watson]}
+  TeamD: { <<: *group, name: Team D, members: [Dorothy Henderson,Joan Perry,Martin Brooks,Sean Peterson,Gerald Richardson,Theresa James,Victor Rodriguez,Gary Wilson]}
+  TeamE: { <<: *group, name: Team E, members: [Jean Jones, Jessica Roberts, Ruth Wood, Wayne Flores, Frank Gonzales, Shirley Washington]}
+notes:
+  xCenterYCenter:
+    x: 11
+    y: 7
+    w: 3
+    h: 7
+    backgroundColor: "white"
+    borderColor: "none"
+    color: black
+    xAlign: left
+    yAlign: top
+    alignItems: stretch
+    justifyContent: space-around
+    text: |
+        #Relative positiong
+        **x can be one of:**
+
+        not defined: assumes  x of previous object
+        ```yaml
+        objectA: { x: 5, y: 5 }
+        objectB: { y: 6 }
+        # x = 5
+        ```
+        "+n": adds n to previous object' x
+        ```yaml
+        objectA: { x: 5, y: 5 }
+        objectB: { x: "+1", y: 6 }
+        # x = 6
+        ```
+        "-n": subtracts n from previous object' x
+        ```yaml
+        objectA: { x: 5, y: 5 }
+        objectB: { x: "-1", y: 6 }
+        # x = 4
+        ```
+        **y can be one of:**
+
+        not defined: assumes  y of previous object
+        ```yaml
+        objectA: { x: 5, y: 5 }
+        objectB: { x: 6 }
+        # y = 5
+        ```
+        "+n": adds n to previous object' y
+        ```yaml
+        objectA: { x: 5, y: 5 }
+        objectB: { x: 5, y: "+1" }
+        # y = 6
+        ```
+        "-n": subtracts n from previous object' y
+        ```yaml
+        objectA: { x: 5, y: 5 }
+        objectB: { x: 5, y: "-1" }
+        # y = 4
+        ```

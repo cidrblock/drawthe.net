@@ -1,12 +1,18 @@
-var drawConnections = function (svg, diagram, connections, objects) {
+var drawConnections = function (svg, diagram, connections, objects, notes) {
 
     connections.forEach(function(connection,index) {
       var endpoints = connection.endpoints.map( function(device) { return device.split(':')[0]})
 
-      var data = endpoints.map( function(device) {
-              return { x: diagram.xBand(objects[device].x) + diagram.xBand.bandwidth()/2,
-                       y: diagram.yBand(objects[device].y) + diagram.yBand.bandwidth()/2,
+      var data = endpoints.map( function(thing) {
+              if (thing in objects) {
+              return { x: objects[thing].centerX,
+                       y: objects[thing].centerY
                      }
+              } else if (thing in notes) {
+              return { x: notes[thing].centerX,
+                       y: notes[thing].centerY
+                     }
+              }
       });
       var angleRadians = Math.atan2(data[1].y - data[0].y, data[1].x - data[0].x);
       var angleDegrees = angleRadians *180/Math.PI;
@@ -18,6 +24,11 @@ var drawConnections = function (svg, diagram, connections, objects) {
         data = data.reverse()
         angleRadians = Math.atan2(data[1].y - data[0].y, data[1].x - data[0].x);
         angleDegrees = angleRadians *180/Math.PI;
+        if (connection.curve == 'curveStepAfter') {
+          connection.curve = 'curveStepBefore'
+        } else if (connection.curve == 'curveStepBefore') {
+          connection.curve = 'curveStepAfter'
+        }
       }
       var curve = d3[connection.curve] || d3.curveLinear
       var dxOffset = 0

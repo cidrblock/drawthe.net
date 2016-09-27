@@ -83,6 +83,13 @@ notes:
         - Three
 
         Lorem ipsum dolor sit amet
+  1: { x: 0, y: 0, xAlign: center, yAlign: center, borderColor: none, backgroundColor: "#cfc096", text: "Sample text" }
+  2: { x: 1, y: 0, xAlign: center, yAlign: center, borderColor: none, backgroundColor: "#989c97", text: "Sample text" }
+  3: { x: 2, y: 0, xAlign: center, yAlign: center, borderColor: none, backgroundColor: "#a79d96", text: "Sample text" }
+  4: { x: 3, y: 0, xAlign: center, yAlign: center, borderColor: none, backgroundColor: "#9b9a6d", text: "Sample text" }
+  5: { x: 4, y: 0, xAlign: center, yAlign: center, borderColor: none, backgroundColor: "#83b2a8", text: "Sample text" }
+  6: { x: 0, y: 0, w: 5, center, color: none, borderColor: white, backgroundColor: "none", text: ' ' }
+
 
 # Each note is an html flexbox, so you can override the defaults if needed:
 #

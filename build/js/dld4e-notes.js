@@ -1,4 +1,4 @@
-var drawNotes = function (svg, drawing, notes, title) {
+var drawNotes = function (svg, notes) {
 
   var converter = new showdown.Converter({extensions: ['prettify']});
   converter.setOption('prefixHeaderId', 'notes-');
@@ -17,7 +17,6 @@ var drawNotes = function (svg, drawing, notes, title) {
       alignItems: "center"
     }
   }
-
   var yAlign = {
     top: {
       justifyContent: "flex-start"
@@ -30,47 +29,31 @@ var drawNotes = function (svg, drawing, notes, title) {
     }
   }
 
-
-
-  var defaults = {
-    xAlign: "left",
-    yAlign: "top",
-    w: 1,
-    h: 1
-  }
-
-  for(var key in notes) {
-    notes[key] = Object.assign({}, defaults, notes[key])
-  }
-
-
-  console.log(notes)
   var notes = svg.selectAll("notes")
     .data(d3.entries(notes))
     .enter()
 
   var notesg = notes.append("g")
-    .attr("transform", function(d) { return "translate(" + diagram.xBand(d.value.x) + "," + diagram.yBand(d.value.y) + ")" })
+    .attr("transform", function(d) { return "translate(" + d.value.x1 + "," + d.value.y1 + ")" })
 
   var noteFill = notesg
     .append("rect")
-    .attr("rx", diagram.xBand.bandwidth() * .05)
-    .attr("ry", diagram.yBand.bandwidth() * .05)
-    .attr("width", function(d) { return diagram.xBand.bandwidth() + ((d.value.w -1) * diagram.xBand.step()) })
-    .attr("height", function(d) { return diagram.yBand.bandwidth() + ((d.value.h -1) * diagram.yBand.step()) })
+    .attr("rx", function(d) { return d.value.rx })
+    .attr("ry", function(d) { return d.value.ry })
+    .attr("width", function(d) { return d.value.width })
+    .attr("height", function(d) { return d.value.height })
     .attr("id", function(d) { return d.key })
     .attr("fill", function(d) { return d.value.backgroundColor || "red" })
     .style("stroke", function(d) { return d.value.borderColor || "red" })
 
-  var padding = Math.min(diagram.yBand.bandwidth() * .05, diagram.xBand.bandwidth() * .05)
   var noteTextDiv = notesg
     .append("foreignObject")
     .append("xhtml:div")
-    .style("width", function(d) { return diagram.xBand.bandwidth() + ((d.value.w - 1) * diagram.xBand.step()) + "px" })
-    .style("height", function(d) { return diagram.yBand.bandwidth() + ((d.value.h - 1) * diagram.yBand.step()) + "px" })
+    .style("width", function(d) { return d.value.width + "px" })
+    .style("height", function(d) { return d.value.height + "px" })
     .style('font-size', Math.min(diagram.yBand.bandwidth() * .125, diagram.xBand.bandwidth() * .125)  + 'px')
     .style('display', 'flex')
-    .style('padding', `${padding}px`)
+    .style('padding', function(d) { return d.value.padding + "px"})
     .attr("class", "notes")
     .style("color", function(d) { return d.value.color || "white" })
     .style('flex-direction', function(d) { return d.value.flexDirection || "column" } )
