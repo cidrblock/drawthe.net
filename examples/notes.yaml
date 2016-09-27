@@ -1,21 +1,21 @@
 diagram:
-  backgroundColor: "#5F6B6D"
-  rows: 7
-  columns: 5
   aspectRatio: "8.5:11"
+  columns: 5
+  fill: "#5F6B6D"
   gridLines: false
   gridPaddingInner: .1
+  rows: 7
 title:
-  text: "Notes"
   color: "white"
+  fill: none
   logoFill: none
-  boxFillColor: none
-  barColor: "white"
-  boxStroke: none
+  stroke: "white"
+  text: "Notes"
+  type: "bar"
 colors: &colors
-  borderColor: "#DFBFBF"
   color: "white"
-  backgroundColor: "#28738A"
+  fill: "#28738A"
+  stroke: "#DFBFBF"
 headings: &headings
   text: |
       `Headings`
@@ -24,10 +24,10 @@ headings: &headings
       ###H3
       ####H4
 code: &code
-  borderColor: "DFBFBF"
   color: "white"
-  backgroundColor: "none"
+  fill: "none"
   justifyContent: center
+  stroke: "DFBFBF"
   text: |
     `code`
     ```javascript
@@ -83,12 +83,12 @@ notes:
         - Three
 
         Lorem ipsum dolor sit amet
-  1: { x: 0, y: 0, xAlign: center, yAlign: center, borderColor: none, backgroundColor: "#cfc096", text: "Sample text" }
-  2: { x: 1, y: 0, xAlign: center, yAlign: center, borderColor: none, backgroundColor: "#989c97", text: "Sample text" }
-  3: { x: 2, y: 0, xAlign: center, yAlign: center, borderColor: none, backgroundColor: "#a79d96", text: "Sample text" }
-  4: { x: 3, y: 0, xAlign: center, yAlign: center, borderColor: none, backgroundColor: "#9b9a6d", text: "Sample text" }
-  5: { x: 4, y: 0, xAlign: center, yAlign: center, borderColor: none, backgroundColor: "#83b2a8", text: "Sample text" }
-  6: { x: 0, y: 0, w: 5, center, color: none, borderColor: white, backgroundColor: "none", text: ' ' }
+  1: { x: 0, y: 0, xAlign: center, yAlign: center, stroke: none, fill: "#cfc096", text: "Sample text" }
+  2: { x: 1, y: 0, xAlign: center, yAlign: center, stroke: none, fill: "#989c97", text: "Sample text" }
+  3: { x: 2, y: 0, xAlign: center, yAlign: center, stroke: none, fill: "#a79d96", text: "Sample text" }
+  4: { x: 3, y: 0, xAlign: center, yAlign: center, stroke: none, fill: "#9b9a6d", text: "Sample text" }
+  5: { x: 4, y: 0, xAlign: center, yAlign: center, stroke: none, fill: "#83b2a8", text: "Sample text" }
+  6: { x: 0, y: 0, w: 5, center, color: none, stroke: white, fill: "none", text: ' ' }
 
 
 # Each note is an html flexbox, so you can override the defaults if needed:

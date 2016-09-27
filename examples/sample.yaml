@@ -1,44 +1,51 @@
 diagram:
-  backgroundColor: "#3d3935"
-  rows: 5
+  fill: "#3d3935"
   columns: 5
+  rows: 5
   gridLines: false
 title:
   color: lightgrey
   heightPercentage: 6
   logoFill: lightgrey
-  text: "Sample Diagram"
+  stroke: lightgrey
   subText: "A sample diagram showing various style and icon types."
-  boxFillColor: none
-  boxStroke: none
-  barColor: lightgrey
+  text: "Sample Diagram"
+  type: "bar"
 defaults: &defaults
+  color: "white"
+  fill: "#555555"
   font: "azure-enterprise"
+  iconFill: "white"
+  iconStroke: "none"
+  stroke: "none"
 cisco: &cisco
-  borderColor: "#004BAF"
   color: "#004BAF"
-  iconColor: "#004BAF"
+  fill: "white"
   font: "cisco"
-  backgroundColor: "white"
+  iconFill: "#004BAF"
+  iconStrokeWidth: .25
+  iconStroke: "#049FD9"
+  stroke: "#004BAF"
 servers: &servers
   <<: *defaults
+  fill: "#58585B"
   type: "Webserver"
-  backgroundColor: "#58585B"
 objects:
-  firewall: {<<: *cisco, x: 4, y: 4, type: "firewall"}
   chddc1crt001: {<<: *cisco, x: 0, y: 4, type: "router"}
-  chddc1crt004: {x: 2, y: 3, font: "azure-enterprise", type: "Gateway", backgroundColor: "Gold"}
-  chddc1sfw005: {x: 2, y: 2, font: "azure-enterprise", type: "Firewall", backgroundColor: "red"}
-  chddc1srt001: {x: 3, y: 2, font: "azure-enterprise", type: "Gateway", backgroundColor: "green"}
-  chddc1slb005: {x: 3, y: 1, font: "azure-enterprise", type: "LoadbalancerGeneric", backgroundColor: "#2E1700"}
+  chddc1crt004: {<<: *defaults, x: 2, y: 3, type: "Gateway", iconFill: "Gold"}
+  chddc1sfw005: {<<: *defaults, x: 2, y: 2, type: "Firewall", iconFill: "red"}
+  chddc1slb005: {<<: *defaults, x: 3, y: 1, type: "LoadbalancerGeneric", iconFill: "lightblue"}
+  chddc1srt001: {<<: *defaults, x: 3, y: 2, type: "Gateway", iconFill: "green"}
+  firewall: {<<: *cisco, x: 4, y: 4, type: "firewall"}
   lx12300: {<<: *servers, x: 2, y: 0}
   lx12301: {<<: *servers, x: 3, y: 0}
   lx12302: {<<: *servers, x: 4, y: 0}
 notes:
-  firewallComment: { x: 0, y: 2, h: 2, xAlign: center, yAlign: center, borderColor: "red", backgroundColor: "#660000",
+  firewallComment: { x: 0, y: 2, h: 2, xAlign: center, yAlign: center, stroke: "blue", fill: "#000066",
     text: "#NOTE:\n\nThis is a redundant HA pair. More text could go here to completely fill up this box." }
 connection: &connection
-  lineColor: "white"
+  color: "white"
+  stroke: "white"
   strokeDashArray: "10,2"
 connections:
   - { <<: *connection, endpoints: ["chddc1crt001:eth0", "firewall:eth1"] }
@@ -49,7 +56,7 @@ connections:
   - { <<: *connection, endpoints: ["chddc1srt001", "lx12302"] }
   - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12300:80"] }
   - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12301:80"] }
-  - { endpoints: ["firewallComment", "chddc1sfw005"],   lineColor: "red" }
+  - { endpoints: ["firewallComment", "chddc1sfw005"],   stroke: "blue" }
 group: &group
   - { stroke: "lightgrey", fill: "rgba(0, 0, 0, 0.3)" }
 groups:

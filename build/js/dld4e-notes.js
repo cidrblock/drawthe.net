@@ -43,8 +43,8 @@ var drawNotes = function (svg, notes) {
     .attr("width", function(d) { return d.value.width })
     .attr("height", function(d) { return d.value.height })
     .attr("id", function(d) { return d.key })
-    .attr("fill", function(d) { return d.value.backgroundColor || "red" })
-    .style("stroke", function(d) { return d.value.borderColor || "red" })
+    .attr("fill", function(d) { return d.value.fill || "red" })
+    .style("stroke", function(d) { return d.value.stroke || "red" })
 
   var noteTextDiv = notesg
     .append("foreignObject")

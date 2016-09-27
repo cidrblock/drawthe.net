@@ -1,28 +1,30 @@
 diagram:
-  backgroundColor: "lightgrey"
-  rows: 5
-  columns: 7
   aspectRatio: "14:8.5"
+  columns: 7
+  fill: "lightgrey"
+  rows: 5
 title:
-  text: "Curves"
   color: black
+  fill: "none"
   logoFill: none
-  boxFillColor: none
-  boxStroke: none
+  stroke: "black"
+  text: "Curves"
+  type: "bar"
 azure: &azure
-  borderColor: "none"
   color: "black"
-  iconColor: "white"
+  fill: "darkgrey"
   font: "azure-enterprise"
-  backgroundColor: "darkgrey"
+  iconFill: "white"
+  iconStroke: "none"
+  stroke: "none"
 objects:
   serverrack1: {<<: *azure, x: 0, y: 4, type: "Serverrack"}
   serverrack2: {<<: *azure, x: 3, y: 2, type: "Serverrack"}
   serverrack3: {<<: *azure, x: 6, y: 0, type: "Serverrack"}
 connection: &connection
-  lineColor: "black"
-  strokeDashArray: "0,0"
   color: "black"
+  stroke: "black"
+  strokeDashArray: "0,0"
 connections:
   - { <<: *connection, curve: curveLinear, endpoints: ["serverrack1:curveLinear", "serverrack2:curveLinear"] }
   - { <<: *connection, curve: curveStepBefore, endpoints: ["serverrack1:curveStepBefore", "serverrack2:curveStepBefore"] }

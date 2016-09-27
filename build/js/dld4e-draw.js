@@ -1,7 +1,7 @@
 function draw(doc) {
   // set the drawing defaults
   var drawingDefaults = {
-    backgroundColor: "white",
+    fill: "orange",
     connectionLabelFontSize: 10,
     aspectRatio: "1:1",
     rows: 10,
@@ -19,13 +19,12 @@ function draw(doc) {
     company: "Self",
     date: new Date().toLocaleDateString(),
     version: 1.01,
-    color: "black",
-    barColor: "black",
-    boxFillColor: "white",
-    boxStroke: "black",
+    color: "orange",
+    stroke: "orange",
+    fill: "orange",
     heightPercentage: 6, // percent of total height
     logoUrl: "build/images/radial.png",
-    logoFill: "white"
+    logoFill: "orange"
   }
   // incase there are none
   var connections = doc.connections || [];
@@ -38,7 +37,7 @@ function draw(doc) {
   title = Object.assign(titleDefaults, doc.title || {})
 
   // set the background color of the whole page
-  document.body.style.background = diagram.backgroundColor
+  document.body.style.background = diagram.fill
 
   // find a good fit for the diagram
   var parentBox = d3.select("#svg").node().getBoundingClientRect()
@@ -92,7 +91,7 @@ function draw(doc) {
   var svg = d3.select("#svg").append("svg")
     .attr("width", parentBox.width )
     .attr("height", parentBox.height )
-    .style("background-color", diagram.backgroundColor )
+    .style("background-color", diagram.fill )
     .append("g")
       .attr("transform", "translate(" + (parentBox.width - svgWidth)/2 + "," + (parentBox.height - svgHeight)/2 + ")");
 
@@ -101,7 +100,6 @@ function draw(doc) {
   objects = processEntities(svg, diagram, objects)
   connections = processConnections(connections, groups, objects)
   groups = processGroups(groups, objects)
-
 
   // draw all the things
   drawTitle(svg, diagram, title)

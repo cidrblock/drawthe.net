@@ -10,8 +10,10 @@ title:
   text: "Cisco Icons"
   boxStroke: none
 icon:
-  borderColor: "black"
   color: "#004BAF"
-  iconColor: "#004BAF"
+  fill: "white"
   font: "cisco"
-  backgroundColor: "white"
+  iconFill: "#004BAF"
+  iconStrokeWidth: .25
+  iconStroke: "#049FD9"
+  stroke: "#004BAF"

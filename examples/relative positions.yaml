@@ -1,44 +1,45 @@
 diagram:
-  backgroundColor: "linen"
+  fill: "linen"
   rows: 9
   columns: 14
   aspectRatio: "14:8.5"
   gridLines: false
   gridPaddingInner: .2
   groupPadding: .8
-
 title:
+  type: "bar"
   text: "Relative Positioning"
   color: black
   logoFill: none
-  boxFillColor: none
-  boxStroke: none
+  fill: none
+  stroke: "black"
 person: &person
-  borderColor: "none"
+  stroke: "none"
   color: "white"
-  iconColor: "white"
+  iconFill: "white"
+  iconStroke: "none"
   font: "azure-enterprise"
   type: "UserEnterprise"
-  backgroundColor: "slategrey"
+  fill: "slategrey"
 teamA: &teamA
   <<: *person
-  backgroundColor: "turquoise"
+  fill: "turquoise"
   color: black
 teamB: &teamB
   <<: *person
-  backgroundColor: "lightseagreen"
+  fill: "lightseagreen"
   color: black
 teamC: &teamC
   <<: *person
-  backgroundColor: "skyblue"
+  fill: "skyblue"
   color: black
 teamD: &teamD
   <<: *person
-  backgroundColor: "burlywood"
+  fill: "burlywood"
   color: black
 teamE: &teamE
   <<: *person
-  backgroundColor: "thistle"
+  fill: "thistle"
   color: black
 objects:
   Richard Harris: {<<: *person, x: 5, y: 8, type: "UserEnterprise"}
@@ -79,7 +80,7 @@ objects:
   Frank Gonzales: {<<: *teamE, y: "-1"}
   Shirley Washington: {<<: *teamE, y: "-1"}
 connection: &connection
-  lineColor: "black"
+  stroke: "black"
   strokeDashArray: "0,0"
   color: "black"
 connections:
@@ -95,7 +96,6 @@ connections:
   - { <<: *connection, curve: curveLinear, endpoints: ["Juan Ward", "TeamC"] }
   - { <<: *connection, curve: curveStepBefore, endpoints: ["Willie Collins", "TeamD"] }
   - { <<: *connection, curve: curveLinear, endpoints: ["Andrew Murphy", "TeamE"] }
-
 group: &group
   stroke: "darkgrey"
   fill: "none"
@@ -112,8 +112,8 @@ notes:
     y: 7
     w: 3
     h: 7
-    backgroundColor: "white"
-    borderColor: "none"
+    fill: "white"
+    stroke: "none"
     color: black
     xAlign: left
     yAlign: top

@@ -11,15 +11,17 @@ var drawTitle = function (svg, drawing, title) {
     var titleBox = svg.append("g")
       .attr("transform", `translate(${title.x1},${title.y1})`)
 
-    titleBox.append("line")
-      .attr("stroke", title.barColor )
-      .attr("x2", title.width)
-    //title fill
-    titleBox.append("rect")
-      .attr("fill", title.boxFillColor)
-      .attr("stroke", title.boxStroke)
-      .attr('width', title.width)
-      .attr('height', title.height)
+    if (title.type == "bar") {
+      titleBox.append("line")
+        .attr("stroke", title.stroke || "orange" )
+        .attr("x2", title.width)
+    } else {
+      titleBox.append("rect")
+        .attr("fill", title.fill)
+        .attr("stroke", title.stroke || "orange" )
+        .attr('width', title.width)
+        .attr('height', title.height)
+    }
 
     // image and imagefill
     var padding = title.height * .025

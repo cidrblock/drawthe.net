@@ -1,4 +1,5 @@
 diagram:
+  fill: "white"
   rows: 4
   columns: 8
   gridLines: false
@@ -7,14 +8,17 @@ title:
   color: black
   logoFill: white
   text: "Group Connections"
-  boxFillColor: none
-  boxStroke: none
+  fill: none
+  stroke: "black"
+  type: "bar"
 cisco: &cisco
-  borderColor: "none"
+  stroke: "none"
   color: "lightgrey"
-  iconColor: "darkslategray"
+  iconFill: "darkslategrey"
+  iconStroke: "lightslategrey"
+  iconStrokeWidth: .25
   font: "cisco"
-  backgroundColor: "white"
+  fill: "white"
 spine: &spine
   <<: *cisco
   x: "+1"
@@ -48,7 +52,7 @@ groups:
   rack4: { <<: *group, textLocation: bottomMiddle, name: Rack4, members: [leaf 7, leaf 8] }
   leaves: { <<: *group, textLocation: leftMiddle, members: [rack1,rack2,rack3,rack4] }
 connection: &connection
-  lineColor: "black"
   color: "lightgrey"
+  stroke: "darkslategrey"
 connections:
   - { <<: *connection, endpoints: [spines:40Gb,leaves:40Gb] }

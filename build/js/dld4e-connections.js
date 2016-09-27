@@ -57,7 +57,7 @@ var drawConnections = function (svg, diagram, connections, objects, notes) {
         svg.append("path")
           .datum(data)
           .attr("id", pathName)
-          .style("stroke", connection.lineColor || 'orange' )
+          .style("stroke", connection.stroke || 'orange' )
           .style("fill", "none")
           .style("stroke-dasharray", connection.strokeDashArray || [0,0])
           .attr("d", d3.line()
@@ -67,7 +67,7 @@ var drawConnections = function (svg, diagram, connections, objects, notes) {
                    );
         // draw the text for the first label
         svg.append("text")
-          .style("fill", function(d) { return connection.color || "white" })
+          .style("fill", function(d) { return connection.color || "orange" })
           .style('font-size', diagram.connectionLabelFontSize + 'px')
           .attr('dy', -1)
           .attr('dx', function(d) {
@@ -86,7 +86,7 @@ var drawConnections = function (svg, diagram, connections, objects, notes) {
         }
         // draw the text for the second node
         svg.append("text")
-        .style("fill", function(d) { return connection.color || "white" })
+        .style("fill", function(d) { return connection.color || "orange" })
          .style('font-size', diagram.connectionLabelFontSize + 'px')
          .attr('dy', 8)
          .attr('dx', function(d) {

@@ -1,18 +1,24 @@
 diagram:
+  fill: "white"
   rows: 6
   columns: 6
   gridLines: true
 title:
   color: black
-  logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+  fill: none
   logoFill: white
+  logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+  stroke: black
   text: "Groups"
+  type: box
 cisco: &cisco
-  borderColor: "black"
   color: "#004BAF"
-  iconColor: "#004BAF"
+  fill: "white"
   font: "cisco"
-  backgroundColor: "white"
+  iconFill: "#004BAF"
+  iconStrokeWidth: .25
+  iconStroke: "#049FD9"
+  stroke: "#004BAF"
 objects:
   router1: {<<: *cisco, x: 0, y: 5, type: "router"}
   router2: {<<: *cisco, x: 2, y: 5, type: "router"}
