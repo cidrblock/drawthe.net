@@ -13,10 +13,10 @@ title:
   stroke: black
   fill: none
 icon:
-  color: "#004BAF"
-  fill: "white"
+  stroke: "none"
+  color: "black"
+  iconFill: "darkslategrey"
+  iconStroke: "white"
+  iconStrokeWidth: .1
   font: "cisco"
-  iconFill: "#004BAF"
-  iconStrokeWidth: .25
-  iconStroke: "#049FD9"
-  stroke: "#004BAF"
+  fill: "white"
