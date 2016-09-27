@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.75 41.25" height="41.25" width="38.75">
+    <path d="M.694 39.4H33.99V5.665H.694V39.4z" fill="#087bbb"/>
+    <path d="M.694 39.4H33.99V5.666H.694V39.4z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M8.145 19.562a2.558 2.558 0 0 0 2.558-2.56 2.558 2.558 0 1 0-2.558 2.56zM8.145 14.444h4.447" fill="none" stroke="#fff" stroke-width="1.25"/>
+    <path d="M12.636 12.775v3.218l1.94-1.543-1.94-1.675" fill="#fff"/>
+    <path d="M12.636 12.774v3.22l1.94-1.545-1.94-1.675zM5.591 17.023v-4.449" fill="none" stroke="#fff" stroke-width="1.25"/>
+    <path d="M3.955 12.555h3.217l-1.547-1.939-1.67 1.94" fill="#fff"/>
+    <path d="M3.955 12.556h3.217l-1.547-1.94-1.67 1.94zM10.712 16.988v4.444" fill="none" stroke="#fff" stroke-width="1.25"/>
+    <path d="M12.344 21.441H9.126l1.558 1.939 1.66-1.939" fill="#fff"/>
+    <path d="M12.344 21.442H9.126l1.558 1.938 1.66-1.938zM8.208 19.557H3.765" fill="none" stroke="#fff" stroke-width="1.25"/>
+    <path d="M3.701 21.232v-3.213l-1.938 1.544L3.7 21.232" fill="#fff"/>
+    <path d="M3.701 21.232v-3.213l-1.938 1.543 1.938 1.67z" fill="none" stroke="#fff" stroke-width="1.25"/>
+    <path d="M33.916 5.641H.712l5.216-4.16h32.295V35.09l-4.258 4.302V5.763l-.049-.122" fill="#087bbb"/>
+    <path d="M33.916 5.64H.712l5.216-4.16h32.295v33.61l-4.258 4.3V5.764l-.049-.122zM33.955 5.607l4.301-4.185M33.916 28.112H.712M23.555 27.692V5.763M19.732 27.692V5.763M30.727 27.692V5.763M26.904 27.692V5.763M15.904 27.692v-.48M15.904 27.536V6.227" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M3.584 31.354h9.565v-1.435H3.584v1.435z" fill="#087bbb"/>
+    <path d="M3.584 31.353h9.565v-1.435H3.584v1.435z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M12.671 34.22h9.56v-1.435h-9.56v1.435z" fill="#087bbb"/>
+    <path d="M12.671 34.22h9.56v-1.436h-9.56v1.435z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M21.753 37.091h9.564v-1.435h-9.564v1.435z" fill="#087bbb"/>
+    <path d="M21.753 37.09h9.564v-1.434h-9.564v1.435z" fill="none" stroke="#fff" stroke-width=".5"/>
+</svg>

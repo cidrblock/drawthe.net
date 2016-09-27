@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.25 30" height="30" width="61.25">
+    <defs>
+        <clipPath id="a">
+            <path d="M0 10v227h490V10H0z"/>
+        </clipPath>
+    </defs>
+    <g clip-path="url(#a)" transform="matrix(.13 0 0 -.13 0 30)">
+        <path d="M4.73 14.926h438.75v171.719H4.73V14.925z" fill="#087fbf"/>
+        <path d="M4.73 14.926h438.75v171.719H4.73V14.925z" fill="none" stroke="#fff" stroke-width="4"/>
+        <path d="M48.629 231.645l-43.899-45h438.75l43.899 45H48.629" fill="#087fbf"/>
+        <path d="M48.629 231.645l-43.899-45h438.75l43.899 45H48.629z" fill="none" stroke="#fff" stroke-width="4"/>
+        <path d="M487.379 59.926v171.719l-43.899-45V14.925l43.899 45" fill="#087fbf"/>
+        <path d="M487.379 59.926v171.719l-43.899-45V14.925l43.899 45z" fill="none" stroke="#fff" stroke-width="4"/>
+        <text style="-inkscape-font-specification:Helvetica" transform="matrix(10 0 0 -10 53.496 74.09)" font-weight="400" font-size="8" font-family="Helvetica" fill="#fff">
+            <tspan y="0" x="0 5.776 11.112 16.888 19.112 24.888 30.224001">DSU/CSU</tspan>
+        </text>
+    </g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42.5 60" height="60" width="42.5">
+    <path d="M33.252 5.393c.786-1.314.782-1.123 1.098-1.602 3.14-4.746 6.339-2.451 4.165 1.958-1.791 3.652-1.973 3.886-2.67 5.097A147.262 147.262 0 0 0 32.54 17M36.377 10.036c3.164-4.687 6.197-2.525 4.243 1.786-1.675 3.683-2.118 3.824-2.73 5.118-1.127 2.402-.776 2.026-1.635 3.721" fill="none" stroke="#231f20" stroke-width=".5" stroke-miterlimit="10"/>
+    <path d="M29.975 11.071c.865-1.109.88-1.328 2.828-4.877 2.44-4.454-.997-6.636-4.2-2.008-3.388 4.898-4.248 6.299-6.128 8.468-1.884 2.177-5.39 10.654-7.603 12.948-1.468 1.533.612-4.467.425-6.216-.41-3.799-.507-3.359-.942-4.697-.439-1.338-3.149-3.705-3.72-1.65-.294 1.065-.156 1.098.064 2.305.107.62-.338.444-.21 3.422.072 1.68-2.628 6.695-3.443 8.931-1.734 4.747.18 4.995-.527 8.94-.782 4.327.13 3.423-.645 5.274-.782 1.845-5.205 8.945-5.64 10.083M16.216 27.703c2.588 1.468.19 9.452.19 9.452M14.985 27.131c-.605-.778-.63-1.285-.63-1.285" fill="none" stroke="#231f20" stroke-width=".5" stroke-miterlimit="10"/>
+    <path d="M7.183 33.425h19.784l12.71-23.276H20.856L7.183 33.425" fill="#087ebe" fill-rule="evenodd"/>
+    <path d="M7.183 33.425h19.784l12.71-23.276H20.856L7.183 33.425z" fill="none" stroke="#fff" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+    <path d="M7.183 37.277h19.784v-3.852H7.183v3.852z" fill="#087ebe" fill-rule="evenodd"/>
+    <path d="M7.183 37.277h19.784v-3.852H7.183v3.852z" fill="none" stroke="#fff" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+    <path d="M39.678 10.149v3.612l-12.71 23.516v-3.852l12.71-23.276" fill="#087ebe" fill-rule="evenodd"/>
+    <path d="M39.678 10.149v3.612l-12.71 23.516v-3.852l12.71-23.276z" fill="none" stroke="#fff" stroke-width=".5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+    <path d="M36.357 12.496L27.99 28.064H12.544l9.023-15.568h14.79" fill="#fff" fill-rule="evenodd"/>
+    <path d="M36.357 12.498L27.99 28.064H12.544l9.023-15.566h14.79z" fill="none" stroke="#fff" stroke-width=".24075" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+    <path d="M13.315 30.226l-.922 1.695H10.62l.981-1.695h1.714" fill="#fff" fill-rule="evenodd"/>
+    <path d="M13.315 30.226l-.922 1.695H10.62l.981-1.695h1.714z" fill="none" stroke="#fff" stroke-width=".24075" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+    <path d="M26.997 30.226l-.918 1.695h-1.773l.978-1.695h1.713" fill="#fff" fill-rule="evenodd"/>
+    <path d="M26.997 30.226l-.918 1.695h-1.773l.978-1.695h1.713z" fill="none" stroke="#fff" stroke-width=".24075" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+    <path d="M23.584 30.226l-.918 1.695h-1.772l.976-1.695h1.714" fill="#fff" fill-rule="evenodd"/>
+    <path d="M23.584 30.226l-.918 1.695h-1.772l.976-1.695h1.714z" fill="none" stroke="#fff" stroke-width=".24075" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+    <path d="M20.015 30.226l-.924 1.695H17.32l.982-1.695h1.714" fill="#fff" fill-rule="evenodd"/>
+    <path d="M20.015 30.226l-.924 1.695H17.32l.982-1.695h1.714z" fill="none" stroke="#fff" stroke-width=".24075" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+    <path d="M16.631 30.226l-.919 1.695H13.94l.977-1.695h1.714" fill="#fff" fill-rule="evenodd"/>
+    <path d="M16.631 30.226l-.919 1.695H13.94l.977-1.695h1.714z" fill="none" stroke="#fff" stroke-width=".24075" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+    <path d="M13.955 58.615c1.123-1.734 6.509-9.678 7.011-9.815 5.568-1.517 11.92-13.901 14.894-17.509.649-.791 1.205-2.325 1.489-3.047.136-.351 1.396-3.003 2.1-4.258l1.122-5.097.182-4.483s-1.768-4.243-2.784 1.201l-.717 3.505c-.333.548-1.553 2.34-1.87 3.116-.318.777-2.242 3.17-2.228 4.497" fill="#fff"/>
+    <path d="M13.955 58.615c1.123-1.734 6.509-9.678 7.011-9.815 5.568-1.518 11.92-13.901 14.894-17.509.649-.791 1.205-2.325 1.489-3.047.136-.351 1.396-3.003 2.1-4.258l1.122-5.097.182-4.483s-1.768-4.243-2.784 1.201l-.717 3.505c-.333.548-1.553 2.34-1.87 3.117-.318.776-2.242 3.169-2.228 4.496" fill="none" stroke="#231f20" stroke-width=".5" stroke-miterlimit="10"/>
+</svg>

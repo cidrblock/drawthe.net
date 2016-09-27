@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62.5 33.75" height="33.75" width="62.5">
+    <path d="M61.611 26.196V1.163L56.065 6.85v25.035l5.546-5.689" fill="#087fbf"/>
+    <path d="M61.611 26.197V1.162L56.065 6.85v25.033l5.546-5.687z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M.591 31.884h55.474V6.85H.59v25.034z" fill="#087fbf"/>
+    <path d="M.591 31.884h55.474V6.851H.59v25.033z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <text style="-inkscape-font-specification:Helvetica" transform="matrix(1.25 0 0 1.25 12.86 23.137)" font-weight="400" font-size="6.069" font-family="Helvetica" fill="#fff">
+        <tspan y="0" x="0 4.0480099 5.7351861 9.109539 12.483891 14.171068 18.552872 21.927225 24.961714">X.25 Host</tspan>
+    </text>
+    <path d="M6.138 1.163L.59 6.85h55.474l5.546-5.687H6.138" fill="#087fbf"/>
+    <path d="M6.138 1.162L.59 6.85h55.474l5.546-5.69H6.138z" fill="none" stroke="#fff" stroke-width=".5"/>
+</svg>

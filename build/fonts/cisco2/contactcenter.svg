@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.75 41.25" height="41.25" width="38.75">
+    <path d="M.576 39.368H33.59V4.544H.576v34.824z" fill="#087bbb"/>
+    <path d="M.576 39.368H33.59V4.544H.576v34.824z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M3.96.95L.576 4.544H33.59L36.973.95H3.96" fill="#087bbb"/>
+    <path d="M3.96.95L.576 4.544H33.59L36.973.95H3.96z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M36.973 35.779V.95l-3.384 3.594v34.824l3.384-3.59" fill="#087bbb"/>
+    <path d="M36.973 35.779V.95l-3.384 3.594v34.824l3.384-3.59zM3.325 37.528H31.22V6.365H3.325v31.163z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M21.122 32.151a3.794 3.794 0 1 1-7.587 0 3.794 3.794 0 0 1 7.587 0" fill="#087bbb"/>
+    <path d="M21.122 32.151a3.794 3.794 0 1 1-7.588 0 3.794 3.794 0 0 1 7.588 0z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <g font-weight="700" font-family="Helvetica" fill="#fff">
+        <text style="-inkscape-font-specification:Helvetica-Bold" transform="matrix(1.25 0 0 1.25 15.228 34.46)" font-size="5">
+            <tspan y="0" x="0">V</tspan>
+        </text>
+        <text style="-inkscape-font-specification:Helvetica-Bold" transform="matrix(1.25 0 0 1.25 10.284 12.492)" font-size="4">
+            <tspan y="0" x="0 3.776 7.552">WWW</tspan>
+        </text>
+    </g>
+    <path d="M7.779 26.531h21.386" fill="none" stroke="#fff" stroke-width=".625"/>
+    <path d="M9.697 24.777l-1.034 1.778 1.034 1.778-4.35-1.778 4.35-1.778" fill="#fff"/>
+    <path d="M27.221 14.739H5.835" fill="none" stroke="#fff" stroke-width=".625"/>
+    <path d="M25.303 16.493l1.034-1.778-1.034-1.777 4.35 1.777-4.35 1.778" fill="#fff"/>
+    <path d="M11.132 23.709h12.915v-6.665H11.132v6.665z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M11.132 17.044l6.455 3.33 6.46-3.33" fill="none" stroke="#fff" stroke-width=".5"/>
+</svg>

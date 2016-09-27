@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 31.25" height="31.25" width="47.5">
+    <path d="M.708 31.06h41.645V6.744H.708V31.06z" fill="#087bbb"/>
+    <path d="M.708 31.06h41.645V6.744H.708V31.06z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M47.339 23.765l-4.985 7.295V6.744L47.339.699v23.066" fill="#087bbb"/>
+    <path d="M47.339 23.765l-4.985 7.295V6.744L47.339.699v23.066z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M8.189.699h39.15l-4.985 6.045H.708L8.189.699" fill="#087bbb"/>
+    <path d="M8.189.699h39.15l-4.985 6.045H.708L8.189.699z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M20.65 21.319v3.25l-2.427-.048 3.427 5.318 3.638-5.318-2.54.049v-3.251" fill="#fff"/>
+    <path d="M27.28 19.35H9.248l-.083-2.334-5.323 3.394 5.323 3.673.083-2.633H20.42" fill="#fff"/>
+    <path d="M23.047 21.445h11.85l.083 2.334 5.323-3.393-5.323-3.57-.082 2.53H16.514" fill="#fff"/>
+    <text style="-inkscape-font-specification:Helvetica-Bold" transform="matrix(1.25 0 0 1.25 11.641 16.273)" font-weight="700" font-size="7" font-family="Helvetica" fill="#fff">
+        <tspan y="0" x="0 5.0539999 10.108">ADM</tspan>
+    </text>
+</svg>

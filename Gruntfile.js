@@ -52,7 +52,7 @@ module.exports = function(grunt) {
     // },
     webfont: {
         icons: {
-            src: 'build/fonts/cisco/*.svg',
+            src: 'build/fonts/cisco2/*.svg',
             dest: 'build/fonts',
         },
         options: {

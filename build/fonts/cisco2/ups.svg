@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 31.25" height="31.25" width="47.5">
+    <path d="M.708 31.06h41.645V6.744H.708V31.06z" fill="#036998"/>
+    <path d="M.708 31.06h41.645V6.744H.708V31.06z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M47.339 23.765l-4.985 7.295V6.744L47.339.699v23.066" fill="#036998"/>
+    <path d="M47.339 23.765l-4.985 7.295V6.744L47.339.699v23.066z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M8.189.699h39.15l-4.985 6.045H.708L8.189.699" fill="#036998"/>
+    <path d="M8.189.699h39.15l-4.985 6.045H.708L8.189.699z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <text style="-inkscape-font-specification:Helvetica-Bold" transform="matrix(1.25 0 0 1.25 12.608 16.274)" font-weight="700" font-size="7" font-family="Helvetica" fill="#fff">
+        <tspan y="0" x="0 5.0539999 9.7229996">UPS</tspan>
+    </text>
+    <path d="M21.279 23.779c.005-.004 5.406-.298 5.406-.298s-6.641-2.528-7.896-2.974c.083-.033 6.055-.107 6.055-.107L6.752 15.405l11.896 4.37c-.064.025-4.375.312-4.375.312s4.39 2.15 5.615 2.584c-.185.078-4.004 1.166-4.004 1.166l21.475 5.973-16.08-6.031" fill="#fff"/>
+</svg>

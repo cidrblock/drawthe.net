@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 32.5" height="32.5" width="60">
+    <path d="M29.918 27.737c13.998 0 25.346-5.156 25.346-11.519 0-6.361-11.348-11.522-25.346-11.522-14 0-25.343 5.16-25.343 11.522 0 6.363 11.343 11.52 25.343 11.52z" fill="none" stroke="#91c2e3" stroke-width="1.875"/>
+    <path d="M29.918 30.311c16.004 0 28.983-6.309 28.983-14.093 0-7.787-12.979-14.096-28.984-14.096-16.006 0-28.98 6.309-28.98 14.096 0 7.784 12.974 14.093 28.98 14.093z" fill="none" stroke="#087fbf" stroke-width="1.875"/>
+    <text style="-inkscape-font-specification:Helvetica-Bold" transform="matrix(1.25 0 0 1.25 20.364 19.703)" font-weight="700" font-size="8" font-family="Helvetica" fill="#231f20">
+        <tspan y="0" x="0 5.776 11.112">DPT</tspan>
+    </text>
+</svg>

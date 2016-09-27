@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 42.5" height="42.5" width="30">
+    <defs>
+        <clipPath id="a">
+            <path d="M0 10h240v330H0V10z"/>
+        </clipPath>
+    </defs>
+    <g clip-path="url(#a)" transform="matrix(.13 0 0 -.13 0 42.5)">
+        <path d="M4.84 11.207h183.87v277.66H4.84V11.207z" fill="#026c9b"/>
+        <path d="M188.711 288.867H4.84V11.207H188.71" fill="none" stroke="#fff" stroke-width="4"/>
+        <path d="M188.711 11.207l49.141 49.14v277.661H53.981L4.84 288.867H188.71V11.207" fill="#026c9b"/>
+        <path d="M188.711 11.207l49.141 49.14v277.661H53.981L4.84 288.867H188.71V11.207z" fill="none" stroke="#fff" stroke-width="4"/>
+        <path d="M188.711 288.867l49.141 49.141" fill="#026c9b"/>
+        <path d="M188.711 288.867l49.141 49.141M7.3 210.855h180.001M7.3 38.355h180.001M42.3 250.855h43.75M24.8 235.855h77.5v31.25H24.8v-31.25z" fill="none" stroke="#fff" stroke-width="4"/>
+        <path d="M109.379 117.578c0-10.59-6.41-15.121-16.527-15.121-3.711 0-9.18.859-12.774 4.84-2.187 2.469-3.008 5.711-3.129 9.769v26.641h8.563v-26.09c0-5.59 3.238-8.051 7.187-8.051 5.742 0 8.082 2.77 8.082 7.661v26.48h8.598v-26.129" fill="#fff"/>
+        <path d="M93.32 94.648c16.91 0 30.629 13.707 30.629 30.618 0 16.882-13.719 30.589-30.629 30.589-16.87 0-30.59-13.707-30.59-30.589 0-16.911 13.72-30.618 30.59-30.618zM93.32 155.855h53.09" fill="none" stroke="#fff" stroke-width="7"/>
+        <path d="M149.34 171.906v-30.738l18.512 14.77-18.512 15.968" fill="#fff"/>
+        <path d="M149.34 171.906v-30.738l18.512 14.77-18.512 15.968z" fill="none" stroke="#fff" stroke-width="1.28"/>
+        <path d="M62.77 125.035v53.121" fill="none" stroke="#fff" stroke-width="7"/>
+        <path d="M47.07 180.738h30.782L63.09 199.297l-16.02-18.559" fill="#fff"/>
+        <path d="M47.07 180.738h30.782L63.09 199.297l-16.02-18.559z" fill="none" stroke="#fff" stroke-width="1.28"/>
+        <path d="M123.98 125.426v-53.13" fill="none" stroke="#fff" stroke-width="7"/>
+        <path d="M139.648 69.836H108.91l14.918-18.508 15.82 18.508" fill="#fff"/>
+        <path d="M139.648 69.836H108.91l14.918-18.508 15.82 18.508z" fill="none" stroke="#fff" stroke-width="1.28"/>
+        <path d="M94.102 94.688H40.98" fill="none" stroke="#fff" stroke-width="7"/>
+        <path d="M40.7 78.516v30.742L22.19 94.488 40.7 78.516" fill="#fff"/>
+        <path d="M40.7 78.516v30.742L22.19 94.488 40.7 78.516z" fill="none" stroke="#fff" stroke-width="1.28"/>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.75 36.25" height="36.25" width="33.75">
+    <path d="M.679 34.408h26.967V6.936H.68v27.472z" fill="#087bbb"/>
+    <path d="M.679 34.408h26.967V6.936H.68v27.472z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M27.646 6.936H.709L7.52 1.459h25.703v27.309l-5.576 5.625V6.936" fill="#087bbb"/>
+    <path d="M27.646 6.936H.709L7.52 1.458h25.703v27.31l-5.576 5.625V6.936zM27.646 6.936l5.577-5.478" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M24.15 28.885h-5.907L10.23 12.713H4.931" fill="none" stroke="#fff" stroke-width="1.78125"/>
+    <path d="M4.526 28.86h5.704l7.939-16.093h6.181" fill="none" stroke="#fff" stroke-width="1.78125"/>
+    <path d="M22.31 9.813v5.708l3.442-2.745-3.442-2.963" fill="#fff"/>
+    <path d="M22.31 9.813v5.707l3.442-2.743-3.442-2.964z" fill="none" stroke="#fff" stroke-width=".2375"/>
+    <path d="M22.31 25.901v5.709l3.442-2.745-3.442-2.964" fill="#fff"/>
+    <path d="M22.31 25.902v5.707l3.442-2.744-3.442-2.963z" fill="none" stroke="#fff" stroke-width=".2375"/>
+    <path d="M5.732 15.623V9.915l-3.437 2.744 3.437 2.964" fill="#fff"/>
+    <path d="M5.732 15.623V9.916l-3.437 2.743 3.437 2.964z" fill="none" stroke="#fff" stroke-width=".2375"/>
+    <path d="M5.732 31.795v-5.708l-3.437 2.744 3.437 2.964" fill="#fff"/>
+    <path d="M5.732 31.795v-5.708l-3.437 2.745 3.437 2.963z" fill="none" stroke="#fff" stroke-width=".2375"/>
+</svg>

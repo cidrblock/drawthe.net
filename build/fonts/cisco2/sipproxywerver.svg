@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27.5 43.75" height="43.75" width="27.5">
+    <path d="M.605 41.895h20.131V6.768H.605v35.127z" fill="#026c9b"/>
+    <path d="M20.737 6.767H.605v35.128h20.132" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M20.737 41.895l6.143-6.143V.625H6.748L.605 6.768h20.132v35.127" fill="#026c9b"/>
+    <path d="M20.737 41.895l6.143-6.143V.625H6.748L.605 6.767h20.132v35.128z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M20.737 6.768L26.88.625" fill="#026c9b"/>
+    <path d="M20.737 6.767L26.88.625M.913 18.677H20.56M.913 37.256H20.56M6.186 11.519h5.469" fill="none" stroke="#fff" stroke-width=".5"/>
+    <path d="M3.999 13.393h9.687V9.487H3.999v3.906z" fill="#026c9b"/>
+    <path d="M3.999 13.393h9.687V9.487H3.999v3.906z" fill="none" stroke="#fff" stroke-width=".5"/>
+    <text style="-inkscape-font-specification:Helvetica-Bold" transform="matrix(1.25 0 0 1.25 11.031 34.504)" font-weight="700" font-size="8" font-family="Helvetica" fill="#fff">
+        <tspan y="0" x="0 2.224">IP</tspan>
+    </text>
+    <path d="M18.462 22.525H5.005a2.78 2.78 0 0 0-2.779 2.778c0 1.533 1.368 2.666 2.901 2.666h2.25c1.534 0 2.657 1.396 2.657 2.93a2.775 2.775 0 0 1-2.773 2.773h-4.12" fill="#026c9b"/>
+    <path d="M18.462 22.525H5.005a2.78 2.78 0 0 0-2.779 2.777c0 1.534 1.368 2.667 2.901 2.667h2.25c1.534 0 2.657 1.396 2.657 2.93a2.775 2.775 0 0 1-2.773 2.773h-4.12" fill="none" stroke="#fff" stroke-width="1.44375"/>
+    <path d="M17.944 20.786v3.486l2.105-1.674-2.105-1.812" fill="#fff"/>
+    <path d="M17.944 20.786v3.486l2.105-1.675-2.105-1.81z" fill="none" stroke="#fff" stroke-width=".13825"/>
+    <path d="M3.217 35.395v-3.486l-2.098 1.67 2.098 1.816" fill="#fff"/>
+    <path d="M3.217 35.396V31.91L1.12 33.579l2.098 1.817z" fill="none" stroke="#fff" stroke-width=".13825"/>
+</svg>

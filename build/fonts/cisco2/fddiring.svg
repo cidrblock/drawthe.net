@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 30" height="30" width="80">
+    <defs>
+        <clipPath id="a">
+            <path d="M0 9.52h640v230H0v-230z"/>
+        </clipPath>
+    </defs>
+    <g clip-path="url(#a)" transform="matrix(.13 0 0 -.13 0 30)">
+        <path d="M408.75 30.73c114.262 0 206.91 42.07 206.91 94.02 0 51.961-92.648 94.07-206.91 94.07s-206.91-42.109-206.91-94.07c0-51.95 92.648-94.02 206.91-94.02z" fill="none" stroke="#087fbf" stroke-width="4"/>
+        <text style="-inkscape-font-specification:Helvetica" transform="matrix(10 0 0 -10 314.176 96.008)" font-weight="400" font-size="8" font-family="Helvetica" fill="#231f20">
+            <tspan y="0" x="0 4.888 10.664 16.440001">FDDI</tspan>
+        </text>
+        <path d="M408.75 11.98c128.051 0 231.84 50.508 231.84 112.77 0 62.27-103.789 112.781-231.84 112.781S176.91 187.02 176.91 124.75c0-62.262 103.789-112.77 231.84-112.77zM25 109.75h180M0 133.5h180" fill="none" stroke="#087fbf" stroke-width="4"/>
+    </g>
+</svg>
