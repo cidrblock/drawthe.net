@@ -2,7 +2,6 @@ function draw(doc) {
   // set the drawing defaults
   var drawingDefaults = {
     fill: "orange",
-    connectionLabelFontSize: 10,
     aspectRatio: "1:1",
     rows: 10,
     columns: 10,

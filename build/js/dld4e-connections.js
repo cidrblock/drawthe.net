@@ -1,5 +1,6 @@
 var drawConnections = function (svg, diagram, connections, objects, notes) {
 
+    var connectionLabelFontSize = Math.min(diagram.xBand.bandwidth()/8,diagram.yBand.bandwidth()/8)
     connections.forEach(function(connection,index) {
       var endpoints = connection.endpoints.map( function(device) { return device.split(':')[0]})
 
@@ -31,7 +32,7 @@ var drawConnections = function (svg, diagram, connections, objects, notes) {
         }
       }
       var curve = d3[connection.curve] || d3.curveLinear
-      var dxOffset = 0
+      var dxOffset = 3
       var firstLabel = connection.endpoints[0].split(':')[1]
       var secondLabel = connection.endpoints[1].split(':')[1]
       var pathName = `path${index}`
@@ -50,8 +51,8 @@ var drawConnections = function (svg, diagram, connections, objects, notes) {
           var c = (Math.sin(C*(Math.PI / 180))*b)/Math.sin(B*(Math.PI / 180))
           var startOffset = Math.abs(c)
           // add a little padding if we're leaning in
-          if ((angleDegrees < 0) && (angleDegrees > -c2cDegrees)) {dxOffset = diagram.connectionLabelFontSize/2}
-          if ((angleDegrees > c2cDegrees) && (angleDegrees < 90)) {dxOffset = diagram.connectionLabelFontSize/2}
+          if ((angleDegrees < 0) && (angleDegrees > -c2cDegrees)) {dxOffset = connectionLabelFontSize * .6}
+          if ((angleDegrees > c2cDegrees) && (angleDegrees < 90)) {dxOffset = connectionLabelFontSize * .6}
         }
         // draw the path between the points
         svg.append("path")
@@ -65,10 +66,11 @@ var drawConnections = function (svg, diagram, connections, objects, notes) {
                        .x(function(d) { return d.x; })
                        .y(function(d) { return d.y; })
                    );
+
         // draw the text for the first label
         svg.append("text")
           .style("fill", function(d) { return connection.color || "orange" })
-          .style('font-size', Math.min(diagram.xBand.bandwidth()/8,diagram.yBand.bandwidth()/8) )
+          .style('font-size', connectionLabelFontSize + 'px' )
           .attr('dy', -1)
           .attr('dx', function(d) {
             return startOffset + dxOffset
@@ -87,7 +89,7 @@ var drawConnections = function (svg, diagram, connections, objects, notes) {
         // draw the text for the second node
         svg.append("text")
           .style("fill", function(d) { return connection.color || "orange" })
-          .style('font-size', Math.min(diagram.xBand.bandwidth()/8,diagram.yBand.bandwidth()/8) )
+          .style('font-size',  connectionLabelFontSize + 'px' )
           .attr('dy', 8)
           .attr('dx', function(d) {
             return -startOffset - this.getComputedTextLength() - dxOffset
