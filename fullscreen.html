@@ -16,15 +16,12 @@
     <link rel="stylesheet" href="build/css/bootstrap.min.css">
     <link rel="stylesheet" href="build/css/app.css">
     <link rel="stylesheet" href="build/css/notes.css">
-    <link rel="stylesheet" type="text/css" href="./build/fonts/azure-enterprise.css">
-    <link rel="stylesheet" type="text/css" href="./build/fonts/azure-cloud.css">
-    <link rel="stylesheet" type="text/css" href="./build/fonts/cisco.css">
 
     <script type="text/javascript" src="build/js/js-yaml.min.js"></script>
     <script type="text/javascript" src="build/js/d3.min.js"></script>
     <script type="text/javascript" src="./build/js/showdown.js"></script>
     <script type="text/javascript" src="./build/js/showdown-prettify.min.js"></script>
-    <script type="text/javascript" src="./build/js/run_prettify.js"></script>
+    <script type="text/javascript" src="./build/js/prettify/run_prettify.js"></script>
 
 
     <script type="text/javascript" src="build/js/dld4e-connections.js"></script>
@@ -41,25 +38,6 @@
     <script type="text/javascript" src="build/js/app.js"></script>
 
     <script>
-    function cloneObject(obj) {
-        if (obj === null || typeof obj !== 'object') {
-            return obj;
-        }
-        var temp = obj.constructor(); // give temp the original obj's constructor
-        for (var key in obj) {
-            temp[key] = cloneObject(obj[key]);
-        }
-        return temp;
-    }
-    var module = {}
-    var fonts = {}
-    </script>
-    <script src="./build/js/azure-enterprise.js"></script>
-    <script src="./build/js/azure-cloud.js"></script>
-    <script src="./build/js/cisco.js"></script>
-
-    <script>
-    console.log(fonts)
     document.onreadystatechange = () => {
       if (document.readyState === 'complete') {
         var design = window.opener.design;

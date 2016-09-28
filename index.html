@@ -126,6 +126,18 @@ function mainController($scope, $http, $sce, $log, $window) {
     onLoad: function (_ace) {
       _ace.getSession().setMode("ace/mode/yaml");
       _ace.$blockScrolling = Infinity;
+      _ace.commands.addCommand({
+          name: 'saveFile',
+          bindKey: {
+          win: 'Ctrl-S',
+          mac: 'Command-S',
+          sender: 'editor|cli'
+          },
+          exec: function(env, args, request) {
+            $scope.saveFile();
+          }
+          });
+      _ace.setOption("tabSize", 2);
     }
   };
   $scope.opend3js = function(greeting) {
@@ -173,7 +185,21 @@ function mainController($scope, $http, $sce, $log, $window) {
   $scope.drawClick = function() {
     $window.design = jsyaml.load($scope.acedata) || {};
     draw($window.design);
-  } //do
+  }
+  $scope.saveFile = function() {
+    var data = $scope.acedata,
+        blob = new Blob([data], { type: 'text/plain' }),
+        url = $window.URL || $window.webkitURL;
+        design = jsyaml.load(data) || {};
+        fileName = `${design.title.text || 'dld4e'}-v${design.title.version || '1.01'}.yaml`
+    url = url.createObjectURL(blob); //do
+    var downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = fileName;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
 };
 
 </script>

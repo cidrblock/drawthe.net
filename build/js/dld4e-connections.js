@@ -68,7 +68,7 @@ var drawConnections = function (svg, diagram, connections, objects, notes) {
         // draw the text for the first label
         svg.append("text")
           .style("fill", function(d) { return connection.color || "orange" })
-          .style('font-size', diagram.connectionLabelFontSize + 'px')
+          .style('font-size', Math.min(diagram.xBand.bandwidth()/8,diagram.yBand.bandwidth()/8) )
           .attr('dy', -1)
           .attr('dx', function(d) {
             return startOffset + dxOffset
@@ -86,16 +86,16 @@ var drawConnections = function (svg, diagram, connections, objects, notes) {
         }
         // draw the text for the second node
         svg.append("text")
-        .style("fill", function(d) { return connection.color || "orange" })
-         .style('font-size', diagram.connectionLabelFontSize + 'px')
-         .attr('dy', 8)
-         .attr('dx', function(d) {
-           return -startOffset - this.getComputedTextLength() - dxOffset
-         })
-         .append("textPath")
-           .style("text-anchor","end")
-           .attr("startOffset","100%")
-           .attr("xlink:href", "#" + pathName)
-           .text(secondLabel);
+          .style("fill", function(d) { return connection.color || "orange" })
+          .style('font-size', Math.min(diagram.xBand.bandwidth()/8,diagram.yBand.bandwidth()/8) )
+          .attr('dy', 8)
+          .attr('dx', function(d) {
+            return -startOffset - this.getComputedTextLength() - dxOffset
+          })
+          .append("textPath")
+            .style("text-anchor","end")
+            .attr("startOffset","100%")
+            .attr("xlink:href", "#" + pathName)
+            .text(secondLabel);
     });
 }
