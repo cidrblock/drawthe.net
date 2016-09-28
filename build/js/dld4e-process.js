@@ -4,12 +4,14 @@ var processEntities = function (svg, drawing, objects) {
   var defaults = {
     xAlign: "left",
     yAlign: "top",
-    w: 1,
-    h: 1
+    // w: 1,
+    // h: 1
   }
   var previous = {}
   for(var key in objects) {
     objects[key] = Object.assign({}, defaults, objects[key])
+    objects[key].w = objects[key].w || 1
+    objects[key].h = objects[key].h || 1
     if (!("x" in objects[key])) {
       objects[key].x = previous.x
     } else if (objects[key].x.toString().startsWith('+')) {
@@ -26,8 +28,8 @@ var processEntities = function (svg, drawing, objects) {
       objects[key].y = parseInt(previous.y) - parseInt(objects[key].y.toString().split('-')[1])
     }
     objects[key].y1 = diagram.yBand(objects[key].y)
-    objects[key].width = diagram.xBand.bandwidth() + ((objects[key].w -1) * diagram.xBand.step())
-    objects[key].height = diagram.yBand.bandwidth() + ((objects[key].h -1) * diagram.yBand.step())
+    objects[key].width = diagram.xBand.bandwidth() + ((objects[key].w - 1) * diagram.xBand.step())
+    objects[key].height = diagram.yBand.bandwidth() + ((objects[key].h - 1) * diagram.yBand.step())
     objects[key].x2 = objects[key].x1 + objects[key].width
     objects[key].y2 = objects[key].y1 + objects[key].height
     objects[key].centerX = objects[key].x1 + objects[key].width/2

@@ -22,8 +22,10 @@ var drawGroups = function (svg, diagram, groups, objects) {
       var ypad = (diagram.yBand.step() - diagram.yBand.bandwidth()) * diagram.groupPadding
       var x1 = diagram.xBand(d3.min(groups[group].members, function(d) {return objects[d].x })) - xpad
       var y1 = diagram.yBand(d3.max(groups[group].members, function(d) { return objects[d].y })) - ypad
-      var x2 = diagram.xBand(d3.max(groups[group].members, function(d) { return objects[d].x })) + xpad + diagram.xBand.bandwidth()
-      var y2 = diagram.yBand(d3.min(groups[group].members, function(d) { return objects[d].y })) + ypad + diagram.yBand.bandwidth()
+
+      var x2 = d3.max(groups[group].members, function(d) { return objects[d].x2 + xpad })
+      var y2 = d3.max(groups[group].members, function(d) { return objects[d].y2 + ypad })
+      console.log('y2',y2)
       var width = x2 - x1
       var height = y2 - y1
       svg.append("rect")
