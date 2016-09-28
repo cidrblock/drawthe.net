@@ -113,5 +113,4 @@ function draw(doc) {
   drawNotes(svg, notes)
   PR.prettyPrint()
 
-
 };

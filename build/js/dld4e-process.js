@@ -104,6 +104,43 @@ var processGroups = function(groups, objects) {
       }
       groups[key].members = groups[key].members.concat(additionalMembers)
     }
+    var xpad = (diagram.xBand.step() - diagram.xBand.bandwidth()) * diagram.groupPadding
+    var ypad = (diagram.yBand.step() - diagram.yBand.bandwidth()) * diagram.groupPadding
+    groups[key].x1 = diagram.xBand(d3.min(groups[key].members, function(d) {return objects[d].x })) - xpad
+    groups[key].y1 = diagram.yBand(d3.max(groups[key].members, function(d) { return objects[d].y })) - ypad
+    groups[key].x2 = d3.max(groups[key].members, function(d) { return objects[d].x2 + xpad })
+    groups[key].y2 = d3.max(groups[key].members, function(d) { return objects[d].y2 + ypad })
+    groups[key].width = groups[key].x2 - groups[key].x1
+    groups[key].height = groups[key].y2 - groups[key].y1
   }
   return groups
+}
+
+
+function textPositions(x1, y1, x2, y2, xpad, ypad ) {
+  var positions = {
+    topLeft: { x: x1 + xpad, y: y1 + (2*ypad + ypad/2), textAnchor: "start", rotate: 0 },
+    topMiddle: { x: (x2 - x1)/2 + x1 , y: y1 + (2*ypad + ypad/2), textAnchor: "middle", rotate: 0},
+    topRight: { x: x2 - xpad, y: y1 + (2*ypad + ypad/2), textAnchor: "end", rotate: 0 },
+    leftTop: { x: x1 + (2*xpad + xpad/2), y: y1 + ypad, textAnchor: "end", rotate: -90},
+    leftMiddle: { x: x1 + (2*xpad + xpad/2), y: (y2-y1)/2 + y1, textAnchor: "middle", rotate: -90},
+    leftBottom: { x: x1 + (2*xpad + xpad/2), y: y2 - ypad, textAnchor: "start", rotate: -90},
+    rightTop: { x: x2 - (2*xpad + xpad/2), y: y1 + ypad, textAnchor: "start", rotate: 90},
+    rightMiddle: { x: x2 - (2*xpad + xpad/2), y: (y2-y1)/2 + y1, textAnchor: "middle", rotate: 90},
+    rightBottom: { x: x2 - (2*xpad + xpad/2), y: y2 - ypad, textAnchor: "end", rotate: 90},
+    bottomLeft: { x: x1 + xpad, y: y2 - ypad/2, textAnchor: "start", rotate: 0 },
+    bottomMiddle: { x: (x2 - x1)/2 + x1 , y: y2 - ypad/2, textAnchor: "middle", rotate: 0},
+    bottomRight: { x: x2 - xpad, y: y2 - ypad/2, textAnchor: "end", rotate: 0 },
+  }
+  return positions
+}
+
+function textPosition(boxes) {
+  for (var key in boxes) {
+    var xpad = (diagram.xBand.step() - diagram.xBand.bandwidth()) * diagram.groupPadding
+    var ypad = (diagram.yBand.step() - diagram.yBand.bandwidth()) * diagram.groupPadding
+    var textLocation = textPositions(boxes[key].x1,boxes[key].y1,boxes[key].x2,boxes[key].y2, xpad/3, ypad/3 )[boxes[key].textLocation || 'topLeft']
+    console.log(textLocation)
+  }
+  return (boxes)
 }

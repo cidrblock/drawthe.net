@@ -16,6 +16,8 @@ var drawObjects = function (svg, objects) {
     .attr("fill", function(d) { return d.value.fill || "orange"})
     .style("stroke", function(d) { return d.value.stroke || "orange" })
 
+    // var textLocation = textPositions(groups[group].x1,groups[group].y1,groups[group].x2,groups[group].y2, xpad/3, ypad/3 )[groups[group].textLocation || 'topLeft']
+
   var cellText = cells
     .append("text")
     .text( function (d) { return d.key })
