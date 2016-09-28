@@ -86,11 +86,15 @@ function draw(doc) {
 
   // remove the old diagram
   d3.select("svg").remove();
+
   // and add the svg
   var svg = d3.select("#svg").append("svg")
     .attr("width", parentBox.width )
     .attr("height", parentBox.height )
     .style("background-color", diagram.fill )
+    .call(d3.zoom().on("zoom", function () {
+        svg.attr("transform", d3.event.transform)
+    }))
     .append("g")
       .attr("transform", "translate(" + (parentBox.width - svgWidth)/2 + "," + (parentBox.height - svgHeight)/2 + ")");
 
