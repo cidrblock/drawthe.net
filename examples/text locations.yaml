@@ -3,16 +3,16 @@ diagram:
   rows: 6
   columns: 8
   aspectRatio: "8:6"
-  gridLines: true
+  gridLines: false
   groupPadding: .4
   gridPaddingInner: .3
 title:
   color: black
   fill: white
   logoFill: white
-  stroke: none
+  stroke: black
   text: "Text locations"
-  type: box
+  type: bar
 azure: &azure
   color: "#black"
   fill: "white"
@@ -51,7 +51,7 @@ objects:
     h: 2
     w: 2
 group: &group
-  - { stroke: "#7cbb00", strokeWidth: 2, strokeDashArray: [5,1], fill: "white", color: black }
+  - { stroke: "#7cbb00", strokeDashArray: [5,1], fill: "white", color: black }
 groups:
  outer: { <<: *group, stroke: none, fill: "#00a1f1", textLocation: "bottomMiddle", members: [inner, Center] }
  inner: { <<: *group, stroke: none, fill: "white", textLocation: "rightMiddle", members: [T1, T4, NSG1] }

@@ -51,10 +51,10 @@ function clone(hash) {
   return object;
 }
 
-function diveOne(entry, objects, groups, depth = 0) {
+function diveOne(entry, objects, groups, depth) {
   var answer = []
   if (entry in groups) {
-    for (let i = 0; i < groups[entry].members.length; i++) {
+    for (var i = 0; i < groups[entry].members.length; i++) {
       if (groups[entry].members[i] in groups) {
         result = diveOne(groups[entry].members[i], objects, groups, depth)
         answer = answer.concat(result.members)
