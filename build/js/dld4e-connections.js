@@ -1,5 +1,4 @@
 var drawConnections = function (svg, diagram, connections, objects, notes) {
-
     var connectionLabelFontSize = Math.min(diagram.xBand.bandwidth()/8,diagram.yBand.bandwidth()/8)
     connections.forEach(function(connection,index) {
       var endpoints = connection.endpoints.map( function(device) { return device.split(':')[0]})

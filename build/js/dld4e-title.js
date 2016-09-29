@@ -13,12 +13,12 @@ var drawTitle = function (svg, drawing, title) {
 
     if (title.type == "bar") {
       titleBox.append("line")
-        .attr("stroke", title.stroke || "orange" )
+        .attr("stroke", title.stroke )
         .attr("x2", title.width)
     } else {
       titleBox.append("rect")
         .attr("fill", title.fill)
-        .attr("stroke", title.stroke || "orange" )
+        .attr("stroke", title.stroke )
         .attr('width', title.width)
         .attr('height', title.height)
     }

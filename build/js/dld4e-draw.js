@@ -5,9 +5,10 @@ function draw(doc) {
     aspectRatio: "1:1",
     rows: 10,
     columns: 10,
-    groupPadding: .25,
+    groupPadding: .33,
     gridLines: true,
     gridPaddingInner: .4, // the space between objects (%)
+    iconTextRatio: .33,
     margins: {top: 20, right: 20, bottom: 50, left: 20 }
   }
   // set the title defaults
@@ -109,7 +110,7 @@ function draw(doc) {
   drawGridLines(svg, diagram)
   drawGroups(svg, diagram, groups, objects)
   drawConnections(svg, diagram, connections, objects, notes)
-  drawObjects(svg, objects)
+  drawObjects(svg, objects, diagram.iconTextRatio)
   drawNotes(svg, notes)
   PR.prettyPrint()
 

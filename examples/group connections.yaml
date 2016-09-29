@@ -1,9 +1,9 @@
 diagram:
   fill: "white"
   rows: 4
-  columns: 8
+  columns: 10
   gridLines: false
-  aspectRatio: "8:4"
+  aspectRatio: "10:4"
 title:
   color: black
   logoFill: white
@@ -28,11 +28,11 @@ leaf: &leaf
   x: "+1"
   type: "Nexus2000"
 objects:
-  spine1: {<<: *cisco, x: 2, y: 3, type: "Nexus7000"}
+  spine1: {<<: *cisco, x: 3, y: 3, type: "Nexus7000"}
   spine2: {<<: *spine }
   spine3: {<<: *spine }
   spine4: {<<: *spine }
-  leaf 1: {<<: *cisco, x: 0, y: 0, type: "Nexus2000"}
+  leaf 1: {<<: *cisco, x: 1, y: 1, type: "Nexus2000"}
   leaf 2: {<<: *leaf }
   leaf 3: {<<: *leaf }
   leaf 4: {<<: *leaf }
@@ -50,7 +50,7 @@ groups:
   rack2: { <<: *group, textLocation: bottomMiddle, name: Rack2, members: [leaf 3, leaf 4] }
   rack3: { <<: *group, textLocation: bottomMiddle, name: Rack3, members: [leaf 5, leaf 6] }
   rack4: { <<: *group, textLocation: bottomMiddle, name: Rack4, members: [leaf 7, leaf 8] }
-  leaves: { <<: *group, textLocation: leftMiddle, members: [rack1,rack2,rack3,rack4] }
+  leaves: { <<: *group, textLocation: leftMiddle, name: Leaf, members: [rack1,rack2,rack3,rack4] }
 connection: &connection
   color: "lightgrey"
   stroke: "darkslategrey"

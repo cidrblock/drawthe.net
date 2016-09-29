@@ -58,7 +58,7 @@ connections:
   - { <<: *connection, endpoints: ["chddc1slb005:SNAT", "lx12301:80"] }
   - { endpoints: ["firewallComment", "chddc1sfw005"],   stroke: "blue" }
 group: &group
-  - { stroke: "lightgrey", fill: "rgba(0, 0, 0, 0.3)" }
+  - { color: "white", stroke: "lightgrey", fill: "rgba(0, 0, 0, 0.3)" }
 groups:
   - { <<: *group, name: "Chandler", members: ["chddc1crt004", "chddc1sfw005"] }
   - { <<: *group, name: "Other group", textLocation: "leftMiddle", members: ["chddc1crt001", "firewall"] }

@@ -1,4 +1,4 @@
-var drawObjects = function (svg, objects) {
+var drawObjects = function (svg, objects, iconTextRatio) {
   var deviceCellsAll = svg.selectAll("cells")
     .data(d3.entries(objects))
     .enter()
@@ -15,45 +15,74 @@ var drawObjects = function (svg, objects) {
     .attr("height", function(d) { return d.value.height })
     .attr("fill", function(d) { return d.value.fill || "orange"})
     .style("stroke", function(d) { return d.value.stroke || "orange" })
+    .style("stroke-dasharray", function(d) { return d.value.strokeDashArray || [0,0] })
 
-    // var textLocation = textPositions(groups[group].x1,groups[group].y1,groups[group].x2,groups[group].y2, xpad/3, ypad/3 )[groups[group].textLocation || 'topLeft']
 
   var cellText = cells
+    .each( function(d) { d.value.textPosition = textPositions(0,0,d.value.width,d.value.height)[d.value.textLocation] })
     .append("text")
+    .attr("id", function(d) { return d.key + '-text'})
     .text( function (d) { return d.key })
-    .attr("x", function(d) { return d.value.width/2 })
-    .attr("y", function(d) { return d.value.height * .95})
-    .attr("text-anchor", "middle")
-    .style("font-size", function(d) { return Math.min(d.value.width*.9 / this.getComputedTextLength() * 12, d.value.height/3/2) + "px"; })
+    .attr("transform", function(d) { return `translate(${d.value.textPosition.x},${d.value.textPosition.y})rotate(${d.value.textPosition.rotate})` })
+    .attr("text-anchor", function(d) { return d.value.textPosition.textAnchor})
+    .attr("dominant-baseline", function(d) { return d.value.textPosition.dominantBaseline })
+    .style("font-size", function(d) { return Math.min(d.value.width*.9 / this.getComputedTextLength() * 12, d.value.height/2*iconTextRatio) + "px"; })
     .attr('fill', function(d) { return d.value.color || "orange"} )
 
   var icon = cells.append('g')
     .attr("x", function(d) { return d.value.width*.2 })
     .attr("y", function(d) { return d.value.height*.2})
 
-  for (let key in objects ) {
-    d3.xml(`build/images/${objects[key].font}/${objects[key].type}.svg`).mimeType("image/svg+xml").get(function(error, xml) {
-      var svg = xml.getElementsByTagName("svg")[0]
-      svg.setAttribute("x", objects[key].width * .1)
-      svg.setAttribute("y", objects[key].height * .05)
-      svg.setAttribute("width", objects[key].width * .8)
-      svg.setAttribute("height", objects[key].height * .7)
-      var paths = xml.getElementsByTagName("path")
-      for (i = 0; i < paths.length; i++) {
-        if (paths[i].getAttribute("fill") == '#fff') {
-          paths[i].setAttribute("fill", objects[key].fill || "orange")
-        } else if (paths[i].getAttribute("fill") != 'none') {
-          paths[i].setAttribute("fill", objects[key].iconFill || "orange")
-        }
-        if (paths[i].getAttribute("stroke") != 'none') {
-          paths[i].setAttribute("stroke", objects[key].iconStroke || "orange")
-        }
-        if (paths[i].getAttribute("stroke-width")) {
-          paths[i].setAttribute("stroke-width", objects[key].iconStrokeWidth || "1")
-        }
+  var icon = cells
+    .each ( function(d) {
+      var cell = document.getElementById(d.key)
+      var cellText = document.getElementById(d.key + "-text")
+      var fontSize =  parseFloat(cellText.style.fontSize + 2)
+      // center
+      var x = (d.value.width*d.value.iconPaddingX)
+      var y = (d.value.height*d.value.iconPaddingY)
+      var width = d.value.width*(1-2*d.value.iconPaddingX)
+      var height = (d.value.height)*(1-2*d.value.iconPaddingY)
+      switch (true) {
+        case d.value.textLocation.startsWith('top'):
+          y += fontSize
+          height = (d.value.height - fontSize)*(1-2*d.value.iconPaddingY)
+          break;
+        case d.value.textLocation.startsWith('left'):
+          x += fontSize
+          width = (d.value.width - fontSize)*(1-2*d.value.iconPaddingX)
+          break;
+        case d.value.textLocation.startsWith('right'):
+          width = (d.value.width - fontSize)*(1-2*d.value.iconPaddingX)
+          break;
+        case d.value.textLocation.startsWith('bottom'):
+          height = (d.value.height - fontSize)*(1-2*d.value.iconPaddingY)
+          break;
       }
-      var g = document.getElementById(key)
-      var foo = g.appendChild(xml.documentElement.cloneNode(true));
+
+      d3.xml(`build/images/${d.value.font}/${d.value.type}.svg`).mimeType("image/svg+xml").get(function(error, xml) {
+        var svg = xml.getElementsByTagName("svg")[0]
+        svg.setAttribute("x", x)
+        svg.setAttribute("y", y)
+        svg.setAttribute("width", width)
+        svg.setAttribute("height", height)
+        var paths = xml.getElementsByTagName("path")
+        for (i = 0; i < paths.length; i++) {
+          if (paths[i].getAttribute("fill") == '#fff') {
+            paths[i].setAttribute("fill", d.value.fill || "orange")
+          } else if (paths[i].getAttribute("fill") != 'none') {
+            paths[i].setAttribute("fill", d.value.iconFill || "orange")
+          }
+          if (paths[i].getAttribute("stroke") != 'none') {
+            paths[i].setAttribute("stroke", d.value.iconStroke || "orange")
+          }
+          if (paths[i].getAttribute("stroke-width")) {
+            paths[i].setAttribute("stroke-width", d.value.iconStrokeWidth || "1")
+          }
+        }
+        cell.insertBefore(xml.documentElement.cloneNode(true), cellText);
+      })
+
     })
-  }
+
 }
