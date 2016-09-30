@@ -76,10 +76,14 @@
                   icons<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="icons">
-                  <li role="menuitem" ng-click="drawIconFamily('cisco')"><a href="#">cisco</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('aws')"><a href="#">aws</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise')"><a href="#">azureEnterprise</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureCloud')"><a href="#">azureCloud</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('aws-native')"><a href="#">aws</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('aws-filled')"><a href="#">aws (filled)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('cisco-native')"><a href="#">cisco</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('cisco-filled')"><a href="#">cisco (filled)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-native')"><a href="#">azureEnterprise</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-filled')"><a href="#">azureEnterprise (filled)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('azureCloud-native')"><a href="#">azureCloud</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('azureCloud-filled')"><a href="#">azureCloud (filled)</a></li>
                 </ul>
               </div>
               <button id="draw" type="submit" class="btn btn-black btn-xs pull-right" ng-click="drawClick(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
@@ -152,13 +156,13 @@ function mainController($scope, $http, $sce, $log, $window) {
     $http.get('./build/js/iconFamilies.json')
      .then(function(res){
        var iconFamilies = res.data
-       var size = iconFamilies[iconFamily].length
        var bestFit = Math.ceil(Math.sqrt(size))
+       var familyName = iconFamily.split('-')[0]
+       var size = iconFamilies[familyName].length
        var url = "./templates/" + iconFamily + ".yaml"
        $http.get(url)
             .then(function(res){
                var doc = jsyaml.load(res.data);
-               console.log(doc)
                var ratios = doc.diagram.aspectRatio.split(':')
                var h = ratios[0]
                var w = ratios[1]
@@ -167,8 +171,8 @@ function mainController($scope, $http, $sce, $log, $window) {
                var x = 0
                var y = doc.diagram.rows - 1
                doc.icons = {}
-               for (var icon in iconFamilies[iconFamily]){
-                 doc.icons[iconFamilies[iconFamily][icon]] = Object.assign( { x: x, y: y, icon: iconFamilies[iconFamily][icon]}, doc.icon)
+               for (var icon in iconFamilies[familyName]){
+                 doc.icons[iconFamilies[familyName][icon]] = Object.assign( { x: x, y: y, icon: iconFamilies[familyName][icon]}, doc.icon)
                  x += 1
                  if (x == doc.diagram.columns) {
                    x = 0

@@ -15,11 +15,11 @@ cisco: &cisco
   stroke: "none"
   color: "lightgrey"
   iconFill: "darkslategrey"
-  iconStroke: "lightslategrey"
+  iconStroke: "lightgrey"
   iconStrokeWidth: .25
   iconFamily: "cisco"
   fill: "none"
-  replaceWhite: "white"
+  preserveWhite: "true"
 spine: &spine
   <<: *cisco
   x: "+1"

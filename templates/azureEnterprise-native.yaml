@@ -1,0 +1,19 @@
+diagram:
+  fill: "#D2D2D2"
+  rows: 5
+  columns: 5
+  gridPaddingInner: .05
+  aspectRatio: "17:11"
+  gridLines: false
+title:
+  type: bar
+  color: black
+  logoFill: none
+  text: "azureEnterprise icons"
+  fill: none
+  stroke: black
+icon:
+  stroke: none
+  color: "white"
+  iconFamily: "azureEnterprise"
+  fill: "white"

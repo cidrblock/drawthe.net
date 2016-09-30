@@ -22,6 +22,7 @@ function getFiles(dir){
 }
 
 var iconFamilies = {}
+iconFamilies["aws"] = getFiles("aws")
 iconFamilies["azureCloud"] = getFiles("azureCloud")
 iconFamilies["azureEnterprise"] = getFiles("azureEnterprise")
 iconFamilies["cisco"] = getFiles("cisco")
