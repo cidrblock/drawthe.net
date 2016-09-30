@@ -14,6 +14,7 @@ azure-cloud
 cd build/images/azureCloud
 cp ~/Downloads/Microsoft_CloudnEnterprise_Symbols_v2.5_PUBLIC/Symbols/CnE_Cloud/SVG/*.svg .
 rename 's/[^a-zA-Z0-9_.]//g' *.svg
+rename -f 'y/A-Z/a-z/' *.svg
 rename 's/^Azure//g' *.svg
 for i in `pwd`/*.svg; do inkscape $i -E ${i%.svg}.eps; done
 rm *.svg
