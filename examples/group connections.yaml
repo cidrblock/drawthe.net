@@ -18,21 +18,23 @@ cisco: &cisco
   iconStroke: "lightslategrey"
   iconStrokeWidth: .25
   iconFamily: "cisco"
-  fill: "white"
+  fill: "none"
+  replaceWhite: "white"
 spine: &spine
   <<: *cisco
   x: "+1"
   icon: "Nexus7000"
+  textLocation: "topMiddle"
 leaf: &leaf
   <<: *cisco
   x: "+1"
   icon: "Nexus2000"
 icons:
-  spine1: {<<: *cisco, x: 3, y: 3, icon: "Nexus7000"}
+  spine1: {<<: *spine, x: 3, y: 3}
   spine2: {<<: *spine }
   spine3: {<<: *spine }
   spine4: {<<: *spine }
-  leaf 1: {<<: *cisco, x: 1, y: 1, icon: "Nexus2000"}
+  leaf 1: {<<: *leaf, x: 1, y: 1}
   leaf 2: {<<: *leaf }
   leaf 3: {<<: *leaf }
   leaf 4: {<<: *leaf }

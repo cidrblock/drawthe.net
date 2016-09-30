@@ -15,7 +15,6 @@
     "grunt-bowercopy": "^1.2.4",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-webfont": "^1.6.0",
     "js-yaml": "^3.6.1"
   }
 }

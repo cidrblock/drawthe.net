@@ -24,8 +24,8 @@ cisco: &cisco
   iconFamily: "cisco"
   iconFill: "#004BAF"
   iconStrokeWidth: .25
-  iconStroke: "#049FD9"
   stroke: "#004BAF"
+  preserveWhite: true
 servers: &servers
   <<: *defaults
   fill: "#58585B"

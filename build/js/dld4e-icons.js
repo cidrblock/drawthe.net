@@ -70,16 +70,16 @@ var drawIcons = function (svg, icons, iconTextRatio) {
         svg.setAttribute("height", height)
         var paths = xml.getElementsByTagName("path")
         for (i = 0; i < paths.length; i++) {
-          if (paths[i].getAttribute("fill") == '#fff') {
-            paths[i].setAttribute("fill", d.value.fill || "orange")
-          } else if (paths[i].getAttribute("fill") != 'none') {
-            paths[i].setAttribute("fill", d.value.iconFill || "orange")
+          if ((d.value.preserveWhite) && (paths[i].getAttribute("fill") == '#fff')) {
+            //paths[i].setAttribute("fill", d.value.replaceWhite)
+          } else if ((d.value.iconFill) && (paths[i].getAttribute("fill") != 'none')) {
+            paths[i].setAttribute("fill", d.value.iconFill)
           }
-          if (paths[i].getAttribute("stroke") != 'none') {
-            paths[i].setAttribute("stroke", d.value.iconStroke || "orange")
+          if ((d.value.iconStroke) && (paths[i].getAttribute("stroke") != 'none')) {
+            paths[i].setAttribute("stroke", d.value.iconStroke)
           }
-          if (paths[i].getAttribute("stroke-width")) {
-            paths[i].setAttribute("stroke-width", d.value.iconStrokeWidth || "1")
+          if ((d.value.iconStrokeWidth) && (paths[i].getAttribute("stroke-width"))) {
+            paths[i].setAttribute("stroke-width", d.value.iconStrokeWidth)
           }
         }
         cell.insertBefore(xml.documentElement.cloneNode(true), cellText);

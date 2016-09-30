@@ -17,7 +17,7 @@ cisco: &cisco
   iconFamily: "cisco"
   iconFill: "#004BAF"
   iconStrokeWidth: .25
-  iconStroke: "#049FD9"
+  preserveWhite: true
   stroke: "#004BAF"
 icons:
   router1: {<<: *cisco, x: 0, y: 5, icon: "router"}

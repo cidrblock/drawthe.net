@@ -16,7 +16,8 @@ icon:
   stroke: "none"
   color: "black"
   iconFill: "darkslategrey"
-  iconStroke: "white"
+  iconStroke: "lightgrey"
   iconStrokeWidth: .1
   iconFamily: "cisco"
+  preserveWhite: true
   fill: "white"

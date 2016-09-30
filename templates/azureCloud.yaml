@@ -15,8 +15,5 @@ title:
 icon:
   stroke: none
   color: "#332E2C"
-  iconFill: "white"
-  iconStrokeWidth: .25
-  iconStroke: none
   iconFamily: "azureCloud"
-  fill: "#7cbb00"
+  fill: "white"

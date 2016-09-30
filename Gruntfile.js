@@ -20,51 +20,6 @@ module.exports = function(grunt) {
        }]
      }
    },
-    webfont: {
-        icons: {
-            src: 'build/fonts/azure/enterprise/*.svg',
-            dest: 'build/fonts',
-        },
-        options: {
-          engine: 'fontforge',
-          font: 'azure-enterprise',
-          normalize: true,
-          syntax: 'bem',
-            templateOptions: {
-                classPrefix: ''
-            }
-        }
-    },
-    // webfont: {
-    //     icons: {
-    //         src: 'build/fonts/azure/cloud/*.svg',
-    //         dest: 'build/fonts',
-    //     },
-    //     options: {
-    //       engine: 'fontforge',
-    //       font: 'azure-cloud',
-    //       normalize: true,
-    //       syntax: 'bem',
-    //         templateOptions: {
-    //             classPrefix: ''
-    //         }
-    //     }
-    // },
-    webfont: {
-        icons: {
-            src: 'build/fonts/cisco2/*.svg',
-            dest: 'build/fonts',
-        },
-        options: {
-          engine: 'fontforge',
-          font: 'cisco',
-          normalize: true,
-          syntax: 'bem',
-            templateOptions: {
-                classPrefix: ''
-            }
-        }
-    },
     bowercopy: {
         options: {
             // Bower components folder will be removed afterwards
@@ -76,9 +31,6 @@ module.exports = function(grunt) {
                 destPrefix: 'build/'
             },
             files: {
-                // Keys are destinations (prefixed with `options.destPrefix`)
-                // Values are sources (prefixed with `options.srcPrefix`); One source per destination
-                // e.g. 'bower_components/chai/lib/chai.js' will be copied to 'test/js/libs/chai.js'
                 'js/angular.min.js': 'angular/angular.min.js',
                 'js/angular-animate.min.js': 'angular-animate/angular-animate.min.js',
                 'js/ace.js': 'ace-builds/src-min/ace.js',
@@ -99,7 +51,6 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-webfont');
   grunt.registerTask('default', [
     'copy',
     'bowercopy'
