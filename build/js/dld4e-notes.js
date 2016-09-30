@@ -49,6 +49,7 @@ var drawNotes = function (svg, notes) {
   var noteTextDiv = notesg
     .append("foreignObject")
     .append("xhtml:div")
+    .append('div')                    
     .style("width", function(d) { return d.value.width + "px" })
     .style("height", function(d) { return d.value.height + "px" })
     .style('font-size', Math.min(diagram.yBand.bandwidth() * .125, diagram.xBand.bandwidth() * .125)  + 'px')
