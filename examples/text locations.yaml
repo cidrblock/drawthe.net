@@ -14,7 +14,7 @@ title:
   text: "Text locations"
   type: bar
 azure: &azure
-  color: "#black"
+  color: "#00a1f1"
   fill: "white"
   iconFamily: "azureCloud"
   iconFill: "#00a1f1"

@@ -21,7 +21,7 @@ var drawIcons = function (svg, icons, iconTextRatio) {
     .append("text")
     .text( function (d) { return d.key })
     .each( function(d) {
-      d.value.fontSize = Math.min(d.value.width*.9 / this.getComputedTextLength() * 12, d.value.height/2*iconTextRatio)
+      d.value.fontSize = Math.floor(Math.min(d.value.width*.9 / this.getComputedTextLength() * 12, d.value.height/2*iconTextRatio))
       d.value.textPosition = textPositions(0,0,d.value.width,d.value.height,d.value.fontSize + 2)[d.value.textLocation]
     })
     .style("font-size", function(d) { return d.value.fontSize + "px"; })
@@ -31,15 +31,15 @@ var drawIcons = function (svg, icons, iconTextRatio) {
     .attr("text-anchor", function(d) { return d.value.textPosition.textAnchor})
     .attr("dominant-baseline", "central")
 
-  var icon = cells.append('g')
-    .attr("x", function(d) { return d.value.width*.2 })
-    .attr("y", function(d) { return d.value.height*.2})
+  // var icon = cells.append('g')
+  //   .attr("x", function(d) { return d.value.width*.2 })
+  //   .attr("y", function(d) { return d.value.height*.2})
 
   var icon = cells
     .each ( function(d) {
       var cell = document.getElementById(d.key)
       var cellText = document.getElementById(d.key + "-text")
-      var fontSize =  parseFloat(cellText.style.fontSize + 2)
+      var fontSize =  Math.ceil(parseFloat(cellText.style.fontSize))
       // center
       var x = (d.value.width*d.value.iconPaddingX)
       var y = (d.value.height*d.value.iconPaddingY)
