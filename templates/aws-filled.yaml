@@ -2,6 +2,7 @@ diagram:
   fill: "#FF9900"
   rows: 5
   columns: 5
+  gridPaddingInner: .05
   aspectRatio: "17:11"
   gridLines: false
 title:
