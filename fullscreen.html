@@ -32,21 +32,20 @@
     <script type="text/javascript" src="build/js/dld4e-title.js"></script>
     <script type="text/javascript" src="build/js/dld4e-notes.js"></script>
     <script type="text/javascript" src="build/js/dld4e-process.js"></script>
-
-
-
     <script type="text/javascript" src="build/js/app.js"></script>
 
-    <script>
-    document.onreadystatechange = () => {
-      if (document.readyState === 'complete') {
-        var design = window.opener.design;
-        draw(design);
-      }
-    };
-    </script>
+
 </head>
 <body>
 <div class="drawing" id="svg"></div>
 </body>
+<script type="text/javascript">
+
+  function dodraw(){
+    var design = window.opener.design;
+    draw(design);
+  }
+
+  window.onload=dodraw();
+</script>
 </html>

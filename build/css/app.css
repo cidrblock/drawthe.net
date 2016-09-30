@@ -5,6 +5,7 @@ html {
 body {
         padding-top:1vh;
         height: 100vh;
+        font-size: 12px;
 }
 
 .form-group { margin-bottom: 5px; }

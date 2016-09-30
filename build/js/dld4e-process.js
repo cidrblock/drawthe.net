@@ -145,9 +145,9 @@ function textPositions(x1, y1, x2, y2) {
     rightTop: { x: x2 + 1, y: y1 + 1, textAnchor: "start", rotate: 90, dominantBaseline: "text-before-edge"},
     rightMiddle: { x: x2 + 1, y: y1 + (y2 - y1)/2, textAnchor: "middle", rotate: 90, dominantBaseline: "text-before-edge"},
     rightBottom: { x: x2 + 1, y: y2 - 1, textAnchor: "end", rotate: 90, dominantBaseline: "text-before-edge"},
-    bottomLeft: { x: x1 + 1, y: y2 - 1, textAnchor: "start", rotate: 0, dominantBaseline: "text-after-edge"},
-    bottomMiddle: { x: (x2 - x1)/2 + x1 , y: y2 - 1 , textAnchor: "middle", rotate: 0, dominantBaseline: "text-after-edge"},
-    bottomRight: { x: x2 - 1, y: y2 - 1, textAnchor: "end", rotate: 0, dominantBaseline: "text-after-edge" },
+    bottomLeft: { x: x1 + 1, y: y2 - 1, textAnchor: "start", rotate: 0, dominantBaseline: "alphabetical"},
+    bottomMiddle: { x: (x2 - x1)/2 + x1 , y: y2 - 1 , textAnchor: "middle", rotate: 0, dominantBaseline: "alphabetical"},
+    bottomRight: { x: x2 - 1, y: y2 - 1, textAnchor: "end", rotate: 0, dominantBaseline: "alphabetical" },
     center: { x: (x2 - x1)/2 + x1 , y: y1 + (y2 - y1)/2 , textAnchor: "middle", rotate: 0, dominantBaseline: "central"},
     // remainders
   }

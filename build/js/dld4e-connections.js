@@ -89,7 +89,7 @@ var drawConnections = function (svg, diagram, connections, objects, notes) {
         svg.append("text")
           .style("fill", function(d) { return connection.color || "orange" })
           .style('font-size',  connectionLabelFontSize + 'px' )
-          .attr('dy', 8)
+          .attr('dy', connectionLabelFontSize)
           .attr('dx', function(d) {
             return -startOffset - this.getComputedTextLength() - dxOffset
           })

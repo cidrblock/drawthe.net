@@ -147,12 +147,14 @@ function mainController($scope, $http, $sce, $log, $window) {
     var w = $window.open("fullscreen.html");
   };
   $scope.drawFont = function(font) {
-    $http.get('build/js/fonts.json')
+    var wi = window.open('about:blank', '_blank');
+    $http.get('./build/js/fonts.json')
      .then(function(res){
        var fonts = res.data
        var size = fonts[font].length
        var bestFit = Math.ceil(Math.sqrt(size))
-       $http.get(`templates/${font}.yaml`)
+       var url = "./templates/" + font + ".yaml"
+       $http.get(url)
             .then(function(res){
                var doc = jsyaml.load(res.data);
                var ratios = doc.diagram.aspectRatio.split(':')
@@ -172,9 +174,8 @@ function mainController($scope, $http, $sce, $log, $window) {
                  }
                }
                $window.design = doc;
-               var w = $window.open("fullscreen.html");
+               wi.location.href = 'fullscreen.html';
              });
-        $scope.todos = res.data;
     });
   }
   $scope.example = function(file) {
