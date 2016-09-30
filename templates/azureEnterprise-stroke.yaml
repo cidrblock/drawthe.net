@@ -14,7 +14,7 @@ title:
   stroke: black
 icon:
   stroke: none
-  color: "white"
+  color: "black"
   iconFamily: "azureEnterprise"
   fill: "white"
   iconFill: "white"
