@@ -1,12 +1,12 @@
-var drawConnections = function (svg, diagram, connections, objects, notes) {
+var drawConnections = function (svg, diagram, connections, icons, notes) {
     var connectionLabelFontSize = Math.min(diagram.xBand.bandwidth()/8,diagram.yBand.bandwidth()/8)
     connections.forEach(function(connection,index) {
       var endpoints = connection.endpoints.map( function(device) { return device.split(':')[0]})
 
       var data = endpoints.map( function(thing) {
-              if (thing in objects) {
-              return { x: objects[thing].centerX,
-                       y: objects[thing].centerY
+              if (thing in icons) {
+              return { x: icons[thing].centerX,
+                       y: icons[thing].centerY
                      }
               } else if (thing in notes) {
               return { x: notes[thing].centerX,

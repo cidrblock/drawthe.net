@@ -18,5 +18,5 @@ icon:
   iconFill: "darkslategrey"
   iconStroke: "white"
   iconStrokeWidth: .1
-  font: "cisco"
+  iconFamily: "cisco"
   fill: "white"

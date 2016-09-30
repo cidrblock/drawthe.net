@@ -9,14 +9,14 @@ title:
   type: bar
   color: black
   logoFill: none
-  text: "azure-cloud icons"
-  stroke: black
+  text: "azureEnterprise icons"
   fill: none
+  stroke: black
 icon:
   stroke: none
-  color: "#332E2C"
+  color: "white"
   iconFill: "white"
   iconStrokeWidth: .25
   iconStroke: none
-  font: "azure-cloud"
-  fill: "#7cbb00"
+  iconFamily: "azureEnterprise"
+  fill: "#002050"

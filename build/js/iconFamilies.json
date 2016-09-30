@@ -1,5 +1,5 @@
 {
-  "azure-cloud": [
+  "azureCloud": [
     "AccountsMicrosoftaccount",
     "AccountsWorkAccount",
     "ActiveDirectory",
@@ -123,7 +123,7 @@
     "WebAppWebJobs",
     "webhooks"
   ],
-  "azure-enterprise": [
+  "azureEnterprise": [
     "ActiveDirectoryFederationServicesProxy",
     "ADFS",
     "AndroidPhone",
@@ -304,7 +304,7 @@
     "dualmodeap",
     "dwdmfilter",
     "endoffice",
-    "fax.svg",
+    "fax",
     "fcstorage",
     "fddiring",
     "fibrechanneldisksubsystem",
@@ -473,7 +473,7 @@
     "supercomputer",
     "svx",
     "systemcontroller",
-    "tablet.svg",
+    "tablet",
     "tapearray",
     "tdmrouter",
     "telecommuterhouse",

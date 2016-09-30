@@ -76,9 +76,9 @@
                   icons<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="icons">
-                  <li role="menuitem" ng-click="drawFont('cisco')"><a href="#">cisco</a></li>
-                  <li role="menuitem" ng-click="drawFont('azure-enterprise')"><a href="#">azure-enterprise</a></li>
-                  <li role="menuitem" ng-click="drawFont('azure-cloud')"><a href="#">azure-cloud</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('cisco')"><a href="#">cisco</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise')"><a href="#">azureEnterprise</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('azureCloud')"><a href="#">azureCloud</a></li>
                 </ul>
               </div>
               <button id="draw" type="submit" class="btn btn-black btn-xs pull-right" ng-click="drawClick(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
@@ -146,14 +146,14 @@ function mainController($scope, $http, $sce, $log, $window) {
     $window.design = jsyaml.load($scope.acedata) || {};
     var w = $window.open("fullscreen.html");
   };
-  $scope.drawFont = function(font) {
+  $scope.drawIconFamily = function(iconFamily) {
     var wi = window.open('about:blank', '_blank');
-    $http.get('./build/js/fonts.json')
+    $http.get('./build/js/iconFamilies.json')
      .then(function(res){
-       var fonts = res.data
-       var size = fonts[font].length
+       var iconFamilies = res.data
+       var size = iconFamilies[iconFamily].length
        var bestFit = Math.ceil(Math.sqrt(size))
-       var url = "./templates/" + font + ".yaml"
+       var url = "./templates/" + iconFamily + ".yaml"
        $http.get(url)
             .then(function(res){
                var doc = jsyaml.load(res.data);
@@ -164,9 +164,9 @@ function mainController($scope, $http, $sce, $log, $window) {
                doc.diagram.columns = Math.ceil(size/doc.diagram.rows)
                var x = 0
                var y = doc.diagram.rows - 1
-               doc.objects = {}
-               for (var icon in fonts[font]){
-                 doc.objects[fonts[font][icon]] = Object.assign( { x: x, y: y, type: fonts[font][icon]}, doc.icon)
+               doc.icons = {}
+               for (var icon in iconFamilies[iconFamily]){
+                 doc.icons[iconFamilies[iconFamily][icon]] = Object.assign( { x: x, y: y, icon: iconFamilies[iconFamily][icon]}, doc.icon)
                  x += 1
                  if (x == doc.diagram.columns) {
                    x = 0

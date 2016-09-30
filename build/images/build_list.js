@@ -21,9 +21,9 @@ function getFiles(dir){
           );
 }
 
-var fonts = {}
-fonts["azure-cloud"] = getFiles("azure-cloud")
-fonts["azure-enterprise"] = getFiles("azure-enterprise")
-fonts["cisco"] = getFiles("cisco")
+var iconFamilies = {}
+iconFamilies["azureCloud"] = getFiles("azureCloud")
+iconFamilies["azureEnterprise"] = getFiles("azureEnterprise")
+iconFamilies["cisco"] = getFiles("cisco")
 
-fs.writeFile('../js/fonts.json', JSON.stringify(fonts, null, 2) , 'utf-8');
+fs.writeFile('../js/iconFamilies.json', JSON.stringify(iconFamilies, null, 2) , 'utf-8');

@@ -5,9 +5,8 @@ var processEntities = function (svg, drawing, icons) {
     xAlign: "left",
     yAlign: "top",
     textLocation: "bottomMiddle"
-    // w: 1,
-    // h: 1
   }
+
   var previous = {}
   for(var key in icons) {
     icons[key] = Object.assign({}, defaults, icons[key])
@@ -47,8 +46,8 @@ var processEntities = function (svg, drawing, icons) {
 
 function clone(hash) {
   var json = JSON.stringify(hash);
-  var icons = JSON.parse(json);
-  return icons;
+  var obj = JSON.parse(json);
+  return obj;
 }
 
 function diveOne(entry, icons, groups, depth) {
@@ -128,35 +127,31 @@ var processGroups = function(groups, icons) {
     groups[key].y2 = d3.max(groups[key].members, function(d) { return icons[d].y2 + ypad })
     groups[key].width = groups[key].x2 - groups[key].x1
     groups[key].height = groups[key].y2 - groups[key].y1
-    groups[key].fontSize = Math.min(xpad/groups[key].maxDepth,ypad/groups[key].maxDepth) - 1
+    groups[key].fontSize = Math.min(xpad/groups[key].maxDepth,ypad/groups[key].maxDepth) - 2
   }
   return groups
 }
 
 
-function textPositions(x1, y1, x2, y2) {
+function textPositions(x1, y1, x2, y2, fontSize) {
   var positions = {
-    topLeft: { x: x1 + 1, y: y1 - 1, textAnchor: "start", rotate: 0, dominantBaseline: "text-before-edge"},
-    topMiddle: { x: (x2 - x1)/2 + x1 , y: y1 - 1 , textAnchor: "middle", rotate: 0, dominantBaseline: "text-before-edge"},
-    topRight: { x: x2 - 1, y: y1 - 1, textAnchor: "end", rotate: 0, dominantBaseline: "text-before-edge" },
-    leftTop: { x: x1 - 1 , y: y1 + 1, textAnchor: "end", rotate: -90, dominantBaseline: "text-before-edge"},
-    leftMiddle: { x: x1 - 1, y: y1 + (y2 - y1)/2, textAnchor: "middle", rotate: -90, dominantBaseline: "text-before-edge"},
-    leftBottom: { x: x1 - 2, y: y2, textAnchor: "start", rotate: -90, dominantBaseline: "text-before-edge"},
-    rightTop: { x: x2 + 1, y: y1 + 1, textAnchor: "start", rotate: 90, dominantBaseline: "text-before-edge"},
-    rightMiddle: { x: x2 + 1, y: y1 + (y2 - y1)/2, textAnchor: "middle", rotate: 90, dominantBaseline: "text-before-edge"},
-    rightBottom: { x: x2 + 1, y: y2 - 1, textAnchor: "end", rotate: 90, dominantBaseline: "text-before-edge"},
-    bottomLeft: { x: x1 + 1, y: y2 - 1, textAnchor: "start", rotate: 0, dominantBaseline: "none"},
-    bottomMiddle: { x: (x2 - x1)/2 + x1 , y: y2 - 1 , textAnchor: "middle", rotate: 0, dominantBaseline: "none"},
-    bottomRight: { x: x2 - 1, y: y2 - 1, textAnchor: "end", rotate: 0, dominantBaseline: "none" },
-    center: { x: (x2 - x1)/2 + x1 , y: y1 + (y2 - y1)/2 , textAnchor: "middle", rotate: 0, dominantBaseline: "central"},
-    // remainders
+    topLeft: { x: x1 + (fontSize/4), y: y1 + (fontSize/2), textAnchor: "start", rotate: 0 },
+    topMiddle: { x: (x2 - x1)/2 + x1 , y: y1 + (fontSize/2), textAnchor: "middle", rotate: 0 },
+    topRight: { x: x2 - (fontSize/4), y: y1 + (fontSize/2), textAnchor: "end", rotate: 0 },
+
+    leftTop: { x: x1 + (fontSize/2), y: y1 + (fontSize/4), textAnchor: "end", rotate: -90 },
+    leftMiddle: { x: x1 + (fontSize/2), y: y1 + (y2 - y1)/2, textAnchor: "middle", rotate: -90 },
+    leftBottom: { x: x1 + (fontSize/2), y: y2 - (fontSize/4), textAnchor: "start", rotate: -90 },
+
+    rightTop: { x: x2 - (fontSize/2), y: y1 + (fontSize/4), textAnchor: "start", rotate: 90 },
+    rightMiddle: { x: x2 - (fontSize/2), y: y1 + (y2 - y1)/2, textAnchor: "middle", rotate: 90 },
+    rightBottom: { x: x2 - (fontSize/2), y: y2 - (fontSize/4), textAnchor: "end", rotate: 90 },
+
+    bottomLeft: { x: x1 + (fontSize/4), y: y2 - (fontSize/2), textAnchor: "start", rotate: 0 },
+    bottomMiddle: { x: (x2 - x1)/2 + x1 , y: y2 - (fontSize/2), textAnchor: "middle", rotate: 0 },
+    bottomRight: { x: x2 - (fontSize/4), y: y2 - (fontSize/2), textAnchor: "end", rotate: 0 },
+
+    center: { x: (x2 - x1)/2 + x1 , y: y1 + (y2 - y1)/2 , textAnchor: "middle", rotate: 0 },
   }
-  // positions.topLeft.remainders = function() {
-  //   return {
-  //     x1: this.x,
-  //     y2: this.y,
-  //     x2:
-  //   }
-  // console.log(positions.topLeft.remainder())
   return positions
 }
