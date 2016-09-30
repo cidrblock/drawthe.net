@@ -147,9 +147,9 @@ function textPositions(x1, y1, x2, y2, fontSize) {
     rightMiddle: { x: x2 - (fontSize/2), y: y1 + (y2 - y1)/2, textAnchor: "middle", rotate: 90 },
     rightBottom: { x: x2 - (fontSize/2), y: y2 - (fontSize/4), textAnchor: "end", rotate: 90 },
 
-    bottomLeft: { x: x1 + (fontSize/4), y: y2 , textAnchor: "start", rotate: 0 },
-    bottomMiddle: { x: (x2 - x1)/2 + x1 , y: y2, textAnchor: "middle", rotate: 0 },
-    bottomRight: { x: x2 - (fontSize/4), y: y2 , textAnchor: "end", rotate: 0 },
+    bottomLeft: { x: x1 + (fontSize/4), y: y2 - (fontSize/2), textAnchor: "start", rotate: 0 },
+    bottomMiddle: { x: (x2 - x1)/2 + x1 , y: y2 - (fontSize/2), textAnchor: "middle", rotate: 0 },
+    bottomRight: { x: x2 - (fontSize/4), y: y2 - (fontSize/2), textAnchor: "end", rotate: 0 },
 
     center: { x: (x2 - x1)/2 + x1 , y: y1 + (y2 - y1)/2 , textAnchor: "middle", rotate: 0 },
   }
