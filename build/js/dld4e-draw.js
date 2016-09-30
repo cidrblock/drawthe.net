@@ -7,7 +7,7 @@ function draw(doc) {
     columns: 10,
     groupPadding: .33,
     gridLines: true,
-    gridPaddingInner: .4, // the space between objects (%)
+    gridPaddingInner: .4, // the space between icons (%)
     iconTextRatio: .33,
     margins: {top: 20, right: 20, bottom: 50, left: 20 }
   }
@@ -30,7 +30,7 @@ function draw(doc) {
   var connections = doc.connections || [];
   var groups = doc.groups || [];
   var notes = doc.notes || [];
-  var objects = doc.objects || [];
+  var icons = doc.icons || [];
 
   // merge the doc properties into the defaults
   diagram = Object.assign(drawingDefaults, doc.diagram || {})
@@ -101,16 +101,16 @@ function draw(doc) {
 
   // set x1,y1,x2,y2,width,height,centerX and centerY for all the stuff
   notes = processEntities(svg, diagram, notes)
-  objects = processEntities(svg, diagram, objects)
-  connections = processConnections(connections, groups, objects)
-  groups = processGroups(groups, objects)
+  icons = processEntities(svg, diagram, icons)
+  connections = processConnections(connections, groups, icons)
+  groups = processGroups(groups, icons)
 
   // draw all the things
   drawTitle(svg, diagram, title)
   drawGridLines(svg, diagram)
-  drawGroups(svg, diagram, groups, objects)
-  drawConnections(svg, diagram, connections, objects, notes)
-  drawObjects(svg, objects, diagram.iconTextRatio)
+  drawGroups(svg, diagram, groups, icons)
+  drawConnections(svg, diagram, connections, icons, notes)
+  drawIcons(svg, icons, diagram.iconTextRatio)
   drawNotes(svg, notes)
   PR.prettyPrint()
 

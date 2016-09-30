@@ -14,20 +14,20 @@ title:
 cisco: &cisco
   color: "#004BAF"
   fill: "white"
-  font: "cisco"
+  iconFamily: "cisco"
   iconFill: "#004BAF"
   iconStrokeWidth: .25
   iconStroke: "#049FD9"
   stroke: "#004BAF"
-objects:
-  router1: {<<: *cisco, x: 0, y: 5, type: "router"}
-  router2: {<<: *cisco, x: 2, y: 5, type: "router"}
-  router3: {<<: *cisco, x: 0, y: 3, type: "router"}
-  router4: {<<: *cisco, x: 2, y: 3, type: "router"}
-  router5: {<<: *cisco, x: 3, y: 2, type: "router"}
-  router6: {<<: *cisco, x: 5, y: 2, type: "router"}
-  router7: {<<: *cisco, x: 3, y: 0, type: "router"}
-  router8: {<<: *cisco, x: 5, y: 0, type: "router"}
+icons:
+  router1: {<<: *cisco, x: 0, y: 5, icon: "router"}
+  router2: {<<: *cisco, x: 2, y: 5, icon: "router"}
+  router3: {<<: *cisco, x: 0, y: 3, icon: "router"}
+  router4: {<<: *cisco, x: 2, y: 3, icon: "router"}
+  router5: {<<: *cisco, x: 3, y: 2, icon: "router"}
+  router6: {<<: *cisco, x: 5, y: 2, icon: "router"}
+  router7: {<<: *cisco, x: 3, y: 0, icon: "router"}
+  router8: {<<: *cisco, x: 5, y: 0, icon: "router"}
 group: &group
   - { stroke: "black", fill: "none", color: black }
 groups:

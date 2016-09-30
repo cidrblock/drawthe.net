@@ -1,6 +1,6 @@
-var processEntities = function (svg, drawing, objects) {
+var processEntities = function (svg, drawing, icons) {
 
-  // set some defaults, even though these won't be used for icons we'll set them anyway
+  // set some defaults, even though these won't be used for iconss we'll set them anyway
   var defaults = {
     xAlign: "left",
     yAlign: "top",
@@ -9,54 +9,54 @@ var processEntities = function (svg, drawing, objects) {
     // h: 1
   }
   var previous = {}
-  for(var key in objects) {
-    objects[key] = Object.assign({}, defaults, objects[key])
-    objects[key].w = objects[key].w || 1
-    objects[key].h = objects[key].h || 1
-    if (!("x" in objects[key])) {
-      objects[key].x = previous.x
-    } else if (objects[key].x.toString().startsWith('+')) {
-      objects[key].x = parseInt(previous.x) + parseInt(objects[key].x.toString().split('+')[1])
-    } else if (objects[key].x.toString().startsWith('-')) {
-      objects[key].x = parseInt(previous.x) - parseInt(objects[key].x.toString().split('-')[1])
+  for(var key in icons) {
+    icons[key] = Object.assign({}, defaults, icons[key])
+    icons[key].w = icons[key].w || 1
+    icons[key].h = icons[key].h || 1
+    if (!("x" in icons[key])) {
+      icons[key].x = previous.x
+    } else if (icons[key].x.toString().startsWith('+')) {
+      icons[key].x = parseInt(previous.x) + parseInt(icons[key].x.toString().split('+')[1])
+    } else if (icons[key].x.toString().startsWith('-')) {
+      icons[key].x = parseInt(previous.x) - parseInt(icons[key].x.toString().split('-')[1])
     }
-    objects[key].x1 = diagram.xBand(objects[key].x)
-    if (!("y" in objects[key])) {
-      objects[key].y = previous.y
-    } else if (objects[key].y.toString().startsWith('+')) {
-      objects[key].y = parseInt(previous.y) + parseInt(objects[key].y.toString().split('+')[1])
-    } else if (objects[key].y.toString().startsWith('-')) {
-      objects[key].y = parseInt(previous.y) - parseInt(objects[key].y.toString().split('-')[1])
+    icons[key].x1 = diagram.xBand(icons[key].x)
+    if (!("y" in icons[key])) {
+      icons[key].y = previous.y
+    } else if (icons[key].y.toString().startsWith('+')) {
+      icons[key].y = parseInt(previous.y) + parseInt(icons[key].y.toString().split('+')[1])
+    } else if (icons[key].y.toString().startsWith('-')) {
+      icons[key].y = parseInt(previous.y) - parseInt(icons[key].y.toString().split('-')[1])
     }
-    objects[key].y1 = diagram.yBand(objects[key].y)
-    objects[key].width = diagram.xBand.bandwidth() + ((objects[key].w - 1) * diagram.xBand.step())
-    objects[key].height = diagram.yBand.bandwidth() + ((objects[key].h - 1) * diagram.yBand.step())
-    objects[key].x2 = objects[key].x1 + objects[key].width
-    objects[key].y2 = objects[key].y1 + objects[key].height
-    objects[key].centerX = objects[key].x1 + objects[key].width/2
-    objects[key].centerY = objects[key].y1 + objects[key].height/2
-    objects[key].rx = diagram.xBand.bandwidth() * .05
-    objects[key].ry = diagram.yBand.bandwidth() * .05
-    objects[key].padding = Math.min(diagram.yBand.bandwidth() * .05, diagram.xBand.bandwidth() * .05)
-    objects[key].iconPaddingX = parseFloat("5%")/100
-    objects[key].iconPaddingY = parseFloat("5%")/100
-    previous = objects[key]
+    icons[key].y1 = diagram.yBand(icons[key].y)
+    icons[key].width = diagram.xBand.bandwidth() + ((icons[key].w - 1) * diagram.xBand.step())
+    icons[key].height = diagram.yBand.bandwidth() + ((icons[key].h - 1) * diagram.yBand.step())
+    icons[key].x2 = icons[key].x1 + icons[key].width
+    icons[key].y2 = icons[key].y1 + icons[key].height
+    icons[key].centerX = icons[key].x1 + icons[key].width/2
+    icons[key].centerY = icons[key].y1 + icons[key].height/2
+    icons[key].rx = diagram.xBand.bandwidth() * .05
+    icons[key].ry = diagram.yBand.bandwidth() * .05
+    icons[key].padding = Math.min(diagram.yBand.bandwidth() * .05, diagram.xBand.bandwidth() * .05)
+    icons[key].iconPaddingX = parseFloat("5%")/100
+    icons[key].iconPaddingY = parseFloat("5%")/100
+    previous = icons[key]
   }
-  return objects
+  return icons
 }
 
 function clone(hash) {
   var json = JSON.stringify(hash);
-  var object = JSON.parse(json);
-  return object;
+  var icons = JSON.parse(json);
+  return icons;
 }
 
-function diveOne(entry, objects, groups, depth) {
+function diveOne(entry, icons, groups, depth) {
   var answer = []
   if (entry in groups) {
     for (var i = 0; i < groups[entry].members.length; i++) {
       if (groups[entry].members[i] in groups) {
-        result = diveOne(groups[entry].members[i], objects, groups, depth)
+        result = diveOne(groups[entry].members[i], icons, groups, depth)
         answer = answer.concat(result.members)
         depth = result.depth
       } else {
@@ -70,17 +70,17 @@ function diveOne(entry, objects, groups, depth) {
   result = {members: answer, depth: depth}
   return result
 }
-function dive(connection, objects, groups) {
+function dive(connection, icons, groups) {
   var additionalConnections = []
   var endpoints = connection.endpoints.map( function(device) { return device.split(':')[0]})
   var labels = connection.endpoints.map( function(device) { return device.split(':')[1]})
   if (endpoints[0] in groups) {
-    starters = diveOne( endpoints[0], objects, groups ).members
+    starters = diveOne( endpoints[0], icons, groups ).members
   } else {
     starters = [endpoints[0]]
   }
   if (endpoints[1] in groups) {
-    enders = diveOne( endpoints[1], objects, groups ).members
+    enders = diveOne( endpoints[1], icons, groups ).members
   } else {
     enders = [endpoints[1]]
   }
@@ -92,26 +92,26 @@ function dive(connection, objects, groups) {
   })
   return additionalConnections
 }
-var processConnections = function(connections, groups, objects) {
+var processConnections = function(connections, groups, icons) {
   var additionalConnections = []
   for (var i = connections.length - 1; i >= 0; i--) {
     endpoints = connections[i].endpoints.map( function(device) { return device.split(':')[0]})
     labels = connections[i].endpoints.map( function(device) { return device.split(':')[1]})
     if ((endpoints[0] in groups) || (endpoints[1] in groups)) {
-      additionalConnections = additionalConnections.concat(dive(connections[i],objects,groups))
+      additionalConnections = additionalConnections.concat(dive(connections[i],icons,groups))
       connections.splice(i, 1);
     } //if
   }
   return connections.concat(additionalConnections)
 }
 
-var processGroups = function(groups, objects) {
+var processGroups = function(groups, icons) {
   for (var key in groups) {
     groups[key].maxDepth = 1
     var additionalMembers = []
     for (var i = groups[key].members.length - 1; i >= 0; i--) {
-      if (!(groups[key].members[i] in objects)) {
-        result = diveOne(groups[key].members[i], objects, groups, 1)
+      if (!(groups[key].members[i] in icons)) {
+        result = diveOne(groups[key].members[i], icons, groups, 1)
         additionalMembers = additionalMembers.concat(result.members)
         if (result.depth > groups[key].maxDepth) {
           groups[key].maxDepth = result.depth
@@ -122,10 +122,10 @@ var processGroups = function(groups, objects) {
     }
     var xpad = (diagram.xBand.step() - diagram.xBand.bandwidth()) * diagram.groupPadding * groups[key].maxDepth
     var ypad = (diagram.yBand.step() - diagram.yBand.bandwidth()) * diagram.groupPadding * groups[key].maxDepth
-    groups[key].x1 = diagram.xBand(d3.min(groups[key].members, function(d) {return objects[d].x })) - xpad
-    groups[key].y1 = diagram.yBand(d3.max(groups[key].members, function(d) { return objects[d].y })) - ypad
-    groups[key].x2 = d3.max(groups[key].members, function(d) { return objects[d].x2 + xpad })
-    groups[key].y2 = d3.max(groups[key].members, function(d) { return objects[d].y2 + ypad })
+    groups[key].x1 = diagram.xBand(d3.min(groups[key].members, function(d) {return icons[d].x })) - xpad
+    groups[key].y1 = diagram.yBand(d3.max(groups[key].members, function(d) { return icons[d].y })) - ypad
+    groups[key].x2 = d3.max(groups[key].members, function(d) { return icons[d].x2 + xpad })
+    groups[key].y2 = d3.max(groups[key].members, function(d) { return icons[d].y2 + ypad })
     groups[key].width = groups[key].x2 - groups[key].x1
     groups[key].height = groups[key].y2 - groups[key].y1
     groups[key].fontSize = Math.min(xpad/groups[key].maxDepth,ypad/groups[key].maxDepth) - 1

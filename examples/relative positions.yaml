@@ -18,8 +18,8 @@ person: &person
   color: "white"
   iconFill: "white"
   iconStroke: "none"
-  font: "azure-enterprise"
-  type: "UserEnterprise"
+  iconFamily: "azureEnterprise"
+  icon: "UserEnterprise"
   fill: "slategrey"
 teamA: &teamA
   <<: *person
@@ -41,7 +41,7 @@ teamE: &teamE
   <<: *person
   fill: "thistle"
   color: black
-objects:
+icons:
   Richard Harris: {<<: *person, x: 5, y: 8, type: "UserEnterprise"}
   Laura Hill: {<<: *person, x: "2", y: "-1", type: "UserEnterprise"}
   Maria Young: {<<: *person, x: "+3", type: "UserEnterprise"}

@@ -1,6 +1,6 @@
-var drawObjects = function (svg, objects, iconTextRatio) {
+var drawIcons = function (svg, icons, iconTextRatio) {
   var deviceCellsAll = svg.selectAll("cells")
-    .data(d3.entries(objects))
+    .data(d3.entries(icons))
     .enter()
 
   var cells = deviceCellsAll.append("g")
@@ -16,7 +16,6 @@ var drawObjects = function (svg, objects, iconTextRatio) {
     .attr("fill", function(d) { return d.value.fill || "orange"})
     .style("stroke", function(d) { return d.value.stroke || "orange" })
     .style("stroke-dasharray", function(d) { return d.value.strokeDashArray || [0,0] })
-
 
   var cellText = cells
     .each( function(d) { d.value.textPosition = textPositions(0,0,d.value.width,d.value.height)[d.value.textLocation] })
@@ -35,11 +34,13 @@ var drawObjects = function (svg, objects, iconTextRatio) {
 
   var icon = cells
     .each ( function(d) {
+      console.log(d)
       var cell = document.getElementById(d.key)
       var cellText = document.getElementById(d.key + "-text")
       var fontSize =  parseFloat(cellText.style.fontSize + 2)
       // center
       var x = (d.value.width*d.value.iconPaddingX)
+      console.log(d.value.iconPaddingX)
       var y = (d.value.height*d.value.iconPaddingY)
       var width = d.value.width*(1-2*d.value.iconPaddingX)
       var height = (d.value.height)*(1-2*d.value.iconPaddingY)
@@ -60,7 +61,7 @@ var drawObjects = function (svg, objects, iconTextRatio) {
           break;
       }
 
-      d3.xml(`build/images/${d.value.font}/${d.value.type}.svg`).mimeType("image/svg+xml").get(function(error, xml) {
+      d3.xml(`build/images/${d.value.iconFamily}/${d.value.icon}.svg`).mimeType("image/svg+xml").get(function(error, xml) {
         var svg = xml.getElementsByTagName("svg")[0]
         svg.setAttribute("x", x)
         svg.setAttribute("y", y)

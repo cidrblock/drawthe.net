@@ -10,34 +10,35 @@ azure: &azure
   fill: "#E1E000"
   iconFill: "#54565B"
   iconStroke: "none"
-  font: "azure-enterprise"
+  iconFamily: "azureEnterprise"
   stroke: "#A8A8AA"
-objects:
-  internet: {<<: *azure, x: 3, y: 3, type: "Internet"}
-  gateway1: {<<: *azure, x: 0, y: 6, type: "Gateway"}
-  gateway2: {<<: *azure, x: "+1", type: "Gateway"}
-  gateway3: {<<: *azure, x: "+1", type: "Gateway"}
-  gateway4: {<<: *azure, x: "+1", type: "Gateway"}
-  gateway5: {<<: *azure, x: "+1", type: "Gateway"}
-  gateway6: {<<: *azure, x: "+1", type: "Gateway"}
-  gateway7: {<<: *azure, x: "+1", type: "Gateway"}
-  gateway8: {<<: *azure, y: "-1", type: "Gateway"}
-  gateway9: {<<: *azure, y: "-1", type: "Gateway"}
-  gateway10: {<<: *azure, y: "-1", type: "Gateway"}
-  gateway11: {<<: *azure, y: "-1", type: "Gateway"}
-  gateway12: {<<: *azure, y: "-1", type: "Gateway"}
-  gateway13: {<<: *azure, y: "-1", type: "Gateway"}
-  gateway14: {<<: *azure, x: "-1", type: "Gateway"}
-  gateway15: {<<: *azure, x: "-1", type: "Gateway"}
-  gateway16: {<<: *azure, x: "-1", type: "Gateway"}
-  gateway17: {<<: *azure, x: "-1", type: "Gateway"}
-  gateway18: {<<: *azure, x: "-1", type: "Gateway"}
-  gateway19: {<<: *azure, x: "-1", type: "Gateway"}
-  gateway20: {<<: *azure, y: "+1", type: "Gateway"}
-  gateway21: {<<: *azure, y: "+1", type: "Gateway"}
-  gateway22: {<<: *azure, y: "+1", type: "Gateway"}
-  gateway23: {<<: *azure, y: "+1", type: "Gateway"}
-  gateway24: {<<: *azure, y: "+1", type: "Gateway"}
+  icon: "Gateway"
+icons:
+  internet: {<<: *azure, x: 3, y: 3, icon: "Internet"}
+  gateway1: {<<: *azure, x: 0, y: 6, icon: "Gateway"}
+  gateway2: {<<: *azure, x: "+1"}
+  gateway3: {<<: *azure, x: "+1"}
+  gateway4: {<<: *azure, x: "+1"}
+  gateway5: {<<: *azure, x: "+1"}
+  gateway6: {<<: *azure, x: "+1"}
+  gateway7: {<<: *azure, x: "+1"}
+  gateway8: {<<: *azure, y: "-1"}
+  gateway9: {<<: *azure, y: "-1"}
+  gateway10: {<<: *azure, y: "-1"}
+  gateway11: {<<: *azure, y: "-1"}
+  gateway12: {<<: *azure, y: "-1"}
+  gateway13: {<<: *azure, y: "-1"}
+  gateway14: {<<: *azure, x: "-1"}
+  gateway15: {<<: *azure, x: "-1"}
+  gateway16: {<<: *azure, x: "-1"}
+  gateway17: {<<: *azure, x: "-1"}
+  gateway18: {<<: *azure, x: "-1"}
+  gateway19: {<<: *azure, x: "-1"}
+  gateway20: {<<: *azure, y: "+1"}
+  gateway21: {<<: *azure, y: "+1"}
+  gateway22: {<<: *azure, y: "+1"}
+  gateway23: {<<: *azure, y: "+1"}
+  gateway24: {<<: *azure, y: "+1"}
 connection: &connection
   color: "#A8A8AA"
   stroke: "#A8A8AA"

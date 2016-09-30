@@ -17,22 +17,22 @@ cisco: &cisco
   iconFill: "darkslategrey"
   iconStroke: "lightslategrey"
   iconStrokeWidth: .25
-  font: "cisco"
+  iconFamily: "cisco"
   fill: "white"
 spine: &spine
   <<: *cisco
   x: "+1"
-  type: "Nexus7000"
+  icon: "Nexus7000"
 leaf: &leaf
   <<: *cisco
   x: "+1"
-  type: "Nexus2000"
-objects:
-  spine1: {<<: *cisco, x: 3, y: 3, type: "Nexus7000"}
+  icon: "Nexus2000"
+icons:
+  spine1: {<<: *cisco, x: 3, y: 3, icon: "Nexus7000"}
   spine2: {<<: *spine }
   spine3: {<<: *spine }
   spine4: {<<: *spine }
-  leaf 1: {<<: *cisco, x: 1, y: 1, type: "Nexus2000"}
+  leaf 1: {<<: *cisco, x: 1, y: 1, icon: "Nexus2000"}
   leaf 2: {<<: *leaf }
   leaf 3: {<<: *leaf }
   leaf 4: {<<: *leaf }

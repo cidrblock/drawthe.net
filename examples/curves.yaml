@@ -13,14 +13,14 @@ title:
 azure: &azure
   color: "black"
   fill: "darkgrey"
-  font: "azure-enterprise"
+  iconFamily: "azureEnterprise"
   iconFill: "white"
   iconStroke: "none"
   stroke: "none"
-objects:
-  serverrack1: {<<: *azure, x: 0, y: 4, type: "Serverrack"}
-  serverrack2: {<<: *azure, x: 3, y: 2, type: "Serverrack"}
-  serverrack3: {<<: *azure, x: 6, y: 0, type: "Serverrack"}
+icons:
+  serverrack1: {<<: *azure, x: 0, y: 4, icon: "Serverrack"}
+  serverrack2: {<<: *azure, x: 3, y: 2, icon: "Serverrack"}
+  serverrack3: {<<: *azure, x: 6, y: 0, icon: "Serverrack"}
 connection: &connection
   color: "black"
   stroke: "black"
