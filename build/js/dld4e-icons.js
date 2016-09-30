@@ -29,7 +29,7 @@ var drawIcons = function (svg, icons, iconTextRatio) {
     .attr("transform", function(d) { return `translate(${d.value.textPosition.x},${d.value.textPosition.y})rotate(${d.value.textPosition.rotate})` })
     .attr('fill', function(d) { return d.value.color || "orange"} )
     .attr("text-anchor", function(d) { return d.value.textPosition.textAnchor})
-    .attr("dominant-baseline", "central")
+    .attr("dominant-baseline", "middle")
 
   // var icon = cells.append('g')
   //   .attr("x", function(d) { return d.value.width*.2 })
