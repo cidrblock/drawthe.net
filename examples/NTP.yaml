@@ -45,7 +45,7 @@ wwrt003: &wwrt003 {<<: *cisco, x: "-1", y: "+1", icon: "nexus5000"}
 wwrt004: &wwrt004 {<<: *cisco, x: "+1", icon: "nexus5000"}
 wwsw001: &wwsw001 {<<: *cisco, x: "-1", y: "+1", icon: "workgroupswitch"}
 wntp001: &wntp001 {<<: *stratum1, y: "+1", icon: "file_server"}
-wwan001: &wwan001 {<<: *cisco, y: "+1", icon: "antenna", iconStroke: black, iconStrokeWidth: 2, fill: white}
+wwan001: &wwan001 {<<: *cisco, y: "+1", icon: "antenna", iconStroke: black, iconStrokeWidth: 2, fill: "#EEEEEE"}
 
 dcrt001: &dcrt001 {<<: *cisco, icon: "router"}
 dcrt002: &dcrt002 {<<: *cisco, x: "+1", icon: "router"}
