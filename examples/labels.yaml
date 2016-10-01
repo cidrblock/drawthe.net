@@ -12,10 +12,10 @@ azure: &azure
   iconStroke: "none"
   iconFamily: "azureEnterprise"
   stroke: "#A8A8AA"
-  icon: "Gateway"
+  icon: "gateway"
 icons:
-  internet: {<<: *azure, x: 3, y: 3, icon: "Internet"}
-  gateway1: {<<: *azure, x: 0, y: 6, icon: "Gateway"}
+  internet: {<<: *azure, x: 3, y: 3, icon: "internet"}
+  gateway1: {<<: *azure, x: 0, y: 6, icon: "gateway"}
   gateway2: {<<: *azure, x: "+1"}
   gateway3: {<<: *azure, x: "+1"}
   gateway4: {<<: *azure, x: "+1"}

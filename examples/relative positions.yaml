@@ -19,7 +19,7 @@ person: &person
   iconFill: "white"
   iconStroke: "none"
   iconFamily: "azureEnterprise"
-  icon: "UserEnterprise"
+  icon: "userenterprise"
   fill: "slategrey"
 teamA: &teamA
   <<: *person

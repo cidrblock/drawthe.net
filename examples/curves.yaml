@@ -18,9 +18,9 @@ azure: &azure
   iconStroke: "none"
   stroke: "none"
 icons:
-  serverrack1: {<<: *azure, x: 0, y: 4, icon: "Serverrack"}
-  serverrack2: {<<: *azure, x: 3, y: 2, icon: "Serverrack"}
-  serverrack3: {<<: *azure, x: 6, y: 0, icon: "Serverrack"}
+  serverrack1: {<<: *azure, x: 0, y: 4, icon: "serverrack"}
+  serverrack2: {<<: *azure, x: 3, y: 2, icon: "serverrack"}
+  serverrack3: {<<: *azure, x: 6, y: 0, icon: "serverrack"}
 connection: &connection
   color: "black"
   stroke: "black"

@@ -30,13 +30,13 @@ cisco: &cisco
 servers: &servers
   <<: *defaults
   fill: "#58585B"
-  icon: "Webserver"
+  icon: "webserver"
 icons:
   chddc1crt001: {<<: *cisco, x: 0, y: 4, icon: "router"}
-  chddc1crt004: {<<: *defaults, x: 2, y: 3, icon: "Gateway", iconFill: "Gold"}
-  chddc1sfw005: {<<: *defaults, x: 2, y: 2, icon: "Firewall", iconFill: "red"}
-  chddc1slb005: {<<: *defaults, x: 3, y: 1, icon: "LoadbalancerGeneric", iconFill: "lightblue"}
-  chddc1srt001: {<<: *defaults, x: 3, y: 2, icon: "Gateway", iconFill: "green"}
+  chddc1crt004: {<<: *defaults, x: 2, y: 3, icon: "gateway", iconFill: "Gold"}
+  chddc1sfw005: {<<: *defaults, x: 2, y: 2, icon: "firewall", iconFill: "red"}
+  chddc1slb005: {<<: *defaults, x: 3, y: 1, icon: "loadbalancergeneric", iconFill: "lightblue"}
+  chddc1srt001: {<<: *defaults, x: 3, y: 2, icon: "gateway", iconFill: "green"}
   firewall: {<<: *cisco, x: 4, y: 4, icon: "firewall"}
   lx12300: {<<: *servers, x: 2, y: 0}
   lx12301: {<<: *servers, x: 3, y: 0}

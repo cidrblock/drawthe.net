@@ -20,7 +20,7 @@ azure: &azure
   iconFill: "#00a1f1"
   iconStroke: "none"
   stroke: "#00a1f1"
-  icon: "VirtualMachine"
+  icon: "virtualmachine"
 icons:
   topLeft: {<<: *azure, textLocation: "topLeft", x: 1, y: 4 }
   topMiddle: {<<: *azure, textLocation: "topMiddle", x: "+1" }
