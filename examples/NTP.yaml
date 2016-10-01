@@ -1,0 +1,398 @@
+diagram:
+  fill: "snow"
+  columns: 21
+  rows: 21
+  gridLines: false
+  gridPaddingInner: .25
+  groupPadding: .75
+title:
+  color: black
+  heightPercentage: 6
+  logoFill: none
+  stroke: lightgrey
+  subText: "A sample diagram showing various style and icon types."
+  text: "Enterprise NTP"
+  type: "bar"
+cisco: &cisco
+  stroke: "none"
+  color: "black"
+  iconFill: "darkslategrey"
+  iconStroke: "lightgrey"
+  iconStrokeWidth: .25
+  iconFamily: "cisco"
+  fill: "none"
+  preserveWhite: "true"
+cloud: &cloud
+  <<: *cisco
+  iconStroke: black
+  iconStrokeWidth: 2
+stratum1: &stratum1
+  <<: *cisco
+  iconFill: "#0052A5"
+  iconStroke: "#9999EB"
+stratum2: &stratum2
+  <<: *cisco
+  iconFill: "#9999EB"
+  iconStroke: "#0052A5"
+ntpClient: &ntpClient
+  <<: *cisco
+  iconFill: "#CCCCF4"
+  iconStroke: "#0052A5"
+
+wwrt001: &wwrt001 {<<: *cisco, icon: "router"}
+wwrt002: &wwrt002 {<<: *cisco, x: "+1", icon: "router"}
+wwrt003: &wwrt003 {<<: *cisco, x: "-1", y: "+1", icon: "nexus5000"}
+wwrt004: &wwrt004 {<<: *cisco, x: "+1", icon: "nexus5000"}
+wwsw001: &wwsw001 {<<: *cisco, x: "-1", y: "+1", icon: "workgroupswitch"}
+wntp001: &wntp001 {<<: *stratum1, y: "+1", icon: "file_server"}
+wwan001: &wwan001 {<<: *cisco, y: "+1", icon: "antenna", iconStroke: black, iconStrokeWidth: 2, fill: white}
+
+dcrt001: &dcrt001 {<<: *cisco, icon: "router"}
+dcrt002: &dcrt002 {<<: *cisco, x: "+1", icon: "router"}
+dcrt003: &dcrt003 {<<: *cisco, x: "-1", y: "-1", icon: "nexus7000"}
+dcrt004: &dcrt004 {<<: *cisco, x: "+1", icon: "nexus7000"}
+dsrt001: &dsrt001 {<<: *cisco, x: "-1", y: "-1", icon: "nexus7000"}
+dsrt002: &dsrt002 {<<: *cisco, x: "+1", icon: "nexus7000"}
+dssw001: &dssw001 {<<: *cisco, x: "-1", y: "-1", icon: "nexus5000"}
+dssw002: &dssw002 {<<: *cisco, x: "+1", icon: "nexus5000"}
+dntp001: &dntp001 {<<: *stratum2, x: "-1", y: "-1", icon: "file_server"}
+dntp002: &dntp002 {<<: *stratum2, x: "+1", icon: "file_server"}
+dslb001: &dslb001 {<<: *cisco, x: "-1", y: "-1", icon: "ace"}
+dslb002: &dslb002 {<<: *cisco, x: "+1", icon: "ace"}
+drrt001: &drrt001 {<<: *cisco, x: "+1", y: "+3", icon: "router"}
+drrt002: &drrt002 {<<: *cisco, x: "+1", icon: "router"}
+drsw001: &drsw001 {<<: *cisco, x: "-1", y: "-1", icon: "nexus5000"}
+drsw002: &drsw002 {<<: *cisco, x: "+1", icon: "nexus5000"}
+dntp003: &dntp003 {<<: *stratum2, x: "-1", y: "-1", icon: "file_server"}
+dntp004: &dntp004 {<<: *stratum2, x: "+1", icon: "file_server"}
+drlb001: &drlb001 {<<: *cisco, x: "-1", y: "-1", icon: "ace"}
+drlb002: &drlb002 {<<: *cisco, x: "+1", icon: "ace"}
+
+icons:
+  Stratum 1 NTP: {<<: *stratum1, x: "18", y: "19", h: 2, w: 2, textLocation: leftMiddle, icon: "file_server"}
+  Stratum 2 NTP: {<<: *stratum2, y: "-2", h: 2, w: 2, textLocation: leftMiddle, icon: "file_server"}
+  NTP Client: {<<: *ntpClient, y: "-2", h: 2, w: 2, textLocation: leftMiddle, icon: "file_server"}
+
+  gpsSat001: {<<: *cisco, x: 9, y: 20, icon: "spacerouter", textLocation: topMiddle }
+  gpsSat002: {<<: *cisco, x: "+1", icon: "spacerouter", textLocation: topMiddle }
+
+  Enterprise MPLS 1: {<<: *cloud, x: 6, y: 13, w: 3, h: 3, icon: cloud, textLocation: center }
+  Enterprise MPLS 2: {<<: *cloud, x: "+4", w: 3, h: 3, icon: cloud, textLocation: center }
+
+  loc1wrt001: {<<: *wwrt001, x: 6, y: 14}
+  loc1wrt002: {<<: *wwrt002}
+  loc1wrt003: {<<: *wwrt003}
+  loc1wrt004: {<<: *wwrt004}
+  loc1wsw001: {<<: *wwsw001}
+  loc1ntp001: {<<: *wntp001}
+  loc1wan001: {<<: *wwan001}
+
+  loc2wrt001: {<<: *wwrt001, x: 9, y: 14}
+  loc2wrt002: {<<: *wwrt002}
+  loc2wrt003: {<<: *wwrt003}
+  loc2wrt004: {<<: *wwrt004}
+  loc2wsw001: {<<: *wwsw001}
+  loc2ntp001: {<<: *wntp001}
+  loc2wan001: {<<: *wwan001}
+
+  loc3wrt001: {<<: *wwrt001, x: 12, y: 14}
+  loc3wrt002: {<<: *wwrt002}
+  loc3wrt003: {<<: *wwrt003}
+  loc3wrt004: {<<: *wwrt004}
+  loc3wsw001: {<<: *wwsw001}
+  loc3ntp001: {<<: *wntp001}
+  loc3wan001: {<<: *wwan001}
+
+  loc4crt001: {<<: *dcrt001, x: 1, y: 10}
+  loc4crt002: {<<: *dcrt002}
+  loc4crt003: {<<: *dcrt003}
+  loc4crt004: {<<: *dcrt004}
+  loc4srt001: {<<: *dsrt001, x: "-2"}
+  loc4srt002: {<<: *dsrt002}
+  loc4ssw001: {<<: *dssw001}
+  loc4ssw002: {<<: *dssw002}
+  loc4ntp001: {<<: *dntp001}
+  loc4ntp002: {<<: *dntp002}
+  loc4slb001: {<<: *dslb001}
+  loc4slb002: {<<: *dslb002}
+  loc4rrt001: {<<: *drrt001}
+  loc4rrt002: {<<: *drrt002}
+  loc4rsw001: {<<: *drsw001}
+  loc4rsw002: {<<: *drsw002}
+  loc4ntp003: {<<: *dntp003}
+  loc4ntp004: {<<: *dntp004}
+  loc4rlb001: {<<: *drlb001}
+  loc4rlb002: {<<: *drlb002}
+
+  loc5crt001: {<<: *dcrt001, x: 7, y: 10}
+  loc5crt002: {<<: *dcrt002}
+  loc5crt003: {<<: *dcrt003}
+  loc5crt004: {<<: *dcrt004}
+  loc5srt001: {<<: *dsrt001, x: "-2"}
+  loc5srt002: {<<: *dsrt002}
+  loc5ssw001: {<<: *dssw001}
+  loc5ssw002: {<<: *dssw002}
+  loc5ntp001: {<<: *dntp001}
+  loc5ntp002: {<<: *dntp002}
+  loc5slb001: {<<: *dslb001}
+  loc5slb002: {<<: *dslb002}
+  loc5rrt001: {<<: *drrt001}
+  loc5rrt002: {<<: *drrt002}
+  loc5rsw001: {<<: *drsw001}
+  loc5rsw002: {<<: *drsw002}
+  loc5ntp003: {<<: *dntp003}
+  loc5ntp004: {<<: *dntp004}
+  loc5rlb001: {<<: *drlb001}
+  loc5rlb002: {<<: *drlb002}
+
+  loc6crt001: {<<: *dcrt001, x: 13, y: 10}
+  loc6crt002: {<<: *dcrt002}
+  loc6crt003: {<<: *dcrt003}
+  loc6crt004: {<<: *dcrt004}
+  loc6srt001: {<<: *dsrt001}
+  loc6srt002: {<<: *dsrt002}
+  loc6ssw001: {<<: *dssw001}
+  loc6ssw002: {<<: *dssw002}
+  loc6ntp001: {<<: *dntp001}
+  loc6ntp002: {<<: *dntp002}
+  loc6slb001: {<<: *dslb001}
+  loc6slb002: {<<: *dslb002}
+
+  loc7crt001: {<<: *dcrt001, x: 18, y: 10}
+  loc7crt002: {<<: *dcrt002}
+  loc7crt003: {<<: *dcrt003}
+  loc7crt004: {<<: *dcrt004}
+  loc7srt001: {<<: *dsrt001}
+  loc7srt002: {<<: *dsrt002}
+  loc7ssw001: {<<: *dssw001}
+  loc7ssw002: {<<: *dssw002}
+  loc7ntp001: {<<: *dntp001}
+  loc7ntp002: {<<: *dntp002}
+  loc7slb001: {<<: *dslb001}
+  loc7slb002: {<<: *dslb002}
+
+  NA server1: {<<: *ntpClient, x: 0, y: 2, icon: "file_server" }
+  NA server2: {<<: *ntpClient, x: "+1", icon: "file_server" }
+  Network Devices: {<<: *ntpClient, x: "+1", icon: "router" }
+  NA server4: {<<: *ntpClient, x: 4, y: 1, icon: "file_server" }
+  NA server5: {<<: *ntpClient, x: "+1", icon: "file_server" }
+  NA outlet1: {<<: *ntpClient, x: 7, y: 0, icon: "smallbusiness" }
+  NA outlet2: {<<: *ntpClient, x: "+1", icon: "smallbusiness" }
+  NA outlet3: {<<: *ntpClient, x: "+1", icon: "smallbusiness" }
+
+  EMEA server1: {<<: *ntpClient, x: 11, y: 2, icon: "file_server" }
+  EMEA server4: {<<: *ntpClient, x: "+2", y: "-1", icon: "file_server" }
+  EMEA outlet1: {<<: *ntpClient, x: "+2", y: "-1",icon: "smallbusiness" }
+
+  APAC server1: {<<: *ntpClient, x: 16, y: 2, icon: "file_server" }
+  APAC server4: {<<: *ntpClient, x: "+2", y: "-1", icon: "file_server" }
+  APAC outlet1: {<<: *ntpClient, x: "+2", y: "-1",icon: "smallbusiness" }
+
+connection: &connection
+  color: "black"
+  stroke: "darkslategrey"
+  strokeWidth: .5
+ntpSync: &ntpSync
+  color: "blue"
+  stroke: "lightblue"
+  strokeWidth: .5
+  strokeDashArray: [1,1]
+ntpFlow: &ntpFlow
+  color: "blue"
+  stroke: "lightblue"
+  strokeWidth: .5
+
+connections:
+  - { <<: *ntpSync, endpoints: [allNTP:sync, allNTP:sync] }
+  - { <<: *connection, endpoints: [loc1rt, loc1rt] }
+  - { <<: *connection, endpoints: [loc1wrt003, loc1wsw001] }
+  - { <<: *connection, endpoints: [loc1wsw001, loc1ntp001] }
+  - { <<: *connection, endpoints: [loc1wan001, loc1ntp001] }
+  - { <<: *connection, endpoints: [loc2rt, loc2rt] }
+  - { <<: *connection, endpoints: [loc2wrt003, loc2wsw001] }
+  - { <<: *connection, endpoints: [loc2wsw001, loc2ntp001] }
+  - { <<: *connection, endpoints: [loc2wan001, loc2ntp001] }
+  - { <<: *connection, endpoints: [loc3rt, loc3rt] }
+  - { <<: *connection, endpoints: [loc3wrt003, loc3wsw001] }
+  - { <<: *connection, endpoints: [loc3wsw001, loc3ntp001] }
+  - { <<: *connection, endpoints: [loc3wan001, loc3ntp001] }
+  - { <<: *connection, endpoints: [antennas, gpsSat], strokeDashArray: [3,3] }
+  - { <<: *connection, endpoints: [mplsrtrs1, Enterprise MPLS 1], strokeDashArray: [3,3] }
+  - { <<: *connection, endpoints: [mplsrtrs2, Enterprise MPLS 2], strokeDashArray: [3,3] }
+
+  - { <<: *ntpFlow, endpoints: [naRlbs:Anycast IP, naOutlets] }
+  - { <<: *ntpFlow, endpoints: [loc4ntp001, naNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc4ntp002, naNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc5ntp001, naNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc5ntp002, naNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc4slb001:Anycast IP, naSNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc4slb002:Anycast IP, naSNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc5slb001:Anycast IP, naSNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc5slb002:Anycast IP, naSNTPClients] }
+
+  - { <<: *ntpFlow, endpoints: [emeaRlbs:Anycast IP, emeaOutlets] }
+  - { <<: *ntpFlow, endpoints: [loc6ntp001, emeaNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc6ntp002, emeaNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc4ntp001, emeaNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc4ntp002, emeaNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc6slb001:Anycast IP, emeaSNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc6slb002:Anycast IP, emeaSNTPClients] }
+
+  - { <<: *ntpFlow, endpoints: [apacRlbs:Anycast IP, apacOutlets] }
+  - { <<: *ntpFlow, endpoints: [loc7ntp001, apacNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc7ntp002, apacNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc5ntp001, apacNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc5ntp002, apacNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc7slb001:Anycast IP, apacSNTPClients] }
+  - { <<: *ntpFlow, endpoints: [loc7slb002:Anycast IP, apacSNTPClients] }
+
+  - { <<: *connection, endpoints: [loc4crt, loc4crt] }
+  - { <<: *connection, endpoints: [loc4crt003, loc4srt001] }
+  - { <<: *connection, endpoints: [loc4crt003, loc4srt002] }
+  - { <<: *connection, endpoints: [loc4crt003, loc4rrt001] }
+  - { <<: *connection, endpoints: [loc4crt003, loc4rrt002] }
+  - { <<: *connection, endpoints: [loc4crt004, loc4srt001] }
+  - { <<: *connection, endpoints: [loc4crt004, loc4srt002] }
+  - { <<: *connection, endpoints: [loc4crt004, loc4rrt001] }
+  - { <<: *connection, endpoints: [loc4crt004, loc4rrt002] }
+  - { <<: *connection, endpoints: [loc4srt001, loc4srt002] }
+  - { <<: *connection, endpoints: [loc4srt001, loc4ssw001] }
+  - { <<: *connection, endpoints: [loc4srt001, loc4ssw002] }
+  - { <<: *connection, endpoints: [loc4srt002, loc4ssw001] }
+  - { <<: *connection, endpoints: [loc4srt002, loc4ssw002] }
+  - { <<: *connection, endpoints: [loc4rrt001, loc4rsw001] }
+  - { <<: *connection, endpoints: [loc4rrt001, loc4rsw002] }
+  - { <<: *connection, endpoints: [loc4rrt002, loc4rsw001] }
+  - { <<: *connection, endpoints: [loc4rrt002, loc4rsw002] }
+  - { <<: *connection, endpoints: [loc4ssw001, loc4ntp001] }
+  - { <<: *connection, endpoints: [loc4ssw002, loc4ntp002] }
+  - { <<: *connection, endpoints: [loc4rsw001, loc4ntp003] }
+  - { <<: *connection, endpoints: [loc4rsw002, loc4ntp004] }
+  # LB to NTP servers
+  - { <<: *connection, endpoints: [loc4slb001, loc4ntp001] }
+  - { <<: *connection, endpoints: [loc4slb001, loc4ntp002] }
+  - { <<: *connection, endpoints: [loc4slb002, loc4ntp001] }
+  - { <<: *connection, endpoints: [loc4slb002, loc4ntp002] }
+  - { <<: *connection, endpoints: [loc4rlb001, loc4ntp003] }
+  - { <<: *connection, endpoints: [loc4rlb001, loc4ntp004] }
+  - { <<: *connection, endpoints: [loc4rlb002, loc4ntp003] }
+  - { <<: *connection, endpoints: [loc4rlb002, loc4ntp004] }
+
+  - { <<: *connection, endpoints: [loc5crt, loc5crt] }
+  - { <<: *connection, endpoints: [loc5crt003, loc5srt001] }
+  - { <<: *connection, endpoints: [loc5crt003, loc5srt002] }
+  - { <<: *connection, endpoints: [loc5crt003, loc5rrt001] }
+  - { <<: *connection, endpoints: [loc5crt003, loc5rrt002] }
+  - { <<: *connection, endpoints: [loc5crt004, loc5srt001] }
+  - { <<: *connection, endpoints: [loc5crt004, loc5srt002] }
+  - { <<: *connection, endpoints: [loc5crt004, loc5rrt001] }
+  - { <<: *connection, endpoints: [loc5crt004, loc5rrt002] }
+  - { <<: *connection, endpoints: [loc5srt001, loc5srt002] }
+  - { <<: *connection, endpoints: [loc5srt001, loc5ssw001] }
+  - { <<: *connection, endpoints: [loc5srt001, loc5ssw002] }
+  - { <<: *connection, endpoints: [loc5srt002, loc5ssw001] }
+  - { <<: *connection, endpoints: [loc5srt002, loc5ssw002] }
+  - { <<: *connection, endpoints: [loc5rrt001, loc5rsw001] }
+  - { <<: *connection, endpoints: [loc5rrt001, loc5rsw002] }
+  - { <<: *connection, endpoints: [loc5rrt002, loc5rsw001] }
+  - { <<: *connection, endpoints: [loc5rrt002, loc5rsw002] }
+  - { <<: *connection, endpoints: [loc5ssw001, loc5ntp001] }
+  - { <<: *connection, endpoints: [loc5ssw002, loc5ntp002] }
+  - { <<: *connection, endpoints: [loc5rsw001, loc5ntp003] }
+  - { <<: *connection, endpoints: [loc5rsw002, loc5ntp004] }
+   # LB to NTP servers
+  - { <<: *connection, endpoints: [loc5slb001, loc5ntp001] }
+  - { <<: *connection, endpoints: [loc5slb001, loc5ntp002] }
+  - { <<: *connection, endpoints: [loc5slb002, loc5ntp001] }
+  - { <<: *connection, endpoints: [loc5slb002, loc5ntp002] }
+  - { <<: *connection, endpoints: [loc5rlb001, loc5ntp003] }
+  - { <<: *connection, endpoints: [loc5rlb001, loc5ntp004] }
+  - { <<: *connection, endpoints: [loc5rlb002, loc5ntp003] }
+  - { <<: *connection, endpoints: [loc5rlb002, loc5ntp004] }
+
+
+  - { <<: *connection, endpoints: [loc6crt, loc6crt] }
+  - { <<: *connection, endpoints: [loc6crt003, loc6srt001] }
+  - { <<: *connection, endpoints: [loc6crt003, loc6srt002] }
+  - { <<: *connection, endpoints: [loc6crt004, loc6srt001] }
+  - { <<: *connection, endpoints: [loc6crt004, loc6srt002] }
+  - { <<: *connection, endpoints: [loc6srt001, loc6srt002] }
+  - { <<: *connection, endpoints: [loc6srt001, loc6ssw001] }
+  - { <<: *connection, endpoints: [loc6srt001, loc6ssw002] }
+  - { <<: *connection, endpoints: [loc6srt002, loc6ssw001] }
+  - { <<: *connection, endpoints: [loc6srt002, loc6ssw002] }
+  - { <<: *connection, endpoints: [loc6ssw001, loc6ntp001] }
+  - { <<: *connection, endpoints: [loc6ssw002, loc6ntp002] }
+   # LB to NTP servers
+  - { <<: *connection, endpoints: [loc6slb001, loc6ntp001] }
+  - { <<: *connection, endpoints: [loc6slb001, loc6ntp002] }
+  - { <<: *connection, endpoints: [loc6slb002, loc6ntp001] }
+  - { <<: *connection, endpoints: [loc6slb002, loc6ntp002] }
+
+  - { <<: *connection, endpoints: [loc7crt, loc7crt] }
+  - { <<: *connection, endpoints: [loc7crt003, loc7srt001] }
+  - { <<: *connection, endpoints: [loc7crt003, loc7srt002] }
+  - { <<: *connection, endpoints: [loc7crt004, loc7srt001] }
+  - { <<: *connection, endpoints: [loc7crt004, loc7srt002] }
+  - { <<: *connection, endpoints: [loc7srt001, loc7srt002] }
+  - { <<: *connection, endpoints: [loc7srt001, loc7ssw001] }
+  - { <<: *connection, endpoints: [loc7srt001, loc7ssw002] }
+  - { <<: *connection, endpoints: [loc7srt002, loc7ssw001] }
+  - { <<: *connection, endpoints: [loc7srt002, loc7ssw002] }
+  - { <<: *connection, endpoints: [loc7ssw001, loc7ntp001] }
+  - { <<: *connection, endpoints: [loc7ssw002, loc7ntp002] }
+   # LB to NTP servers
+  - { <<: *connection, endpoints: [loc7slb001, loc7ntp001] }
+  - { <<: *connection, endpoints: [loc7slb001, loc7ntp002] }
+  - { <<: *connection, endpoints: [loc7slb002, loc7ntp001] }
+  - { <<: *connection, endpoints: [loc7slb002, loc7ntp002] }
+
+group: &group
+  - { color: "black", stroke: "black", fill: "#EEEEEE", strokeWidth: .5, textLocation: leftMiddle }
+zone: &zone { <<: *group, fill: "#DDDDDD", strokeDashArray: [3,3] }
+hiddenGroup: &hiddenGroup
+  - { color: "none", stroke: "none", fill: "none" }
+groups:
+  allNTP: { <<: *hiddenGroup, name: "", members: [loc1ntp001, loc2ntp001, loc3ntp001, loc4ntp001, loc4ntp002, loc4ntp003, loc4ntp004, loc5ntp001, loc5ntp002, loc5ntp003, loc5ntp004, loc6ntp001, loc6ntp002, loc7ntp001, loc7ntp002] }
+  key: { <<: *group, name: "Key", textLocation: topLeft, fill: none, members: [Stratum 1 NTP, Stratum 2 NTP, NTP Client] }
+  antennas: { <<: *hiddenGroup, name: "", members: [loc1wan001, loc2wan001, loc3wan001] }
+  gpsSat: { <<: *hiddenGroup, name: "", members: [gpsSat001, gpsSat002] }
+  loc1: { <<: *group, name: "Location 1", members: [loc1rt, loc1wsw001, loc1ntp001, loc1wan001] }
+  loc1rt: { <<: *group, name: "",stroke: none, members: [loc1wrt001, loc1wrt002, loc1wrt003, loc1wrt004] }
+  loc2: { <<: *group, name: "Location 2", members: [loc2rt, loc2wsw001, loc2ntp001, loc2wan001] }
+  loc2rt: { <<: *group, name: "",stroke: none, members: [loc2wrt001, loc2wrt002, loc2wrt003, loc2wrt004] }
+  loc3: { <<: *group, name: "Location 3", members: [loc3rt, loc3wsw001, loc3ntp001, loc3wan001] }
+  loc3rt: { <<: *group, name: "",stroke: none, members: [loc3wrt001, loc3wrt002, loc3wrt003, loc3wrt004] }
+  mplsrtrs1: { <<: *hiddenGroup, name: "", members: [loc4crt001, loc5crt001, loc6crt001,loc7crt001, loc1wrt001, loc2wrt001, loc3wrt001] }
+  mplsrtrs2: { <<: *hiddenGroup, name: "", members: [loc4crt002, loc5crt002, loc6crt002, loc7crt002, loc1wrt002, loc2wrt002, loc3wrt002] }
+
+  loc4: { <<: *group, name: "Location 4", members: [loc4crt001, loc4ntp001, loc4rlb002] }
+  loc4crt: { <<: *hiddenGroup, name: "", members: [loc4crt001, loc4crt002, loc4crt003,loc4crt004] }
+  loc4ntp: { <<: *zone, name: "Zone 16", members: [loc4ntp001, loc4slb002] }
+
+  loc5: { <<: *group, name: "Location 5", members: [loc5crt001, loc5ntp001, loc5rlb002] }
+  loc5crt: { <<: *hiddenGroup, name: "", members: [loc5crt001, loc5crt002, loc5crt003,loc5crt004] }
+  loc5ntp: { <<: *zone, name: "Zone 16", members: [loc5ntp001, loc5slb002] }
+
+  loc6: { <<: *group, name: "Location 6", members: [loc6crt001, loc6slb002] }
+  loc6crt: { <<: *hiddenGroup, name: "", members: [loc6crt001, loc6crt002, loc6crt003,loc6crt004] }
+  loc6ntp: { <<: *zone, name: "Zone 16", members: [loc6ntp001, loc6ntp002, loc6slb002] }
+
+  loc7: { <<: *group, name: "Location 6", members: [loc7crt001, loc7slb002] }
+  loc7crt: { <<: *hiddenGroup, name: "", members: [loc7crt001, loc7crt002, loc7crt003,loc7crt004] }
+  loc7ntp: { <<: *zone, name: "Zone 16", members: [loc7ntp001, loc7ntp002, loc7slb002] }
+
+  naRlbs: {<<: *hiddenGroup, name: "NA Outlets", members: [loc4rlb001, loc4rlb002, loc5rlb001, loc5rlb002] }
+  naOutlets: {<<: *group, name: "NA Outlets", members: [NA outlet1, NA outlet2, NA outlet3] }
+  naNTPClients: {<<: *group, name: "NA NTP Clients", members: [NA server1, NA server2, Network Devices] }
+  naSNTPClients: {<<: *group, name: "NA SNTP Clients", members: [NA server4, NA server5] }
+
+  emeaRlbs: {<<: *hiddenGroup, name: "", members: [loc6slb001, loc6slb002] }
+  emeaOutlets: {<<: *group, name: "EMEA Outlets", members: [EMEA outlet1] }
+  emeaNTPClients: {<<: *group, name: "NA NTP Clients", members: [EMEA server1] }
+  emeaSNTPClients: {<<: *group, name: "NA SNTP Clients", members: [EMEA server4] }
+
+  apacRlbs: {<<: *hiddenGroup, name: "", members: [loc7slb001, loc7slb002] }
+  apacOutlets: {<<: *group, name: "APAC Outlets", members: [APAC outlet1] }
+  apacNTPClients: {<<: *group, name: "APAC NTP Clients", members: [APAC server1] }
+  apacSNTPClients: {<<: *group, name: "APAC SNTP Clients", members: [APAC server4] }

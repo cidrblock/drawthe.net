@@ -60,6 +60,7 @@ var drawConnections = function (svg, diagram, connections, icons, notes) {
           .style("stroke", connection.stroke || 'orange' )
           .style("fill", "none")
           .style("stroke-dasharray", connection.strokeDashArray || [0,0])
+          .style("stroke-width", connection.strokeWidth || 1 )
           .attr("d", d3.line()
                        .curve(curve)
                        .x(function(d) { return d.x; })
