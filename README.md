@@ -1,6 +1,8 @@
 ## DLD4E: Decent Looking Diagrams for Engineers
 
-![screenshot](https://github.com/cidrblock/dld4e/raw/master/screenshot.png)
+dld4e is a drawing tool which render a docuemtns yaml thia dn athe/
+
+![screenshot](https://github.com/cidrblock/dld4e/raw/master/screenshot_gc.png)
 
 
 ## Introduction
