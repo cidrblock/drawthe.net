@@ -320,7 +320,7 @@ See the example call 'Notes' for examples of these attributes.
    - Example: `{x: 0, y: "+5"}`
 
 
-Each note is an html flexbox. For a good explanation of flex-boxes: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+Each note is an html flexbox. For a good explanation of flex-boxes: https://css-tricks.com/snippets/css/a-guide-to-flexbox/  
 Notes can also contain markdown converted by: Showdown.js https://github.com/showdownjs/showdown/wiki/Showdown's-Markdown-syntax
 
 ## Built with great open source software
