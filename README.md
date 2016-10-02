@@ -128,6 +128,10 @@ Icons have the following basic attributes:
 
 Each icon and icon family may behave differently when the fill and stroke are applied, review the icon cut sheets to see the icons available for each family with the iconFill and iconStroke set.
 
+### Notes
+
+Notes can be plain text or markdown.  See the 'notes' example for the use of markdown.  (Indentation is critical when using markdown for notes.)
+
 ## Additional examples
 
 http://dld4e.com
@@ -136,11 +140,41 @@ Click on the examples menu for a sample of different diagram layouts and styles.
 
 ## API Reference
 
-flexDirection: (defualt: column)
-  row: left to right in ltr; right to left in rtl
-  row-reverse: right to left in ltr; left to right in rtl
--column: same as row but top to bottom
--column-reverse: same as row-reverse but bottom to top
+### Diagram
+`diagram`:
+- `aspectRatio`: (defualt 1:1) The width:height ratio of the diagram.
+- `columns`: (default: 10) The number of columns in the diagram.
+- `fill`: (default: orange) The background color of the diagram.
+- `gridLines:` (default: true)
+  - `true`: Show the gridlines.
+  - `false`: Hide the gridlines.
+- `gridPaddingInner`: (default: .4) The ration of the icon box size to the spacing between the boxes.
+- `groupPadding`: (default: .33) The percentage of the space between icons to use for the group boundary.
+- `iconTextRatio`: (default: .33) The percentage of the icon box to allocate to the icon text.
+- `margins`:
+  - `top`: (default: 20) The top margin of the diagram in px.
+  - `right`: (default: 20) The right side margin in px.
+  - `bottom`: (default: 50) The bottom margin in px.
+  - `left`: (default: 20) The left side margin in px.
+  - Example: `margins: {top: 20, right: 20, bottom: 50, left: 20 }`
+- `rows:` (defualt: 10) The number of rows.
+
+### Title  
+`title`:
+- `text`: "Decent looking diagrams for engineers",
+- `subText`: "More information can be found at http://github.com/cidrblock/dld4e",
+- `author`: "Bradley A. Thornton",
+- `company`: "Self",
+- `date`: new Date().toLocaleDateString(),
+- `version`: 1.01,
+- `color`: "orange",
+- `stroke`: "orange",
+- `fill`: "orange",
+- `heightPercentage`: 6, // percent of total height
+- `logoUrl`: "build/images/radial.png",
+- `logoFill`: "orange"
+
+
 
 ## Tests
 
