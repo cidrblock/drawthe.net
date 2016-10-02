@@ -80,15 +80,10 @@ Hopefully, the following diagram is created.
 The YAML document has major sections which describe the diagram. These are the basic root types:
 
 **diagram**: The page on which the diagram will be drawn.
-
 **title**: Information about the diagram.
-
 **icons**:  Objects to be placed on the diagram.
-
 **notes**: Text boxes with information.
-
 **connections**:  Lines drawn between objects.
-
 **groups**: Collections of objects.
 
 ### Custom sections
