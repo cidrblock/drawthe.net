@@ -43,6 +43,12 @@ groupDefaults: &groupDefaults
 connectionDefaults: &connectionDefaults
   color: "black"
   stroke: "black"
+noteDefaults: &noteDefaults
+  color: black
+  fill: white
+  stroke: black
+  xAlign: center
+  yAlign: center
 # Add the icons
 icons:
   dns: {<<: *iconDefaults, icon: net_route53_hostedzone, x: 2, y: 3 }
@@ -57,19 +63,77 @@ groups:
 connections:
   - { <<: *connectionDefaults, endpoints: [dns, lb] }
   - { <<: *connectionDefaults, endpoints: [lb, servers] }
+notes:
+  note1:
+    <<: *noteDefaults
+    x: 0
+    y: 3
+    text: "##Note\n\nThis is the text for the note."
 ```
+
+Hopefully, the following diagram is created.
 
 ![screenshot](https://github.com/cidrblock/dld4e/raw/master/quick_start.png)
 
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+## Overview
 
-## Motivation
+The YAML document has major sections which describe the diagram. These are the basic root types:
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+**diagram**: The page on which the diagram will be drawn.
+**title**: Information about the diagram.
+**icons**:  Objects to be placed on the diagram.
+**notes**: Text boxes with information.
+**connections**:  Lines drawn between objects.
+**groups**: Collections of objects.
 
-## Installation
+### Custom sections
+The YAML document above has the following additional custom sections:
 
-Provide code examples and explanations of how to get the project.
+**iconDefaults**: A YAML anchor which describes common icon attributes which will be inherited later.
+**groupDefaults:** A YAML anchor which describes common group attributes which will be inherited later.
+**connectionDefaults:** A YAML anchor which describes common connection attributes which will be inherited later.
+**noteDefaults:** A YAML anchor which describes common note attributes which will be inherited later.
+
+YAML reference: https://en.wikipedia.org/wiki/YAML
+
+### Placement
+
+Icons and notes have the following attributes, which allows the object to be placed and sized on the place.
+
+**x:** The X coordinate value.
+**y:** The Y coordinate value.
+**w:** The width of the object, in X coordinate steps, extending right toward the right side of the screen.
+**h:** The height of the object, in Y coordinate steps, extending down toward the bottom of the diagram.
+
+
+### Basic styling
+Common to most entities are the following:
+
+**color:** The color of the text.
+**fill:** Sets the color inside the object.
+**stroke:** Sets the color of the line drawn around the object.
+
+### Icons
+The following icon families are available:
+- aws
+- azureCloud
+- azureEnterprise
+- cisco
+
+Icons have the following basic attributes:
+
+**iconFamily:** The family from which to pull the icon.
+**icon:** The name of the icon within the family.
+**iconFill:** Set the color inside the icon.
+**iconStroke:** Sets the color of the line drawn within the icon.
+
+Each icon and icon family may behave differently when the fill and stroke are applied, review the icon cut sheets to see the icons available for each family with the iconFill and iconStroke set.
+
+## Additional examples
+
+http://dld4e.com
+
+Click on the examples menu for a sample of different diagram layouts and styles.
 
 ## API Reference
 
@@ -78,6 +142,9 @@ Depending on the size of the project, if it is small and simple enough the refer
 ## Tests
 
 Describe and show how to run the tests with code examples.
+
+## Built with these great libraries
+
 
 ## Contributors
 
