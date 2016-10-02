@@ -179,6 +179,9 @@ Click on the examples menu for a sample of different diagram layouts and styles.
 - `version`: (default: 1.01) The version of the diagram.
 
 ### Icons
+
+The icon's key will be used as the text value, therefore icon names have to be unique.
+
 `icons`:
 - `color`: (default: orange) The icon text color.
 - `fill`: (default: orange) The fill color for the icon bounding box.
@@ -217,6 +220,58 @@ Click on the examples menu for a sample of different diagram layouts and styles.
    - `"+n"`: A value added from the previous icon's x value.
    - `"-n"`: A value subtracted from the previous icon's x value.
    - Example: `{x: 0, y: "+5"}`
+
+### Groups
+
+Groups are drawn in order, so place groups that should have a lower z-index at the top of the group array. A group is the smallest rectangle that includes it's members, so in the case of large groups, it will only be necessary to include the upper-left and lower-right most members.
+
+`groups`:
+- `color`: (default: orange) The group text color.
+- `fill`: (default: orange) The fill color for the group.
+- `members`: (default: none) An array of members for the group.
+  - Note: A member can be another group or icon.
+  - Example: ` inner: { <<: *group, stroke: none, fill: "white", textLocation: "rightMiddle", members: [T1, T4, NSG1] }`
+- `name`:
+- `stroke`: (default: orange) The color of the group's bounding box line.
+- `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing between the dashes in px.
+- `textLocation`: (default: bottomMiddle) The location of the text for the icon.
+  - `bottomLeft`: Position the text along the bottom, in the left corner.
+  - `bottomMiddle`: Position the text along the bottom, centered.
+  - `bottomRight`: Position the text along the bottom, in the right corner.
+  - `center`: Position the text in the center of the bounding box.
+  - `leftBottom`: Position the text along the left side, in the bottom corner.
+  - `leftMiddle`: Position the text along the left side, centered.
+  - `leftTop`: Position the text along the left side, in the top corner.
+  - `rightBottom`: Position the text along the right side, in the bottom corner.
+  - `rightMiddle`: Position the text along the right side, centered.
+  - `rightTop`: Position the text along the right side, in the top corner.
+  - `topLeft`: Position the text along the top, in the left corner.
+  - `topMiddle`: Position the text along the top, centered.
+  - `topRight`: Position the text along the top, in the right corner.
+  - Example: `textLocation: rightMiddle`
+
+### Connections
+
+Connections are an array of individual connections.
+
+`connections`:
+
+- `color`: (default: orange) The connection text color.
+- `curve`: (default: curveLinear) The type of connection to draw.
+  - `curveLinear`: Draws a line directly connecting the endpoints.
+  - `curveStep`: Draws a line consisting of alternating horizontal and vertical lines. The y-value changes at the midpoint of each pair of adjacent x-values.
+  - `stepAfter`: Draws a line consisting of alternating horizontal and vertical lines. The y-value changes after the x-value.
+  - `stepBefore`: Draws a line consisting of alternating horizontal and vertical lines. The y-value changes before the x-value.
+- `endpoints`: An array of icons or groups to draw connections between.
+  - Note: When an endpoint is a group, lines will be drawn to each group member.
+  - Example: `endpoints: [spines:40Gb,leaves:40Gb]`
+  - Example: `endpoints: [allNTP:sync, allNTP:sync]`
+`
+- **labels:** Labels can be appended to the endpoint names and will be added to the line.
+  Example: `endpoints: ["router:eth0", "firewall:eth1"]`
+- `stroke`: (default: orange) The line color for the connection.
+- `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing
+
 
 
 
