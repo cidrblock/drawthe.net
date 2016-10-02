@@ -79,23 +79,20 @@ Hopefully, the following diagram is created.
 
 The YAML document has major sections which describe the diagram. These are the basic root types:
 
-**diagram**: The page on which the diagram will be drawn.
-**title**: Information about the diagram.
-**icons**:  Objects to be placed on the diagram.
-**notes**: Text boxes with information.
-**connections**:  Lines drawn between objects.
-**groups**: Collections of objects.
+**diagram**: The page on which the diagram will be drawn.  
+**title**: Information about the diagram.  
+**icons**:  Objects to be placed on the diagram.  
+**notes**: Text boxes with information.  
+**connections**:  Lines drawn between objects.  
+**groups**: Collections of objects.  
 
 ### Custom sections
 The YAML document above has the following additional custom sections:
 
-**iconDefaults**: A YAML anchor which describes common icon attributes which will be inherited later.
-
-**groupDefaults:** A YAML anchor which describes common group attributes which will be inherited later.
-
-**connectionDefaults:** A YAML anchor which describes common connection attributes which will be inherited later.
-
-**noteDefaults:** A YAML anchor which describes common note attributes which will be inherited later.
+**iconDefaults**: A YAML anchor which describes common icon attributes which will be inherited later.  
+**groupDefaults:** A YAML anchor which describes common group attributes which will be inherited later.  
+**connectionDefaults:** A YAML anchor which describes common connection attributes which will be inherited later.  
+**noteDefaults:** A YAML anchor which describes common note attributes which will be inherited later.  
 
 YAML reference: https://en.wikipedia.org/wiki/YAML
 
@@ -103,23 +100,17 @@ YAML reference: https://en.wikipedia.org/wiki/YAML
 
 Icons and notes have the following attributes, which allows the object to be placed and sized on the place.
 
-**x:** The X coordinate value.
-
-**y:** The Y coordinate value.
-
-**w:** The width of the object, in X coordinate steps, extending right toward the right side of the screen.
-
-**h:** The height of the object, in Y coordinate steps, extending down toward the bottom of the diagram.
-
+**x:** The X coordinate value.  
+**y:** The Y coordinate value.  
+**w:** The width of the object, in X coordinate steps, extending right toward the right side of the screen.  
+**h:** The height of the object, in Y coordinate steps, extending down toward the bottom of the diagram.  
 
 ### Basic styling
 Common to most entities are the following:
 
-**color:** The color of the text.
-
-**fill:** Sets the color inside the object.
-
-**stroke:** Sets the color of the line drawn around the object.
+**color:** The color of the text.  
+**fill:** Sets the color inside the object.  
+**stroke:** Sets the color of the line drawn around the object.  
 
 ### Icons
 The following icon families are available:
@@ -130,13 +121,10 @@ The following icon families are available:
 
 Icons have the following basic attributes:
 
-**iconFamily:** The family from which to pull the icon.
-
-**icon:** The name of the icon within the family.
-
-**iconFill:** Set the color inside the icon.
-
-**iconStroke:** Sets the color of the line drawn within the icon.
+**iconFamily:** The family from which to pull the icon.  
+**icon:** The name of the icon within the family.  
+**iconFill:** Set the color inside the icon.  
+**iconStroke:** Sets the color of the line drawn within the icon.  
 
 Each icon and icon family may behave differently when the fill and stroke are applied, review the icon cut sheets to see the icons available for each family with the iconFill and iconStroke set.
 
@@ -149,8 +137,8 @@ Click on the examples menu for a sample of different diagram layouts and styles.
 ## API Reference
 
 flexDirection: (defualt: column)
--row: left to right in ltr; right to left in rtl
--row-reverse: right to left in ltr; left to right in rtl
+  row: left to right in ltr; right to left in rtl
+  row-reverse: right to left in ltr; left to right in rtl
 -column: same as row but top to bottom
 -column-reverse: same as row-reverse but bottom to top
 
