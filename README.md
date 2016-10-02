@@ -161,18 +161,62 @@ Click on the examples menu for a sample of different diagram layouts and styles.
 
 ### Title  
 `title`:
-- `text`: "Decent looking diagrams for engineers",
-- `subText`: "More information can be found at http://github.com/cidrblock/dld4e",
-- `author`: "Bradley A. Thornton",
-- `company`: "Self",
-- `date`: new Date().toLocaleDateString(),
-- `version`: 1.01,
-- `color`: "orange",
-- `stroke`: "orange",
-- `fill`: "orange",
-- `heightPercentage`: 6, // percent of total height
-- `logoUrl`: "build/images/radial.png",
-- `logoFill`: "orange"
+- `author`: (default: "Bradley A. Thornton") The author of the diagram.
+- `color`: (default: orange) The title text color.
+- `company`: (default: Self) The company name.
+- `date`: (default: `new Date().toLocaleDateString()`) The date for the diagram.
+- `fill`: (default: orange) The title fill color.
+- `heightPercentage`: (default: 6) The percentage of the diagram height to use for the title.
+- `logoFill`: (default: orange) The color behind the logo.
+- `logoUrl`: (default: `build/images/radial.png`) The URL for the logo.
+- `stroke`: (default: orange) The line color for the title.
+- `subText`: The title subtext.
+- `text`: The title text.
+- `type`: (default: box). The title type.
+  - `box`: Draw a box around the title using the stroke color.
+  - `bar`: Draw a line above the title using the stroke color.
+  - Example: `type: bar`
+- `version`: (default: 1.01) The version of the diagram.
+
+### Icons
+`icons`:
+- `color`: (default: orange) The icon text color.
+- `fill`: (default: orange) The fill color for the icon bounding box.
+- `h`: (default: 1) The height of the icon.
+- `icon`: (default: none) The name of the icon in the icon family.
+- `iconFamily`: (default: none) The name of the icon family from which to get the icon.
+- `iconFill`: (default: use the colors specified in the icon's svg file) The fill color for the icon.
+- `iconStroke`: (default: use the colors specified in the icons's svg file) The color of the lines in the icon.
+- `iconStrokeWidth`: (default: use the colors specified in the icons's svg file) The size of the lines within the icon.
+- `preserveWhite`: (default: none) Don't change white in the source svg file. (this is useful for the cisco icon family)
+- `stroke`: (default: orange) The color of the icon bounding box line.
+- `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing between the dashes in px.
+- `textLocation`: (default: bottomMiddle) The location of the text for the icon.
+  - `bottomLeft`: Position the text along the bottom, in the left corner.
+  - `bottomMiddle`: Position the text along the bottom, centered.
+  - `bottomRight`: Position the text along the bottom, in the right corner.
+  - `center`: Position the text in the center of the bounding box.
+  - `leftBottom`: Position the text along the left side, in the bottom corner.
+  - `leftMiddle`: Position the text along the left side, centered.
+  - `leftTop`: Position the text along the left side, in the top corner.
+  - `rightBottom`: Position the text along the right side, in the bottom corner.
+  - `rightMiddle`: Position the text along the right side, centered.
+  - `rightTop`: Position the text along the right side, in the top corner.
+  - `topLeft`: Position the text along the top, in the left corner.
+  - `topMiddle`: Position the text along the top, centered.
+  - `topRight`: Position the text along the top, in the right corner.
+  - Example: `textLocation: rightMiddle`
+- `w`: (default: 1) The width of the icon.
+- `x`: (default: none) The x-coordinate location of the icon.
+  - `n`: An absolute position.
+  - `"+n"`: A value added from the previous icon's x value.
+  - `"-n"`: A value subtracted from the previous icon's x value.
+  - Example: `{x: "+5", y: 0}`
+- `y`: (default: none) The y-coordinate location of the icon.
+   - `n`: An absolute position.
+   - `"+n"`: A value added from the previous icon's x value.
+   - `"-n"`: A value subtracted from the previous icon's x value.
+   - Example: `{x: 0, y: "+5"}`
 
 
 
