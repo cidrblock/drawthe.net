@@ -1,7 +1,0 @@
-language: node_js
-node_js:
- - '0.12'
- - stable
-before_script: "make dev-deps"
-script: "make test"
-sudo: false

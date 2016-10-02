@@ -138,6 +138,12 @@ http://dld4e.com
 
 Click on the examples menu for a sample of different diagram layouts and styles.
 
+### Troubleshooting
+
+The most common mistake I've made is in the YAML syntax.  The developer tools window in chrome should give you an idea of what might be wrong.
+
+It's also handy to comment out lines (with a #) to see where the issue may be.
+
 ## API Reference
 
 ### Diagram
