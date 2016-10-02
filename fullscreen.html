@@ -42,8 +42,9 @@
 <script type="text/javascript">
 
   function dodraw(){
-    var design = window.opener.design;
+    var design = clone(window.opener.design);
     draw(design);
+    document.title = 'dld4e: ' + design.title.text
   }
 
   window.onload=dodraw();

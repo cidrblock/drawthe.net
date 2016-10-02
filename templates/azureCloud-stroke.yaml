@@ -9,7 +9,7 @@ title:
   type: bar
   color: black
   logoFill: none
-  text: "azureCloud icons"
+  text: "azureCloud icons (iconStroke)"
   stroke: black
   fill: none
 icon:

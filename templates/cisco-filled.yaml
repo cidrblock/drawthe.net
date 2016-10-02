@@ -9,7 +9,7 @@ title:
   type: bar
   color: black
   logoFill: white
-  text: "Cisco Icons"
+  text: "Cisco icons (iconFill)"
   stroke: black
   fill: none
 icon:

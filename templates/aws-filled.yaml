@@ -9,7 +9,7 @@ title:
   type: bar
   color: black
   logoFill: none
-  text: "aws icons"
+  text: "aws icons (iconFill)"
   stroke: black
   fill: none
 icon:

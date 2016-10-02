@@ -4,6 +4,7 @@ diagram:
   columns: 7
   gridLines: false
 title:
+  text: Labels
   heightPercentage: 0
 azure: &azure
   color: "#004BAF"

@@ -57,7 +57,7 @@
             <div class="btn-toolbar pull-right">
               <div class="btn-group" uib-dropdown is-open="status.isopen1">
                 <button id="examples" type="button" class="btn btn-black btn-xs pull-right" uib-dropdown-toggle ng-disabled="disabled">
-                  examples<span class="caret"></span>
+                  Examples<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="examples">
                   <li role="menuitem" ng-click="example('curves.yaml')"><a href="#">Curves</a></li>
@@ -74,26 +74,26 @@
               </div>
               <div class="btn-group" uib-dropdown is-open="status.isopen2">
                 <button id="foo" type="button" class="btn btn-black btn-xs pull-right" uib-dropdown-toggle ng-disabled="disabled">
-                  icons<span class="caret"></span>
+                  Icons<span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="icons">
                   <li role="menuitem" ng-click="drawIconFamily('aws-native')"><a href="#">aws</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('aws-filled')"><a href="#">aws (filled)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('aws-stroke')"><a href="#">aws (stoke)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('aws-filled')"><a href="#">aws (iconFill)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('aws-stroke')"><a href="#">aws (iconStroke)</a></li>
                   <li role="menuitem" ng-click="drawIconFamily('cisco-native')"><a href="#">cisco</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('cisco-filled')"><a href="#">cisco (filled)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('cisco-stroke')"><a href="#">cisco (stroke)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('cisco-filled')"><a href="#">cisco (iconFill)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('cisco-stroke')"><a href="#">cisco (iconStroke)</a></li>
                   <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-native')"><a href="#">azureEnterprise</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-filled')"><a href="#">azureEnterprise (filled)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-stroke')"><a href="#">azureEnterprise (stroke)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-filled')"><a href="#">azureEnterprise (iconFill)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-stroke')"><a href="#">azureEnterprise (iconStroke)</a></li>
                   <li role="menuitem" ng-click="drawIconFamily('azureCloud-native')"><a href="#">azureCloud</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureCloud-filled')"><a href="#">azureCloud (filled)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureCloud-stroke')"><a href="#">azureCloud (stroke)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('azureCloud-filled')"><a href="#">azureCloud (iconFill)</a></li>
+                  <li role="menuitem" ng-click="drawIconFamily('azureCloud-stroke')"><a href="#">azureCloud (iconStroke)</a></li>
 
                 </ul>
               </div>
               <button id="draw" type="submit" class="btn btn-black btn-xs pull-right" ng-click="drawClick(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
-                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true" ></span> draw
+                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true" ></span> Draw
               </button>
             </div>
           </div>
@@ -108,7 +108,7 @@
                   <span class="fa fa-github"></span> Github
                 </a>
                 <button type="submit" class="btn btn-black btn-xs" ng-click="opend3js()">
-                   <span class="glyphicon glyphicon glyphicon-new-window" aria-hidden="true"></span>fullscreen
+                   <span class="glyphicon glyphicon glyphicon-new-window" aria-hidden="true"></span> Fullscreen
                 </button>
               </div>
           </div>
@@ -194,12 +194,13 @@ function mainController($scope, $http, $sce, $log, $window) {
     $http.get("examples/" + file)
          .then(function(res){
             $scope.acedata = res.data;
-            $scope.drawClick()
+            $scope.drawClick();
           });
   }
   $scope.drawClick = function() {
     $window.design = jsyaml.load($scope.acedata) || {};
     draw($window.design);
+    $window.document.title = 'dld4e: ' + window.design.title.text
   }
   $scope.saveFile = function() {
     var data = $scope.acedata,

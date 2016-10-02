@@ -9,7 +9,7 @@ title:
   type: bar
   color: black
   logoFill: none
-  text: "azureEnterprise icons"
+  text: "azureEnterprise icons (iconStroke)"
   fill: none
   stroke: black
 icon:
