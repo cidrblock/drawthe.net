@@ -252,7 +252,7 @@ Groups are drawn in order, so place groups that should have a lower z-index at t
 
 ### Connections
 
-Connections are an array of individual connections.
+Connections are an array of individual connections. The order is insignificant because connections will always be drawn from left to right.
 
 `connections`:
 
@@ -260,44 +260,99 @@ Connections are an array of individual connections.
 - `curve`: (default: curveLinear) The type of connection to draw.
   - `curveLinear`: Draws a line directly connecting the endpoints.
   - `curveStep`: Draws a line consisting of alternating horizontal and vertical lines. The y-value changes at the midpoint of each pair of adjacent x-values.
-  - `stepAfter`: Draws a line consisting of alternating horizontal and vertical lines. The y-value changes after the x-value.
-  - `stepBefore`: Draws a line consisting of alternating horizontal and vertical lines. The y-value changes before the x-value.
-- `endpoints`: An array of icons or groups to draw connections between.
+  - `curveStepAfter`: Draws a line consisting of alternating horizontal and vertical lines. The y-value changes after the x-value.
+  - `curveStepBefore`: Draws a line consisting of alternating horizontal and vertical lines. The y-value changes before the x-value.
+- `endpoints`: An array of 2 icons, groups or notes to draw connections between.
   - Note: When an endpoint is a group, lines will be drawn to each group member.
   - Example: `endpoints: [spines:40Gb,leaves:40Gb]`
   - Example: `endpoints: [allNTP:sync, allNTP:sync]`
-`
 - **labels:** Labels can be appended to the endpoint names and will be added to the line.
   Example: `endpoints: ["router:eth0", "firewall:eth1"]`
 - `stroke`: (default: orange) The line color for the connection.
 - `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing
 
+Curve definitions are directly from d3.js: https://github.com/d3/d3-shape (only a subset are implemented.)
+
+### Notes
+
+See the example call 'Notes' for examples of these attributes.
+
+`notes`:
+
+- `alignItems`: (default: flex-start) This defines the default behaviour for how flex items are laid out along the cross axis on the current line. Think of it as the justify-content version for the cross-axis (perpendicular to the main-axis).
+  - `flex-start`: cross-start margin edge of the items is placed on the cross-start line
+  - `flex-end`: cross-end margin edge of the items is placed on the cross-end line
+  - `center`: items are centered in the cross-axis
+  - `baseline`: items are aligned such as their baselines align
+  - `stretch`: stretch to fill the container (still respect min-width/max-width)
+- `color`: (default: orange) The note text color.
+- `fill`: (default: orange) The fill color for the note bounding box.
+- `flexDirection`: (defualt: column) The direction of the note.
+  - `row`: left to right
+  - `row-reverse`: right to left
+  - `column`: stop to bottom
+  - `column-reverse`: same as row-reverse but bottom to top
+- `h`: (default: 1) The height of the note.
+- `justifyContent`: (default: flex-start) This defines the alignment along the main axis.
+  - `flex-start`: items are packed toward the start line
+  - `flex-end`: items are packed toward to end line
+  - `center`: items are centered along the line
+  - `space-between`: items are evenly distributed in the line; first item is on the start line, last item on the end line
+  - `space-around`: items are evenly distributed in the line with equal space around them. Note that visually the spaces aren't equal, since all the items have equal space on both sides. The first item will have one unit of space against the container edge, but two units of space between the next item because that next item has its own spacing that applies.
+- `stroke`: (default: orange) The color of the note bounding box line.
+- `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing between the dashes in px.
+- `text`: The text for the note, can be plain or markdown.
+- `textAlign`: (default: left) The text-align property specifies the horizontal alignment of text in an element.
+  - `left`:	Aligns the text to the left
+  - `right`:	Aligns the text to the right
+  - `center`:	Centers the text
+  - `justify`:	Stretches the lines so that each line has equal width (like in newspapers and magazines)
+- `w`: (default: 1) The width of the note.
+- `x`: (default: none) The x-coordinate location of the note.
+  - `n`: An absolute position.
+  - `"+n"`: A value added from the previous note's x value.
+  - `"-n"`: A value subtracted from the previous note's x value.
+  - Example: `{x: "+5", y: 0}`
+- `y`: (default: none) The y-coordinate location of the note.
+   - `n`: An absolute position.
+   - `"+n"`: A value added from the previous note's x value.
+   - `"-n"`: A value subtracted from the previous note's x value.
+   - Example: `{x: 0, y: "+5"}`
 
 
+Each note is an html flexbox. For a good explanation of flex-boxes: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+Notes can also contain markdown converted by: Showdown.js https://github.com/showdownjs/showdown/wiki/Showdown's-Markdown-syntax
 
-## Tests
+## Built with great open source software
 
-Describe and show how to run the tests with code examples.
+- **Ace editor:** https://ace.c9.io
+- **Angular:** https://angularjs.org
+- **D3.js:** https://d3js.org
+- **js-yaml:** https://github.com/nodeca/js-yaml
+- **Showdown:** https://github.com/showdownjs/showdown
+- **Prettify:** https://github.com/google/code-prettify
 
-## Built with these great libraries
+## Contributing
 
+Please do.
 
-## Contributors
+## Versioning
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+1.0 Initial release.
+
+## Authors
+
+* **Bradley Thornton** - *Initial work* - [cidrblock](https://github.com/cidrblock)
 
 ## License
 
-A short snippet describing the license (MIT, Apache, etc.)
+This project is licensed under the MIT License. [MIT License](http://www.opensource.org/licenses/MIT).
 
+------------------------
 
+### Additional development information
 
-### development
-npm install
-grunt
-
-
-## Converting icons
+#### Converting icons
 1. copy the icons into a images/xxxx directory
 2. clean up the names a little
 3. convert from svg to eps and back to svg (this sizes the svg to the bounding window of the icon)
