@@ -1,15 +1,65 @@
 ## DLD4E: Decent Looking Diagrams for Engineers
 
-dld4e is a drawing tool which render a docuemtns yaml thia dn athe/
+DLD4E draws network diagrams dynamically from a text file describing the placement, layout and icons. Given a yaml file describing the hierarchy of the network and it's connections, a resulting diagram will be created.
 
 ![screenshot](https://github.com/cidrblock/dld4e/raw/master/screenshot_gc.png)
 
 
-## Introduction
+## Motivation
 
-At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+Complex network diagrams typically involve specific place of icons, connections and labels using a tool like Visio or OmniGraffle using a mouse and constantly zooming in and out for single pixel placement.  The goal behind DLD4E, was to be able to describe the digram in a text file and have it rendered in SVG in the browser. In short, be able make network diagrams as fast as it could be done a dry erase board.  
 
-## Code Example
+## Quick start
+
+http://dld4e.com
+
+Clear the editor and paste the following in, then click draw or ctrl-enter.
+
+```yaml
+diagram:
+  fill: "white"
+  rows: 5
+  columns: 5
+title:
+  author: Your Name
+  company: Comapny Name
+  color: black
+  logoFill: white
+  logoUrl: https://upload.wikimedia.org/wikipedia/commons/b/b3/Wikipedia-logo-v2-en.svg
+  text: Hello world
+  subText: additional information about this diagram
+  type: bar
+  stroke: black
+# Set defaults for icons, groups, connections
+iconDefaults: &iconDefaults
+  color: black
+  fill: white
+  stroke: black
+  iconFamily: aws
+groupDefaults: &groupDefaults
+  fill: "none"
+  color: black
+  stroke: black
+connectionDefaults: &connectionDefaults
+  color: "black"
+  stroke: "black"
+# Add the icons
+icons:
+  dns: {<<: *iconDefaults, icon: net_route53_hostedzone, x: 2, y: 3 }
+  lb: {<<: *iconDefaults, icon: cmpt_elasticloadbalancing, y: "-1" }
+  server1: {<<: *iconDefaults, icon: cmpt_ec2_instance, x: "-1", y: "-1" }
+  server2: {<<: *iconDefaults, icon: cmpt_ec2_instance, x: "+1" }
+  server3: {<<: *iconDefaults, icon: cmpt_ec2_instance, x: "+1" }
+# Add the gorups
+groups:
+  servers: { <<: *groupDefaults, name: Web Servers, members: [server1, server2, server3] }
+# Add conneections
+connections:
+  - { <<: *connectionDefaults, endpoints: [dns, lb] }
+  - { <<: *connectionDefaults, endpoints: [lb, servers] }
+```
+
+![screenshot](https://github.com/cidrblock/dld4e/raw/master/quick_start.png)
 
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
 
