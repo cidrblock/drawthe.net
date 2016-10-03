@@ -1,4 +1,4 @@
-## drawthe.net: Decent Looking Diagrams for Engineers
+## drawthe.net: Decent looking diagrams for engineers.
 
 drawthe.net draws network diagrams dynamically from a text file describing the placement, layout and icons. Given a yaml file describing the hierarchy of the network and it's connections, a resulting diagram will be created.
 
