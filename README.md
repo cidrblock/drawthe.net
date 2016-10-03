@@ -9,7 +9,7 @@ DLD4E draws network diagrams dynamically from a text file describing the placeme
 
 Complex network diagrams typically involve specific place of icons, connections and labels using a tool like Visio or OmniGraffle using a mouse and constantly zooming in and out for single pixel placement.  The goal behind DLD4E, was to be able to describe the digram in a text file and have it rendered in SVG in the browser.  
 
-In short, *be able to draw network diagrams as fast as it could be done on a dry erase board without ever touching a mouse.*
+I simply wanted to be able to draw network diagrams as fast as it could be done on a dry-erase board without using a mouse.
 
 ## Quick start
 
@@ -321,11 +321,26 @@ See the example call 'Notes' for examples of these attributes.
   - `"+n"`: A value added from the previous note's x value.
   - `"-n"`: A value subtracted from the previous note's x value.
   - Example: `{x: "+5", y: 0}`
+- `xAlign`: (default: left) Positions the text along the x axis.
+  - `left`: Align the text to the left side of the note's bounding box.
+    - Note: This sets `textAlign: "left", alignItems: "flex-start"`
+  - `right`: Align the text to the right side of the note's bounding box.
+    - Note: This sets `textAlign: "right", alignItems: "flex-end"`
+  - `center`: Align the text in the middle of the note's bounding box along the x axis.
+    - Note: This sets `textAlign: "center", alignItems: "center"`
 - `y`: (default: none) The y-coordinate location of the note.
    - `n`: An absolute position.
    - `"+n"`: A value added from the previous note's x value.
    - `"-n"`: A value subtracted from the previous note's x value.
    - Example: `{x: 0, y: "+5"}`
+- `yAlign`: (default: top) Positions the text along the y axis.
+  - `top`: Align the text to the top of the note's bounding box.
+    - Note: This sets `justifyContent: "flex-start"`
+  - `bottom`: Align the text to the bottom side of the note's bounding box.
+    - Note: This sets `justifyContent: "flex-end"`
+  - `center`: Align the text in the middle of the note's bounding box along the y axis.
+    - Note: This sets `justifyContent: "center"`
+
 
 
 Each note is an html flexbox. For a good explanation of flex-boxes: https://css-tricks.com/snippets/css/a-guide-to-flexbox/  
