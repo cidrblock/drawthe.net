@@ -1,4 +1,4 @@
-## DLD4E: Decent Looking Diagrams for Engineers
+## drawthe.net: Decent Looking Diagrams for Engineers
 
 DLD4E draws network diagrams dynamically from a text file describing the placement, layout and icons. Given a yaml file describing the hierarchy of the network and it's connections, a resulting diagram will be created.
 
@@ -7,13 +7,13 @@ DLD4E draws network diagrams dynamically from a text file describing the placeme
 
 ## Motivation
 
-Complex network diagrams typically involve specific place of icons, connections and labels using a tool like Visio or OmniGraffle using a mouse and constantly zooming in and out for single pixel placement.  The goal behind DLD4E, was to be able to describe the digram in a text file and have it rendered in SVG in the browser.  
+Complex network diagrams typically involve specific place of icons, connections and labels using a tool like Visio or OmniGraffle using a mouse and constantly zooming in and out for single pixel placement.  The goal behind drawthe.net, was to be able to describe the digram in a text file and have it rendered in SVG in the browser.  
 
 I simply wanted to be able to draw network diagrams as fast as it could be done on a dry-erase board without using a mouse.
 
 ## Quick start
 
-http://dld4e.com
+http://go.drawthe.net
 
 Clear the editor and paste the following in, then click draw or ctrl-enter.
 
@@ -136,7 +136,7 @@ Notes can be plain text or markdown.  See the 'notes' example for the use of mar
 
 ## Additional examples
 
-http://dld4e.com
+http://go.drawthe.net
 
 Click on the examples menu for a sample of different diagram layouts and styles.
 
