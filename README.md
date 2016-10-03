@@ -1,8 +1,8 @@
 ## drawthe.net: Decent Looking Diagrams for Engineers
 
-DLD4E draws network diagrams dynamically from a text file describing the placement, layout and icons. Given a yaml file describing the hierarchy of the network and it's connections, a resulting diagram will be created.
+drawthe.net draws network diagrams dynamically from a text file describing the placement, layout and icons. Given a yaml file describing the hierarchy of the network and it's connections, a resulting diagram will be created.
 
-![screenshot](https://github.com/cidrblock/dld4e/raw/master/screenshot_gc.png)
+![screenshot](https://github.com/cidrblock/drawthe.net/raw/master/screenshot_gc.png)
 
 
 ## Motivation
@@ -75,7 +75,7 @@ notes:
 
 Hopefully, the following diagram is created.
 
-![screenshot](https://github.com/cidrblock/dld4e/raw/master/quick_start.png)
+![screenshot](https://github.com/cidrblock/drawthe.net/raw/master/quick_start.png)
 
 ## Overview
 
