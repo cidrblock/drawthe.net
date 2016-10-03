@@ -114,4 +114,11 @@ function draw(doc) {
   drawNotes(svg, notes)
   PR.prettyPrint()
 
+  // move all the labels to the front
+  svg.selectAll('.connectionLabel')
+    .each( function(d) { d3.select(this).moveToFront(); } )
+  svg.selectAll('.groupLabel')
+    .each( function(d) { d3.select(this).moveToFront(); } )
+  svg.selectAll('.iconLabel')
+    .each( function(d) { d3.select(this).moveToFront(); } )
 };

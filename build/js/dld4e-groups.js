@@ -16,6 +16,7 @@ var drawGroups = function (svg, diagram, groups, icons) {
       if (groups[group].name) {
         var textLocation = textPositions(groups[group].x1,groups[group].y1,groups[group].x2,groups[group].y2, groups[group].fontSize + 2 )[groups[group].textLocation || 'topLeft']
         svg.append("text")
+          .attr('class', 'groupLabel')
           .text( groups[group].name )
           .attr("transform", `translate(${textLocation.x},${textLocation.y})rotate(${textLocation.rotate})`)
           .attr("text-anchor", textLocation.textAnchor)

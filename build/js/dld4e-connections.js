@@ -69,6 +69,7 @@ var drawConnections = function (svg, diagram, connections, icons, notes) {
 
         // draw the text for the first label
         svg.append("text")
+          .attr('class', 'connectionLabel')
           .style("fill", function(d) { return connection.color || "orange" })
           .style('font-size', connectionLabelFontSize + 'px' )
           .attr('dy', -1)
@@ -88,6 +89,7 @@ var drawConnections = function (svg, diagram, connections, icons, notes) {
         }
         // draw the text for the second node
         svg.append("text")
+          .attr('class', 'connectionLabel')
           .style("fill", function(d) { return connection.color || "orange" })
           .style('font-size',  connectionLabelFontSize + 'px' )
           .attr('dy', connectionLabelFontSize)

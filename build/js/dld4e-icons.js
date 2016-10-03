@@ -19,6 +19,7 @@ var drawIcons = function (svg, icons, iconTextRatio) {
 
   var cellText = cells
     .append("text")
+    .attr('class', 'iconLabel')
     .text( function (d) { return d.key })
     .each( function(d) {
       d.value.fontSize = Math.floor(Math.min(d.value.width*.9 / this.getComputedTextLength() * 12, d.value.height/2*iconTextRatio))
