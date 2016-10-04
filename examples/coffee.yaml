@@ -59,7 +59,7 @@ cisco: &cisco
   fill: "none"
   preserveWhite: "true"
 noteDefaults: &noteDefaults
-  stroke: black
+  stroke: white
   y: "-1"
   w: 2
   xAlign: center
@@ -103,11 +103,3 @@ notes:
  - { <<: *noteDefaults, fill: *accent5473, text: "#accent5473" }
  - { <<: *noteDefaults, fill: *accent7463, text: "#accent7463" }
  - { <<: *noteDefaults, color: black, fill: *accent552, text: "#accent552" }
-
-
-
-
-
-
-
- 

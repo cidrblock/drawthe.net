@@ -22,6 +22,8 @@ h6[id^="notes-"] {
   font-size: .75em;
 }
 
+.prettyprint ol.linenums > li { list-style-type: decimal; } !important
+
 .notes pre {
   font-size: 1em;
 }
@@ -41,4 +43,5 @@ h6[id^="notes-"] {
 .notes code {
     margin-left: -2px;
     padding: .15em .15em;
+    font-size: 1em;
 }
