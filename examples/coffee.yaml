@@ -1,0 +1,113 @@
+coreblack7: &coreblack7 "#3d3935"
+corewarmgray8 : &corewarmgray8 "#8c8279"
+core7529: &core7529 "#b7a99a"
+corewarmgray1: &corewarmgray1 "#d7d2cb"
+core9162: &core9162 "#e2d9c2"
+core7562: &core7562 "#bd9b60"
+core412: &core412 "#382F2D"
+core4625: &core4625 "#4f2c1d"
+core464: &core464 "#8b5b29"
+core7587: &core7587 "#924c2e"
+core7510: &core7510 "#c6893f"
+core7601: &core7601 "#83412c"
+
+accent222: &accent222 "#83412c"
+accent7629: &accent7629 "#6d3332"
+accent201: &accent201 "#9d2235"
+accent7620: &accent7620 "#b7312c"
+accent138: &accent138 "#de7c00"
+accent1245: &accent1245 "#c69214"
+accent122: &accent122 "#fed141"
+accent586: &accent586 "#e0e27c"
+accent5757: &accent5757 "#6d712e"
+accent7493: &accent7493 "#bbc592"
+accent556: &accent556 "#6fa287"
+accent5473: &accent5473 "#115e67"
+accent7463: &accent7463 "#002b49"
+accent552: &accent552 "#b9d3dc"
+
+brand3425: &brand3425 "#006341"
+
+metallic10395: &metallic10395 "#6E6C69"
+metallic877: &metallic877 "#8A8D8F"
+metallic10367: &metallic10367 "#9B704D"
+metallic10124: &metallic10124 "#AAA275"
+
+diagram:
+  fill: *corewarmgray1
+  columns: 6
+  rows: 15
+  gridLines: false
+  gridPaddingInner: .25
+  groupPadding: .75
+title:
+  color: *core412
+  heightPercentage: 6
+  logoFill: none
+  logoUrl: "https://www.starbucks.com/static/images/global/logo.svg"
+  stroke: *core412
+  subText: ""
+  text: "Starbucks Color Palette"
+  type: "bar"
+cisco: &cisco
+  stroke: "none"
+  color: "black"
+  iconFill: "darkslategrey"
+  iconStroke: "lightgrey"
+  iconStrokeWidth: .25
+  iconFamily: "cisco"
+  fill: "none"
+  preserveWhite: "true"
+noteDefaults: &noteDefaults
+  stroke: black
+  y: "-1"
+  w: 2
+  xAlign: center
+  yAlign: center
+notes:
+ - { <<: *noteDefaults, x: 0, y: 14, stroke: *coreblack7, color: *coreblack7, fill: "white", text: "#Brand colors" }
+ - { <<: *noteDefaults, fill: *brand3425, text: "#brand3425" }
+ - { <<: *noteDefaults, fill: black, text: "#black" }
+ - { <<: *noteDefaults, color: black, fill: white, text: "#white" }
+ - { <<: *noteDefaults, fill: *core7529, text: "#core7529" }
+ - { <<: *noteDefaults, x: 0, y: "-2", stroke: *coreblack7, color: *coreblack7, fill: "white", text: "#Metallic colors" }
+ - { <<: *noteDefaults, fill: *metallic10395, text: "#metallic10395" }
+ - { <<: *noteDefaults, fill: *metallic877, text: "#metallic877" }
+ - { <<: *noteDefaults, fill: *metallic10367, text: "#metallic10367" }
+ - { <<: *noteDefaults, fill: *metallic10124, text: "#metallic10124" }
+ - { <<: *noteDefaults, x: 2, y: 14, stroke: *coreblack7, color: *coreblack7, fill: "white", text: "#Core colors" }
+ - { <<: *noteDefaults, fill: *coreblack7, text: "#coreblack7" }
+ - { <<: *noteDefaults, fill: *corewarmgray8, text: "#corewarmgray8" }
+ - { <<: *noteDefaults, color: black, fill: *core7529, text: "#core7529" }
+ - { <<: *noteDefaults, color: black, stroke: black, fill: *corewarmgray1, text: "#corewarmgray1" }
+ - { <<: *noteDefaults, color: black, fill: *core9162, text: "#core9162" }
+ - { <<: *noteDefaults, fill: *core7562, text: "#core7562" }
+ - { <<: *noteDefaults, fill: *core412, text: "#core412" }
+ - { <<: *noteDefaults, fill: *core4625, text: "#core4625" }
+ - { <<: *noteDefaults, fill: *core464, text: "#core464" }
+ - { <<: *noteDefaults, fill: *core7587, text: "#core7587" }
+ - { <<: *noteDefaults, fill: *core7510, text: "#core7510" }
+ - { <<: *noteDefaults, fill: *core7601, text: "#core7601" }
+ - { <<: *noteDefaults, x: 4, y: 14, stroke: *coreblack7, color: *coreblack7, fill: "white", text: "#Accent" }
+ - { <<: *noteDefaults, fill: *accent222, text: "#accent222" }
+ - { <<: *noteDefaults, fill: *accent7629, text: "#accent7629" }
+ - { <<: *noteDefaults, fill: *accent201, text: "#accent201" }
+ - { <<: *noteDefaults, fill: *accent7620, text: "#accent7620" }
+ - { <<: *noteDefaults, fill: *accent138, text: "#accent138" }
+ - { <<: *noteDefaults, fill: *accent1245, text: "#accent1245" }
+ - { <<: *noteDefaults, color: black, fill: *accent122, text: "#accent122" }
+ - { <<: *noteDefaults, color: black, fill: *accent586, text: "#accent586" }
+ - { <<: *noteDefaults, fill: *accent5757, text: "#accent5757" }
+ - { <<: *noteDefaults, color: black, fill: *accent7493, text: "#accent7493" }
+ - { <<: *noteDefaults, fill: *accent556, text: "#accent556" }
+ - { <<: *noteDefaults, fill: *accent5473, text: "#accent5473" }
+ - { <<: *noteDefaults, fill: *accent7463, text: "#accent7463" }
+ - { <<: *noteDefaults, color: black, fill: *accent552, text: "#accent552" }
+
+
+
+
+
+
+
+ 

@@ -20,10 +20,6 @@
     <link rel="stylesheet" href="build/css/app.css">
     <link rel="stylesheet" href="build/css/notes.css">
 
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js"</script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js"</script>
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.1/es6-shim.min.js"</script>
     <script type="text/javascript" src="build/js/js-yaml.min.js"></script>
     <script type="text/javascript" src="build/js/d3.min.js"></script>
@@ -84,6 +80,10 @@ html, body {
   xhr.open('GET', './examples/' + getQueryVariable('doc') + '.yaml', true);
   xhr.send();
   xhr.onreadystatechange = processRequest;
+
+  window.onload = function(){
+    console.log('page loaded');
+  }
 
 </script>
 </html>
