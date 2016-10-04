@@ -1,4 +1,4 @@
-var drawNotes = function (svg, notes) {
+var drawNotes = function (svg, diagram, notes) {
 
   var converter = new showdown.Converter({extensions: ['prettify']});
   converter.setOption('prefixHeaderId', 'notes-');

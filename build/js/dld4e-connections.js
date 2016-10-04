@@ -34,7 +34,7 @@ var drawConnections = function (svg, diagram, connections, icons, notes) {
       var dxOffset = 3
       var firstLabel = connection.endpoints[0].split(':')[1]
       var secondLabel = connection.endpoints[1].split(':')[1]
-      var pathName = `path${index}`
+      var pathName = "path" + index
       if (curve == d3.curveStepBefore) { startOffset = diagram.yBand.bandwidth()/2 }
       if (curve == d3.curveStepAfter) { startOffset = diagram.xBand.bandwidth()/2 }
       if (curve == d3.curveStep) { startOffset = diagram.xBand.bandwidth()/2 }

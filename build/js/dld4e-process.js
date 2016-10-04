@@ -1,4 +1,4 @@
-var processEntities = function (svg, drawing, icons) {
+var processEntities = function (svg, diagram, icons) {
 
   // set some defaults, even though these won't be used for iconss we'll set them anyway
   var defaults = {
@@ -85,7 +85,9 @@ function dive(connection, icons, groups) {
   }
   starters.forEach(function(starter) {
     enders.forEach(function(ender) {
-      connection.endpoints = [`${starter}:${labels[0] || ''}`,`${ender}:${labels[1] || ''}`]
+      var c1 = starter + ":" + (labels[0] || '')
+      var c2 = ender + ":" + (labels[1] || '')
+      connection.endpoints = [c1,c2]
       additionalConnections.push(clone(connection))
     })
   })
@@ -104,7 +106,7 @@ var processConnections = function(connections, groups, icons) {
   return connections.concat(additionalConnections)
 }
 
-var processGroups = function(groups, icons) {
+var processGroups = function(groups, diagram, icons) {
   for (var key in groups) {
     groups[key].maxDepth = 1
     var additionalMembers = []

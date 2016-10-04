@@ -9,7 +9,7 @@ var drawGridLines = function (svg, drawing) {
     // X gridlines
     svg.append("g")
       .attr("class", "grid")
-      .attr("transform", `translate(0,${ drawing.height + drawing.y })`)
+      .attr("transform", "translate(0," + drawing.height + drawing.y + ")")
       .call(make_x_gridlines()
         .tickSize(-drawing.height)
         .tickFormat("")
@@ -26,12 +26,12 @@ var drawGridLines = function (svg, drawing) {
     )
     // add the X Axis
     svg.append("g")
-      .attr("transform", `translate(0,${ drawing.height + drawing.y })`)
+      .attr("transform", "translate(0," + drawing.height + drawing.y + ")")
       .attr("class", "axisNone")
       .call(d3.axisBottom(drawing.xBand));
     // add the Y Axis
     svg.append("g")
-      .attr("transform", `translate(${drawing.x},0)`)
+      .attr("transform", "translate(" + drawing.x + ",0)")
       .attr("class", "axisNone")
       .call(d3.axisLeft(drawing.yBand));
   }

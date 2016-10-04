@@ -33,8 +33,8 @@ function draw(doc) {
   var icons = doc.icons || [];
 
   // merge the doc properties into the defaults
-  diagram = Object.assign(drawingDefaults, doc.diagram || {})
-  title = Object.assign(titleDefaults, doc.title || {})
+  var diagram = Object.assign(drawingDefaults, doc.diagram || {})
+  var title = Object.assign(titleDefaults, doc.title || {})
 
   // set the background color of the whole page
   document.body.style.background = diagram.fill
@@ -103,15 +103,15 @@ function draw(doc) {
   notes = processEntities(svg, diagram, notes)
   icons = processEntities(svg, diagram, icons)
   connections = processConnections(connections, groups, icons)
-  groups = processGroups(groups, icons)
+  groups = processGroups(groups, diagram, icons)
 
   // draw all the things
   drawTitle(svg, diagram, title)
   drawGridLines(svg, diagram)
   drawGroups(svg, diagram, groups, icons)
   drawConnections(svg, diagram, connections, icons, notes)
-  drawIcons(svg, icons, diagram.iconTextRatio)
-  drawNotes(svg, notes)
+  drawIcons(svg, diagram, icons, diagram.iconTextRatio)
+  drawNotes(svg, diagram, notes)
   PR.prettyPrint()
 
   // move all the labels to the front

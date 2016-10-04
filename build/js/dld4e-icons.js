@@ -1,4 +1,4 @@
-var drawIcons = function (svg, icons, iconTextRatio) {
+var drawIcons = function (svg, diagram, icons, iconTextRatio) {
   var deviceCellsAll = svg.selectAll("cells")
     .data(d3.entries(icons))
     .enter()
@@ -27,7 +27,7 @@ var drawIcons = function (svg, icons, iconTextRatio) {
     })
     .style("font-size", function(d) { return d.value.fontSize + "px"; })
     .attr("id", function(d) { return d.key + '-text'})
-    .attr("transform", function(d) { return `translate(${d.value.textPosition.x},${d.value.textPosition.y})rotate(${d.value.textPosition.rotate})` })
+    .attr("transform", function(d) { return "translate(" + d.value.textPosition.x + "," + d.value.textPosition.y + ")rotate(" + d.value.textPosition.rotate + ")" })
     .attr('fill', function(d) { return d.value.color || "orange"} )
     .attr("text-anchor", function(d) { return d.value.textPosition.textAnchor})
     .attr("dominant-baseline", "central")
@@ -63,7 +63,8 @@ var drawIcons = function (svg, icons, iconTextRatio) {
           break;
       }
 
-      d3.xml(`build/images/${d.value.iconFamily}/${d.value.icon}.svg`).mimeType("image/svg+xml").get(function(error, xml) {
+      var url = "build/images/" + d.value.iconFamily + "/" + d.value.icon + ".svg"
+      d3.xml(url).mimeType("image/svg+xml").get(function(error, xml) {
         var svg = xml.getElementsByTagName("svg")[0]
         svg.setAttribute("x", x)
         svg.setAttribute("y", y)

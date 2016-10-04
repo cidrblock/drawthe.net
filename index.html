@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="dld4e">
+<html>
 <head>
     <!-- META -->
     <meta charset="utf-8">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="build/css/font-awesome.min.css">
     <link rel="stylesheet" href="build/css/app.css">
     <link rel="stylesheet" href="build/css/notes.css">
+
 
     <script type="text/javascript" src="build/js/angular.min.js"></script>
     <script type="text/javascript" src="build/js/angular-animate.min.js"></script>
@@ -43,7 +44,7 @@
     <script type="text/javascript" src="build/js/app.js"></script>
 
 </head>
-<body ng-controller="mainController">
+<body ng-app="dld4e" ng-controller="mainController">
       <uib-alert class="col-sm-6 col-sm-offset-3" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
         <span ng-bind-html="alert.msg"></span>
       </uib-alert>

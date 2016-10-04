@@ -18,7 +18,7 @@ var drawGroups = function (svg, diagram, groups, icons) {
         svg.append("text")
           .attr('class', 'groupLabel')
           .text( groups[group].name )
-          .attr("transform", `translate(${textLocation.x},${textLocation.y})rotate(${textLocation.rotate})`)
+          .attr("transform", "translate(" + textLocation.x + "," + textLocation.y + ")rotate(" + textLocation.rotate + ")")
           .attr("text-anchor", textLocation.textAnchor)
           .attr("dominant-baseline", "central")
           .style("font-size", groups[group].fontSize + "px")

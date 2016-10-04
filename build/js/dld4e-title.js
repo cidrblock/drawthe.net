@@ -9,7 +9,7 @@ var drawTitle = function (svg, drawing, title) {
     title.width = title.x2 - title.x1
 
     var titleBox = svg.append("g")
-      .attr("transform", `translate(${title.x1},${title.y1})`)
+      .attr("transform", "translate(" + title.x1 + "," + title.y1 + ")")
 
     if (title.type == "bar") {
       titleBox.append("line")
@@ -26,7 +26,7 @@ var drawTitle = function (svg, drawing, title) {
     // image and imagefill
     var padding = title.height * .025
     var titleInner = titleBox.append("g")
-      .attr("transform", `translate(${padding},${padding})`)
+      .attr("transform", "translate(" + padding + "," + padding + ")")
 
     var logo = titleInner.append("g")
     logo.append("rect")
