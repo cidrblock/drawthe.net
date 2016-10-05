@@ -15,6 +15,7 @@ var drawTitle = function (svg, drawing, title) {
       titleBox.append("line")
         .attr("stroke", title.stroke )
         .attr("x2", title.width)
+        .attr("fill", title.fill)
     } else {
       titleBox.append("rect")
         .attr("fill", title.fill)

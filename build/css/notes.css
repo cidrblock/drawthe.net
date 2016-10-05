@@ -22,7 +22,10 @@ h6[id^="notes-"] {
   font-size: .75em;
 }
 
-.prettyprint ol.linenums > li { list-style-type: decimal; } !important
+.prettyprint ol.linenums > li {
+   list-style-type: decimal; !important
+   font-size: 1em;
+}
 
 .notes pre {
   font-size: 1em;
