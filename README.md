@@ -202,6 +202,7 @@ The icon's key will be used as the text value, therefore icon names have to be u
 - `preserveWhite`: (default: none) Don't change white in the source svg file. (this is useful for the cisco icon family)
 - `stroke`: (default: orange) The color of the icon bounding box line.
 - `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing between the dashes in px.
+- `text`: (default: none) Instead of the the icon's key use this text label for the icon label.
 - `textLocation`: (default: bottomMiddle) The location of the text for the icon.
   - `bottomLeft`: Position the text along the bottom, in the left corner.
   - `bottomMiddle`: Position the text along the bottom, centered.

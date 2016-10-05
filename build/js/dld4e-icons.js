@@ -20,7 +20,7 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
   var cellText = cells
     .append("text")
     .attr('class', 'iconLabel')
-    .text( function (d) { return d.key })
+    .text( function (d) { return d.value.text || d.key })
     .each( function(d) {
       d.value.fontSize = Math.floor(Math.min(d.value.width*.9 / this.getComputedTextLength() * 12, d.value.height/2*iconTextRatio))
       d.value.textPosition = textPositions(0,0,d.value.width,d.value.height,d.value.fontSize + 2)[d.value.textLocation]
