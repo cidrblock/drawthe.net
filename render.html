@@ -77,7 +77,13 @@ html, body {
   }
 
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', './examples/' + getQueryVariable('doc') + '.yaml', true);
+  if (getQueryVariable('doc')) {
+    xhr.open('GET', './examples/' + getQueryVariable('doc') + '.yaml', true);
+  } else if (getQueryVariable('key')){
+    xhr.open('GET', 'https://syg5y0qnyf.execute-api.us-west-2.amazonaws.com/dev/' + getQueryVariable('key'), true);
+  } else {
+    throw new Error("my error message");
+  }
   xhr.send();
   xhr.onreadystatechange = processRequest;
 

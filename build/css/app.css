@@ -26,6 +26,18 @@ body {
       margin-left: 0px;
       margin-right: 0px;
     }
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+form { display: inline-block; }
+
 .btn-black {
   color: #FFFFFF;
   background-color: #000000;

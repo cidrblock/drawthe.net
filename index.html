@@ -10,6 +10,7 @@
     <link rel="icon"
       type="image/png"
       href="./build/images/radial.png" />
+    <base href="/">
 
     <title>Decent looking diagrams for engineers</title>
 
@@ -50,48 +51,33 @@
       </uib-alert>
       <div class="row">
         <div class="col-sm-6">
-          <div class="row">
-            <big><strong>Template</strong></big>
-            <div class="btn-toolbar pull-right">
-              <div class="btn-group" uib-dropdown is-open="status.isopen1">
-                <button id="examples" type="button" class="btn btn-black btn-xs pull-right" uib-dropdown-toggle ng-disabled="disabled">
-                  Examples<span class="caret"></span>
+          <div class="row no-gutters">
+            <div class="col-sm-11 container-fluid">
+                <button id="save" class="btn btn-black btn-sm" ng-click="save()">
+                    <span ng-class="saveIcon" aria-hidden="true" ></span> <span ng-bind="state"></span>
                 </button>
-                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="examples">
-                  <li role="menuitem" ng-click="example('coffee.yaml')"><a href="javascript:void(0);">Coffee Colors</a></li>
-                  <li role="menuitem" ng-click="example('curves.yaml')"><a href="javascript:void(0);">Curves</a></li>
-                  <li role="menuitem" ng-click="example('groups.yaml')"><a href="javascript:void(0);">Groups</a></li>
-                  <li role="menuitem" ng-click="example('group connections.yaml')"><a href="javascript:void(0);">Group connections</a></li>
-                  <li role="menuitem" ng-click="example('labels.yaml')"><a href="javascript:void(0);">Labels</a></li>
-                  <li role="menuitem" ng-click="example('notes.yaml')"><a href="javascript:void(0);">Notes</a></li>
-                  <li role="menuitem" ng-click="example('NTP.yaml')"><a href="javascript:void(0);">NTP</a></li>
-                  <li role="menuitem" ng-click="example('relative positions.yaml')"><a href="javascript:void(0);">Relative positions</a></li>
-                  <li role="menuitem" ng-click="example('sample.yaml')"><a href="javascript:void(0);">Sample</a></li>
-                  <li role="menuitem" ng-click="example('text locations.yaml')"><a href="javascript:void(0);">Text locations</a></li>
-
-                </ul>
-              </div>
-              <div class="btn-group" uib-dropdown is-open="status.isopen2">
-                <button id="foo" type="button" class="btn btn-black btn-xs pull-right" uib-dropdown-toggle ng-disabled="disabled">
-                  Icons<span class="caret"></span>
+                <button id="fork" class="btn btn-black btn-sm" ng-click="fork()">
+                   <span class="fa fa-code-fork" aria-hidden="true" ></span> Fork
                 </button>
-                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="icons">
-                  <li role="menuitem" ng-click="drawIconFamily('aws-native')"><a href="javascript:void(0);">aws</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('aws-filled')"><a href="javascript:void(0);">aws (iconFill)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('aws-stroke')"><a href="javascript:void(0);">aws (iconStroke)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('cisco-native')"><a href="javascript:void(0);">cisco</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('cisco-filled')"><a href="javascript:void(0);">cisco (iconFill)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('cisco-stroke')"><a href="javascript:void(0);">cisco (iconStroke)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-native')"><a href="javascript:void(0);">azureEnterprise</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-filled')"><a href="javascript:void(0);">azureEnterprise (iconFill)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-stroke')"><a href="javascript:void(0);">azureEnterprise (iconStroke)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureCloud-native')"><a href="javascript:void(0);">azureCloud</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureCloud-filled')"><a href="javascript:void(0);">azureCloud (iconFill)</a></li>
-                  <li role="menuitem" ng-click="drawIconFamily('azureCloud-stroke')"><a href="javascript:void(0);">azureCloud (iconStroke)</a></li>
-
-                </ul>
-              </div>
-              <button id="draw" type="submit" class="btn btn-black btn-xs pull-right" ng-click="drawClick(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
+                <button id="download" class="btn btn-black btn-sm" ng-click="saveFile()">
+                   <span class="glyphicon glyphicon-floppy-save" aria-hidden="true" ></span> Download
+                </button>
+                <button id="link" class="btn btn-black btn-sm" ng-click="link()">
+                   <span class="fa fa-clipboard" aria-hidden="true" ></span><span ng-bind="linkText">Link</span>
+                </button>
+                <form class="form-inline">
+                  <div class="input-group">
+                    <input type="text" size="35" class="form-control input-sm" ng-model="gistURL" placeholder="Load from Github Gist">
+                    <span class="input-group-btn">
+                      <button class="btn btn-black btn-sm" type="submit" ng-click="gist()">
+                        <span class="fa fa-cloud-download"></span>
+                      </button>
+                    </span>
+                  </div>
+                </form>
+            </div>
+            <div class="col-sm-1">
+              <button id="draw" class="btn btn-black btn-sm pull-right" ng-click="drawClick(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
                  <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true" ></span> Draw
               </button>
             </div>
@@ -101,15 +87,49 @@
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="row">
-              <div class="btn-toolbar pull-right">
-                <a href="http://github.com/cidrblock/network_diagram" target="_blank" class="btn btn-black btn-xs">
-                  <span class="fa fa-github"></span> Github
-                </a>
-                <button type="submit" class="btn btn-black btn-xs" ng-click="opend3js()">
-                   <span class="glyphicon glyphicon glyphicon-new-window" aria-hidden="true"></span> Fullscreen
-                </button>
-              </div>
+          <div class="row pull-right">
+            <div class="btn-group" uib-dropdown is-open="status.isopen1">
+              <button id="examples" type="button" class="btn btn-black btn-sm" uib-dropdown-toggle ng-disabled="disabled">
+                Examples<span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="examples">
+                <li role="menuitem" ng-click="example('coffee.yaml')"><a href="javascript:void(0);">Coffee Colors</a></li>
+                <li role="menuitem" ng-click="example('curves.yaml')"><a href="javascript:void(0);">Curves</a></li>
+                <li role="menuitem" ng-click="example('groups.yaml')"><a href="javascript:void(0);">Groups</a></li>
+                <li role="menuitem" ng-click="example('group connections.yaml')"><a href="javascript:void(0);">Group connections</a></li>
+                <li role="menuitem" ng-click="example('labels.yaml')"><a href="javascript:void(0);">Labels</a></li>
+                <li role="menuitem" ng-click="example('notes.yaml')"><a href="javascript:void(0);">Notes</a></li>
+                <li role="menuitem" ng-click="example('NTP.yaml')"><a href="javascript:void(0);">NTP</a></li>
+                <li role="menuitem" ng-click="example('relative positions.yaml')"><a href="javascript:void(0);">Relative positions</a></li>
+                <li role="menuitem" ng-click="example('sample.yaml')"><a href="javascript:void(0);">Sample</a></li>
+                <li role="menuitem" ng-click="example('text locations.yaml')"><a href="javascript:void(0);">Text locations</a></li>
+              </ul>
+            </div>
+            <div class="btn-group" uib-dropdown is-open="status.isopen2">
+              <button id="foo" type="button" class="btn btn-black btn-sm" uib-dropdown-toggle ng-disabled="disabled">
+                Icons<span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="icons">
+                <li role="menuitem" ng-click="drawIconFamily('aws-native')"><a href="javascript:void(0);">aws</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('aws-filled')"><a href="javascript:void(0);">aws (iconFill)</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('aws-stroke')"><a href="javascript:void(0);">aws (iconStroke)</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('cisco-native')"><a href="javascript:void(0);">cisco</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('cisco-filled')"><a href="javascript:void(0);">cisco (iconFill)</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('cisco-stroke')"><a href="javascript:void(0);">cisco (iconStroke)</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-native')"><a href="javascript:void(0);">azureEnterprise</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-filled')"><a href="javascript:void(0);">azureEnterprise (iconFill)</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-stroke')"><a href="javascript:void(0);">azureEnterprise (iconStroke)</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('azureCloud-native')"><a href="javascript:void(0);">azureCloud</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('azureCloud-filled')"><a href="javascript:void(0);">azureCloud (iconFill)</a></li>
+                <li role="menuitem" ng-click="drawIconFamily('azureCloud-stroke')"><a href="javascript:void(0);">azureCloud (iconStroke)</a></li>
+              </ul>
+            </div>
+            <a href="http://github.com/cidrblock/network_diagram" target="_blank" class="btn btn-black btn-sm">
+              <span class="fa fa-github"></span> Github
+            </a>
+            <button class="btn btn-black btn-sm" ng-click="opend3js()">
+               <span class="glyphicon glyphicon glyphicon-new-window" aria-hidden="true"></span> Fullscreen
+            </button>
           </div>
           <div class="row">
             <div class="drawing" id="svg"></div>
@@ -123,17 +143,33 @@
 
 angular
     .module("dld4e", ['ui.bootstrap', 'ui.ace'])
-    .controller("mainController", mainController);
+    .controller("mainController", mainController)
+    // .config(['$locationProvider', function($locationProvider){
+    //   $locationProvider.html5Mode(true);
+    // }]);
 
-mainController.$inject = ["$scope", "$http", "$sce", "$log", "$window"];
+mainController.$inject = ["$scope", "$http", "$sce", "$log", "$window", "$location", "$timeout"];
 
-function mainController($scope, $http, $sce, $log, $window) {
+function mainController($scope, $http, $sce, $log, $window, $location, $timeout) {
+
   $scope.design = "";
-  $http.get('examples/NTP.yaml')
+  $scope.gistURL = "";
+  $scope.saveIcon = "glyphicon glyphicon-floppy-disk"
+  $scope.linkText = " Link"
+  $scope.docId = $window.location.hash.substring(2)
+  if ($scope.docId)  {
+    $scope.url = "https://syg5y0qnyf.execute-api.us-west-2.amazonaws.com/dev/" + $scope.docId
+    $scope.state = "Update";
+  } else {
+    $scope.url = 'examples/NTP.yaml'
+    $scope.state = "Save";
+  }
+  $http.get($scope.url)
        .then(function(res){
           $scope.acedata = res.data;
           $scope.drawClick()
         });
+
   $scope.aceyamlOptions = {
     onLoad: function (_ace) {
       _ace.getSession().setMode("ace/mode/yaml");
@@ -196,10 +232,94 @@ function mainController($scope, $http, $sce, $log, $window) {
             $scope.drawClick();
           });
   }
+
   $scope.drawClick = function() {
     $window.design = jsyaml.load($scope.acedata) || {};
     draw($window.design);
     $window.document.title = 'drawthe.net: ' + window.design.title.text
+  }
+
+
+  $scope.gist = function() {
+    var parts = $scope.gistURL.split('/')
+    // $window.location.hash=""
+    var githubUser = parts[3]
+    var githubGist = parts[4]
+    $http.get('//gist.githubusercontent.com/' + githubUser + '/' + githubGist + '/raw')
+      .then(function(res) {
+        $scope.acedata = res.data;
+        $scope.drawClick()
+      })
+    $scope.gistURL = ""
+    $window.location.hash = ""
+    $scope.state = "Save"
+  }
+
+  $scope.link = function() {
+    copyToClipboard($location.absUrl())
+    $scope.linkText = " Copied to clipboard"
+    $timeout(function () {
+      $scope.linkText = "Link"
+    }, 1000);
+  }
+
+  $scope.fork = function() {
+    $scope.state = "Save"
+    $scope.save()
+  }
+
+
+  $scope.save = function() {
+    if ($scope.state == "Save") {
+      $scope.saveIcon = "glyphicon glyphicon-hourglass"
+      var url = "https://syg5y0qnyf.execute-api.us-west-2.amazonaws.com/dev/test1";
+      var data = $scope.acedata;
+      var config = {
+                  headers : {
+                      'Content-Type': 'text/x-yaml'
+                  }
+              }
+      $http.post(url, data, config)
+       .then(
+           function(response){
+             $scope.docId = response.data.docId
+             $window.location.hash=response.data.docId
+             $scope.saveIcon = "glyphicon glyphicon-ok-circle"
+             $timeout(function () {
+               $scope.saveIcon = "glyphicon glyphicon-floppy-disk";
+               $scope.state = "Update";
+             }, 1000);
+           },
+           function(response){
+             $scope.saveIcon = "glyphicon glyphicon-alert";
+             console.log(response)
+           }
+        );
+    } else if ($scope.state == "Update") {
+       $scope.saveIcon = "glyphicon glyphicon-hourglass"
+        var url = "https://syg5y0qnyf.execute-api.us-west-2.amazonaws.com/dev/" + $scope.docId;
+        var data = $scope.acedata;
+        var config = {
+                  headers : {
+                      'Content-Type': 'text/x-yaml'
+                  }
+              }
+        $http.put(url, data, config)
+         .then(
+             function(response){
+               $window.location.hash=response.data.docId
+               $scope.saveIcon = "glyphicon glyphicon-ok-circle"
+               $timeout(function () {
+                 $scope.saveIcon = "glyphicon glyphicon-floppy-disk"
+               }, 1000);
+
+             },
+             function(response){
+               $scope.saveIcon = "glyphicon glyphicon-alert";
+               console.log(response)
+             }
+          );
+    }
   }
   $scope.saveFile = function() {
     var data = $scope.acedata,

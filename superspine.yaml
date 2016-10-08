@@ -1,0 +1,229 @@
+# standard colors
+colors:
+  coreblack7: &coreblack7 "#3d3935"
+  corewarmgray8 : &corewarmgray8 "#8c8279"
+  core7529: &core7529 "#b7a99a"
+  corewarmgray1: &corewarmgray1 "#d7d2cb"
+  core9162: &core9162 "#e2d9c2"
+  core7562: &core7562 "#bd9b60"
+  core412: &core412 "#382F2D"
+  core4625: &core4625 "#4f2c1d"
+  core464: &core464 "#8b5b29"
+  core7587: &core7587 "#924c2e"
+  core7510: &core7510 "#c6893f"
+  core7601: &core7601 "#83412c"
+  accent222: &accent222 "#83412c"
+  accent7629: &accent7629 "#6d3332"
+  accent201: &accent201 "#9d2235"
+  accent7620: &accent7620 "#b7312c"
+  accent138: &accent138 "#de7c00"
+  accent1245: &accent1245 "#c69214"
+  accent122: &accent122 "#fed141"
+  accent586: &accent586 "#e0e27c"
+  accent5757: &accent5757 "#6d712e"
+  accent7493: &accent7493 "#bbc592"
+  accent556: &accent556 "#6fa287"
+  accent5473: &accent5473 "#115e67"
+  accent7463: &accent7463 "#002b49"
+  accent552: &accent552 "#b9d3dc"
+  brand3425: &brand3425 "#006341"
+  metallic10395: &metallic10395 "#6E6C69"
+  metallic877: &metallic877 "#8A8D8F"
+  metallic10367: &metallic10367 "#9B704D"
+  metallic10124: &metallic10124 "#AAA275"
+  # custom colors
+  antiFlashWhite: &antiFlashWhite "#F2F3F4"
+  aristaBlue: &aristaBlue "#001B48"
+# base styles
+styles:
+  connectionDefaults: &connectionDefaults { color: *coreblack7, stroke: *coreblack7 }
+  noteCode: &noteCode { yAlign: center, alignItems: stretch, justifyContent: center, fill: none, stroke: none, color: *coreblack7 }
+  noteStyle1: &noteStyle1 { yAlign: center, xAlign: center, color: *antiFlashWhite, fill: *accent7463, stroke: none }
+  titleDefaults: &titleDefaults {  color: *coreblack7, heightPercentage: 6, logoFill: none, company: "Starbucks Coffee Company", logoUrl: "https://www.starbucks.com/static/images/global/logo.svg", stroke: *core412, type: "bar" }
+  groupDefaults: &groupDefaults { color: *coreblack7, fill: *accent552, stroke: *coreblack7 }
+  groupHidden: &groupHidden { color: none, fill: none, stroke: none }
+diagram:
+  fill: *antiFlashWhite
+  columns: 18
+  rows: 18
+  aspectRatio: "18:18"
+  gridLines: false
+  gridPaddingInner: .25
+  groupPadding: .75
+title:
+  <<: *titleDefaults
+  subText: "From current to future"
+  text: "Chandler DC Super Spine"
+
+current: &current { stroke: *coreblack7, color: *coreblack7, iconFill: lightslategray, iconStroke: white, iconStrokeWidth: .25, iconFamily: "cisco", fill: white, preserveWhite: "true"}
+new: &new { stroke: *coreblack7, color: *coreblack7, iconFill: *accent7463, iconStroke: *accent552, iconStrokeWidth: .25, iconFamily: "cisco", fill: white, preserveWhite: "true"}
+need: &need { <<: *new, strokeDashArray: [3,3]}
+decom: &decom { stroke: *coreblack7, color: *coreblack7, iconFill: white, iconStroke: lightslategray, iconStrokeWidth: .25, iconFamily: "cisco", fill: white, preserveWhite: "true"}
+
+crt001: &crt001 { <<: *current, text: "chddc1crt001", icon: "router", x: "+1" }
+crt002: &crt002 { <<: *current, text: "chddc1crt002", icon: "router", x: "+1" }
+crt004: &crt004 { <<: *current, text: "chddc1crt004", icon: "nexus7000", x: "+1"}
+crt005: &crt005 { <<: *current, text: "chddc1crt005", icon: "nexus7000", x: "+1" }
+srt003: &srt003 { <<: *current, text: "chddc1srt003", icon: "nexus7000", x: "+1"}
+srt004: &srt004 { <<: *current, text: "chddc1srt004", icon: "nexus7000", x: "+1" }
+srt001a: &srt001a { <<: *current, text: "chddc1srt001", icon: "vss", x: "+1" }
+srt001b: &srt001b { <<: *srt001a, x: "+1" }
+rrt001: &rrt001 { <<: *current, text: "chddc1rrt001", icon: "router", x: "+1" }
+rrt002: &rrt002 { <<: *current, text: "chddc1rrt002", icon: "router", x: "+1" }
+ert005: &ert005 { <<: *current, text: "chddc1ert005", icon: "router", x: "+1" }
+ert006: &ert006 { <<: *current, text: "chddc1ert006", icon: "router", x: "+1" }
+
+spine: &spine { text: Spine, icon: "nexus5000", x: "+1" }
+borderLeaf: &borderLeaf { text: Border Leaf, icon: "nexus5000", x: "+1" }
+
+icons:
+  need: { <<: *spine, <<: *need, text: procure, x: 16, y: 16}
+  own: { <<: *spine, <<: *new, text: have, x: 16, y: "-1"}
+  current: { <<: *crt004, <<: *current, text: existing, x: 16, y: "-1"}
+
+  currentcrt001: { <<: *crt001, x: 7, y: 16 }
+  currentcrt002: { <<: *crt002 }
+  currentcrt004: { <<: *crt004, x: "-1", y: "-2" }
+  currentcrt005: { <<: *crt005 }
+  currentsrt003: { <<: *srt003, x: "-7", y: "-1" }
+  currentsrt004: { <<: *srt004 }
+  currentsrt001a: { <<: *srt001a, x: "+3" }
+  currentsrt001b: { <<: *srt001b }
+  currentrrt001: { <<: *rrt001, <<: *current,  x: "+3" }
+  currentrrt002: { <<: *rrt002, <<: *current }
+  currentert005: { <<: *ert005, <<: *current,  x: "+2" }
+  currentert006: { <<: *ert006, <<: *current }
+
+  dcicrt004: { <<: *crt004, <<: *current, x: "8", y: "8" }
+  dcicrt005: { <<: *crt005, <<: *current, }
+  dcisrt003: { <<: *srt003, <<: *current,  x: "-5", y: "-1" }
+  dcisrt004: { <<: *srt004, <<: *current, }
+  dcisrt001a: { <<: *srt001a, <<: *current }
+  dcisrt001b: { <<: *srt001b, <<: *current }
+  dcirrt001: { <<: *rrt001, <<: *current }
+  dcirrt002: { <<: *rrt002, <<: *current }
+  dciert005: { <<: *ert005, <<: *current }
+  dciert006: { <<: *ert006, <<: *current }
+  dcicrt001: { <<: *crt001, <<: *current }
+  dcicrt002: { <<: *crt002, <<: *current }
+  dcispine1: { <<: *spine, <<: *new, x: 5, y: 11}
+  dcispine2: { <<: *spine, <<: *new }
+  dciborderLeaf1: { <<: *borderLeaf, <<: *need, x: 8, y: 9}
+  dciborderLeaf2: { <<: *borderLeaf, <<: *need }
+  dciborderLeaf3: { <<: *borderLeaf, <<: *new, x: 1, y: 9 }
+  dciborderLeaf4: { <<: *borderLeaf, <<: *new }
+  dcipan1: { <<: *need, text: PaloAlto, icon: acs, x: "-1", y: "-1" }
+  dcipan2: { <<: *need, text: PaloAlto, icon: acs, x: "+1" }
+  dciclink1: { <<: *new, text: CenturyLink, icon: router,  x: "-1", y: "-1"}
+  dciclink2: { <<: *new, text: CenturyLink, icon: router, x: "+1"}
+
+
+  endspine1: { <<: *spine, <<: *new, x: 5, y: 5}
+  endspine2: { <<: *spine, <<: *new }
+  endspine3: { <<: *need, <<: *spine }
+  endspine4: { <<: *need, <<: *spine }
+
+  endcrt004: { <<: *decom, <<: *crt004, x: "12", y: "1" }
+  endcrt005: { <<: *decom, <<: *crt005 }
+  endsrt003: { <<: *srt003, x: "4", y: "2" }
+  endsrt004: { <<: *srt004 }
+  endsrt001a: { <<: *srt001a }
+  endsrt001b: { <<: *srt001b }
+  endrrt001: { <<: *rrt001 }
+  endrrt002: { <<: *rrt002 }
+  endert005: { <<: *ert005 }
+  endert006: { <<: *ert006 }
+  endcrt001: { <<: *crt001 }
+  endcrt002: { <<: *crt002 }
+  endpan1: { <<: *new, text: PaloAlto, icon: acs, x: 1, y: 2 }
+  endpan2: { <<: *new, text: PaloAlto, icon: acs, x: "+1" }
+  endclink1: { <<: *new, text: CenturyLink, icon: router, x: "-1", y: "-1"}
+  endclink2: { <<: *new, text: CenturyLink, icon: router, x: "+1"}
+  endborderLeaf1: { <<: *borderLeaf, <<: *new, x: 1, y: 3}
+  endborderLeaf2: { <<: *borderLeaf, <<: *new }
+  endborderLeaf3: { <<: *borderLeaf, <<: *need, x: "+2"  }
+  endborderLeaf4: { <<: *borderLeaf, <<: *need }
+  endborderLeaf5: { <<: *borderLeaf, <<: *need }
+  endborderLeaf6: { <<: *borderLeaf, <<: *need }
+  endborderLeaf7: { <<: *borderLeaf, <<: *need }
+  endborderLeaf8: { <<: *borderLeaf, <<: *need }
+  endborderLeaf9: { <<: *borderLeaf, <<: *need }
+  endborderLeaf10: { <<: *borderLeaf, <<: *need }
+  endborderLeaf11: { <<: *borderLeaf, <<: *need }
+  endborderLeaf12: { <<: *borderLeaf, <<: *need }
+
+groups:
+  keyG: { <<: *groupHidden, name: Key, members: [need, own, current ] }
+  key: { <<: *groupDefaults, name: Key, members: [keyG] }
+
+  currentAll: { <<: *groupDefaults, name: CURRENT, members: [currentcrt001002, currentcrt004005, currentdistLayer ] }
+  currentcrt001002: { <<: *groupHidden, members: [currentcrt001, currentcrt002] }
+  currentcrt004005: { <<: *groupHidden, members: [currentcrt004, currentcrt005] }
+  currentdistLayer: { <<: *groupHidden, members: [currentsrt003, currentsrt004, currentsrt001a, currentsrt001b, currentrrt001, currentrrt002, currentert005, currentert006 ] }
+  dciAll: { <<: *groupDefaults, name: DCI, members: [dcicrt001002, dcicrt004005, dcidistLayer, dcispines, dciclinkleafs ] }
+  dcicrt001002: { <<: *groupHidden, members: [dcicrt001, dcicrt002] }
+  dcicrt004005: { <<: *groupHidden, members: [dcicrt004, dcicrt005] }
+  dcidistLayer: { <<: *groupHidden, members: [dcisrt003, dcisrt004, dcisrt001a, dcisrt001b, dcirrt001, dcirrt002, dciert005, dciert006 ] }
+  dciclink: { <<: *groupHidden, members: [dciclink1, dciclink2] }
+  dcipans: { <<: *groupHidden, members: [dcipan1, dcipan2] }
+  dciclinkleafs: { <<: *groupHidden, members: [dciborderLeaf3, dciborderLeaf4] }
+  dcicrt45leafs: { <<: *groupHidden, members: [dciborderLeaf1, dciborderLeaf2] }
+  dcileafs: { <<: *groupHidden, members: [dciclinkleafs, dcicrt45leafs] }
+  dcispines: { <<: *groupHidden, members: [dcispine1, dcispine2] }
+  endspines: { <<: *groupDefaults, members: [endspine1, endspine2, endspine3, endspine4] }
+  endsrt34: { <<: *groupHidden, members: [endsrt003, endsrt004]}
+  endsrt34leafs: { <<: *groupHidden, members: [endborderLeaf3, endborderLeaf4]}
+  endsrt1: { <<: *groupHidden, members: [endsrt001a, endsrt001b]}
+  endsrt1leafs: { <<: *groupHidden, members: [endborderLeaf5, endborderLeaf6]}
+  endrrts: { <<: *groupHidden, members: [endrrt001, endrrt002]}
+  endrrtleafs: { <<: *groupHidden, members: [endborderLeaf7, endborderLeaf8]}
+  enderts: { <<: *groupHidden, members: [endert005, endert006]}
+  endertleafs: { <<: *groupHidden, members: [endborderLeaf9, endborderLeaf10]}
+  endcrt12: { <<: *groupHidden, members: [endcrt001, endcrt002]}
+  endcrt12leafs: { <<: *groupHidden, members: [endborderLeaf11, endborderLeaf12]}
+  endclinkleafs: { <<: *groupHidden, members: [endborderLeaf1, endborderLeaf2] }
+  endleafs: { <<: *groupHidden, members: [endclinkleafs, endsrt34leafs, endsrt1leafs, endrrtleafs, endertleafs, endcrt12leafs ]}
+  endAll: { <<: *groupDefaults, name: END STATE, members: [endclink1, endcrt005, endspines ] }
+
+connections:
+  - { <<: *connectionDefaults, endpoints: [currentcrt001002, currentcrt004005] }
+  - { <<: *connectionDefaults, endpoints: [currentcrt004005, currentdistLayer] }
+  - { <<: *connectionDefaults, endpoints: [dcicrt001002, dcicrt004005] }
+  - { <<: *connectionDefaults, endpoints: [dcicrt004005, dcidistLayer] }
+  - { <<: *connectionDefaults, endpoints: [dciclink1, dcipan1, dciborderLeaf3] }
+  - { <<: *connectionDefaults, endpoints: [dciclink2, dcipan2, dciborderLeaf4] }
+  - { <<: *connectionDefaults, endpoints: [dcicrt004005, dcicrt45leafs] }
+  - { <<: *connectionDefaults, endpoints: [dcispines, dcileafs] }
+  - { <<: *connectionDefaults, endpoints: [endclink1, endpan1, endborderLeaf1] }
+  - { <<: *connectionDefaults, endpoints: [endclink2, endpan2, endborderLeaf2] }
+  - { <<: *connectionDefaults, endpoints: [endsrt34, endsrt34leafs] }
+  - { <<: *connectionDefaults, endpoints: [endsrt1, endsrt1leafs] }
+  - { <<: *connectionDefaults, endpoints: [endrrts, endrrtleafs] }
+  - { <<: *connectionDefaults, endpoints: [enderts, endertleafs] }
+  - { <<: *connectionDefaults, endpoints: [endcrt12, endcrt12leafs] }
+  - { <<: *connectionDefaults, endpoints: [endspines, endleafs] }
+noteStyle1: &noteStyle1
+  yAlign: top
+  xAlign: left
+  text-align: left
+  color: *accent7463
+  fill: none
+  stroke: *accent7463
+
+noteCurrent: &noteCurrent |
+  #CURRENT:
+  1. CenturyLink DCI MPLS deployed
+  2. Spine established
+  3. Border leafs in place for DCI and crt004/005
+  #Procure
+  1. 4 additional Arista 7280s
+  2. PAN appliances
+noteEnd: &noteEnd |
+  #END:
+  1. Spine extended
+  2. Border leafs in place for all exisiting
+  #Procure
+  1. 20 additional Arista 7280s
+notes:
+  - { <<: *noteStyle1, x: 15, y: 11, w: 3, h: 2, text: *noteCurrent }
+  - { <<: *noteStyle1, x: 15, y: 5, w: 3, h: 2, text: *noteEnd }
