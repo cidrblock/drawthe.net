@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="build/css/app.css">
     <link rel="stylesheet" href="build/css/notes.css">
 
-
     <script type="text/javascript" src="build/js/angular.min.js"></script>
     <script type="text/javascript" src="build/js/angular-animate.min.js"></script>
     <script type="text/javascript" src="build/js/ace.js"></script>
@@ -50,7 +49,7 @@
         <span ng-bind-html="alert.msg"></span>
       </uib-alert>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6" id="leftSide">
           <div class="row no-gutters">
             <div class="col-sm-11 container-fluid">
                 <button id="save" class="btn btn-black btn-sm" ng-click="save()">
@@ -86,9 +85,9 @@
             <div ui-ace="aceyamlOptions" ng-model="acedata"></div>
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6" id="rightSide">
           <div class="row pull-right">
-            <div class="btn-group" uib-dropdown is-open="status.isopen1">
+            <div class="btn-group" uib-dropdown is-open="status.isopen1" ng-show="shown">
               <button id="examples" type="button" class="btn btn-black btn-sm" uib-dropdown-toggle ng-disabled="disabled">
                 Examples<span class="caret"></span>
               </button>
@@ -105,7 +104,7 @@
                 <li role="menuitem" ng-click="example('text locations.yaml')"><a href="javascript:void(0);">Text locations</a></li>
               </ul>
             </div>
-            <div class="btn-group" uib-dropdown is-open="status.isopen2">
+            <div class="btn-group" uib-dropdown is-open="status.isopen2" ng-show="shown">
               <button id="foo" type="button" class="btn btn-black btn-sm" uib-dropdown-toggle ng-disabled="disabled">
                 Icons<span class="caret"></span>
               </button>
@@ -127,8 +126,8 @@
             <a href="http://github.com/cidrblock/network_diagram" target="_blank" class="btn btn-black btn-sm">
               <span class="fa fa-github"></span> Github
             </a>
-            <button class="btn btn-black btn-sm" ng-click="opend3js()">
-               <span class="glyphicon glyphicon glyphicon-new-window" aria-hidden="true"></span> Fullscreen
+            <button class="btn btn-black btn-sm" ng-click="fullScreen()">
+               <span class="fa fa-pencil-square-o" aria-hidden="true"></span><span ng-bind="mode"></span>
             </button>
           </div>
           <div class="row">
@@ -144,31 +143,44 @@
 angular
     .module("dld4e", ['ui.bootstrap', 'ui.ace'])
     .controller("mainController", mainController)
-    // .config(['$locationProvider', function($locationProvider){
-    //   $locationProvider.html5Mode(true);
-    // }]);
 
-mainController.$inject = ["$scope", "$http", "$sce", "$log", "$window", "$location", "$timeout"];
+mainController.$inject = ["$scope", "$http", "$sce", "$log", "$window", "$location", "$timeout", "$animate"];
 
-function mainController($scope, $http, $sce, $log, $window, $location, $timeout) {
+function mainController($scope, $http, $sce, $log, $window, $location, $timeout, $animate) {
 
+  $scope.mode = " Hide editor"
+  $scope.shown = true
   $scope.design = "";
   $scope.gistURL = "";
+  $scope.dbURL = "https://syg5y0qnyf.execute-api.us-west-2.amazonaws.com/prod/"
   $scope.saveIcon = "glyphicon glyphicon-floppy-disk"
   $scope.linkText = " Link"
   $scope.docId = $window.location.hash.substring(2)
   if ($scope.docId)  {
-    $scope.url = "https://syg5y0qnyf.execute-api.us-west-2.amazonaws.com/dev/" + $scope.docId
+    $scope.url = $scope.dbURL + $scope.docId
     $scope.state = "Update";
+    var leftSide = angular.element( document.querySelector( '#leftSide' ) );
+    var rightSide = angular.element( document.querySelector( '#rightSide' ) );
+    $scope.shown = false
+    $scope.mode = " Show editor"
+    $animate.setClass(leftSide, 'ng-hide', 'ng-show').then(function() {
+      $animate.setClass(rightSide, 'col-sm-12', 'col-sm-6').then(function() {
+        $http.get($scope.url)
+             .then(function(res){
+                $scope.acedata = res.data;
+                $scope.drawClick()
+              });
+      })
+    })
   } else {
     $scope.url = 'examples/NTP.yaml'
     $scope.state = "Save";
+    $http.get($scope.url)
+         .then(function(res){
+            $scope.acedata = res.data;
+            $scope.drawClick()
+          });
   }
-  $http.get($scope.url)
-       .then(function(res){
-          $scope.acedata = res.data;
-          $scope.drawClick()
-        });
 
   $scope.aceyamlOptions = {
     onLoad: function (_ace) {
@@ -242,7 +254,6 @@ function mainController($scope, $http, $sce, $log, $window, $location, $timeout)
 
   $scope.gist = function() {
     var parts = $scope.gistURL.split('/')
-    // $window.location.hash=""
     var githubUser = parts[3]
     var githubGist = parts[4]
     $http.get('//gist.githubusercontent.com/' + githubUser + '/' + githubGist + '/raw')
@@ -268,18 +279,40 @@ function mainController($scope, $http, $sce, $log, $window, $location, $timeout)
     $scope.save()
   }
 
+  $scope.fullScreen = function () {
+    var leftSide = angular.element( document.querySelector( '#leftSide' ) );
+    var rightSide = angular.element( document.querySelector( '#rightSide' ) );
+    
+    if ($scope.shown) {
+      $scope.shown = false
+      $scope.mode = " Show editor"
+      $animate.setClass(leftSide, 'ng-hide', 'ng-show').then(function() {
+        $animate.setClass(rightSide, 'col-sm-12', 'col-sm-6').then(function() {
+          $scope.drawClick();
+        })
+      })
+    } else {
+      $scope.shown = true
+      $scope.mode = " Hide editor"
+      $animate.setClass(leftSide, 'ng-show', 'ng-hide').then(function() {
+        $animate.setClass(rightSide, 'col-sm-6', 'col-sm-12').then(function() {
+          $scope.drawClick();
+        })
+      })
+    }
+  }
+
 
   $scope.save = function() {
     if ($scope.state == "Save") {
       $scope.saveIcon = "glyphicon glyphicon-hourglass"
-      var url = "https://syg5y0qnyf.execute-api.us-west-2.amazonaws.com/dev/test1";
       var data = $scope.acedata;
       var config = {
                   headers : {
                       'Content-Type': 'text/x-yaml'
                   }
               }
-      $http.post(url, data, config)
+      $http.post($scope.dbURL, data, config)
        .then(
            function(response){
              $scope.docId = response.data.docId
@@ -297,7 +330,7 @@ function mainController($scope, $http, $sce, $log, $window, $location, $timeout)
         );
     } else if ($scope.state == "Update") {
        $scope.saveIcon = "glyphicon glyphicon-hourglass"
-        var url = "https://syg5y0qnyf.execute-api.us-west-2.amazonaws.com/dev/" + $scope.docId;
+        var url = $scope.dbURL + $scope.docId;
         var data = $scope.acedata;
         var config = {
                   headers : {
