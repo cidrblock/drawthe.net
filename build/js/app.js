@@ -9,6 +9,11 @@ function doc_keyUp(e) {
           draw(design);
         }
         return false;
+    } else if (e.ctrlKey && e.keyCode == 221) {
+      e.preventDefault()
+      var button = document.getElementById('fullScreen')
+      button.click()
+      return false;
     }
 
   }
