@@ -24,6 +24,12 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
     .each( function(d) {
       d.value.fontSize = Math.floor(Math.min(d.value.width*.9 / this.getComputedTextLength() * 12, d.value.height/2*iconTextRatio))
       d.value.textPosition = textPositions(0,0,d.value.width,d.value.height,d.value.fontSize + 2)[d.value.textLocation]
+      if (d.value.url) {
+        var text = d3.select(this)
+        text.on("click", function() { window.open(d.value.url); })
+        text.style("cursor", "pointer")
+        text.style("text-decoration", "underline")
+      }
     })
     .style("font-size", function(d) { return d.value.fontSize + "px"; })
     .attr("id", function(d) { return d.key + '-text'})
@@ -31,10 +37,6 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
     .attr('fill', function(d) { return d.value.color || "orange"} )
     .attr("text-anchor", function(d) { return d.value.textPosition.textAnchor})
     .attr("dominant-baseline", "central")
-
-  // var icon = cells.append('g')
-  //   .attr("x", function(d) { return d.value.width*.2 })
-  //   .attr("y", function(d) { return d.value.height*.2})
 
   var icon = cells
     .each ( function(d) {

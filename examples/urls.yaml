@@ -1,0 +1,27 @@
+diagram:
+  fill: "white"
+  rows: 5
+  columns: 4
+  gridLines: false
+title:
+  color: black
+  fill: none
+  logoFill: white
+  stroke: black
+  text: "URLs"
+  type: bar
+cisco: &cisco
+  x: "+1"
+  color: "#004BAF"
+  fill: "white"
+  iconFamily: "cisco"
+  icon: "router"
+  iconFill: "#004BAF"
+  iconStrokeWidth: .25
+  preserveWhite: true
+  stroke: "none"
+icons:
+  router1: {<<: *cisco, x: 0, y: 2, text: "no link", }
+  router2: {<<: *cisco, text: "telnet", url: "telnet://route-server.cerf.net"}
+  router3: {<<: *cisco, text: "ssh", url: "ssh://rviews@route-server.ip.att.net"}
+  router4: {<<: *cisco, text: "http", url: "http://drawthe.net"}

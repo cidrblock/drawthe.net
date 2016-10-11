@@ -218,6 +218,7 @@ The icon's key will be used as the text value, therefore icon names have to be u
   - `topMiddle`: Position the text along the top, centered.
   - `topRight`: Position the text along the top, in the right corner.
   - Example: `textLocation: rightMiddle`
+- `url`: (default: none) A link/URL for the icon text
 - `w`: (default: 1) The width of the icon.
 - `x`: (default: none) The x-coordinate location of the icon.
   - `n`: An absolute position.
