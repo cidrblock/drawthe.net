@@ -110,17 +110,19 @@ fieldset[disabled] .btn-black.active {
 /*metadata*/
 
 .metadata {
-  background: black;
-  color: white;
-  padding: 2px;
-  border-radius: 2px;
+  background: none;
+  display: flex;
 }
-
 .metadata table {
-  width: 100%
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  border: .5vh solid rgba(0,0,0,0.0)}
+}
+.metadata td {
+  vertical-align: middle;
 }
 .metadata td:first-child {
-    font-weight: bold;
-    text-align:right;
-    vertical-align: top;
+  font-weight: bold;
+  text-align:right;
+  white-space: nowrap;
 }

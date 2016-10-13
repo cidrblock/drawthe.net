@@ -1,0 +1,49 @@
+diagram:
+  fill: "white"
+  rows: 5
+  columns: 4
+  gridLines: false
+title:
+  color: black
+  fill: none
+  logoFill: white
+  stroke: black
+  text: "Mouseover Metadata"
+  type: bar
+cisco: &cisco
+  x: "+1"
+  color: "#004BAF"
+  fill: "white"
+  iconFamily: "cisco"
+  icon: "router"
+  iconFill: "#004BAF"
+  iconStrokeWidth: .25
+  preserveWhite: true
+  stroke: "none"
+icons:
+  router1:
+    <<: *cisco
+    x: 0
+    y: 2
+    text: "in yaml"
+    metadata:
+      serial number: 12345
+      platform: ASR 1002X
+  date:
+    <<: *cisco
+    text: "use key"
+    metadata:
+      url: "http://{{ key }}.jsontest.com" # results in GET http://date.jsontest.com
+  router3:
+    <<: *cisco
+    text: "use other key"
+    lookup: ip
+    metadata:
+      url: "http://httpbin.org/{{ lookup }}" # results in GET http://httpbin.org/ip
+  router4:
+    <<: *cisco
+    text: "merge"
+    metadata:
+      url: "http://headers.jsontest.com"
+      serial number: 12345
+      platform: ASR 1002X
