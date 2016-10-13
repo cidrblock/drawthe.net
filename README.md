@@ -199,6 +199,9 @@ The icon's key will be used as the text value, therefore icon names have to be u
 - `iconFill`: (default: use the colors specified in the icon's svg file) The fill color for the icon.
 - `iconStroke`: (default: use the colors specified in the icons's svg file) The color of the lines in the icon.
 - `iconStrokeWidth`: (default: use the colors specified in the icons's svg file) The size of the lines within the icon.
+- `metadata`: (default: none) A hash for the mouse over metadata (see the example)
+  - `url`: If provided, with HTTP GET the metadata, expects a simple json object as a response.
+  - Note:  The URL can contain {{ var }} for replacements, where var is the key or another attribute of the icon.
 - `preserveWhite`: (default: none) Don't change white in the source svg file. (this is useful for the cisco icon family)
 - `stroke`: (default: orange) The color of the icon bounding box line.
 - `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing between the dashes in px.

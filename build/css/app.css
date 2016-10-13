@@ -106,3 +106,23 @@ fieldset[disabled] .btn-black.active {
 .grid path {
   stroke-width: 0;
 }
+
+/*metadata*/
+
+.metadata {
+  background: none;
+  display: flex;
+}
+.metadata table {
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  border: .5vh solid rgba(0,0,0,0.0)}
+}
+.metadata td {
+  vertical-align: middle;
+}
+.metadata td:first-child {
+  font-weight: bold;
+  text-align:right;
+  white-space: nowrap;
+}
