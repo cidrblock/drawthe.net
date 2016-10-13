@@ -2,6 +2,8 @@ var drawNotes = function (svg, diagram, notes) {
 
   var converter = new showdown.Converter({extensions: ['prettify']});
   converter.setOption('prefixHeaderId', 'notes-');
+  converter.setOption('tables', 'true');
+
 
   var xAlign = {
     left: {

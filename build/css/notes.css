@@ -48,3 +48,7 @@ h6[id^="notes-"] {
     padding: .15em .15em;
     font-size: 1em;
 }
+
+.notes table {
+  width: 100%;
+}

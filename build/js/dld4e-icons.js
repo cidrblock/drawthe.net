@@ -32,6 +32,10 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
         text.style("cursor", "pointer")
         text.style("text-decoration", "underline")
       }
+      if (d.value.metadata) {
+        var text = d3.select(this)
+        text.style("cursor", "pointer")
+      }
     })
     .style("font-size", function(d) { return d.value.fontSize + "px"; })
     .attr("id", function(d) { return d.key + '-text'})
@@ -90,7 +94,6 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
         }
         cell.insertBefore(xml.documentElement.cloneNode(true), cellText);
       })
-
     })
 
     function handleMouseOver(d, i) {
@@ -107,8 +110,6 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
             }
           })
         }
-
-        // var url = "http://lx41281:5984/network_inventory/_design/draw/_list/metadata/enterprise?key=%22zrhro1wsw003.starbucks.net%22";
         d3.json(url, function (json) {
           metadata = Object.assign({},json, d.value.metadata);
           delete metadata.url
@@ -117,7 +118,6 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
       } else if (d.value.metadata) {
         mouseOver(d,i,d.value.metadata)
       }
-
     }
 
     function mouseOver(d,i,json) {
@@ -157,7 +157,5 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
     function handleMouseOut(d, i) {
       svg.selectAll(".mouseOver")
         .remove()
-      // d3.select("#t" + d.value.x + "-" + d.value.y + "-" + i).remove();  // Remove text location
     }
-
 }
