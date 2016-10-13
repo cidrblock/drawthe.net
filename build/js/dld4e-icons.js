@@ -97,7 +97,7 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
     })
 
     function handleMouseOver(d, i) {
-      if (d.value.metadata.url) {
+      if ((d.value.metadata) && (d.value.metadata.url)) {
         var url = d.value.metadata.url
         var replacements = url.match(/{{\s*[\w\.]+\s*}}/g)
         if (replacements) {
