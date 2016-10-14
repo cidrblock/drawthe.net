@@ -1,7 +1,7 @@
 diagram:
   fill: "white"
   rows: 5
-  columns: 4
+  columns: 5
   gridLines: false
 title:
   color: black
@@ -47,3 +47,11 @@ icons:
       url: "http://headers.jsontest.com"
       serial number: 12345
       platform: ASR 1002X
+  router5:
+    <<: *cisco
+    text: "custom error"
+    metadata:
+      serial number: 12345
+      platform: ASR 1002X
+      url: "https://httpbin.org/status/500"
+      errorText: "Device not available in inventory."

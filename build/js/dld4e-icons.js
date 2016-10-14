@@ -113,10 +113,26 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
             }
           })
         }
-        d3.json(url, function (json) {
-          metadata = Object.assign({},json, d.value.metadata);
-          delete metadata.url
-          mouseOver(d,i,metadata)
+        d3.json(url, function (error, json) {
+          if (error) {
+            var metadata = Object.assign({}, d.value.metadata);
+            delete metadata.url
+            if (d.value.metadata.errorText) {
+              metadata.note = d.value.metadata.errorText
+              delete metadata.errorText
+            } else {
+              metadata.status = "HTTP:" + error.target.status
+              metadata.statusText = error.target.statusText
+            }
+            mouseOver(d,i,metadata)
+            return
+          } else {
+            var metadata = Object.assign({},json, d.value.metadata);
+            delete metadata.url
+            delete metadata.errorText
+            mouseOver(d,i,metadata)
+            return
+          }
         });
       } else if (d.value.metadata) {
         mouseOver(d,i,d.value.metadata)
