@@ -6,6 +6,14 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
   var cells = deviceCellsAll.append("g")
     .attr("id", function(d) { return d.key })
     .attr("transform", function(d) { return "translate(" + diagram.xBand(d.value.x) + "," + diagram.yBand(d.value.y) + ")" })
+    .on("mouseenter", handleMouseOver)
+    .on("mouseleave", handleMouseOut)
+    .each( function (d) {
+      if (d.value.metadata) {
+        var text = d3.select(this)
+        text.style("cursor", "pointer")
+      }
+    })
 
   var cellFill = cells
     .append("rect")
@@ -17,12 +25,11 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
     .style("stroke", function(d) { return d.value.stroke || "orange" })
     .style("stroke-dasharray", function(d) { return d.value.strokeDashArray || [0,0] })
 
+
   var cellText = cells
     .append("text")
     .attr('class', 'iconLabel')
     .text( function (d) { return d.value.text || d.key })
-    .on("mouseover", handleMouseOver)
-    .on("mouseout", handleMouseOut)
     .each( function(d) {
       d.value.fontSize = Math.floor(Math.min(d.value.width*.9 / this.getComputedTextLength() * 12, d.value.height/2*iconTextRatio))
       d.value.textPosition = textPositions(0,0,d.value.width,d.value.height,d.value.fontSize + 2)[d.value.textLocation]
@@ -31,10 +38,6 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
         text.on("click", function() { window.open(d.value.url); })
         text.style("cursor", "pointer")
         text.style("text-decoration", "underline")
-      }
-      if (d.value.metadata) {
-        var text = d3.select(this)
-        text.style("cursor", "pointer")
       }
     })
     .style("font-size", function(d) { return d.value.fontSize + "px"; })
