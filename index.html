@@ -53,7 +53,7 @@
       <div class="row">
         <div class="col-sm-6" id="leftSide">
           <div class="row no-gutters">
-            <div class="col-sm-11 container-fluid">
+            <div class="col-sm-10 container-fluid">
                 <button id="save" class="btn btn-black btn-sm" ng-click="save()">
                     <span ng-class="saveIcon" aria-hidden="true" ></span> <span ng-bind="state"></span>
                 </button>
@@ -78,11 +78,13 @@
                 </form>
             </div>
             <div class="col-sm-1">
+              <button id="saveimage" class="btn btn-black btn-sm" ng-click="saveImage()" uib-tooltip="Save SVG as Image" tooltip-placement="bottom" tooltip-append-to-body="true">
+                 <span class="glyphicon glyphicon glyphicon-floppy-save" aria-hidden="true" ></span> PNG
+              </button>
+            </div>
+            <div class="col-sm-1">
               <button id="draw" class="btn btn-black btn-sm pull-right" ng-click="drawClick(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
                  <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true" ></span> Draw
-              </button>
-              <button id="saveimage" class="btn btn-black btn-sm pull-right" ng-click="drawClick(value)" uib-tooltip="Save SVG as Image" tooltip-placement="bottom" tooltip-append-to-body="true">
-                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true" ></span> Save
               </button>
             </div>
           </div>
@@ -383,21 +385,16 @@ function mainController($scope, $http, $sce, $log, $window, $location, $timeout,
     downloadLink.click();
     document.body.removeChild(downloadLink);
   }
-};
 
-btn.addEventListener('click', function() {
+  $scope.saveImage = function() {
     saveSvgAsPng(
         document.querySelector('svg'),
-        'diagram.png',
+        design.title.text + '.png',
         {scale: 4, backgroundColor: 'white'}
     );
-});
+  }
 
-function outerHTML(el) {
-    var outer = document.createElement('div');
-    outer.appendChild(el.cloneNode(true));
-    return outer.innerHTML;
-}
+};
 
 
 </script>
