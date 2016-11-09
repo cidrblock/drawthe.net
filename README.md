@@ -4,7 +4,6 @@ drawthe.net draws network diagrams dynamically from a text file describing the p
 
 ![screenshot](https://github.com/cidrblock/drawthe.net/raw/master/screenshot_gc.png)
 
-
 ## Motivation
 
 Complex network diagrams typically involve specific place of icons, connections and labels using a tool like Visio or OmniGraffle using a mouse and constantly zooming in and out for single pixel placement.  The goal behind drawthe.net, was to be able to describe the digram in a text file and have it rendered in SVG in the browser.  
