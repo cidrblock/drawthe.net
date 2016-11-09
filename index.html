@@ -21,7 +21,6 @@
 
     <script type="text/javascript" src="build/js/angular.min.js"></script>
     <script type="text/javascript" src="build/js/angular-animate.min.js"></script>
-    <script type="text/javascript" src="build/js/ace.js"></script>
     <script type="text/javascript" src="build/js/ui-ace.min.js"></script>
     <script type="text/javascript" src="build/js/ui-bootstrap.min.js"></script>
     <script type="text/javascript" src="build/js/ui-bootstrap-tpls.min.js"></script>
@@ -30,7 +29,10 @@
     <script type="text/javascript" src="./build/js/showdown.js"></script>
     <script type="text/javascript" src="./build/js/showdown-prettify.min.js"></script>
     <script type="text/javascript" src="./build/js/prettify/run_prettify.js"></script>
-
+    
+    <!-- previous version of ace caused import conflict -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
+    
     <script type="text/javascript" src="build/js/dld4e-connections.js"></script>
     <script type="text/javascript" src="build/js/dld4e-draw.js"></script>
     <script type="text/javascript" src="build/js/dld4e-gridlines.js"></script>
@@ -39,9 +41,9 @@
     <script type="text/javascript" src="build/js/dld4e-title.js"></script>
     <script type="text/javascript" src="build/js/dld4e-notes.js"></script>
     <script type="text/javascript" src="build/js/dld4e-process.js"></script>
-
-
+    
     <script type="text/javascript" src="build/js/app.js"></script>
+    <script type="text/javascript" src="build/js/saveSvgAsPng.js"></script>
 
 </head>
 <body ng-app="dld4e" ng-controller="mainController">
@@ -87,6 +89,9 @@
         </div>
         <div class="col-sm-6" id="rightSide">
           <div class="row pull-right">
+            <button id="saveimage" type="button" class="btn btn-black btn-sm" ng-click="saveImage()" uib-tooltip="Save SVG as Image" tooltip-placement="bottom" tooltip-append-to-body="true">
+              <span class="glyphicon glyphicon glyphicon-floppy-save" aria-hidden="true" ></span> PNG
+            </button>
             <div class="btn-group" uib-dropdown is-open="status.isopen1" ng-show="shown">
               <button id="examples" type="button" class="btn btn-black btn-sm" uib-dropdown-toggle ng-disabled="disabled">
                 Examples<span class="caret"></span>
@@ -141,6 +146,7 @@
 </body>
 
 <script>
+
 
 angular
     .module("dld4e", ['ui.bootstrap', 'ui.ace'])
@@ -376,7 +382,17 @@ function mainController($scope, $http, $sce, $log, $window, $location, $timeout,
     downloadLink.click();
     document.body.removeChild(downloadLink);
   }
+
+  $scope.saveImage = function() {
+    saveSvgAsPng(
+        document.querySelector('svg'),
+        design.title.text + '.png',
+        {scale: 4, backgroundColor: 'white'}
+    );
+  }
+
 };
+
 
 </script>
 
