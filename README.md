@@ -164,7 +164,7 @@ It's also handy to comment out lines (with a #) to see where the issue may be.
   - `bottom`: (default: 50) The bottom margin in px.
   - `left`: (default: 20) The left side margin in px.
   - Example: `margins: {top: 20, right: 20, bottom: 50, left: 20 }`
-- `rows:` (defualt: 10) The number of rows.
+- `rows:` (default: 10) The number of rows.
 
 ### Title  
 `title`:
