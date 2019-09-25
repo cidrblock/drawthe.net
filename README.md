@@ -18,7 +18,7 @@ Clear the editor and paste the following in, then click draw or ctrl-enter.
 
 ```yaml
 diagram:
-  fill: "white"
+  fill: white
   rows: 5
   columns: 5
 title:
@@ -38,12 +38,12 @@ iconDefaults: &iconDefaults
   stroke: black
   iconFamily: aws
 groupDefaults: &groupDefaults
-  fill: "none"
+  fill: none
   color: black
   stroke: black
 connectionDefaults: &connectionDefaults
-  color: "black"
-  stroke: "black"
+  color: black
+  stroke: black
 noteDefaults: &noteDefaults
   color: black
   fill: white
@@ -57,7 +57,7 @@ icons:
   server1: {<<: *iconDefaults, icon: cmpt_ec2_instance, x: "-1", y: "-1" }
   server2: {<<: *iconDefaults, icon: cmpt_ec2_instance, x: "+1" }
   server3: {<<: *iconDefaults, icon: cmpt_ec2_instance, x: "+1" }
-# Add the gorups
+# Add the groups
 groups:
   servers: { <<: *groupDefaults, name: Web Servers, members: [server1, server2, server3] }
 # Add conneections
