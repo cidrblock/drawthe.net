@@ -157,16 +157,16 @@ var drawIcons = function (svg, diagram, icons, iconTextRatio) {
             }
             return d.value.x2; })
           .attr("y", function() { return d.value.centerY - (length * d.value.fontSize) })
+          .style("width", function() { return d.value.width * 10 + "px" })
+          .style("height", function() { return length * d.value.fontSize * 10 + "px" })
           .append("xhtml:div")
           .attr("class", "metadata")
-          .style("width", function() { return d.value.width * 3 + "px" })
-          .style("height", function() { return length * d.value.fontSize })
           .style("justify-content", jc)
           .style("font-size", function() { return d.value.fontSize + "px"; })
           .html(function() {
             var text = "<table>"
             for (key in metadata) {
-              text += ("<tr><td>" + key + ":&nbsp</td><td>" + metadata[key] + "</td></tr>")
+              text += ("<tr><td style='text-align: left;'>" + key + ":&nbsp</td><td>" + metadata[key] + "</td></tr>")
             }
             text += "</table>"
             return text;
