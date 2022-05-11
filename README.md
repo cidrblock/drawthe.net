@@ -57,10 +57,10 @@ icons:
   server1: {<<: *iconDefaults, icon: cmpt_ec2_instance, x: "-1", y: "-1" }
   server2: {<<: *iconDefaults, icon: cmpt_ec2_instance, x: "+1" }
   server3: {<<: *iconDefaults, icon: cmpt_ec2_instance, x: "+1" }
-# Add the gorups
+# Add the groups
 groups:
   servers: { <<: *groupDefaults, name: Web Servers, members: [server1, server2, server3] }
-# Add conneections
+# Add connections
 connections:
   - { <<: *connectionDefaults, endpoints: [dns, lb] }
   - { <<: *connectionDefaults, endpoints: [lb, servers] }
