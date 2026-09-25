@@ -1,0 +1,19 @@
+diagram:
+  fill: "#232F3E"
+  rows: 5
+  columns: 5
+  gridPaddingInner: .05
+  aspectRatio: "17:11"
+  gridLines: false
+title:
+  type: bar
+  color: white
+  logoFill: none
+  text: "aws2026 icons"
+  stroke: white
+  fill: none
+icon:
+  stroke: "none"
+  color: "white"
+  iconFamily: "aws2026"
+  fill: "none"

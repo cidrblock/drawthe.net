@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run icons:list
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
+      - name: Headless-render every example (smoke test)
+        run: |
+          set -e
+          for f in examples/*.yaml; do
+            out="/tmp/$(basename "$f" .yaml).svg"
+            npm run render -- "$f" "$out"
+            [ -s "$out" ] || (echo "Empty output for $f" && exit 1)
+          done

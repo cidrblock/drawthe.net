@@ -1,399 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- META -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
     <meta name="robots" content="index,follow">
     <meta name="description" content="decent looking diagrams for engineers">
-
-    <link rel="icon"
-      type="image/png"
-      href="./build/images/radial.png" />
-    <base href="/">
-
+    <link rel="icon" type="image/png" href="/images/radial.png">
     <title>Decent looking diagrams for engineers</title>
-
-    <link rel="stylesheet" href="build/css/bootstrap.min.css">
-    <link rel="stylesheet" href="build/css/font-awesome.min.css">
-    <link rel="stylesheet" href="build/css/app.css">
-    <link rel="stylesheet" href="build/css/notes.css">
-
-    <script type="text/javascript" src="build/js/angular.min.js"></script>
-    <script type="text/javascript" src="build/js/angular-animate.min.js"></script>
-    <script type="text/javascript" src="build/js/ui-ace.min.js"></script>
-    <script type="text/javascript" src="build/js/ui-bootstrap.min.js"></script>
-    <script type="text/javascript" src="build/js/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="build/js/js-yaml.min.js"></script>
-    <script type="text/javascript" src="./build/js/d3.min.js"></script>
-    <script type="text/javascript" src="./build/js/showdown.js"></script>
-    <script type="text/javascript" src="./build/js/showdown-prettify.min.js"></script>
-    <script type="text/javascript" src="./build/js/prettify/run_prettify.js"></script>
-    
-    <!-- previous version of ace caused import conflict -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js" type="text/javascript" charset="utf-8"></script>
-    
-    <script type="text/javascript" src="build/js/dld4e-connections.js"></script>
-    <script type="text/javascript" src="build/js/dld4e-draw.js"></script>
-    <script type="text/javascript" src="build/js/dld4e-gridlines.js"></script>
-    <script type="text/javascript" src="build/js/dld4e-groups.js"></script>
-    <script type="text/javascript" src="build/js/dld4e-icons.js"></script>
-    <script type="text/javascript" src="build/js/dld4e-title.js"></script>
-    <script type="text/javascript" src="build/js/dld4e-notes.js"></script>
-    <script type="text/javascript" src="build/js/dld4e-process.js"></script>
-    
-    <script type="text/javascript" src="build/js/app.js"></script>
-    <script type="text/javascript" src="build/js/saveSvgAsPng.js"></script>
-
 </head>
-<body ng-app="dld4e" ng-controller="mainController">
-      <uib-alert class="col-sm-6 col-sm-offset-3" ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
-        <span ng-bind-html="alert.msg"></span>
-      </uib-alert>
-      <div class="row">
+<body>
+    <div id="alerts" class="col-sm-6 col-sm-offset-3"></div>
+    <div class="row">
         <div class="col-sm-6" id="leftSide">
-          <div class="row no-gutters">
-            <div class="col-sm-11 container-fluid">
-                <button id="save" class="btn btn-black btn-sm" ng-click="save()">
-                    <span ng-class="saveIcon" aria-hidden="true" ></span> <span ng-bind="state"></span>
-                </button>
-                <button id="fork" class="btn btn-black btn-sm" ng-click="fork()">
-                   <span class="fa fa-code-fork" aria-hidden="true" ></span> Fork
-                </button>
-                <button id="download" class="btn btn-black btn-sm" ng-click="saveFile()">
-                   <span class="glyphicon glyphicon-floppy-save" aria-hidden="true" ></span> Download
-                </button>
-                <button id="link" class="btn btn-black btn-sm" ng-click="link()">
-                   <span class="fa fa-clipboard" aria-hidden="true" ></span><span ng-bind="linkText">Link</span>
-                </button>
-                <form class="form-inline">
-                  <div class="input-group">
-                    <input type="text" size="35" class="form-control input-sm" ng-model="gistURL" placeholder="Load from Github Gist">
-                    <span class="input-group-btn">
-                      <button class="btn btn-black btn-sm" type="submit" ng-click="gist()">
-                        <span class="fa fa-cloud-download"></span>
-                      </button>
-                    </span>
-                  </div>
-                </form>
+            <div class="row no-gutters">
+                <div class="col-sm-11 container-fluid">
+                    <button id="save" class="btn btn-black btn-sm" type="button">
+                        <span id="saveIcon" class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+                        <span id="saveState">Save</span>
+                    </button>
+                    <button id="fork" class="btn btn-black btn-sm" type="button">
+                        <span class="fa fa-code-fork" aria-hidden="true"></span> Fork
+                    </button>
+                    <button id="download" class="btn btn-black btn-sm" type="button">
+                        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> Download
+                    </button>
+                    <button id="link" class="btn btn-black btn-sm" type="button">
+                        <span class="fa fa-clipboard" aria-hidden="true"></span><span id="linkText">Link</span>
+                    </button>
+                    <form id="gistForm" class="form-inline">
+                        <div class="input-group">
+                            <input id="gistURL" type="text" size="35" class="form-control input-sm" placeholder="Load from Github Gist">
+                            <span class="input-group-btn">
+                                <button class="btn btn-black btn-sm" type="submit">
+                                    <span class="fa fa-cloud-download"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-1">
+                    <button id="draw" class="btn btn-black btn-sm pull-right" type="button"
+                        title="hint: press ctrl-enter to refresh the drawing">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Draw
+                    </button>
+                </div>
             </div>
-            <div class="col-sm-1">
-              <button id="draw" class="btn btn-black btn-sm pull-right" ng-click="drawClick(value)" uib-tooltip="hint: press ctrl-enter to refresh the drawing" tooltip-placement="bottom" tooltip-append-to-body="true">
-                 <span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true" ></span> Draw
-              </button>
+            <div class="row">
+                <div id="editor" class="ace-editor"></div>
             </div>
-          </div>
-          <div class="row">
-            <div ui-ace="aceyamlOptions" ng-model="acedata"></div>
-          </div>
         </div>
         <div class="col-sm-6" id="rightSide">
-          <div class="row pull-right">
-            <button id="saveimage" type="button" class="btn btn-black btn-sm" ng-click="saveImage()" uib-tooltip="Save SVG as Image" tooltip-placement="bottom" tooltip-append-to-body="true">
-              <span class="glyphicon glyphicon glyphicon-floppy-save" aria-hidden="true" ></span> PNG
-            </button>
-            <div class="btn-group" uib-dropdown is-open="status.isopen1" ng-show="shown">
-              <button id="examples" type="button" class="btn btn-black btn-sm" uib-dropdown-toggle ng-disabled="disabled">
-                Examples<span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="examples">
-                <li role="menuitem" ng-click="example('coffee.yaml')"><a href="javascript:void(0);">Coffee Colors</a></li>
-                <li role="menuitem" ng-click="example('curves.yaml')"><a href="javascript:void(0);">Curves</a></li>
-                <li role="menuitem" ng-click="example('groups.yaml')"><a href="javascript:void(0);">Groups</a></li>
-                <li role="menuitem" ng-click="example('group connections.yaml')"><a href="javascript:void(0);">Group connections</a></li>
-                <li role="menuitem" ng-click="example('labels.yaml')"><a href="javascript:void(0);">Labels</a></li>
-                <li role="menuitem" ng-click="example('mouseover.yaml')"><a href="javascript:void(0);">Mouseover Metadata</a></li>
-                <li role="menuitem" ng-click="example('notes.yaml')"><a href="javascript:void(0);">Notes</a></li>
-                <li role="menuitem" ng-click="example('NTP.yaml')"><a href="javascript:void(0);">NTP</a></li>
-                <li role="menuitem" ng-click="example('relative positions.yaml')"><a href="javascript:void(0);">Relative positions</a></li>
-                <li role="menuitem" ng-click="example('sample.yaml')"><a href="javascript:void(0);">Sample</a></li>
-                <li role="menuitem" ng-click="example('text locations.yaml')"><a href="javascript:void(0);">Text locations</a></li>
-                <li role="menuitem" ng-click="example('urls.yaml')"><a href="javascript:void(0);">URLs for icons</a></li>
-              </ul>
+            <div class="row pull-right">
+                <button id="saveimage" type="button" class="btn btn-black btn-sm" title="Save SVG as Image">
+                    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span> PNG
+                </button>
+                <div class="btn-group dropdown">
+                    <button id="examples" type="button" class="btn btn-black btn-sm dropdown-toggle">
+                        Examples<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="examples">
+                        <li role="menuitem" data-example="coffee.yaml"><a href="javascript:void(0);">Coffee Colors</a></li>
+                        <li role="menuitem" data-example="curves.yaml"><a href="javascript:void(0);">Curves</a></li>
+                        <li role="menuitem" data-example="groups.yaml"><a href="javascript:void(0);">Groups</a></li>
+                        <li role="menuitem" data-example="group connections.yaml"><a href="javascript:void(0);">Group connections</a></li>
+                        <li role="menuitem" data-example="labels.yaml"><a href="javascript:void(0);">Labels</a></li>
+                        <li role="menuitem" data-example="mouseover.yaml"><a href="javascript:void(0);">Mouseover Metadata</a></li>
+                        <li role="menuitem" data-example="notes.yaml"><a href="javascript:void(0);">Notes</a></li>
+                        <li role="menuitem" data-example="NTP.yaml"><a href="javascript:void(0);">NTP</a></li>
+                        <li role="menuitem" data-example="relative positions.yaml"><a href="javascript:void(0);">Relative positions</a></li>
+                        <li role="menuitem" data-example="sample.yaml"><a href="javascript:void(0);">Sample</a></li>
+                        <li role="menuitem" data-example="text locations.yaml"><a href="javascript:void(0);">Text locations</a></li>
+                        <li role="menuitem" data-example="urls.yaml"><a href="javascript:void(0);">URLs for icons</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group dropdown">
+                    <button id="icons" type="button" class="btn btn-black btn-sm dropdown-toggle">
+                        Icons<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="icons">
+                        <li role="menuitem" data-icon-family="aws-native"><a href="javascript:void(0);">aws</a></li>
+                        <li role="menuitem" data-icon-family="aws-filled"><a href="javascript:void(0);">aws (iconFill)</a></li>
+                        <li role="menuitem" data-icon-family="aws-stroke"><a href="javascript:void(0);">aws (iconStroke)</a></li>
+                        <li role="menuitem" data-icon-family="cisco-native"><a href="javascript:void(0);">cisco</a></li>
+                        <li role="menuitem" data-icon-family="cisco-filled"><a href="javascript:void(0);">cisco (iconFill)</a></li>
+                        <li role="menuitem" data-icon-family="cisco-stroke"><a href="javascript:void(0);">cisco (iconStroke)</a></li>
+                        <li role="menuitem" data-icon-family="azureEnterprise-native"><a href="javascript:void(0);">azureEnterprise</a></li>
+                        <li role="menuitem" data-icon-family="azureEnterprise-filled"><a href="javascript:void(0);">azureEnterprise (iconFill)</a></li>
+                        <li role="menuitem" data-icon-family="azureEnterprise-stroke"><a href="javascript:void(0);">azureEnterprise (iconStroke)</a></li>
+                        <li role="menuitem" data-icon-family="azureCloud-native"><a href="javascript:void(0);">azureCloud</a></li>
+                        <li role="menuitem" data-icon-family="azureCloud-filled"><a href="javascript:void(0);">azureCloud (iconFill)</a></li>
+                        <li role="menuitem" data-icon-family="azureCloud-stroke"><a href="javascript:void(0);">azureCloud (iconStroke)</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li role="menuitem" data-icon-family="aws2026-native"><a href="javascript:void(0);">aws2026</a></li>
+                        <li role="menuitem" data-icon-family="azure2026-native"><a href="javascript:void(0);">azure2026</a></li>
+                        <li role="menuitem" data-icon-family="cisco2026-native"><a href="javascript:void(0);">cisco2026</a></li>
+                        <li role="menuitem" data-icon-family="cisco2026-filled"><a href="javascript:void(0);">cisco2026 (iconFill)</a></li>
+                    </ul>
+                </div>
+                <a href="https://github.com/cidrblock/drawthe.net" target="_blank" rel="noopener" class="btn btn-black btn-sm">
+                    <span class="fa fa-github"></span> Github
+                </a>
+                <button id="fullScreen" class="btn btn-black btn-sm" type="button">
+                    <span class="fa fa-pencil-square-o" aria-hidden="true"></span><span id="fullScreenMode"> Hide editor</span>
+                </button>
             </div>
-            <div class="btn-group" uib-dropdown is-open="status.isopen2" ng-show="shown">
-              <button id="foo" type="button" class="btn btn-black btn-sm" uib-dropdown-toggle ng-disabled="disabled">
-                Icons<span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="icons">
-                <li role="menuitem" ng-click="drawIconFamily('aws-native')"><a href="javascript:void(0);">aws</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('aws-filled')"><a href="javascript:void(0);">aws (iconFill)</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('aws-stroke')"><a href="javascript:void(0);">aws (iconStroke)</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('cisco-native')"><a href="javascript:void(0);">cisco</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('cisco-filled')"><a href="javascript:void(0);">cisco (iconFill)</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('cisco-stroke')"><a href="javascript:void(0);">cisco (iconStroke)</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-native')"><a href="javascript:void(0);">azureEnterprise</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-filled')"><a href="javascript:void(0);">azureEnterprise (iconFill)</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('azureEnterprise-stroke')"><a href="javascript:void(0);">azureEnterprise (iconStroke)</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('azureCloud-native')"><a href="javascript:void(0);">azureCloud</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('azureCloud-filled')"><a href="javascript:void(0);">azureCloud (iconFill)</a></li>
-                <li role="menuitem" ng-click="drawIconFamily('azureCloud-stroke')"><a href="javascript:void(0);">azureCloud (iconStroke)</a></li>
-              </ul>
+            <div class="row">
+                <div class="drawing" id="svg"></div>
             </div>
-            <a href="http://github.com/cidrblock/network_diagram" target="_blank" class="btn btn-black btn-sm">
-              <span class="fa fa-github"></span> Github
-            </a>
-            <button id="fullScreen" class="btn btn-black btn-sm" ng-click="fullScreen()">
-               <span class="fa fa-pencil-square-o" aria-hidden="true"></span><span ng-bind="mode"></span>
-            </button>
-          </div>
-          <div class="row">
-            <div class="drawing" id="svg"></div>
-          </div>
         </div>
-      </div>
     </div>
+
+    <script src="/vendor/prettify/run_prettify.js"></script>
+    <script type="module" src="/src/app/dropdowns.ts"></script>
+    <script type="module" src="/src/app/main.ts"></script>
 </body>
-
-<script>
-
-
-angular
-    .module("dld4e", ['ui.bootstrap', 'ui.ace'])
-    .controller("mainController", mainController)
-
-mainController.$inject = ["$scope", "$http", "$sce", "$log", "$window", "$location", "$timeout", "$animate"];
-
-function mainController($scope, $http, $sce, $log, $window, $location, $timeout, $animate) {
-
-  var w = angular.element($window);
-  w.bind('resize', function () {
-    $scope.drawClick()
-  });
-  $scope.mode = " Hide editor"
-  $scope.shown = true
-  $scope.design = "";
-  $scope.gistURL = "";
-  $scope.dbURL = "https://syg5y0qnyf.execute-api.us-west-2.amazonaws.com/prod/"
-  $scope.saveIcon = "glyphicon glyphicon-floppy-disk"
-  $scope.linkText = " Link"
-  $scope.docId = $window.location.hash.substring(2)
-  if ($scope.docId)  {
-    $scope.url = $scope.dbURL + $scope.docId
-    $scope.state = "Update";
-    var leftSide = angular.element( document.querySelector( '#leftSide' ) );
-    var rightSide = angular.element( document.querySelector( '#rightSide' ) );
-    $scope.shown = false
-    $scope.mode = " Show editor"
-    $animate.setClass(leftSide, 'ng-hide', 'ng-show').then(function() {
-      $animate.setClass(rightSide, 'col-sm-12', 'col-sm-6').then(function() {
-        $http.get($scope.url)
-             .then(function(res){
-                $scope.acedata = res.data;
-                $scope.drawClick()
-              });
-      })
-    })
-  } else {
-    $scope.url = 'examples/NTP.yaml'
-    $scope.state = "Save";
-    $http.get($scope.url)
-         .then(function(res){
-            $scope.acedata = res.data;
-            $scope.drawClick()
-          });
-  }
-
-  $scope.aceyamlOptions = {
-    onLoad: function (_ace) {
-      _ace.getSession().setMode("ace/mode/yaml");
-      _ace.$blockScrolling = Infinity;
-      _ace.commands.addCommand({
-          name: 'saveFile',
-          bindKey: {
-          win: 'Ctrl-S',
-          mac: 'Command-S',
-          sender: 'editor|cli'
-          },
-          exec: function(env, args, request) {
-            $scope.saveFile();
-          }
-          });
-      _ace.setOption("tabSize", 2);
-    }
-  };
-  $scope.opend3js = function(greeting) {
-    $window.design = jsyaml.load($scope.acedata) || {};
-    var w = $window.open("fullscreen.html");
-  };
-  $scope.drawIconFamily = function(iconFamily) {
-    var wi = window.open('about:blank', '_blank');
-    $http.get('./build/js/iconFamilies.json')
-     .then(function(res){
-       var iconFamilies = res.data
-       var bestFit = Math.ceil(Math.sqrt(size))
-       var familyName = iconFamily.split('-')[0]
-       var size = iconFamilies[familyName].length
-       var url = "./templates/" + iconFamily + ".yaml"
-       $http.get(url)
-            .then(function(res){
-               var doc = jsyaml.load(res.data);
-               var ratios = doc.diagram.aspectRatio.split(':')
-               var h = ratios[0]
-               var w = ratios[1]
-               doc.diagram.rows = Math.ceil(Math.sqrt(size*w/h))
-               doc.diagram.columns = Math.ceil(size/doc.diagram.rows)
-               var x = 0
-               var y = doc.diagram.rows - 1
-               doc.icons = {}
-               for (var icon in iconFamilies[familyName]){
-                 doc.icons[iconFamilies[familyName][icon]] = Object.assign( { x: x, y: y, icon: iconFamilies[familyName][icon]}, doc.icon)
-                 x += 1
-                 if (x == doc.diagram.columns) {
-                   x = 0
-                   y -= 1
-                 }
-               }
-               $window.design = doc;
-               wi.location.href = 'fullscreen.html';
-             });
-    });
-  }
-  $scope.example = function(file) {
-    $http.get("examples/" + file)
-         .then(function(res){
-            $scope.acedata = res.data;
-            $window.location.hash = ""
-            $scope.state = "Save"
-            $scope.drawClick();
-          });
-  }
-
-  $scope.drawClick = function() {
-    $window.design = jsyaml.load($scope.acedata) || {};
-    draw($window.design);
-    $window.document.title = 'drawthe.net: ' + window.design.title.text
-  }
-
-
-  $scope.gist = function() {
-    var parts = $scope.gistURL.split('/')
-    var githubUser = parts[3]
-    var githubGist = parts[4]
-    $http.get('//gist.githubusercontent.com/' + githubUser + '/' + githubGist + '/raw')
-      .then(function(res) {
-        $scope.acedata = res.data;
-        $scope.drawClick()
-      })
-    $scope.gistURL = ""
-    $window.location.hash = ""
-    $scope.state = "Save"
-  }
-
-  $scope.link = function() {
-    copyToClipboard($location.absUrl())
-    $scope.linkText = " Copied to clipboard"
-    $timeout(function () {
-      $scope.linkText = "Link"
-    }, 200);
-  }
-
-  $scope.fork = function() {
-    $scope.state = "Save"
-    $scope.save()
-  }
-
-  $scope.fullScreen = function () {
-    var leftSide = angular.element( document.querySelector( '#leftSide' ) );
-    var rightSide = angular.element( document.querySelector( '#rightSide' ) );
-
-    if ($scope.shown) {
-      $scope.shown = false
-      $scope.mode = " Show editor"
-      $animate.setClass(leftSide, 'ng-hide', 'ng-show').then(function() {
-        $animate.setClass(rightSide, 'col-sm-12', 'col-sm-6').then(function() {
-          $scope.drawClick();
-        })
-      })
-    } else {
-      $scope.shown = true
-      $scope.mode = " Hide editor"
-      $animate.setClass(leftSide, 'ng-show', 'ng-hide').then(function() {
-        $animate.setClass(rightSide, 'col-sm-6', 'col-sm-12').then(function() {
-          $scope.drawClick();
-        })
-      })
-    }
-  }
-
-
-  $scope.save = function() {
-    if ($scope.state == "Save") {
-      $scope.saveIcon = "glyphicon glyphicon-hourglass"
-      var data = $scope.acedata;
-      var config = {
-                  headers : {
-                      'Content-Type': 'text/x-yaml'
-                  }
-              }
-      $http.post($scope.dbURL, data, config)
-       .then(
-           function(response){
-             $scope.docId = response.data.docId
-             $window.location.hash=response.data.docId
-             $scope.saveIcon = "glyphicon glyphicon-ok-circle"
-             $timeout(function () {
-               $scope.saveIcon = "glyphicon glyphicon-floppy-disk";
-               $scope.state = "Update";
-             }, 200);
-           },
-           function(response){
-             $scope.saveIcon = "glyphicon glyphicon-alert";
-             console.log(response)
-           }
-        );
-    } else if ($scope.state == "Update") {
-       $scope.saveIcon = "glyphicon glyphicon-hourglass"
-        var url = $scope.dbURL + $scope.docId;
-        var data = $scope.acedata;
-        var config = {
-                  headers : {
-                      'Content-Type': 'text/x-yaml'
-                  }
-              }
-        $http.put(url, data, config)
-         .then(
-             function(response){
-               $window.location.hash=response.data.docId
-               $scope.saveIcon = "glyphicon glyphicon-ok-circle"
-               $timeout(function () {
-                 $scope.saveIcon = "glyphicon glyphicon-floppy-disk"
-               }, 200);
-
-             },
-             function(response){
-               $scope.saveIcon = "glyphicon glyphicon-alert";
-               console.log(response)
-             }
-          );
-    }
-  }
-  $scope.saveFile = function() {
-    var data = $scope.acedata,
-        blob = new Blob([data], { type: 'text/plain' }),
-        url = $window.URL || $window.webkitURL;
-        design = jsyaml.load(data) || {};
-        fileName = `${design.title.text || 'dld4e'}-v${design.title.version || '1.01'}.yaml`
-    url = url.createObjectURL(blob); //do
-    var downloadLink = document.createElement("a");
-    downloadLink.href = url;
-    downloadLink.download = fileName;
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-  }
-
-  $scope.saveImage = function() {
-    saveSvgAsPng(
-        document.querySelector('svg'),
-        design.title.text + '.png',
-        {scale: 4, backgroundColor: 'white'}
-    );
-  }
-
-};
-
-
-</script>
-
 </html>

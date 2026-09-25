@@ -1,0 +1,19 @@
+diagram:
+  fill: white
+  rows: 5
+  columns: 5
+  gridPaddingInner: .05
+  aspectRatio: "17:11"
+  gridLines: false
+title:
+  type: bar
+  color: black
+  logoFill: white
+  text: "cisco2026 icons"
+  stroke: black
+  fill: none
+icon:
+  stroke: "none"
+  color: "black"
+  iconFamily: "cisco2026"
+  fill: "none"

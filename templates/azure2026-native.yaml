@@ -1,0 +1,19 @@
+diagram:
+  fill: "white"
+  rows: 5
+  columns: 5
+  gridPaddingInner: .05
+  aspectRatio: "17:11"
+  gridLines: false
+title:
+  type: bar
+  color: "#0078D4"
+  logoFill: none
+  text: "azure2026 icons"
+  stroke: "#0078D4"
+  fill: none
+icon:
+  stroke: "none"
+  color: "#0078D4"
+  iconFamily: "azure2026"
+  fill: "none"

@@ -1,22 +1,44 @@
 {
-  "name": "network_diagram",
-  "version": "1.0.0",
-  "description": "http://r12a.github.io/apps/conversion/",
-  "main": "azure.js",
+  "name": "drawthe.net",
+  "version": "2.0.0",
+  "description": "drawthe.net: decent looking diagrams for engineers - draw network diagrams from YAML",
+  "type": "module",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "d3": "^4.2.4",
-    "grunt": "^1.0.1",
-    "grunt-bower": "^0.21.2",
-    "grunt-bowercopy": "^1.2.4",
-    "grunt-cli": "^1.2.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "js-yaml": "^3.6.1"
+    "predev": "npm run icons:list",
+    "dev": "vite",
+    "prebuild": "npm run icons:list",
+    "build": "tsc -p tsconfig.json --noEmit && vite build",
+    "preview": "vite preview",
+    "render": "tsx src/cli/render.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "icons:list": "tsx scripts/icons/build-icon-families.ts"
   },
   "dependencies": {
+    "ace-builds": "^1.36.5",
+    "bootstrap": "^3.4.1",
+    "d3": "^7.9.0",
+    "font-awesome": "^4.7.0",
+    "js-yaml": "^4.1.0",
+    "save-svg-as-png": "^1.4.17",
+    "showdown": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/js-yaml": "^4.0.9",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^22.10.2",
+    "@types/showdown": "^2.0.6",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "eslint": "^8.57.1",
+    "jsdom": "^25.0.1",
+    "prettier": "^3.4.2",
+    "svgo": "^4.1.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
   }
 }

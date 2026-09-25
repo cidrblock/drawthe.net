@@ -10,6 +10,27 @@ Complex network diagrams typically involve specific place of icons, connections 
 
 I simply wanted to be able to draw network diagrams as fast as it could be done on a dry-erase board without using a mouse.
 
+## Development
+
+Requires Node.js 20+.
+
+```
+npm install
+npm run dev       # start the Vite dev server
+npm run build     # typecheck + production build to dist/
+npm run lint      # eslint
+npm run typecheck # tsc --noEmit
+npm run render -- examples/NTP.yaml out.svg   # headless YAML -> SVG render (Node/CLI)
+```
+
+The renderer core (`src/renderer`) has no browser dependency and can run headlessly in
+Node via `src/cli/render.ts` - this is the seam future automation/agent tooling will use.
+
+The app has three static entry points, built by Vite as a multi-page app:
+- `index.html` - the editor (Ace editor + live preview)
+- `fullscreen.html` - a popup window that renders the design shared by `index.html` (`window.opener`)
+- `render.html` - renders a single YAML doc from a `?doc=` (bundled example) or `?key=` (saved doc) query param, with no editor UI
+
 ## Quick start
 
 http://go.drawthe.net
@@ -119,6 +140,9 @@ The following icon families are available:
 - azureCloud
 - azureEnterprise
 - cisco
+- aws2026 (current AWS architecture service icons, full-color pictograms)
+- azure2026 (current Azure public service icons, unified set replacing the separate cloud/enterprise split)
+- cisco2026 (current revision of the same Cisco network topology icon set)
 
 Icons have the following basic attributes:
 
@@ -128,6 +152,8 @@ Icons have the following basic attributes:
 **iconStroke:** Sets the color of the line drawn within the icon.  
 
 Each icon and icon family may behave differently when the fill and stroke are applied, review the icon cut sheets to see the icons available for each family with the iconFill and iconStroke set.
+
+Note: the icon sets bundled with this project are redistributed legally, but each vendor's icon set carries its own usage terms (some restrict recoloring or other alteration of the icon itself). This tool lets you apply `iconFill`/`iconStroke`/`preserveWhite` to any icon family regardless of those terms - see [Icon licensing](#icon-licensing) below. It is your responsibility to comply with the license that applies to the icon family you use.
 
 ### Notes
 
@@ -175,7 +201,7 @@ It's also handy to comment out lines (with a #) to see where the issue may be.
 - `fill`: (default: orange) The title fill color.
 - `heightPercentage`: (default: 6) The percentage of the diagram height to use for the title.
 - `logoFill`: (default: orange) The color behind the logo.
-- `logoUrl`: (default: `build/images/radial.png`) The URL for the logo.
+- `logoUrl`: (default: `/images/radial.png`) The URL for the logo.
 - `stroke`: (default: orange) The line color for the title.
 - `subText`: The title subtext.
 - `text`: The title text.
@@ -353,12 +379,14 @@ Notes can also contain markdown converted by: Showdown.js https://github.com/sho
 
 ## Built with great open source software
 
+- **Vite:** https://vite.dev
+- **TypeScript:** https://www.typescriptlang.org
 - **Ace editor:** https://ace.c9.io
-- **Angular:** https://angularjs.org
 - **D3.js:** https://d3js.org
 - **js-yaml:** https://github.com/nodeca/js-yaml
 - **Showdown:** https://github.com/showdownjs/showdown
 - **Prettify:** https://github.com/google/code-prettify
+- **Bootstrap:** https://getbootstrap.com
 
 ## Contributing
 
@@ -376,19 +404,48 @@ Please do.
 
 This project is licensed under the MIT License. [MIT License](http://www.opensource.org/licenses/MIT).
 
+### Icon licensing
+
+The MIT License above covers this project's own code. It does not cover the third-party icon
+sets bundled under `public/images/`. Each icon family is provided by its respective vendor
+under that vendor's own usage terms, which are not all identical - some permit recoloring,
+some explicitly prohibit altering the icon, some restrict use to specific contexts (e.g.
+architecture diagrams only).
+
+This tool's `iconFill`, `iconStroke`, `iconStrokeWidth`, and `preserveWhite` diagram attributes
+will recolor/restyle any icon from any family on request - the tool does not know or enforce
+what each vendor's license permits. **Determining whether a given use (including recoloring,
+redistribution, or publishing a rendered diagram) complies with the applicable icon set's
+license is the user's responsibility.** When in doubt, consult the vendor's current published
+terms for that icon family before redistributing or publishing diagrams built with it.
+
+### Icon set provenance
+
+| Family | Source | Retrieved | Notes |
+| --- | --- | --- | --- |
+| `azure2026` | [Azure architecture icons](https://learn.microsoft.com/en-us/azure/architecture/icons/) (`Azure_Public_Service_Icons` package) | 2026-09 | Bundled Terms of Use PDF permits use in architectural diagrams/training/documentation; don't crop/flip/rotate/distort shape; don't use Microsoft product icons to represent your own product. |
+| `aws2026` | [AWS architecture icons](https://aws.amazon.com/architecture/icons/) ("Icon package", Architecture-Service-Icons, 48px tier) | 2026-09 | AWS's page states the icons are for building architecture diagrams; a machine-readable terms/license file was not bundled in this release and full current wording was not independently verified - review AWS's current published guidance yourself before relying on this family. |
+| `cisco2026` | [Cisco network topology icons](https://www.cisco.com/c/en/us/about/brand-center/network-topology-icons.html) (PMS 3015 color EPS package) | 2026-09 | Cisco's page states "You may use them freely, but you may not alter them" - this is the same underlying icon set as the original `cisco` family (which this project already recolors via `iconFill`/`iconStroke`); see the general disclaimer above. EPS source converted to SVG via Inkscape. |
+
+Both `azure2026` and `aws2026` are added as new, additional families - the original `aws`,
+`azureCloud`, `azureEnterprise`, and `cisco` families are untouched, so existing diagrams keep
+rendering identically. `cisco2026` refreshes the same Cisco network topology icon set to its
+current (2026) revision, converted from EPS via Inkscape.
+
 ------------------------
 
 ### Additional development information
 
-#### Converting icons
-1. copy the icons into a images/xxxx directory
+#### Converting icons (legacy manual process - `aws`, `azureCloud`, `azureEnterprise`, `cisco`)
+1. copy the icons into a public/images/xxxx directory
 2. clean up the names a little
 3. convert from svg to eps and back to svg (this sizes the svg to the bounding window of the icon)
 4. use svgo to cleaup the svg files
+5. run `npm run icons:list` to regenerate `public/images/iconFamilies.json`
 
 azure-cloud
 ```
-cd build/images/azureCloud
+cd public/images/azureCloud
 cp ~/Downloads/Microsoft_CloudnEnterprise_Symbols_v2.5_PUBLIC/Symbols/CnE_Cloud/SVG/*.svg .
 rename 's/[^a-zA-Z0-9_.]//g' *.svg
 rename -f 'y/A-Z/a-z/' *.svg
@@ -398,7 +455,7 @@ rm *.svg
 for i in `pwd`/*.eps; do inkscape $i -l ${i%.eps}.svg; done
 rm *.eps
 svgo .
-cd .. && node ./build_list.js
+cd ../.. && npm run icons:list
 ```
 
 AWS
@@ -428,3 +485,23 @@ rename 's/[^a-zA-Z0-9_.]//g' *.svg
 rename -f 'y/A-Z/a-z/' *.svg
 svgo .
 ```
+
+#### Refreshing icons (current process - `aws2026`, `azure2026`, `cisco2026`)
+
+`scripts/icons/refresh-icon-family.ts` replaces the manual steps above with a repeatable pipeline:
+download and unzip the vendor's current icon package yourself (see the provenance table above for
+links), then run:
+
+```
+npx tsx scripts/icons/refresh-icon-family.ts azure2026 --source /path/to/extracted/Icons
+npx tsx scripts/icons/refresh-icon-family.ts aws2026 --source /path/to/extracted
+npx tsx scripts/icons/refresh-icon-family.ts cisco2026 --source /path/to/extracted
+npm run icons:list
+```
+
+This dedupes icons that vendors repeat across category folders, strips vendor ID/size-suffix
+cruft from filenames into the `icon:` key used in YAML, and runs everything through svgo. Families
+configured with `sourceExt: "eps"` (e.g. `cisco2026`) are first converted to SVG via Inkscape
+(`inkscape <file> -o <file>.svg`), which must be installed and on `PATH`. Vendor packages are not
+committed to the repo - only the resulting normalized SVGs under `public/images/<family>/`. To add
+another family, add a `FamilyConfig` entry to `scripts/icons/refresh-icon-family.ts`.
