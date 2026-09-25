@@ -1,0 +1,266 @@
+diagram:
+  fill: "white"
+  rows: 13
+  columns: 16
+  gridLines: false
+  groupPadding: 0.3
+
+title:
+  color: "black"
+  fill: "white"
+  logoFill: "none"
+  stroke: "black"
+  text: "Private Datacenter: Spine-Leaf Blueprint"
+  subText: "Two-tier leaf-spine fabric with redundant border and server access"
+  type: "bar"
+  heightPercentage: 6
+
+icons:
+  wan:
+    iconFamily: "cisco2026"
+    icon: "router"
+    text: "WAN"
+    x: 7
+    y: 11
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  fw1:
+    iconFamily: "cisco2026"
+    icon: "firewall"
+    text: "FW-A"
+    x: 5
+    y: 11
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  fw2:
+    iconFamily: "cisco2026"
+    icon: "firewall"
+    text: "FW-B"
+    x: 9
+    y: 11
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  spine1:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Spine-1"
+    x: 5
+    y: 8
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  spine2:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Spine-2"
+    x: 9
+    y: 8
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  leaf1:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Leaf-1A"
+    x: 2
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  leaf2:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Leaf-1B"
+    x: 5
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  leaf3:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Leaf-2A"
+    x: 9
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  leaf4:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Leaf-2B"
+    x: 12
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  rack1:
+    iconFamily: "cisco2026"
+    icon: "server_switch"
+    text: "Compute-1"
+    x: 4
+    y: 2
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  rack2:
+    iconFamily: "cisco2026"
+    icon: "server_switch"
+    text: "Compute-2"
+    x: 7
+    y: 2
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  rack3:
+    iconFamily: "cisco2026"
+    icon: "server_switch"
+    text: "Compute-3"
+    x: 10
+    y: 2
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  rack4:
+    iconFamily: "cisco2026"
+    icon: "server_switch"
+    text: "Compute-4"
+    x: 13
+    y: 2
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  storage:
+    iconFamily: "cisco2026"
+    icon: "fc_storage"
+    text: "SAN"
+    x: 1
+    y: 2
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+group: &group
+  - { color: "black", stroke: "#94a3b8", fill: "#f1f5f9" }
+
+groups:
+  - <<: *group
+    name: "1. WAN and security edge"
+    textLocation: "bottomMiddle"
+    members: [wan, fw1, fw2]
+
+  - <<: *group
+    name: "2. Spine layer: routed fabric core"
+    textLocation: "bottomMiddle"
+    members: [spine1, spine2]
+
+  - <<: *group
+    name: "3. Leaf layer: redundant access pairs"
+    textLocation: "bottomMiddle"
+    members: [leaf1, leaf2, leaf3, leaf4]
+
+  - <<: *group
+    name: "4. Attached workloads and storage"
+    textLocation: "bottomMiddle"
+    members: [storage, rack1, rack2, rack3, rack4]
+
+notes:
+  build:
+    x: 0
+    y: 0
+    w: 5
+    h: 1
+    color: "#1f2937"
+    fill: "#f8fafc"
+    stroke: "#94a3b8"
+    text: "BUILD: two spines, four leaves, dual uplinks, separate management network, and redundant power."
+
+  routing:
+    x: 5
+    y: 0
+    w: 5
+    h: 1
+    color: "#1f2937"
+    fill: "#f8fafc"
+    stroke: "#94a3b8"
+    text: "ROUTING: use routed spine-leaf links with ECMP; keep VLANs/VRFs at the leaf boundary."
+
+  operations:
+    x: 10
+    y: 0
+    w: 6
+    h: 1
+    color: "#1f2937"
+    fill: "#f8fafc"
+    stroke: "#94a3b8"
+    text: "OPERATE: define BGP/OSPF, MTU, telemetry, backups, firmware lifecycle, and failure testing."
+
+connection: &connection
+  color: "#334155"
+  stroke: "#334155"
+
+connections:
+  - <<: *connection
+    endpoints: [wan, fw1]
+  - <<: *connection
+    endpoints: [wan, fw2]
+  - <<: *connection
+    endpoints: [fw1, spine1]
+  - <<: *connection
+    endpoints: [fw1, spine2]
+  - <<: *connection
+    endpoints: [fw2, spine1]
+  - <<: *connection
+    endpoints: [fw2, spine2]
+  - <<: *connection
+    endpoints: [spine1, leaf1]
+  - <<: *connection
+    endpoints: [spine1, leaf2]
+  - <<: *connection
+    endpoints: [spine1, leaf3]
+  - <<: *connection
+    endpoints: [spine1, leaf4]
+  - <<: *connection
+    endpoints: [spine2, leaf1]
+  - <<: *connection
+    endpoints: [spine2, leaf2]
+  - <<: *connection
+    endpoints: [spine2, leaf3]
+  - <<: *connection
+    endpoints: [spine2, leaf4]
+  - <<: *connection
+    endpoints: [leaf1, rack1]
+  - <<: *connection
+    endpoints: [leaf2, rack1]
+  - <<: *connection
+    endpoints: [leaf1, rack2]
+  - <<: *connection
+    endpoints: [leaf2, rack2]
+  - <<: *connection
+    endpoints: [leaf3, rack3]
+  - <<: *connection
+    endpoints: [leaf4, rack3]
+  - <<: *connection
+    endpoints: [leaf3, rack4]
+  - <<: *connection
+    endpoints: [leaf4, rack4]
+  - <<: *connection
+    endpoints: [leaf1, storage]
+  - <<: *connection
+    endpoints: [leaf2, storage]

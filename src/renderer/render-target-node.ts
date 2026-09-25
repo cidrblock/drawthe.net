@@ -20,6 +20,7 @@ export function createNodeRenderTarget(width: number, height: number): NodeRende
   if (!container) {
     throw new Error("Failed to create headless render container");
   }
+  container.setAttribute("data-render-target", "node");
   return {
     container,
     dom,

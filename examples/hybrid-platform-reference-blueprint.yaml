@@ -1,0 +1,359 @@
+diagram:
+  fill: "white"
+  rows: 16
+  columns: 18
+  gridLines: false
+  groupPadding: 0.3
+
+title:
+  color: "black"
+  fill: "white"
+  logoFill: "none"
+  stroke: "black"
+  text: "Hybrid Developer Platform"
+  subText: "AWS edge, private fabric, resilient services, data, and operations"
+  type: "bar"
+  heightPercentage: 6
+
+icons:
+  users:
+    iconFamily: "aws"
+    icon: "gen_user"
+    text: "Users"
+    x: 1
+    y: 14
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  dns:
+    iconFamily: "aws2026"
+    icon: "amazon_route_53"
+    text: "Route 53"
+    x: 4
+    y: 14
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  cdn:
+    iconFamily: "aws2026"
+    icon: "amazon_cloudfront"
+    text: "CloudFront"
+    x: 7
+    y: 14
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  certificate:
+    iconFamily: "aws2026"
+    icon: "aws_certificate_manager"
+    text: "ACM"
+    x: 10
+    y: 14
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  api:
+    iconFamily: "aws2026"
+    icon: "amazon_api_gateway"
+    text: "API Gateway"
+    x: 13
+    y: 14
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  fw1:
+    iconFamily: "cisco2026"
+    icon: "firewall"
+    text: "Edge FW-A"
+    x: 5
+    y: 11
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  fw2:
+    iconFamily: "cisco2026"
+    icon: "firewall"
+    text: "Edge FW-B"
+    x: 11
+    y: 11
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  spine1:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Spine-1"
+    x: 5
+    y: 8
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  spine2:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Spine-2"
+    x: 11
+    y: 8
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  leaf1:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Leaf-A"
+    x: 2
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  leaf2:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Leaf-B"
+    x: 6
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  leaf3:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Leaf-C"
+    x: 10
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  leaf4:
+    iconFamily: "cisco2026"
+    icon: "layer_3_switch"
+    text: "Leaf-D"
+    x: 14
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  app1:
+    iconFamily: "cisco2026"
+    icon: "server_switch"
+    text: "App-A"
+    x: 2
+    y: 2
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  app2:
+    iconFamily: "cisco2026"
+    icon: "server_switch"
+    text: "App-B"
+    x: 6
+    y: 2
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  app3:
+    iconFamily: "cisco2026"
+    icon: "server_switch"
+    text: "App-C"
+    x: 10
+    y: 2
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  app4:
+    iconFamily: "cisco2026"
+    icon: "server_switch"
+    text: "App-D"
+    x: 14
+    y: 2
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  primary_db:
+    iconFamily: "aws2026"
+    icon: "amazon_rds"
+    text: "Primary DB"
+    x: 5
+    y: 0
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  cache:
+    iconFamily: "aws2026"
+    icon: "amazon_elasticache"
+    text: "Cache"
+    x: 9
+    y: 0
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  backup:
+    iconFamily: "aws2026"
+    icon: "aws_backup"
+    text: "Backup"
+    x: 13
+    y: 0
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+group: &group
+  - { color: "black", stroke: "#94a3b8", fill: "#f1f5f9" }
+
+groups:
+  - <<: *group
+    name: "1. Public entry and TLS"
+    textLocation: "bottomMiddle"
+    members: [users, dns, cdn, certificate, api]
+
+  - <<: *group
+    name: "2. Private security edge"
+    textLocation: "bottomMiddle"
+    members: [fw1, fw2]
+
+  - <<: *group
+    name: "3. Spine fabric and routed core"
+    textLocation: "bottomMiddle"
+    members: [spine1, spine2]
+
+  - <<: *group
+    name: "4. Leaf access and workload fabric"
+    textLocation: "bottomMiddle"
+    members: [leaf1, leaf2, leaf3, leaf4]
+
+  - <<: *group
+    name: "5. Application services"
+    textLocation: "bottomMiddle"
+    members: [app1, app2, app3, app4]
+
+  - <<: *group
+    name: "6. Data and resilience"
+    textLocation: "bottomMiddle"
+    members: [primary_db, cache, backup]
+
+notes:
+  assumptions:
+    x: 0
+    y: 15
+    w: 6
+    h: 1
+    color: "#1f2937"
+    fill: "#f8fafc"
+    stroke: "#94a3b8"
+    text: "ASSUMPTIONS: active-active apps, private east-west traffic, public HTTPS, separate management."
+
+  flow:
+    x: 6
+    y: 15
+    w: 6
+    h: 1
+    color: "#1f2937"
+    fill: "#f8fafc"
+    stroke: "#94a3b8"
+    text: "FLOW: DNS -> CDN/API -> firewalls -> spine/leaf fabric -> application services."
+
+  operations:
+    x: 12
+    y: 15
+    w: 6
+    h: 1
+    color: "#1f2937"
+    fill: "#f8fafc"
+    stroke: "#94a3b8"
+    text: "OPERATE: BGP/ECMP, TLS rotation, health checks, failover, backups, telemetry."
+
+connection: &connection
+  color: "#334155"
+  stroke: "#334155"
+
+asyncConnection: &asyncConnection
+  color: "#64748b"
+  stroke: "#64748b"
+  strokeDashArray: "6,4"
+
+connections:
+  - <<: *connection
+    endpoints: [users, dns]
+  - <<: *connection
+    endpoints: [dns, cdn]
+  - <<: *connection
+    endpoints: [cdn, api]
+  - <<: *connection
+    endpoints: [certificate, cdn]
+  - <<: *connection
+    endpoints: [api, fw1]
+  - <<: *connection
+    endpoints: [api, fw2]
+  - <<: *connection
+    endpoints: [fw1, spine1]
+  - <<: *connection
+    endpoints: [fw1, spine2]
+  - <<: *connection
+    endpoints: [fw2, spine1]
+  - <<: *connection
+    endpoints: [fw2, spine2]
+  - <<: *connection
+    endpoints: [spine1, leaf1]
+  - <<: *connection
+    endpoints: [spine1, leaf2]
+  - <<: *connection
+    endpoints: [spine1, leaf3]
+  - <<: *connection
+    endpoints: [spine1, leaf4]
+  - <<: *connection
+    endpoints: [spine2, leaf1]
+  - <<: *connection
+    endpoints: [spine2, leaf2]
+  - <<: *connection
+    endpoints: [spine2, leaf3]
+  - <<: *connection
+    endpoints: [spine2, leaf4]
+  - <<: *connection
+    endpoints: [leaf1, app1]
+  - <<: *connection
+    endpoints: [leaf2, app1]
+  - <<: *connection
+    endpoints: [leaf1, app2]
+  - <<: *connection
+    endpoints: [leaf2, app2]
+  - <<: *connection
+    endpoints: [leaf3, app3]
+  - <<: *connection
+    endpoints: [leaf4, app3]
+  - <<: *connection
+    endpoints: [leaf3, app4]
+  - <<: *connection
+    endpoints: [leaf4, app4]
+  - <<: *connection
+    endpoints: [app1, primary_db]
+  - <<: *connection
+    endpoints: [app2, primary_db]
+  - <<: *connection
+    endpoints: [app3, cache]
+  - <<: *connection
+    endpoints: [app4, cache]
+  - <<: *asyncConnection
+    endpoints: [primary_db, backup]
+  - <<: *asyncConnection
+    endpoints: [app1, backup]
+  - <<: *asyncConnection
+    endpoints: [app3, backup]

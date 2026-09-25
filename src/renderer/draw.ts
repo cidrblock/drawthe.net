@@ -112,12 +112,17 @@ export async function draw(doc: DiagramDocument, options: DrawOptions): Promise<
   const containerSelection = select(target.container);
   containerSelection.select("svg").remove();
 
-  const svg: AnySelection = containerSelection
+  const svgRoot = containerSelection
     .append("svg")
     .attr("width", parentBox.width)
     .attr("height", parentBox.height)
-    .style("background-color", diagram.fill as string)
-    .call(
+    .style("background-color", diagram.fill as string);
+  svgRoot
+    .append("rect")
+    .attr("width", parentBox.width)
+    .attr("height", parentBox.height)
+    .attr("fill", diagram.fill as string);
+  const svg: AnySelection = svgRoot.call(
       zoom<SVGSVGElement, unknown>().on("zoom", (event: { transform: ZoomTransform }) => {
         svg.attr("transform", event.transform.toString());
       })

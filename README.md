@@ -187,6 +187,10 @@ This starts the server over stdio (`mcp/server.ts`). Point your MCP-compatible
 agent host at this command (or `npx tsx mcp/server.ts` from the repo root) to
 connect. The server has no network dependency — rendering happens locally.
 
+For an MCP host configuration, use the repository root as the working
+directory and spawn `npm run mcp`. The server communicates over stdio; it does
+not expose an HTTP port.
+
 ### Tools exposed
 
 - `get_dsl_reference` — full YAML DSL syntax reference.
@@ -203,7 +207,29 @@ connect. The server has no network dependency — rendering happens locally.
 [`SKILL.md`](SKILL.md) documents the procedure an agent should follow: read
 the DSL reference, choose an icon family based on vendor keywords in the
 request, look up real icon names (never invent one), prefer accurate/similar
-icons over generic placeholders, then render and iterate on warnings.
+icons over generic placeholders, then render and iterate on warnings. It also
+requires agents to produce a deployment blueprint rather than an icon collage:
+use explicit labels, meaningful flow direction, grouped layers, intentional
+spacing, collision-free connections, build notes, and multiple render-review
+passes. Agents must save and provide the complete editable YAML source as a
+new document alongside the rendered image.
+
+### Example blueprint
+
+[`examples/hybrid-platform-reference-blueprint.yaml`](examples/hybrid-platform-reference-blueprint.yaml)
+demonstrates a complex hybrid platform with AWS edge services, a private Cisco
+spine-leaf fabric, redundant application services, data services, backups, and
+solid versus dashed connections. Render it locally with:
+
+```bash
+npx tsx src/cli/render.ts \
+  examples/hybrid-platform-reference-blueprint.yaml \
+  /tmp/hybrid-platform-reference.svg \
+  --width=2600 --height=1900
+```
+
+The same YAML can be passed to the MCP server's `render_diagram` tool for PNG
+or SVG output.
 
 ## API Reference
 

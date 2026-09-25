@@ -1,4 +1,5 @@
 import showdown from "showdown";
+import { select } from "d3";
 import type { AnySelection } from "./d3-types";
 import { toEntries } from "./d3-types";
 import type { DiagramConfig, NoteMap } from "./types";
@@ -51,6 +52,29 @@ export function drawNotes(svg: AnySelection, diagram: DiagramConfig, notes: Note
     .attr("id", (d: any) => d.key)
     .attr("fill", (d: any) => d.value.fill || "red")
     .style("stroke", (d: any) => d.value.stroke || "red");
+
+  const isHeadless = svg.node()?.parentElement?.parentElement?.getAttribute("data-render-target") === "node";
+  if (isHeadless) {
+    notesg.each(function (this: SVGGElement, d: any) {
+      const lineHeight = Math.max(12, Math.min(yBand.bandwidth() * 0.125, xBand.bandwidth() * 0.125));
+      const text = String(d.value.text || "Missing text in note");
+      const textElement = select(this)
+        .append("text")
+        .attr("class", "noteText")
+        .attr("fill", d.value.color || "white")
+        .attr("font-size", lineHeight)
+        .attr("x", d.value.padding)
+        .attr("y", d.value.padding + lineHeight);
+      text.split("\n").forEach((line, index) => {
+        textElement
+          .append("tspan")
+          .attr("x", d.value.padding)
+          .attr("dy", index === 0 ? 0 : lineHeight)
+          .text(line.replace(/^#+\s*/, ""));
+      });
+    });
+    return;
+  }
 
   notesg
     .append("foreignObject")
