@@ -1,0 +1,110 @@
+diagram:
+  fill: white
+  rows: 4
+  columns: 5
+  gridLines: false
+  groupPadding: 0.35
+
+title:
+  text: Campus Network
+  subText: Core, distribution, and access layers
+  type: bar
+  heightPercentage: 6
+
+icons:
+  core:
+    iconFamily: cisco2026
+    icon: router
+    text: Core
+    x: 2
+    y: 3
+    textLocation: topMiddle
+    color: black
+    fill: white
+    stroke: "#334155"
+  distribution_a:
+    iconFamily: cisco2026
+    icon: layer_3_switch
+    text: Distribution A
+    x: 1
+    y: 2
+    textLocation: bottomMiddle
+    color: black
+    fill: white
+    stroke: "#334155"
+  distribution_b:
+    iconFamily: cisco2026
+    icon: layer_3_switch
+    text: Distribution B
+    x: 3
+    y: 2
+    textLocation: bottomMiddle
+    color: black
+    fill: white
+    stroke: "#334155"
+  access_a:
+    iconFamily: cisco2026
+    icon: workgroup_switch
+    text: Access A
+    x: 0
+    y: 0
+    color: black
+    fill: white
+    stroke: "#334155"
+  access_b:
+    iconFamily: cisco2026
+    icon: workgroup_switch
+    text: Access B
+    x: 1
+    y: 0
+    color: black
+    fill: white
+    stroke: "#334155"
+  access_c:
+    iconFamily: cisco2026
+    icon: workgroup_switch
+    text: Access C
+    x: 3
+    y: 0
+    color: black
+    fill: white
+    stroke: "#334155"
+  access_d:
+    iconFamily: cisco2026
+    icon: workgroup_switch
+    text: Access D
+    x: 4
+    y: 0
+    color: black
+    fill: white
+    stroke: "#334155"
+
+groups:
+  access_layer_a:
+    name: Access Layer A
+    members: [access_a, access_b]
+    fill: "#f8fafc"
+    stroke: "#64748b"
+    color: black
+    textLocation: bottomMiddle
+  access_layer_b:
+    name: Access Layer B
+    members: [access_c, access_d]
+    fill: "#f8fafc"
+    stroke: "#64748b"
+    color: black
+    textLocation: bottomMiddle
+
+connections:
+  - endpoints: [core:Gi0/1, distribution_a:Gi0/48]
+    color: "#334155"
+    stroke: "#334155"
+  - endpoints: [core:Gi0/2, distribution_b:Gi0/48]
+    color: "#334155"
+    stroke: "#334155"
+  - endpoints: [distribution_a:Gi0/1, access_layer_a:Gi0/48]
+    color: "#334155"
+    stroke: "#334155"
+  - endpoints: [distribution_b:Gi0/1, access_layer_b:Gi0/48]
+    color: "#334155"
+    stroke: "#334155"

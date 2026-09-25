@@ -1,0 +1,20 @@
+{{- $source := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- if not $source -}}
+  {{- errorf "drawthe-net shortcode requires a src page resource" -}}
+{{- end -}}
+{{- if not $alt -}}
+  {{- errorf "drawthe-net shortcode requires descriptive alt text" -}}
+{{- end -}}
+{{- $svg := .Page.Resources.GetMatch $source -}}
+{{- if not $svg -}}
+  {{- errorf "drawthe-net shortcode could not find page resource %q" $source -}}
+{{- end -}}
+<figure class="drawthe-net-diagram">
+  <div role="img" aria-label="{{ $alt }}">
+    {{- $svg.Content | replaceRE "^<\\?xml[^>]*\\?>\\s*" "" | replaceRE "<svg " "<svg style=\"display:block;max-width:100%;height:auto\" " | safeHTML -}}
+  </div>
+  {{- with .Get "caption" }}
+    <figcaption>{{ . }}</figcaption>
+  {{- end }}
+</figure>
