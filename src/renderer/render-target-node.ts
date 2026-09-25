@@ -31,6 +31,11 @@ export function createNodeRenderTarget(width: number, height: number): NodeRende
       if (!svg) {
         throw new Error("No <svg> has been rendered yet");
       }
+      // Serializing just this element loses the ambient SVG namespace context of its
+      // parent HTML document, so it must be declared explicitly for the result to be
+      // a valid standalone SVG document (required by strict parsers like resvg).
+      svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
       return `<?xml version="1.0" encoding="UTF-8"?>\n${svg.outerHTML}`;
     }
   };

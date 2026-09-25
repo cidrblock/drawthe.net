@@ -171,6 +171,40 @@ The most common mistake I've made is in the YAML syntax.  The developer tools wi
 
 It's also handy to comment out lines (with a #) to see where the issue may be.
 
+## AI assistance (MCP server + skill)
+
+drawthe.net includes an MCP (Model Context Protocol) server that lets AI
+coding agents draw diagrams directly, either from a natural-language
+description or by illustrating a proposed system architecture.
+
+### Running the MCP server
+
+```bash
+npm run mcp
+```
+
+This starts the server over stdio (`mcp/server.ts`). Point your MCP-compatible
+agent host at this command (or `npx tsx mcp/server.ts` from the repo root) to
+connect. The server has no network dependency — rendering happens locally.
+
+### Tools exposed
+
+- `get_dsl_reference` — full YAML DSL syntax reference.
+- `list_icon_families` — lists available icon families (`aws`, `aws2026`,
+  `azure2026`, `azureCloud`, `azureEnterprise`, `cisco`, `cisco2026`) and icon
+  counts.
+- `list_icons` — search icon names within a family.
+- `get_icon` / `get_icon_svg` — preview a specific icon (PNG/SVG).
+- `render_diagram` — renders a YAML diagram to PNG or SVG, returning any
+  warnings (e.g. unresolved icon references).
+
+### Skill
+
+[`SKILL.md`](SKILL.md) documents the procedure an agent should follow: read
+the DSL reference, choose an icon family based on vendor keywords in the
+request, look up real icon names (never invent one), prefer accurate/similar
+icons over generic placeholders, then render and iterate on warnings.
+
 ## API Reference
 
 ### Diagram

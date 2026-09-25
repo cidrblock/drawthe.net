@@ -35,11 +35,11 @@ const imagesDir = fileURLToPath(new URL("../../public/images", import.meta.url))
 const target = createNodeRenderTarget(width, height);
 const iconLoader = createFsIconLoader(imagesDir);
 
-draw(doc, { target, iconLoader });
+const { warnings } = await draw(doc, { target, iconLoader });
 
-// Icon SVGs are attached asynchronously (icon-loader.load() is a Promise); give
-// pending loads a turn to complete before serializing the final markup.
-setImmediate(() => {
-  writeFileSync(outputPath, target.serializeSvg(), "utf-8");
-  console.log(`Wrote ${outputPath}`);
-});
+writeFileSync(outputPath, target.serializeSvg(), "utf-8");
+console.log(`Wrote ${outputPath}`);
+for (const warning of warnings) {
+  console.warn(`Warning: ${warning}`);
+}
+

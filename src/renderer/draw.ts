@@ -43,9 +43,15 @@ export interface DrawOptions {
   iconLoader: IconLoader;
 }
 
+export interface DrawResult {
+  /** Non-fatal issues encountered while rendering, e.g. an `icon`/`iconFamily` that couldn't be loaded. */
+  warnings: string[];
+}
+
 /** Renders a parsed drawthe.net YAML document into the given render target. */
-export function draw(doc: DiagramDocument, options: DrawOptions): void {
+export async function draw(doc: DiagramDocument, options: DrawOptions): Promise<DrawResult> {
   const { target, iconLoader } = options;
+  const warnings: string[] = [];
 
   let connections = doc.connections || [];
   let groups = doc.groups || {};
@@ -131,7 +137,7 @@ export function draw(doc: DiagramDocument, options: DrawOptions): void {
   drawGridLines(svg, diagram);
   drawGroups(svg, diagram, groups);
   drawConnections(svg, diagram, connections, icons, notes);
-  drawIcons(svg, diagram, icons, diagram.iconTextRatio as number, iconLoader);
+  await drawIcons(svg, diagram, icons, diagram.iconTextRatio as number, iconLoader, warnings);
   drawNotes(svg, diagram, notes);
 
   if (typeof PR !== "undefined" && PR) {
@@ -144,4 +150,6 @@ export function draw(doc: DiagramDocument, options: DrawOptions): void {
       this.parentNode?.appendChild(this);
     });
   }
+
+  return { warnings };
 }
