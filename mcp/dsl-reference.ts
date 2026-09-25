@@ -31,6 +31,7 @@ Each icon needs a unique key (used as the label unless "text" is set).
 - w, h: size in grid cells (default 1x1)
 - iconFamily: which icon set to pull from - call the list_icon_families tool to see options
 - icon: the icon key within that family - call list_icons to find a real one; never invent a name
+- iconUrl: optional HTTPS URL pointing directly to image bytes (not an HTML/media page) or base64 data URL (SVG/PNG/JPEG/GIF/WebP, max 5 MiB), instead of iconFamily/icon; SVG is sanitized; headless HTTPS loads reject private-network hosts
 - iconFill, iconStroke, iconStrokeWidth: recolor the icon (only if the icon family's license permits alteration - see README's "Icon licensing" section)
 - preserveWhite: true to keep white icon parts unchanged when recoloring
 - text: label override (defaults to the icon's key)

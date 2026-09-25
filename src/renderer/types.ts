@@ -75,6 +75,7 @@ export interface IconEntity {
   labelFontSize?: number;
   icon?: string;
   iconFamily?: string;
+  iconUrl?: string;
   iconFill?: string;
   iconStroke?: string;
   iconStrokeWidth?: number | string;

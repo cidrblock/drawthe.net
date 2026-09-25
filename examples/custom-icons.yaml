@@ -1,0 +1,39 @@
+diagram:
+  fill: "white"
+  rows: 5
+  columns: 6
+  gridLines: false
+
+title:
+  color: "black"
+  fill: "white"
+  logoFill: "none"
+  stroke: "black"
+  text: "Custom Icons"
+  subText: "Use a direct image URL when an icon family does not have the asset"
+  type: "bar"
+  heightPercentage: 6
+
+icons:
+  custom_service:
+    iconUrl: "https://upload.wikimedia.org/wikipedia/commons/0/02/Atari-2600-Wood-4Sw-Set.png"
+    text: "Atari 2600"
+    x: 1
+    y: 3
+    w: 2
+    h: 2
+    textLocation: "bottomMiddle"
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  standard_service:
+    iconFamily: "aws2026"
+    icon: "amazon_ec2"
+    text: "Standard service"
+    x: 4
+    y: 3
+    textLocation: "bottomMiddle"
+    color: "black"
+    fill: "white"
+    stroke: "#334155"

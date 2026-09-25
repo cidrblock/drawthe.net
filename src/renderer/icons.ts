@@ -92,7 +92,7 @@ export async function drawIcons(
     }
 
     const iconLoad = iconLoader
-      .load(d.value.iconFamily, d.value.icon)
+      .load(d.value.iconFamily, d.value.icon, d.value.iconUrl)
       .then((iconSvg) => {
         iconSvg.setAttribute("x", String(x));
         iconSvg.setAttribute("y", String(y));
@@ -118,7 +118,7 @@ export async function drawIcons(
       })
       .catch((error) => {
         warnings.push(
-          `Icon not found for "${d.key}": family="${d.value.iconFamily}" icon="${d.value.icon}" (${error instanceof Error ? error.message : String(error)})`
+          `Icon not found for "${d.key}": ${d.value.iconUrl ? "custom URL" : `family="${d.value.iconFamily}" icon="${d.value.icon}"`} (${error instanceof Error ? error.message : String(error)})`
         );
         insertMissingIconPlaceholder(this, cellText, x, y, width, height);
       });

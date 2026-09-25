@@ -5,5 +5,5 @@
  */
 export interface IconLoader {
   /** Resolves with the root <svg> element parsed from the icon's source file. */
-  load(iconFamily: string, icon: string): Promise<SVGSVGElement>;
+  load(iconFamily: string | undefined, icon: string | undefined, iconUrl?: string): Promise<SVGSVGElement>;
 }

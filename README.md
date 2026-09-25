@@ -283,6 +283,7 @@ The icon's key will be used as the text value, therefore icon names have to be u
 - `h`: (default: 1) The height of the icon.
 - `icon`: (default: none) The name of the icon in the icon family.
 - `iconFamily`: (default: none) The name of the icon family from which to get the icon.
+- `iconUrl`: Optional custom HTTPS URL pointing directly to an image file, or a base64 image data URL (`SVG`, `PNG`, `JPEG`, `GIF`, or `WebP`, up to 5 MiB). It replaces `iconFamily`/`icon`; an HTML page URL (including a Wikipedia media page) is not an image URL. SVG input is sanitized before embedding. Browser loads require CORS permission; headless HTTPS loads are limited to publicly routed hosts.
 - `labelFontSize`: Optional icon label size in px, overriding `diagram.iconLabelFontSize`.
 - `iconFill`: (default: use the colors specified in the icon's svg file) The fill color for the icon.
 - `iconStroke`: (default: use the colors specified in the icons's svg file) The color of the lines in the icon.
