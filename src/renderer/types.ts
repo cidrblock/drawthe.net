@@ -184,6 +184,8 @@ export interface ConnectionEntity {
   label?: string;
   labelFontSize?: number;
   labelPosition?: "start" | "middle" | "end";
+  labelSide?: "over" | "under";
+  endpointLabelSide?: "over" | "under";
   labels?: ConnectionLabel[];
   color?: string;
   stroke?: string;
@@ -196,6 +198,7 @@ export interface ConnectionLabel {
   text: string;
   fontSize?: number;
   position?: "start" | "middle" | "end";
+  side?: "over" | "under";
 }
 
 export type IconMap = Record<string, IconEntity>;

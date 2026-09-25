@@ -43,6 +43,12 @@ export function drawConnections(
 
     const curve = (connection.curve && (d3 as Record<string, unknown>)[connection.curve]) || d3.curveLinear;
     const connectionLabelFontSize = connection.labelFontSize ?? defaultConnectionLabelFontSize;
+    const labels = connection.labels || (connection.label ? [{
+      text: connection.label,
+      fontSize: connection.labelFontSize,
+      position: connection.labelPosition,
+      side: connection.labelSide
+    }] : []);
     const lineStyle = connection.lineStyle ?? "solid";
     const dashArray = connection.strokeDashArray ?? {
       solid: undefined,
@@ -53,7 +59,9 @@ export function drawConnections(
     }[lineStyle];
     const dashPattern = Array.isArray(dashArray) ? dashArray.join(",") : dashArray;
     const isDouble = lineStyle === "double";
-    const strokeWidth = connection.strokeWidth ?? (isDouble ? 5 : 1);
+    const requestedStrokeWidth = connection.strokeWidth ?? (isDouble ? 4 : 1);
+    const doubleGap = requestedStrokeWidth * 0.25;
+    const strokeWidth = requestedStrokeWidth;
     let dxOffset = 3;
     const firstLabel = connection.endpoints[0].split(":")[1];
     const secondLabel = connection.endpoints[1].split(":")[1];
@@ -120,7 +128,7 @@ export function drawConnections(
         .attr("d", pathData as string)
         .attr("fill", "none")
         .attr("stroke", "black")
-        .attr("stroke-width", strokeWidth * 0.5)
+        .attr("stroke-width", doubleGap)
         .attr("stroke-dasharray", dashPattern || null);
       svg
         .append("path")
@@ -143,14 +151,19 @@ export function drawConnections(
         .attr("d", pathData);
     }
 
-    const labels = connection.labels || (connection.label ? [{
-      text: connection.label,
-      fontSize: connection.labelFontSize,
-      position: connection.labelPosition
-    }] : []);
     labels.forEach((label) => {
       const position = label.position || "middle";
       const endpointOffset = startOffset + dxOffset;
+      const fontSize = label.fontSize ?? connectionLabelFontSize;
+      const labelPathName = `${pathName}-label-${position}-${labels.indexOf(label)}`;
+      addOffsetPath(
+        svg,
+        labelPathName,
+        data,
+        curve,
+        strokeWidth / 2 + fontSize / 2 + 2,
+        label.side ?? "over"
+      );
       const labelOffset =
         position === "start"
           ? `${endpointOffset}px`
@@ -161,14 +174,14 @@ export function drawConnections(
         .append("text")
         .attr("class", "connectionLabel")
         .style("fill", connection.color || "orange")
-        .style("font-size", `${label.fontSize ?? connectionLabelFontSize}px`)
-        .attr("dy", -1)
+        .style("font-size", `${fontSize}px`)
+        .attr("dominant-baseline", "central")
         .append("textPath")
         .style("text-anchor", position === "start" ? "start" : position === "end" ? "end" : "middle")
         .attr("startOffset", labelOffset)
-        .attr("xlink:href", `#${pathName}`)
+        .attr("xlink:href", `#${labelPathName}`)
         .text(label.text);
-      });
+    });
 
     // in these we enter the 2nd node in a different direction
     if (curve === d3.curveStepBefore) {
@@ -178,30 +191,137 @@ export function drawConnections(
     }
 
     if (firstLabel) {
+      const labelPathName = `${pathName}-endpoint-start`;
+      addOffsetPath(
+        svg,
+        labelPathName,
+        data,
+        curve,
+        strokeWidth / 2 + connectionLabelFontSize / 2 + 2,
+        connection.endpointLabelSide ?? "over"
+      );
       svg
         .append("text")
         .attr("class", "connectionLabel")
         .style("fill", connection.color || "orange")
         .style("font-size", `${connectionLabelFontSize}px`)
-        .attr("dy", connectionLabelFontSize)
+        .attr("dominant-baseline", "central")
         .append("textPath")
         .style("text-anchor", "start")
         .attr("startOffset", `${startOffset + dxOffset}px`)
-        .attr("xlink:href", `#${pathName}`)
+        .attr("xlink:href", `#${labelPathName}`)
         .text(firstLabel);
     }
     if (secondLabel) {
+      const labelPathName = `${pathName}-endpoint-end`;
+      addOffsetPath(
+        svg,
+        labelPathName,
+        data,
+        curve,
+        strokeWidth / 2 + connectionLabelFontSize / 2 + 2,
+        connection.endpointLabelSide ?? "over"
+      );
       svg
         .append("text")
         .attr("class", "connectionLabel")
         .style("fill", connection.color || "orange")
         .style("font-size", `${connectionLabelFontSize}px`)
-        .attr("dy", connectionLabelFontSize)
+        .attr("dominant-baseline", "central")
         .append("textPath")
         .style("text-anchor", "end")
         .attr("startOffset", `calc(100% - ${startOffset + dxOffset}px)`)
-        .attr("xlink:href", `#${pathName}`)
+        .attr("xlink:href", `#${labelPathName}`)
         .text(secondLabel);
     }
+  });
+}
+
+type Point = { x: number; y: number };
+
+interface SamplingContext {
+  moveTo(x: number, y: number): void;
+  lineTo(x: number, y: number): void;
+  bezierCurveTo(x1: number, y1: number, x2: number, y2: number, x: number, y: number): void;
+  quadraticCurveTo(x1: number, y1: number, x: number, y: number): void;
+  closePath(): void;
+}
+
+function addOffsetPath(
+  svg: AnySelection,
+  id: string,
+  data: Point[],
+  curve: unknown,
+  distance: number,
+  side: "over" | "under"
+): void {
+  const points = sampleCurve(data, curve);
+  const offsetPoints = offsetPolyline(points, distance, side);
+  const pathData = offsetPoints.map((point, index) => `${index === 0 ? "M" : "L"}${point.x},${point.y}`).join("");
+  const defs = svg.select("defs").empty() ? svg.append("defs") : svg.select("defs");
+  defs.append("path").attr("id", id).attr("d", pathData).attr("fill", "none");
+}
+
+function sampleCurve(data: Point[], curve: unknown): Point[] {
+  const points: Point[] = [];
+  let current: Point = { x: 0, y: 0 };
+  const context: SamplingContext = {
+    moveTo(x, y) {
+      current = { x, y };
+      points.push(current);
+    },
+    lineTo(x, y) {
+      current = { x, y };
+      points.push(current);
+    },
+    bezierCurveTo(x1, y1, x2, y2, x, y) {
+      const start = current;
+      for (let step = 1; step <= 16; step++) {
+        const t = step / 16;
+        const inverse = 1 - t;
+        current = {
+          x: inverse ** 3 * start.x + 3 * inverse ** 2 * t * x1 + 3 * inverse * t ** 2 * x2 + t ** 3 * x,
+          y: inverse ** 3 * start.y + 3 * inverse ** 2 * t * y1 + 3 * inverse * t ** 2 * y2 + t ** 3 * y
+        };
+        points.push(current);
+      }
+    },
+    quadraticCurveTo(x1, y1, x, y) {
+      const start = current;
+      for (let step = 1; step <= 16; step++) {
+        const t = step / 16;
+        const inverse = 1 - t;
+        current = {
+          x: inverse ** 2 * start.x + 2 * inverse * t * x1 + t ** 2 * x,
+          y: inverse ** 2 * start.y + 2 * inverse * t * y1 + t ** 2 * y
+        };
+        points.push(current);
+      }
+    },
+    closePath() {
+      if (points.length > 0) points.push(points[0]);
+    }
+  };
+  d3.line<Point>()
+    .curve(curve as d3.CurveFactory)
+    .x((point) => point.x)
+    .y((point) => point.y)
+    .context(context as unknown as CanvasRenderingContext2D)(data);
+  return points;
+}
+
+function offsetPolyline(points: Point[], distance: number, side: "over" | "under"): Point[] {
+  if (points.length < 2) return points;
+  const direction = side === "over" ? 1 : -1;
+  return points.map((point, index) => {
+    const previous = points[Math.max(0, index - 1)];
+    const next = points[Math.min(points.length - 1, index + 1)];
+    const tangentX = next.x - previous.x;
+    const tangentY = next.y - previous.y;
+    const length = Math.hypot(tangentX, tangentY) || 1;
+    return {
+      x: point.x + direction * (tangentY / length) * distance,
+      y: point.y - direction * (tangentX / length) * distance
+    };
   });
 }

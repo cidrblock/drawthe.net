@@ -52,9 +52,9 @@ connections:
 
   - <<: *connection
     labels:
-      - { text: "HTTPS", position: start }
-      - { text: "443", position: middle, fontSize: 16 }
-      - { text: "primary", position: end }
+      - { text: "HTTPS", position: start, side: under }
+      - { text: "443", position: middle, fontSize: 16, side: under }
+      - { text: "primary", position: end, side: under }
     endpoints: [source, target]
 
   - <<: *connection

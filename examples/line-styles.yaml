@@ -77,10 +77,12 @@ connections:
     color: "#2563eb"
     stroke: "#2563eb"
   - endpoints: [source, dashed_target]
-    label: "dashed"
     lineStyle: dashed
     color: "#dc2626"
     stroke: "#dc2626"
+    labels:
+      - { text: "over", position: middle, side: over }
+      - { text: "under", position: middle, side: under }
   - endpoints: [source, dotted_target]
     label: "dotted"
     lineStyle: dotted
@@ -93,6 +95,7 @@ connections:
     stroke: "#d97706"
   - endpoints: [source, double_target]
     label: "double"
+    labelFontSize: 16
     lineStyle: double
     color: "#7c3aed"
     stroke: "#7c3aed"

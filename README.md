@@ -379,16 +379,19 @@ Connections are an array of individual connections. The order is insignificant b
 - **labels:** Labels can be appended to the endpoint names and will be added to the line.
   Example: `endpoints: ["router:eth0", "firewall:eth1"]`
 - `labels`: Optional list of labels placed on one connection path. Each item
-  supports `text`, `position` (`start`, `middle`, or `end`), and `fontSize`.
-  Example: `labels: [{text: "HTTPS", position: start}, {text: "443", position: middle}, {text: "primary", position: end}]`
+  supports `text`, `position` (`start`, `middle`, or `end`), `side` (`over` or `under`), and `fontSize`.
+  `side` is relative to the path direction; it defaults to `over`.
+  Example: `labels: [{text: "HTTPS", position: start}, {text: "443", position: middle, side: under}, {text: "primary", position: end}]`
 - `label`: Legacy single-label form; equivalent to one `labels` item.
 - `labelPosition`: Legacy placement field for `label`.
+- `labelSide`: Legacy side field for `label` (`over` or `under`, default: `over`).
+- `endpointLabelSide`: Side for port labels in endpoint strings such as `router:eth0` (`over` or `under`, default: `over`).
 - `labelFontSize`: Legacy font-size field for `label`.
 - `connectionLabelFontSize`: Diagram-wide default overridden by connection `labelFontSize` or an individual `labels[].fontSize`.
 - `lineStyle`: Optional canned line style: `solid` (default), `dashed`, `dotted`, `dashDot`, or `double`. `double` draws two rails around the existing center path, so curves and labels keep their current geometry.
 - `stroke`: (default: orange) The line color for the connection.
 - `strokeDashArray`: Optional custom dash pattern in px, overriding the canned dash pattern for the selected `lineStyle`.
-- `strokeWidth`: Line thickness in px; `double` defaults to 5px overall.
+- `strokeWidth`: Line thickness in px; `double` defaults to 4px overall.
 
 Curve definitions are directly from d3.js: https://github.com/d3/d3-shape (only a subset are implemented.)
 
