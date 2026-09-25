@@ -1,0 +1,69 @@
+diagram:
+  fill: "white"
+  rows: 5
+  columns: 7
+  gridLines: false
+  groupPadding: 0.4
+
+title:
+  color: "black"
+  fill: "white"
+  logoFill: "none"
+  stroke: "black"
+  text: "Connection Labels"
+  subText: "Endpoint labels, centered labels, sizing, and placement"
+  type: "bar"
+  heightPercentage: 6
+
+cisco: &cisco
+  color: "black"
+  fill: "white"
+  iconFamily: "cisco2026"
+  icon: "router"
+  stroke: "#334155"
+  textLocation: "bottomMiddle"
+
+icons:
+  source:
+    <<: *cisco
+    text: "Source"
+    x: 1
+    y: 2
+
+  target:
+    <<: *cisco
+    text: "Target"
+    x: 5
+    y: 2
+
+  service:
+    <<: *cisco
+    text: "Service"
+    x: 3
+    y: 0
+
+connection: &connection
+  color: "#334155"
+  stroke: "#334155"
+
+connections:
+  - <<: *connection
+    endpoints: ["source:eth0", "target:eth1"]
+
+  - <<: *connection
+    labels:
+      - { text: "HTTPS", position: start }
+      - { text: "443", position: middle, fontSize: 16 }
+      - { text: "primary", position: end }
+    endpoints: [source, target]
+
+  - <<: *connection
+    label: "request path"
+    labelPosition: "start"
+    endpoints: [source, service]
+
+  - <<: *connection
+    label: "response path"
+    labelPosition: "end"
+    strokeDashArray: "6,4"
+    endpoints: [service, target]

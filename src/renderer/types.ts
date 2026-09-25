@@ -155,11 +155,21 @@ export interface GroupEntity {
 export interface ConnectionEntity {
   endpoints: [string, string];
   curve?: string;
+  label?: string;
+  labelFontSize?: number;
+  labelPosition?: "start" | "middle" | "end";
+  labels?: ConnectionLabel[];
   color?: string;
   stroke?: string;
   strokeDashArray?: string | number[];
   strokeWidth?: number;
   [key: string]: unknown;
+}
+
+export interface ConnectionLabel {
+  text: string;
+  fontSize?: number;
+  position?: "start" | "middle" | "end";
 }
 
 export type IconMap = Record<string, IconEntity>;

@@ -367,6 +367,12 @@ Connections are an array of individual connections. The order is insignificant b
   - Example: `endpoints: [allNTP:sync, allNTP:sync]`
 - **labels:** Labels can be appended to the endpoint names and will be added to the line.
   Example: `endpoints: ["router:eth0", "firewall:eth1"]`
+- `labels`: Optional list of labels placed on one connection path. Each item
+  supports `text`, `position` (`start`, `middle`, or `end`), and `fontSize`.
+  Example: `labels: [{text: "HTTPS", position: start}, {text: "443", position: middle}, {text: "primary", position: end}]`
+- `label`: Legacy single-label form; equivalent to one `labels` item.
+- `labelPosition`: Legacy placement field for `label`.
+- `labelFontSize`: Legacy font-size field for `label`.
 - `stroke`: (default: orange) The line color for the connection.
 - `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing
 

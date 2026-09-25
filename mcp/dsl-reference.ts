@@ -53,6 +53,10 @@ Draws a box around a set of icons (or nested groups).
 Lines between two icons/notes/groups.
 - endpoints: [from, to] - each may have an optional ":label" suffix, e.g. "lb:443"
 - curve: "curveLinear" (default, straight/angled), "curveStepBefore", "curveStepAfter", "curveStep"
+- label: optional label placed on the connection path; defaults to the middle
+- labelPosition: "start", "middle" (default), or "end"
+- labelFontSize: optional font size in pixels for connection labels
+- labels: optional list of {text, position, fontSize} labels for multiple annotations on one path
 - color, stroke, strokeDashArray, strokeWidth
 
 ## YAML anchors for shared defaults

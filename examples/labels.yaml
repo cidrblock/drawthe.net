@@ -45,7 +45,7 @@ connection: &connection
   stroke: "#A8A8AA"
   strokeDashArray: "5,5"
 connections:
-  - { <<: *connection, endpoints: ["internet:lable 1 here", "gateway1:label 2 here"] }
+  - { <<: *connection, label: "HTTPS 443", labelFontSize: 14, endpoints: [internet, gateway1] }
   - { <<: *connection, endpoints: ["internet:label 1 here", "gateway2:label 2 here"] }
   - { <<: *connection, endpoints: ["internet:label 1 here", "gateway3:label 2 here"] }
   - { <<: *connection, endpoints: ["internet:label 1 here", "gateway4:label 2 here"] }

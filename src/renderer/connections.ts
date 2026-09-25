@@ -11,7 +11,7 @@ export function drawConnections(
 ): void {
   const xBand = diagram.xBand!;
   const yBand = diagram.yBand!;
-  const connectionLabelFontSize = Math.min(xBand.bandwidth() / 8, yBand.bandwidth() / 8);
+  const defaultConnectionLabelFontSize = Math.min(xBand.bandwidth() / 8, yBand.bandwidth() / 8);
 
   connections.forEach((connection, index) => {
     let endpoints = connection.endpoints.map((device) => device.split(":")[0]);
@@ -41,6 +41,7 @@ export function drawConnections(
     }
 
     const curve = (connection.curve && (d3 as Record<string, unknown>)[connection.curve]) || d3.curveLinear;
+    const connectionLabelFontSize = connection.labelFontSize || defaultConnectionLabelFontSize;
     let dxOffset = 3;
     const firstLabel = connection.endpoints[0].split(":")[1];
     const secondLabel = connection.endpoints[1].split(":")[1];
@@ -96,18 +97,32 @@ export function drawConnections(
           .y((d) => d.y)
       );
 
-    // draw the text for the first label
-    svg
-      .append("text")
-      .attr("class", "connectionLabel")
-      .style("fill", connection.color || "orange")
-      .style("font-size", `${connectionLabelFontSize}px`)
-      .attr("dy", -1)
-      .attr("dx", startOffset + dxOffset)
-      .append("textPath")
-      .style("text-anchor", "start")
-      .attr("xlink:href", `#${pathName}`)
-      .text(firstLabel);
+    const labels = connection.labels || (connection.label ? [{
+      text: connection.label,
+      fontSize: connection.labelFontSize,
+      position: connection.labelPosition
+    }] : []);
+    labels.forEach((label) => {
+      const position = label.position || "middle";
+      const endpointOffset = startOffset + dxOffset;
+      const labelOffset =
+        position === "start"
+          ? `${endpointOffset}px`
+          : position === "end"
+            ? `calc(100% - ${endpointOffset}px)`
+            : "50%";
+      svg
+        .append("text")
+        .attr("class", "connectionLabel")
+        .style("fill", connection.color || "orange")
+        .style("font-size", `${label.fontSize || connectionLabelFontSize}px`)
+        .attr("dy", -1)
+        .append("textPath")
+        .style("text-anchor", position === "start" ? "start" : position === "end" ? "end" : "middle")
+        .attr("startOffset", labelOffset)
+        .attr("xlink:href", `#${pathName}`)
+        .text(label.text);
+      });
 
     // in these we enter the 2nd node in a different direction
     if (curve === d3.curveStepBefore) {
@@ -116,20 +131,31 @@ export function drawConnections(
       startOffset = yBand.bandwidth() / 2;
     }
 
-    // draw the text for the second node
-    svg
-      .append("text")
-      .attr("class", "connectionLabel")
-      .style("fill", connection.color || "orange")
-      .style("font-size", `${connectionLabelFontSize}px`)
-      .attr("dy", connectionLabelFontSize)
-      .attr("dx", function (this: SVGTextElement) {
-        return -startOffset - this.getComputedTextLength() - dxOffset;
-      })
-      .append("textPath")
-      .style("text-anchor", "end")
-      .attr("startOffset", "100%")
-      .attr("xlink:href", `#${pathName}`)
-      .text(secondLabel);
+    if (firstLabel) {
+      svg
+        .append("text")
+        .attr("class", "connectionLabel")
+        .style("fill", connection.color || "orange")
+        .style("font-size", `${connectionLabelFontSize}px`)
+        .attr("dy", connectionLabelFontSize)
+        .append("textPath")
+        .style("text-anchor", "start")
+        .attr("startOffset", `${startOffset + dxOffset}px`)
+        .attr("xlink:href", `#${pathName}`)
+        .text(firstLabel);
+    }
+    if (secondLabel) {
+      svg
+        .append("text")
+        .attr("class", "connectionLabel")
+        .style("fill", connection.color || "orange")
+        .style("font-size", `${connectionLabelFontSize}px`)
+        .attr("dy", connectionLabelFontSize)
+        .append("textPath")
+        .style("text-anchor", "end")
+        .attr("startOffset", `calc(100% - ${startOffset + dxOffset}px)`)
+        .attr("xlink:href", `#${pathName}`)
+        .text(secondLabel);
+    }
   });
 }
