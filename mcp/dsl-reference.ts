@@ -16,6 +16,8 @@ A diagram is a YAML document with these top-level sections (all optional):
 - rows, columns: grid size (default 10x10) - all icon/note x/y coordinates are grid cells, not pixels
 - gridLines: boolean, show grid lines (default true) - set false for a clean look
 - groupPadding: 0-1, space around grouped icons (default .33)
+- iconLabelFontSize: optional diagram-wide icon text size in px (default: automatic fit)
+- connectionLabelFontSize: optional diagram-wide connection text size in px (default: automatic)
 
 ## title
 - text, subText, author, company, date, version
@@ -33,6 +35,7 @@ Each icon needs a unique key (used as the label unless "text" is set).
 - preserveWhite: true to keep white icon parts unchanged when recoloring
 - text: label override (defaults to the icon's key)
 - textLocation: e.g. "bottomMiddle" (default), "topLeft", "leftMiddle", "center", etc.
+- labelFontSize: optional per-icon label size in px (overrides diagram.iconLabelFontSize)
 - color, fill, stroke: label/box colors
 - url: makes the label a clickable link
 - If an icon fails to load (bad family/name), the renderer draws a dashed red "?" placeholder and returns a warning instead of failing the whole diagram - treat any such warning as something to fix before finishing.
@@ -62,6 +65,7 @@ Lines between two icons/notes/groups.
 - label: optional label placed on the connection path; defaults to the middle
 - labelPosition: "start", "middle" (default), or "end"
 - labelFontSize: optional font size in pixels for connection labels
+- connectionLabelFontSize: diagram-wide default, overridden by a connection's labelFontSize
 - labels: optional list of {text, position, fontSize} labels for multiple annotations on one path
 - color, stroke, strokeDashArray, strokeWidth
 

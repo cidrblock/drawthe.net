@@ -45,7 +45,8 @@ export async function drawIcons(
     .attr("class", "iconLabel")
     .text((d: any) => d.value.text || d.key)
     .each(function (this: SVGTextElement, d: any) {
-      d.value.fontSize = Math.floor(
+      const configuredFontSize = d.value.labelFontSize ?? diagram.iconLabelFontSize;
+      d.value.fontSize = configuredFontSize ?? Math.floor(
         Math.min((d.value.width * 0.9) / this.getComputedTextLength() * 12, (d.value.height / 2) * iconTextRatio)
       );
       d.value.textPosition = textPositions(0, 0, d.value.width, d.value.height, d.value.fontSize + 2)[

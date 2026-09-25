@@ -1,0 +1,68 @@
+diagram:
+  fill: "white"
+  rows: 7
+  columns: 7
+  gridLines: false
+  iconLabelFontSize: 16
+  connectionLabelFontSize: 15
+
+title:
+  color: "black"
+  fill: "white"
+  logoFill: "none"
+  stroke: "black"
+  text: "Font Sizes"
+  subText: "Diagram defaults with per-icon and per-connection overrides"
+  type: "bar"
+  heightPercentage: 6
+
+icons:
+  source:
+    iconFamily: "cisco2026"
+    icon: "router"
+    text: "Source"
+    x: 1
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  target:
+    iconFamily: "cisco2026"
+    icon: "router"
+    text: "Target"
+    labelFontSize: 19
+    x: 5
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  worker:
+    iconFamily: "cisco2026"
+    icon: "router"
+    text: "Worker"
+    x: 1
+    y: 1
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  database:
+    iconFamily: "cisco2026"
+    icon: "router"
+    text: "Database"
+    x: 5
+    y: 1
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+connections:
+  - endpoints: [source, target]
+    label: "diagram default: 15px"
+
+  - endpoints: [worker, database]
+    label: "connection override: 20px"
+    labelFontSize: 20
+    stroke: "#64748b"

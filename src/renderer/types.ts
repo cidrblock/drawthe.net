@@ -20,6 +20,8 @@ export interface DiagramConfig {
   gridLines?: boolean;
   gridPaddingInner?: number;
   iconTextRatio?: number;
+  iconLabelFontSize?: number;
+  connectionLabelFontSize?: number;
   margins?: Margins;
   // Computed during rendering.
   height?: number;
@@ -70,6 +72,7 @@ export interface IconEntity {
   yAlign?: "top" | "center" | "bottom";
   textLocation?: string;
   text?: string;
+  labelFontSize?: number;
   icon?: string;
   iconFamily?: string;
   iconFill?: string;

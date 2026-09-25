@@ -11,7 +11,8 @@ export function drawConnections(
 ): void {
   const xBand = diagram.xBand!;
   const yBand = diagram.yBand!;
-  const defaultConnectionLabelFontSize = Math.min(xBand.bandwidth() / 8, yBand.bandwidth() / 8);
+  const defaultConnectionLabelFontSize =
+    diagram.connectionLabelFontSize ?? Math.min(xBand.bandwidth() / 8, yBand.bandwidth() / 8);
 
   connections.forEach((connection, index) => {
     let endpoints = connection.endpoints.map((device) => device.split(":")[0]);
@@ -41,7 +42,7 @@ export function drawConnections(
     }
 
     const curve = (connection.curve && (d3 as Record<string, unknown>)[connection.curve]) || d3.curveLinear;
-    const connectionLabelFontSize = connection.labelFontSize || defaultConnectionLabelFontSize;
+    const connectionLabelFontSize = connection.labelFontSize ?? defaultConnectionLabelFontSize;
     let dxOffset = 3;
     const firstLabel = connection.endpoints[0].split(":")[1];
     const secondLabel = connection.endpoints[1].split(":")[1];
@@ -115,7 +116,7 @@ export function drawConnections(
         .append("text")
         .attr("class", "connectionLabel")
         .style("fill", connection.color || "orange")
-        .style("font-size", `${label.fontSize || connectionLabelFontSize}px`)
+        .style("font-size", `${label.fontSize ?? connectionLabelFontSize}px`)
         .attr("dy", -1)
         .append("textPath")
         .style("text-anchor", position === "start" ? "start" : position === "end" ? "end" : "middle")

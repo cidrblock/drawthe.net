@@ -244,6 +244,8 @@ or SVG output.
 - `gridPaddingInner`: (default: .4) The ration of the icon box size to the spacing between the boxes.
 - `groupPadding`: (default: .33) The percentage of the space between icons to use for the group boundary.
 - `iconTextRatio`: (default: .33) The percentage of the icon box to allocate to the icon text.
+- `iconLabelFontSize`: Optional diagram-wide icon label size in px; defaults to automatic fitting.
+- `connectionLabelFontSize`: Optional diagram-wide connection label size in px; defaults to automatic sizing.
 - `margins`:
   - `top`: (default: 20) The top margin of the diagram in px.
   - `right`: (default: 20) The right side margin in px.
@@ -281,6 +283,7 @@ The icon's key will be used as the text value, therefore icon names have to be u
 - `h`: (default: 1) The height of the icon.
 - `icon`: (default: none) The name of the icon in the icon family.
 - `iconFamily`: (default: none) The name of the icon family from which to get the icon.
+- `labelFontSize`: Optional icon label size in px, overriding `diagram.iconLabelFontSize`.
 - `iconFill`: (default: use the colors specified in the icon's svg file) The fill color for the icon.
 - `iconStroke`: (default: use the colors specified in the icons's svg file) The color of the lines in the icon.
 - `iconStrokeWidth`: (default: use the colors specified in the icons's svg file) The size of the lines within the icon.
@@ -378,6 +381,7 @@ Connections are an array of individual connections. The order is insignificant b
 - `label`: Legacy single-label form; equivalent to one `labels` item.
 - `labelPosition`: Legacy placement field for `label`.
 - `labelFontSize`: Legacy font-size field for `label`.
+- `connectionLabelFontSize`: Diagram-wide default overridden by connection `labelFontSize` or an individual `labels[].fontSize`.
 - `stroke`: (default: orange) The line color for the connection.
 - `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing
 
