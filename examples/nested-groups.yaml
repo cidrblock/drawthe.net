@@ -1,0 +1,126 @@
+diagram:
+  fill: "white"
+  rows: 9
+  columns: 13
+  gridLines: false
+  groupPadding: 0.55
+
+title:
+  color: "black"
+  fill: "white"
+  logoFill: "none"
+  stroke: "black"
+  text: "Nested Infrastructure Groups"
+  subText: "VPC, availability zone, subnet, and workload boundaries"
+  type: "bar"
+  heightPercentage: 6
+
+icons:
+  web_a:
+    iconFamily: "aws2026"
+    icon: "amazon_ec2"
+    text: "Web-A"
+    x: 1
+    y: 3
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  web_b:
+    iconFamily: "aws2026"
+    icon: "amazon_ec2"
+    text: "Web-B"
+    x: 4
+    y: 3
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  api_a:
+    iconFamily: "aws2026"
+    icon: "amazon_ec2"
+    text: "API-A"
+    x: 8
+    y: 3
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  api_b:
+    iconFamily: "aws2026"
+    icon: "amazon_ec2"
+    text: "API-B"
+    x: 11
+    y: 3
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+  database:
+    iconFamily: "aws2026"
+    icon: "amazon_rds"
+    text: "Database"
+    x: 6
+    y: 5
+    color: "black"
+    fill: "white"
+    stroke: "#334155"
+
+group: &group
+  color: "black"
+  stroke: "#64748b"
+  fill: "#f1f5f9"
+
+aZ: &az
+  <<: *group
+  strokeDashArray: "6,4"
+  fill: "#f8fafc"
+
+subnet: &subnet
+  <<: *group
+  fill: "#ffffff"
+  stroke: "#94a3b8"
+
+groups:
+  web_subnet_a:
+    <<: *subnet
+    name: "Public subnet A"
+    textLocation: "bottomMiddle"
+    members: [web_a, web_b]
+
+  api_subnet_a:
+    <<: *subnet
+    name: "Private subnet A"
+    textLocation: "bottomMiddle"
+    members: [api_a, api_b]
+
+  az_a:
+    <<: *az
+    name: "Availability Zone A"
+    textLocation: "topMiddle"
+    members: [web_subnet_a, api_subnet_a]
+
+  data_subnet:
+    <<: *subnet
+    name: "Data subnet"
+    textLocation: "bottomMiddle"
+    members: [database]
+
+  az_b:
+    <<: *az
+    name: "Availability Zone B"
+    textLocation: "topMiddle"
+    members: [data_subnet]
+
+  vpc:
+    <<: *group
+    name: "Production VPC"
+    padding: 0.4
+    textLocation: "topLeft"
+    members: [az_a, az_b]
+
+connections:
+  - { endpoints: [web_a, api_a], color: "#334155", stroke: "#334155" }
+  - { endpoints: [web_b, api_b], color: "#334155", stroke: "#334155" }
+  - { endpoints: [api_a, database], color: "#334155", stroke: "#334155" }
+  - { endpoints: [api_b, database], color: "#334155", stroke: "#334155" }

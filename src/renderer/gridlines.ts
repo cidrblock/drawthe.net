@@ -8,10 +8,11 @@ export function drawGridLines(svg: AnySelection, diagram: DiagramConfig): void {
   }
   const xBand = diagram.xBand!;
   const yBand = diagram.yBand!;
-  const height = diagram.height as number;
-  const width = diagram.width as number;
-  const x = diagram.x as number;
-  const y = diagram.y as number;
+  // the grid may be inset from the drawing area to make room for group frames
+  const [x, xEnd] = xBand.range();
+  const [y, yEnd] = yBand.range();
+  const width = xEnd - x;
+  const height = yEnd - y;
 
   // X gridlines
   svg
@@ -25,11 +26,11 @@ export function drawGridLines(svg: AnySelection, diagram: DiagramConfig): void {
         .ticks(diagram.columns as number)
     );
 
-  // Y gridlines
+  // Y gridlines (yBand positions are already absolute)
   svg
     .append("g")
     .attr("class", "grid")
-    .attr("transform", `translate(${x},${y})`)
+    .attr("transform", `translate(${x},0)`)
     .call(
       axisLeft(yBand)
         .tickSize(-width)

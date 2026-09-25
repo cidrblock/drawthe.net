@@ -6,7 +6,14 @@ import { drawGroups } from "./groups";
 import type { IconLoader } from "./icon-loader";
 import { drawIcons } from "./icons";
 import { drawNotes } from "./notes";
-import { processConnections, processEntities, processGroups } from "./process";
+import {
+  findGroupCollisions,
+  isVisibleGroup,
+  marginBox,
+  processConnections,
+  processEntities,
+  processGroups
+} from "./process";
 import type { RenderTarget } from "./render-target";
 import { drawTitle } from "./title";
 import type { DiagramConfig, DiagramDocument, Margins, TitleConfig } from "./types";
@@ -98,15 +105,18 @@ export async function draw(doc: DiagramDocument, options: DrawOptions): Promise<
   diagram.x = (svgWidth - diagram.width) / 2;
   diagram.y = svgHeight - title.height - diagram.height;
 
-  diagram.xBand = scaleBand<number>()
-    .domain(Array.from(Array(diagram.columns as number).keys()))
-    .rangeRound([diagram.x, diagram.width + diagram.x])
-    .paddingInner(diagram.gridPaddingInner as number);
+  const inset: Margins = { top: 0, right: 0, bottom: 0, left: 0 };
+  const buildBands = (): void => {
+    diagram.xBand = scaleBand<number>()
+      .domain(Array.from(Array(diagram.columns as number).keys()))
+      .rangeRound([(diagram.x as number) + inset.left, (diagram.width as number) + (diagram.x as number) - inset.right])
+      .paddingInner(diagram.gridPaddingInner as number);
 
-  diagram.yBand = scaleBand<number>()
-    .domain(Array.from(Array(diagram.rows as number).keys()).reverse())
-    .rangeRound([diagram.y, diagram.height + diagram.y])
-    .paddingInner(diagram.gridPaddingInner as number);
+    diagram.yBand = scaleBand<number>()
+      .domain(Array.from(Array(diagram.rows as number).keys()).reverse())
+      .rangeRound([(diagram.y as number) + inset.top, (diagram.height as number) + (diagram.y as number) - inset.bottom])
+      .paddingInner(diagram.gridPaddingInner as number);
+  };
 
   // remove any previously rendered diagram from this target
   const containerSelection = select(target.container);
@@ -133,10 +143,34 @@ export async function draw(doc: DiagramDocument, options: DrawOptions): Promise<
       `translate(${(parentBox.width - svgWidth) / 2},${(parentBox.height - svgHeight) / 2})`
     );
 
-  notes = processEntities(diagram, notes);
-  icons = processEntities(diagram, icons);
   connections = processConnections(connections, groups);
-  groups = processGroups(groups, diagram, icons);
+
+  // Group frames extend beyond their members, so shrink the grid until every
+  // visible frame (including margins) fits the area above the title.
+  const area = { x1: 0, y1: 0, x2: svgWidth, y2: (diagram.y as number) + (diagram.height as number) };
+  for (let pass = 0; pass < 6; pass++) {
+    buildBands();
+    notes = processEntities(diagram, notes);
+    icons = processEntities(diagram, icons);
+    groups = processGroups(groups, diagram, icons);
+    const visible = Object.values(groups).filter(isVisibleGroup).map((group) => marginBox(group, diagram));
+    if (visible.length === 0) {
+      break;
+    }
+    const overflow: Margins = {
+      top: area.y1 - Math.min(...visible.map((box) => box.y1)),
+      right: Math.max(...visible.map((box) => box.x2)) - area.x2,
+      bottom: Math.max(...visible.map((box) => box.y2)) - area.y2,
+      left: area.x1 - Math.min(...visible.map((box) => box.x1))
+    };
+    if (Math.max(overflow.top, overflow.right, overflow.bottom, overflow.left) <= 0.5) {
+      break;
+    }
+    for (const side of ["top", "right", "bottom", "left"] as const) {
+      inset[side] += Math.max(0, overflow[side]);
+    }
+  }
+  warnings.push(...findGroupCollisions(groups, icons));
 
   drawTitle(svg, diagram, title);
   drawGridLines(svg, diagram);

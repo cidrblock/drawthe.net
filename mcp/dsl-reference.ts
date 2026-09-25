@@ -46,6 +46,12 @@ Text/markdown boxes. Same x/y/w/h/colors as icons, plus:
 Draws a box around a set of icons (or nested groups).
 - name: label for the group
 - members: list of icon/group keys to enclose
+- padding: optional inner padding as a fraction of the grid gap (default diagram.groupPadding)
+- paddingTop, paddingRight, paddingBottom, paddingLeft: optional side-specific padding overriding padding
+- margin: optional outer margin (same gap units) reserved by the parent group and kept inside the canvas
+- marginTop, marginRight, marginBottom, marginLeft: optional side-specific margins overriding margin
+- fontSize: optional label size in px; the label sits in the padding on its textLocation side, which grows to fit it, and the font shrinks if the label is longer than that side
+- nested groups are laid out children-first; the renderer warns when visible sibling groups overlap
 - textLocation: label position (default "topLeft")
 - fill, stroke, color
 

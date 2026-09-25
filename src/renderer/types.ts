@@ -134,22 +134,43 @@ export interface NoteEntity {
 export interface GroupEntity {
   name?: string;
   members: string[];
+  padding?: number;
+  paddingTop?: number;
+  paddingRight?: number;
+  paddingBottom?: number;
+  paddingLeft?: number;
+  margin?: number;
+  marginTop?: number;
+  marginRight?: number;
+  marginBottom?: number;
+  marginLeft?: number;
   fill?: string;
   stroke?: string;
   color?: string;
   strokeDashArray?: string | number[];
   strokeWidth?: number;
   textLocation?: string;
+  /** Requested label size in px; shrunk if the label would not fit its side. */
+  fontSize?: number;
   // Computed during rendering.
-  maxDepth?: number;
+  frame?: boolean;
   x1?: number;
   y1?: number;
   x2?: number;
   y2?: number;
   width?: number;
   height?: number;
-  fontSize?: number;
+  label?: GroupLabel;
   [key: string]: unknown;
+}
+
+export interface GroupLabel {
+  text: string;
+  fontSize: number;
+  x: number;
+  y: number;
+  rotate: number;
+  textAnchor: "start" | "middle" | "end";
 }
 
 export interface ConnectionEntity {

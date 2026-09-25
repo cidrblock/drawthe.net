@@ -330,6 +330,11 @@ Groups are drawn in order, so place groups that should have a lower z-index at t
 - `members`: (default: none) An array of members for the group.
   - Note: A member can be another group or icon.
   - Example: ` inner: { <<: *group, stroke: none, fill: "white", textLocation: "rightMiddle", members: [T1, T4, NSG1] }`
+- `padding`: Optional inner padding, as a fraction of the gap between grid cells (default: `diagram.groupPadding`).
+- `paddingTop`, `paddingRight`, `paddingBottom`, `paddingLeft`: Optional side-specific padding values overriding `padding`.
+- `margin`: Optional outer margin, in the same gap units, that a parent group reserves around this group and that is kept inside the canvas.
+- `marginTop`, `marginRight`, `marginBottom`, `marginLeft`: Optional side-specific margins overriding `margin`.
+- `fontSize`: Optional label size in px. The label always sits in the padding on its `textLocation` side; that side grows to fit it, and the font shrinks if the label is longer than the side.
 - `name`:
 - `stroke`: (default: orange) The color of the group's bounding box line.
 - `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing between the dashes in px.
