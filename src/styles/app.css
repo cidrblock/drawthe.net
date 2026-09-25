@@ -111,18 +111,27 @@ fieldset[disabled] .btn-black.active {
 
 .metadata {
   background: none;
+  box-sizing: border-box;
   display: flex;
+  overflow: visible;
+  padding: .5em;
 }
 .metadata table {
   color: white;
   background: rgba(0, 0, 0, 0.8);
-  border: .5vh solid rgba(0,0,0,0.0)}
+  border: .5vh solid rgba(0,0,0,0.0);
+  border-collapse: collapse;
+  table-layout: auto;
+  width: 100%;
+  white-space: normal;
 }
 .metadata td {
+  overflow-wrap: anywhere;
+  padding: .2em .4em;
   vertical-align: middle;
 }
 .metadata td:first-child {
   font-weight: bold;
-  text-align:right;
   white-space: nowrap;
+  text-align:right;
 }

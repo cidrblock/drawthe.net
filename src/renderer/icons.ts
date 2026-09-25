@@ -165,23 +165,41 @@ export async function drawIcons(
       return;
     }
     const length = Object.keys(metadata).length;
+    const longestEntry = Math.max(
+      ...Object.entries(metadata).map(([key, value]) => `${key}: ${String(value)}`.length)
+    );
+    const maxPopupWidth = Math.max(320, diagram.width! * 0.5);
+    const metadataWidth = Math.min(
+      Math.max(d.value.width * 4, longestEntry * d.value.fontSize * 0.65 + 48, 220),
+      maxPopupWidth
+    );
+    const metadataHeight = Math.max(length * d.value.fontSize * 3 + 24, d.value.fontSize * 4 + 24, 120);
+    const diagramLeft = diagram.x as number;
+    const diagramTop = diagram.y as number;
+    const diagramRight = diagramLeft + (diagram.width as number);
+    const diagramBottom = diagramTop + (diagram.height as number);
     let justifyContent = "flex-start";
     svg
       .append("foreignObject")
       .attr("id", `t${d.value.x}-${d.value.y}`)
       .attr("class", "mouseOver")
+      .attr("width", `${metadataWidth}px`)
+      .attr("height", `${metadataHeight}px`)
+      .style("overflow", "visible")
       .attr("x", () => {
-        if (d.value.x2 + d.value.width * 2 < diagram.width!) {
-          return d.value.x2;
+        const preferredX = d.value.x2 + metadataWidth <= diagramRight ? d.value.x2 : d.value.x1 - metadataWidth;
+        if (preferredX < diagramLeft) {
+          justifyContent = "flex-start";
+        } else if (preferredX + metadataWidth > diagramRight) {
+          justifyContent = "flex-end";
         }
-        justifyContent = "flex-end";
-        return d.value.x1 - d.value.width * 3;
+        return Math.max(diagramLeft, Math.min(preferredX, diagramRight - metadataWidth));
       })
-      .attr("y", () => d.value.centerY - length * d.value.fontSize)
+      .attr("y", () => Math.max(diagramTop, Math.min(d.value.centerY - metadataHeight / 2, diagramBottom - metadataHeight)))
       .append("xhtml:div")
       .attr("class", "metadata")
-      .style("width", () => `${d.value.width * 3}px`)
-      .style("height", () => length * d.value.fontSize)
+      .style("width", `${metadataWidth}px`)
+      .style("height", `${metadataHeight}px`)
       .style("justify-content", () => justifyContent)
       .style("font-size", () => `${d.value.fontSize}px`)
       .html(() => {

@@ -33,18 +33,18 @@ icons:
     <<: *cisco
     text: "use key"
     metadata:
-      url: "http://{{ key }}.jsontest.com" # results in GET http://date.jsontest.com
+      url: "https://jsonplaceholder.typicode.com/todos/1"
   router3:
     <<: *cisco
     text: "use other key"
-    lookup: ip
+    lookup: posts
     metadata:
-      url: "http://httpbin.org/{{ lookup }}" # results in GET http://httpbin.org/ip
+      url: "https://jsonplaceholder.typicode.com/{{ lookup }}/1"
   router4:
     <<: *cisco
     text: "merge"
     metadata:
-      url: "http://headers.jsontest.com"
+      url: "https://jsonplaceholder.typicode.com/users/1"
       serial number: 12345
       platform: ASR 1002X
   router5:
@@ -53,5 +53,5 @@ icons:
     metadata:
       serial number: 12345
       platform: ASR 1002X
-      url: "https://httpbin.org/status/500"
+      url: "https://jsonplaceholder.typicode.com/not-found"
       errorText: "Device not available in inventory."
