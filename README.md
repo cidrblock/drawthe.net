@@ -385,8 +385,10 @@ Connections are an array of individual connections. The order is insignificant b
 - `labelPosition`: Legacy placement field for `label`.
 - `labelFontSize`: Legacy font-size field for `label`.
 - `connectionLabelFontSize`: Diagram-wide default overridden by connection `labelFontSize` or an individual `labels[].fontSize`.
+- `lineStyle`: Optional canned line style: `solid` (default), `dashed`, `dotted`, `dashDot`, or `double`. `double` draws two rails around the existing center path, so curves and labels keep their current geometry.
 - `stroke`: (default: orange) The line color for the connection.
-- `strokeDashArray`: (default [0,0]) The stroke dash size in px and the spacing
+- `strokeDashArray`: Optional custom dash pattern in px, overriding the canned dash pattern for the selected `lineStyle`.
+- `strokeWidth`: Line thickness in px; `double` defaults to 5px overall.
 
 Curve definitions are directly from d3.js: https://github.com/d3/d3-shape (only a subset are implemented.)
 

@@ -43,6 +43,17 @@ export function drawConnections(
 
     const curve = (connection.curve && (d3 as Record<string, unknown>)[connection.curve]) || d3.curveLinear;
     const connectionLabelFontSize = connection.labelFontSize ?? defaultConnectionLabelFontSize;
+    const lineStyle = connection.lineStyle ?? "solid";
+    const dashArray = connection.strokeDashArray ?? {
+      solid: undefined,
+      dashed: "8,5",
+      dotted: "2,4",
+      dashDot: "8,4,2,4",
+      double: undefined
+    }[lineStyle];
+    const dashPattern = Array.isArray(dashArray) ? dashArray.join(",") : dashArray;
+    const isDouble = lineStyle === "double";
+    const strokeWidth = connection.strokeWidth ?? (isDouble ? 5 : 1);
     let dxOffset = 3;
     const firstLabel = connection.endpoints[0].split(":")[1];
     const secondLabel = connection.endpoints[1].split(":")[1];
@@ -80,23 +91,57 @@ export function drawConnections(
       }
     }
 
-    // draw the path between the points
-    svg
-      .append("path")
-      .datum(data)
-      .attr("id", pathName)
-      .style("stroke", (connection.stroke || "orange") as string)
-      .style("fill", "none")
-      .style("stroke-dasharray", (connection.strokeDashArray || [0, 0]) as string)
-      .style("stroke-width", connection.strokeWidth || 1)
-      .attr(
-        "d",
-        d3
-          .line<{ x: number; y: number }>()
-          .curve(curve as d3.CurveFactory)
-          .x((d) => d.x)
-          .y((d) => d.y)
-      );
+    const pathData = d3
+      .line<{ x: number; y: number }>()
+      .curve(curve as d3.CurveFactory)
+      .x((d) => d.x)
+      .y((d) => d.y)(data);
+
+    if (isDouble) {
+      const maskId = `doubleMask${index}`;
+      const defs = svg.select("defs").empty() ? svg.append("defs") : svg.select("defs");
+      defs
+        .append("mask")
+        .attr("id", maskId)
+        .attr("maskUnits", "userSpaceOnUse")
+        .attr("mask-type", "luminance")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("width", (diagram.x as number) + (diagram.width as number) + 20)
+        .attr("height", (diagram.y as number) + (diagram.height as number) + 20)
+        .append("path")
+        .attr("d", pathData as string)
+        .attr("fill", "none")
+        .attr("stroke", "white")
+        .attr("stroke-width", strokeWidth)
+        .attr("stroke-dasharray", dashPattern || null);
+      defs.select(`#${maskId}`)
+        .append("path")
+        .attr("d", pathData as string)
+        .attr("fill", "none")
+        .attr("stroke", "black")
+        .attr("stroke-width", strokeWidth * 0.5)
+        .attr("stroke-dasharray", dashPattern || null);
+      svg
+        .append("path")
+        .attr("id", pathName)
+        .attr("d", pathData as string)
+        .style("stroke", (connection.stroke || "orange") as string)
+        .style("fill", "none")
+        .style("stroke-width", strokeWidth)
+        .attr("mask", `url(#${maskId})`);
+    } else {
+      svg
+        .append("path")
+        .datum(data)
+        .attr("id", pathName)
+        .style("stroke", (connection.stroke || "orange") as string)
+        .style("fill", "none")
+        .style("stroke-dasharray", dashPattern || "")
+        .attr("stroke-linecap", lineStyle === "dotted" ? "round" : null)
+        .style("stroke-width", strokeWidth)
+        .attr("d", pathData);
+    }
 
     const labels = connection.labels || (connection.label ? [{
       text: connection.label,

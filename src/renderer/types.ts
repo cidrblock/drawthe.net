@@ -180,6 +180,7 @@ export interface GroupLabel {
 export interface ConnectionEntity {
   endpoints: [string, string];
   curve?: string;
+  lineStyle?: "solid" | "dashed" | "dotted" | "dashDot" | "double";
   label?: string;
   labelFontSize?: number;
   labelPosition?: "start" | "middle" | "end";

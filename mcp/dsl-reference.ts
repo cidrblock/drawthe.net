@@ -67,6 +67,9 @@ Lines between two icons/notes/groups.
 - labelPosition: "start", "middle" (default), or "end"
 - labelFontSize: optional font size in pixels for connection labels
 - connectionLabelFontSize: diagram-wide default, overridden by a connection's labelFontSize
+- lineStyle: "solid" (default), "dashed", "dotted", "dashDot", or "double"; double draws parallel rails around the same center path, leaving curve geometry and labels unchanged
+- strokeDashArray: optional custom dash pattern in px, overriding the canned dash pattern
+- strokeWidth: line thickness in px (double defaults to 5px overall)
 - labels: optional list of {text, position, fontSize} labels for multiple annotations on one path
 - color, stroke, strokeDashArray, strokeWidth
 
