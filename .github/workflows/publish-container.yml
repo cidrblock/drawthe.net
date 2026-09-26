@@ -1,0 +1,57 @@
+name: Publish container image
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing release tag to publish, for example v2.0.1
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: github.event_name != 'release' || github.event.release.prerelease == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.release_tag }}
+      - name: Verify release tag matches package version
+        env:
+          RELEASE_TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.release_tag }}
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if [[ "$RELEASE_TAG" != "v$version" ]]; then
+            echo "Release tag $RELEASE_TAG does not match package version v$version"
+            exit 1
+          fi
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Containerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/cidrblock/drawthe.net:${{ github.event_name == 'release' && github.event.release.tag_name || inputs.release_tag }}
+            ghcr.io/cidrblock/drawthe.net:latest
+          labels: |
+            org.opencontainers.image.source=https://github.com/cidrblock/drawthe.net
+            org.opencontainers.image.version=${{ steps.release.outputs.tag }}
+            org.opencontainers.image.description=Render drawthe.net YAML diagrams to SVG
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

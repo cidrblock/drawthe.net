@@ -44,9 +44,26 @@ npm install --save-dev drawthe.net
 npx drawthe-net diagrams/network.yaml docs/network.svg --width=1200 --height=800
 ```
 
+### Podman container image
+
+Stable GitHub Releases publish versioned images and update the `latest` tag in GHCR. For the first image publication, change the package visibility to **Public** in the GitHub package settings so Podman can pull it without authentication.
+
+```sh
+podman pull ghcr.io/cidrblock/drawthe.net:latest
+podman run --rm \
+  --userns=keep-id \
+  --user "$(id -u):$(id -g)" \
+  -v "$PWD:/workspace:Z" \
+  -w /workspace \
+  ghcr.io/cidrblock/drawthe.net:latest \
+  diagrams/network.yaml docs/network.svg --width=1200 --height=800
+```
+
+Use a versioned tag such as `ghcr.io/cidrblock/drawthe.net:v2.0.1` instead of `latest` for a pinned image. The container entry point is `drawthe-net`.
+
 ## Quick start
 
-http://go.drawthe.net
+Run `npm run dev` to open the editor locally.
 
 Clear the editor and paste the following in, then click draw or ctrl-enter.
 
@@ -174,9 +191,7 @@ Notes can be plain text or markdown.  See the 'notes' example for the use of mar
 
 ## Additional examples
 
-http://go.drawthe.net
-
-Click on the examples menu for a sample of different diagram layouts and styles.
+Run `npm run dev` and choose an example from the editor menu to explore different diagram layouts and styles.
 
 ### Troubleshooting
 
