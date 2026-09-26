@@ -2,6 +2,7 @@ import "./monaco-environment";
 import * as monaco from "monaco-editor/esm/vs/editor/editor.api.js";
 import { configureMonacoYaml } from "monaco-yaml";
 import "monaco-editor/esm/vs/basic-languages/yaml/yaml.contribution.js";
+import "monaco-editor/esm/vs/editor/contrib/folding/browser/folding.js";
 import "../../node_modules/monaco-editor/min/vs/editor/editor.main.css";
 import diagramSchema from "../editor/diagram.schema.json";
 
