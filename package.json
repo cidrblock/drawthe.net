@@ -1,9 +1,25 @@
 {
   "name": "drawthe.net",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "drawthe.net: decent looking diagrams for engineers - draw network diagrams from YAML",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cidrblock/drawthe.net.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "bin/",
+    "public/images/",
+    "src/cli/",
+    "src/renderer/"
+  ],
+  "bin": {
+    "drawthe-net": "bin/drawthe-net.js"
+  },
   "scripts": {
     "predev": "npm run icons:list",
     "dev": "vite",
@@ -25,8 +41,10 @@
     "d3": "^7.9.0",
     "font-awesome": "^4.7.0",
     "js-yaml": "^4.1.0",
+    "jsdom": "^25.0.1",
     "save-svg-as-png": "^1.4.17",
     "showdown": "^2.1.0",
+    "tsx": "^4.19.2",
     "zod": "^4.6.5"
   },
   "devDependencies": {
@@ -38,10 +56,8 @@
     "@typescript-eslint/eslint-plugin": "^8.18.1",
     "@typescript-eslint/parser": "^8.18.1",
     "eslint": "^8.57.1",
-    "jsdom": "^25.0.1",
     "prettier": "^3.4.2",
     "svgo": "^4.1.0",
-    "tsx": "^4.19.2",
     "typescript": "^5.7.2",
     "vite": "^6.0.7"
   }
