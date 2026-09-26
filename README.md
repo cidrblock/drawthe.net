@@ -48,7 +48,7 @@ icons:
 
 ### npm package releases
 
-Publishing a non-prerelease GitHub Release triggers the npm publish workflow. Configure npm Trusted Publishing for GitHub Actions with organization `cidrblock`, repository `drawthe.net`, and workflow filename `publish-npm.yml`; allow direct publishing with `npm publish`. No long-lived CI token is required. Update the package version, then publish a GitHub Release tagged `v<version>` (for example, `v2.0.2`). The workflow runs lint, typecheck, and build before publishing; npm generates provenance automatically for trusted publishes.
+Publishing a non-prerelease GitHub Release triggers the npm publish workflow. Configure npm Trusted Publishing for GitHub Actions with organization `cidrblock`, repository `drawthe.net`, and workflow filename `publish-npm.yml`; allow direct publishing with `npm publish`. No long-lived CI token is required. Update the package version, then publish a GitHub Release tagged `v<version>` (for example, `v2.0.3`). The workflow runs lint, typecheck, and build before publishing; npm generates provenance automatically for trusted publishes.
 
 Install the package and render a diagram from another project with:
 
@@ -76,7 +76,7 @@ podman run --rm \
   diagrams/network.yaml docs/network.svg --width=1200 --height=800
 ```
 
-Use a versioned tag such as `ghcr.io/cidrblock/drawthe.net:v2.0.2` instead of `latest` for a pinned image.
+Use a versioned tag such as `ghcr.io/cidrblock/drawthe.net:v2.0.3` instead of `latest` for a pinned image.
 
 ## Quick start
 

@@ -134,9 +134,13 @@ export async function draw(doc: DiagramDocument, options: DrawOptions): Promise<
     .attr("height", parentBox.height)
     .attr("fill", diagram.fill as string);
   const svg: AnySelection = svgRoot.call(
-      zoom<SVGSVGElement, unknown>().on("zoom", (event: { transform: ZoomTransform }) => {
-        svg.attr("transform", event.transform.toString());
-      })
+      zoom<SVGSVGElement, unknown>()
+        .touchable(function (this: SVGSVGElement) {
+          return "ontouchstart" in this || (typeof navigator !== "undefined" && navigator.maxTouchPoints > 0);
+        })
+        .on("zoom", (event: { transform: ZoomTransform }) => {
+          svg.attr("transform", event.transform.toString());
+        })
     )
     .append("g")
     .attr(

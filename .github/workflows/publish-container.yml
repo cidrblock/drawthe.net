@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       release_tag:
-        description: Existing release tag to publish, for example v2.0.2
+        description: Existing release tag to publish, for example v2.0.3
         required: true
         type: string
       source_ref:

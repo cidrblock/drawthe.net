@@ -1,6 +1,6 @@
 {
   "name": "drawthe.net",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "drawthe.net: decent looking diagrams for engineers - draw network diagrams from YAML",
   "type": "module",
   "license": "MIT",
