@@ -9,6 +9,11 @@ on:
         description: Existing release tag to publish, for example v2.0.1
         required: true
         type: string
+      source_ref:
+        description: Branch or commit containing the Containerfile for a manual backfill
+        required: true
+        default: main
+        type: string
 
 permissions:
   contents: read
@@ -23,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.release_tag }}
+          ref: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.source_ref }}
       - name: Verify release tag matches package version
         env:
           RELEASE_TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || inputs.release_tag }}
