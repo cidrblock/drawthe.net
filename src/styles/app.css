@@ -9,13 +9,97 @@ body {
 }
 
 .form-group { margin-bottom: 5px; }
-.ace_editor {
-      border: 1px solid lightgray;
-      height: 95vh;
-      width: 100%;
+.monaco-editor .margin {
+  border-left: 1px solid #d3d3d3 !important;
+  border-right: 1px solid #d3d3d3 !important;
 }
-.ace-editor {
+.monaco-editor .lines-content {
+  padding-left: 4px !important; /* 👈 Creates a safe buffer zone after the line numbers */
+}
+.monaco-editor .overviewRulerContainer {
+  display: none !important;
+}
+
+#leftSide {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 1vh);
+  min-height: 0;
+  background-color: #fff;
+}
+.editor-toolbar {
+  flex: 0 0 auto;
+  min-height: 30px;
+  margin-bottom: 4px;
+}
+.diagram-toolbar {
+  margin-bottom: 4px;
+}
+.editor-row {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.monaco-editor-host {
+  height: 100%;
+  min-height: 0;
+  width: 100%;
+}
+.monaco-editor-host {
   min-width: 0;
+}
+.monaco-editor .decorationsOverviewRuler {
+  display: none !important;
+}
+.editor-diagnostics {
+  flex: 0 1 auto;
+  max-height: 17vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 8px 6px;
+  border-top: 1px solid #d3d3d3;
+  background-color: #fff;
+  color: #333;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.diagnostics-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  min-height: 34px;
+}
+.diagnostics-toolbar .btn {
+  padding: 2px 6px;
+  line-height: 1;
+}
+.diagnostics-content {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+.editor-diagnostics.is-collapsed {
+  max-height: none;
+  padding-bottom: 0;
+}
+.editor-diagnostics.is-collapsed .diagnostics-content {
+  display: none;
+}
+.diagnostics-empty {
+  color: #555;
+}
+.diagnostics-list {
+  margin: 0;
+}
+.diagnostic-error {
+  color: #a61b1b;
+}
+.diagnostic-warning {
+  color: #805400;
+}
+.diagnostic-info {
+  color: #315b75;
 }
 .drawing {
       height: 95vh;

@@ -1,0 +1,222 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://drawthe.net/schema/diagram.json",
+  "title": "drawthe.net diagram",
+  "description": "A drawthe.net diagram document. Unrecognized root keys are allowed for YAML anchors and reusable defaults.",
+  "type": "object",
+  "properties": {
+    "diagram": { "$ref": "#/$defs/diagram" },
+    "title": { "$ref": "#/$defs/title" },
+    "icons": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/icon" }
+    },
+    "notes": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/note" }
+        },
+        {
+          "type": "array",
+          "items": { "$ref": "#/$defs/note" }
+        }
+      ]
+    },
+    "groups": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/group" }
+        },
+        {
+          "type": "array",
+          "items": { "$ref": "#/$defs/group" }
+        }
+      ]
+    },
+    "connections": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/connection" }
+    },
+    "icon": { "$ref": "#/$defs/icon" },
+    "defaults": { "type": "object" },
+    "iconDefaults": { "type": "object" },
+    "noteDefaults": { "type": "object" },
+    "groupDefaults": { "type": "object" },
+    "connectionDefaults": { "type": "object" }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "coordinate": {
+      "description": "A grid coordinate or an offset such as +1 or -1.",
+      "oneOf": [
+        { "type": "number" },
+        { "type": "string", "pattern": "^[+-]?[0-9]+(?:\\.[0-9]+)?$" }
+      ]
+    },
+    "margins": {
+      "type": "object",
+      "properties": {
+        "top": { "type": "number", "minimum": 0 },
+        "right": { "type": "number", "minimum": 0 },
+        "bottom": { "type": "number", "minimum": 0 },
+        "left": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "diagram": {
+      "type": "object",
+      "properties": {
+        "fill": { "type": "string" },
+        "aspectRatio": { "type": "string", "pattern": "^[0-9]+(?:\\.[0-9]+)?:[0-9]+(?:\\.[0-9]+)?$" },
+        "rows": { "type": "integer", "minimum": 1 },
+        "columns": { "type": "integer", "minimum": 1 },
+        "gridLines": { "type": "boolean" },
+        "gridPaddingInner": { "type": "number", "minimum": 0, "maximum": 1 },
+        "groupPadding": { "type": "number", "minimum": 0 },
+        "iconTextRatio": { "type": "number", "minimum": 0, "maximum": 1 },
+        "iconLabelFontSize": { "type": "number", "exclusiveMinimum": 0 },
+        "connectionLabelFontSize": { "type": "number", "exclusiveMinimum": 0 },
+        "margins": { "$ref": "#/$defs/margins" }
+      },
+      "additionalProperties": true
+    },
+    "title": {
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "subText": { "type": "string" },
+        "author": { "type": "string" },
+        "company": { "type": "string" },
+        "date": { "type": "string" },
+        "version": { "type": ["string", "number"] },
+        "color": { "type": "string" },
+        "stroke": { "type": "string" },
+        "fill": { "type": "string" },
+        "type": { "enum": ["box", "bar"] },
+        "heightPercentage": { "type": "number", "minimum": 0, "maximum": 100 },
+        "logoUrl": { "type": "string" },
+        "logoFill": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "icon": {
+      "type": "object",
+      "properties": {
+        "x": { "$ref": "#/$defs/coordinate" },
+        "y": { "$ref": "#/$defs/coordinate" },
+        "w": { "type": "number", "exclusiveMinimum": 0 },
+        "h": { "type": "number", "exclusiveMinimum": 0 },
+        "xAlign": { "enum": ["left", "center", "right"] },
+        "yAlign": { "enum": ["top", "center", "bottom"] },
+        "textLocation": { "type": "string" },
+        "text": { "type": "string" },
+        "labelFontSize": { "type": "number", "exclusiveMinimum": 0 },
+        "icon": { "type": "string" },
+        "iconFamily": { "type": "string" },
+        "iconUrl": { "type": "string" },
+        "iconFill": { "type": "string" },
+        "iconStroke": { "type": "string" },
+        "iconStrokeWidth": { "type": ["number", "string"] },
+        "preserveWhite": { "type": ["boolean", "string"] },
+        "replaceWhite": { "type": "string" },
+        "fill": { "type": "string" },
+        "stroke": { "type": "string" },
+        "color": { "type": "string" },
+        "strokeDashArray": { "$ref": "#/$defs/strokeDashArray" },
+        "url": { "type": "string" },
+        "metadata": { "type": "object" }
+      },
+      "additionalProperties": true
+    },
+    "note": {
+      "type": "object",
+      "properties": {
+        "x": { "$ref": "#/$defs/coordinate" },
+        "y": { "$ref": "#/$defs/coordinate" },
+        "w": { "type": "number", "exclusiveMinimum": 0 },
+        "h": { "type": "number", "exclusiveMinimum": 0 },
+        "xAlign": { "enum": ["left", "center", "right"] },
+        "yAlign": { "enum": ["top", "center", "bottom"] },
+        "flexDirection": { "type": "string" },
+        "text": { "type": "string" },
+        "fill": { "type": "string" },
+        "stroke": { "type": "string" },
+        "color": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "group": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "members": { "type": "array", "items": { "type": "string" } },
+        "padding": { "type": "number", "minimum": 0 },
+        "paddingTop": { "type": "number", "minimum": 0 },
+        "paddingRight": { "type": "number", "minimum": 0 },
+        "paddingBottom": { "type": "number", "minimum": 0 },
+        "paddingLeft": { "type": "number", "minimum": 0 },
+        "margin": { "type": "number", "minimum": 0 },
+        "marginTop": { "type": "number", "minimum": 0 },
+        "marginRight": { "type": "number", "minimum": 0 },
+        "marginBottom": { "type": "number", "minimum": 0 },
+        "marginLeft": { "type": "number", "minimum": 0 },
+        "fill": { "type": "string" },
+        "stroke": { "type": "string" },
+        "color": { "type": "string" },
+        "strokeDashArray": { "$ref": "#/$defs/strokeDashArray" },
+        "strokeWidth": { "type": "number", "exclusiveMinimum": 0 },
+        "textLocation": { "type": "string" },
+        "fontSize": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "required": ["members"],
+      "additionalProperties": true
+    },
+    "connection": {
+      "type": "object",
+      "properties": {
+        "endpoints": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "string" }
+        },
+        "curve": { "type": "string" },
+        "lineStyle": { "enum": ["solid", "dashed", "dotted", "dashDot", "double"] },
+        "label": { "type": "string" },
+        "labelFontSize": { "type": "number", "exclusiveMinimum": 0 },
+        "connectionLabelFontSize": { "type": "number", "exclusiveMinimum": 0 },
+        "labelPosition": { "enum": ["start", "middle", "end"] },
+        "labelSide": { "enum": ["over", "under"] },
+        "endpointLabelSide": { "enum": ["over", "under"] },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "fontSize": { "type": "number", "exclusiveMinimum": 0 },
+              "position": { "enum": ["start", "middle", "end"] },
+              "side": { "enum": ["over", "under"] }
+            },
+            "required": ["text"],
+            "additionalProperties": true
+          }
+        },
+        "color": { "type": "string" },
+        "stroke": { "type": "string" },
+        "strokeDashArray": { "$ref": "#/$defs/strokeDashArray" },
+        "strokeWidth": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "required": ["endpoints"],
+      "additionalProperties": true
+    },
+    "strokeDashArray": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "number", "minimum": 0 } }
+      ]
+    }
+  }
+}

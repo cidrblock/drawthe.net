@@ -11,25 +11,32 @@
 <body>
     <div class="row">
         <div class="col-sm-6" id="leftSide">
-            <div class="row g-0">
-                <div class="col-sm-11 container-fluid">
-                    <button id="download" class="btn btn-black btn-sm" type="button">
-                        <span class="fa fa-floppy-o" aria-hidden="true"></span> Download
+            <div class="editor-toolbar d-flex justify-content-between align-items-center gap-1">
+                <button id="download" class="btn btn-black btn-sm" type="button">
+                    <span class="fa fa-floppy-o" aria-hidden="true"></span> Download
+                </button>
+                <button id="draw" class="btn btn-black btn-sm" type="button"
+                    title="hint: press ctrl-enter to refresh the drawing">
+                    <span class="fa fa-pencil" aria-hidden="true"></span> Draw
+                </button>
+            </div>
+            <div class="editor-row row">
+                <div id="editor" class="monaco-editor-host"></div>
+            </div>
+            <section id="diagnostics" class="editor-diagnostics" aria-label="Editor diagnostics">
+                <div class="diagnostics-toolbar">
+                    <strong id="diagnosticsHeading">Diagnostics (0)</strong>
+                    <button id="diagnosticsToggle" class="btn btn-light btn-sm" type="button"
+                        aria-expanded="true" aria-controls="diagnosticsContent" aria-label="Collapse diagnostics"
+                        title="Collapse diagnostics">
+                        <span class="fa fa-chevron-down" aria-hidden="true"></span>
                     </button>
                 </div>
-                <div class="col-sm-1">
-                    <button id="draw" class="btn btn-black btn-sm float-end" type="button"
-                        title="hint: press ctrl-enter to refresh the drawing">
-                        <span class="fa fa-pencil" aria-hidden="true"></span> Draw
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div id="editor" class="ace-editor"></div>
-            </div>
+                <div id="diagnosticsContent" class="diagnostics-content" role="log" aria-live="polite"></div>
+            </section>
         </div>
         <div class="col-sm-6" id="rightSide">
-            <div class="d-flex justify-content-end flex-wrap gap-1">
+            <div class="diagram-toolbar d-flex justify-content-end flex-wrap gap-1">
                 <button id="saveimage" type="button" class="btn btn-black btn-sm" title="Save SVG as Image">
                     <span class="fa fa-file-image-o" aria-hidden="true"></span> PNG
                 </button>

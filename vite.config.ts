@@ -6,6 +6,14 @@ import { defineConfig } from "vite";
 export default defineConfig({
   root: ".",
   publicDir: "public",
+  resolve: {
+    alias: {
+      "monaco-editor/esm/vs/editor/editor.worker.js": resolve(
+        __dirname,
+        "node_modules/monaco-editor/esm/vs/editor/editor.worker.js"
+      )
+    }
+  },
   build: {
     outDir: "dist",
     rollupOptions: {

@@ -9,7 +9,7 @@ export function createBrowserRenderTarget(container: HTMLElement): RenderTarget 
       return { width: box.width, height: box.height };
     },
     setBackground(color: string) {
-      document.body.style.background = color;
+      container.style.background = color;
     }
   };
 }
