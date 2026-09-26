@@ -38,3 +38,38 @@ test("the schema reports invalid known property types and enum values", () => {
   assert.equal(validate({ title: { type: "circle" } }), false);
   assert.equal(validate({ connections: [{ endpoints: ["one"] }] }), false);
 });
+
+test("typed icon anchors validate their fields and inherited child fields", () => {
+  const valid = load(`
+cisco: &cisco
+  type: icon
+  iconFamily: cisco
+  icon: router
+icons:
+  router1: {<<: *cisco, x: 1, y: 1}
+`);
+  assert.equal(validate(valid), true, JSON.stringify(validate.errors));
+
+  const invalidAnchor = load(`
+cisco: &cisco
+  type: icon
+  iconFamily: cisco
+  icon: router
+  foo: invalid
+`);
+  assert.equal(validate(invalidAnchor), false);
+
+  const invalidChild = load(`
+cisco: &cisco
+  type: icon
+  iconFamily: cisco
+  icon: router
+icons:
+  router1: {<<: *cisco, x: 1, y: 1, foo: invalid}
+`);
+  assert.equal(validate(invalidChild), false);
+});
+
+test("untyped extension anchors remain permissive", () => {
+  assert.equal(validate({ customDefaults: { foo: "extension" } }), true);
+});

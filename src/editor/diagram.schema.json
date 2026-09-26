@@ -46,7 +46,14 @@
     "groupDefaults": { "type": "object" },
     "connectionDefaults": { "type": "object" }
   },
-  "additionalProperties": true,
+  "additionalProperties": {
+    "if": {
+      "type": "object",
+      "properties": { "type": { "const": "icon" } },
+      "required": ["type"]
+    },
+    "then": { "$ref": "#/$defs/icon" }
+  },
   "$defs": {
     "coordinate": {
       "description": "A grid coordinate or an offset such as +1 or -1.",
@@ -104,6 +111,7 @@
     "icon": {
       "type": "object",
       "properties": {
+        "type": { "type": "string" },
         "x": { "$ref": "#/$defs/coordinate" },
         "y": { "$ref": "#/$defs/coordinate" },
         "w": { "type": "number", "exclusiveMinimum": 0 },
@@ -128,7 +136,21 @@
         "url": { "type": "string" },
         "metadata": { "type": "object" }
       },
-      "additionalProperties": true
+      "additionalProperties": true,
+      "if": {
+        "properties": { "type": { "const": "icon" } },
+        "required": ["type"]
+      },
+      "then": {
+        "propertyNames": {
+          "enum": [
+            "type", "<<", "x", "y", "w", "h", "xAlign", "yAlign", "textLocation", "text",
+            "labelFontSize", "icon", "iconFamily", "iconUrl", "iconFill", "iconStroke",
+            "iconStrokeWidth", "preserveWhite", "replaceWhite", "fill", "stroke", "color",
+            "strokeDashArray", "url", "metadata"
+          ]
+        }
+      }
     },
     "note": {
       "type": "object",

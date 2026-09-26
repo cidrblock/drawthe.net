@@ -14,6 +14,7 @@ title:
   text: "Enterprise NTP"
   type: "bar"
 cisco: &cisco
+  type: icon
   stroke: "none"
   color: "black"
   iconFill: "darkslategrey"
@@ -23,50 +24,54 @@ cisco: &cisco
   fill: "none"
   preserveWhite: "true"
 cloud: &cloud
+  type: icon
   <<: *cisco
   iconStroke: black
   iconStrokeWidth: 2
 stratum1: &stratum1
+  type: icon
   <<: *cisco
   iconFill: "#0052A5"
   iconStroke: "#9999EB"
 stratum2: &stratum2
+  type: icon
   <<: *cisco
   iconFill: "#9999EB"
   iconStroke: "#0052A5"
 ntpClient: &ntpClient
+  type: icon
   <<: *cisco
   iconFill: "#CCCCF4"
   iconStroke: "#0052A5"
 
-wwrt001: &wwrt001 {<<: *cisco, icon: "router"}
-wwrt002: &wwrt002 {<<: *cisco, x: "+1", icon: "router"}
-wwrt003: &wwrt003 {<<: *cisco, x: "-1", y: "+1", icon: "nexus5000"}
-wwrt004: &wwrt004 {<<: *cisco, x: "+1", icon: "nexus5000"}
-wwsw001: &wwsw001 {<<: *cisco, x: "-1", y: "+1", icon: "workgroupswitch"}
-wntp001: &wntp001 {<<: *stratum1, y: "+1", icon: "file_server"}
-wwan001: &wwan001 {<<: *cisco, y: "+1", icon: "antenna", iconStroke: black, iconStrokeWidth: 2, fill: "#EEEEEE"}
+wwrt001: &wwrt001 {<<: *cisco, type: icon, icon: "router"}
+wwrt002: &wwrt002 {<<: *cisco, type: icon, x: "+1", icon: "router"}
+wwrt003: &wwrt003 {<<: *cisco, type: icon, x: "-1", y: "+1", icon: "nexus5000"}
+wwrt004: &wwrt004 {<<: *cisco, type: icon, x: "+1", icon: "nexus5000"}
+wwsw001: &wwsw001 {<<: *cisco, type: icon, x: "-1", y: "+1", icon: "workgroupswitch"}
+wntp001: &wntp001 {<<: *stratum1, type: icon, y: "+1", icon: "file_server"}
+wwan001: &wwan001 {<<: *cisco, type: icon, y: "+1", icon: "antenna", iconStroke: black, iconStrokeWidth: 2, fill: "#EEEEEE"}
 
-dcrt001: &dcrt001 {<<: *cisco, icon: "router"}
-dcrt002: &dcrt002 {<<: *cisco, x: "+1", icon: "router"}
-dcrt003: &dcrt003 {<<: *cisco, x: "-1", y: "-1", icon: "nexus7000"}
-dcrt004: &dcrt004 {<<: *cisco, x: "+1", icon: "nexus7000"}
-dsrt001: &dsrt001 {<<: *cisco, x: "-1", y: "-1", icon: "nexus7000"}
-dsrt002: &dsrt002 {<<: *cisco, x: "+1", icon: "nexus7000"}
-dssw001: &dssw001 {<<: *cisco, x: "-1", y: "-1", icon: "nexus5000"}
-dssw002: &dssw002 {<<: *cisco, x: "+1", icon: "nexus5000"}
-dntp001: &dntp001 {<<: *stratum2, x: "-1", y: "-1", icon: "file_server"}
-dntp002: &dntp002 {<<: *stratum2, x: "+1", icon: "file_server"}
-dslb001: &dslb001 {<<: *cisco, x: "-1", y: "-1", icon: "ace"}
-dslb002: &dslb002 {<<: *cisco, x: "+1", icon: "ace"}
-drrt001: &drrt001 {<<: *cisco, x: "+1", y: "+3", icon: "router"}
-drrt002: &drrt002 {<<: *cisco, x: "+1", icon: "router"}
-drsw001: &drsw001 {<<: *cisco, x: "-1", y: "-1", icon: "nexus5000"}
-drsw002: &drsw002 {<<: *cisco, x: "+1", icon: "nexus5000"}
-dntp003: &dntp003 {<<: *stratum2, x: "-1", y: "-1", icon: "file_server"}
-dntp004: &dntp004 {<<: *stratum2, x: "+1", icon: "file_server"}
-drlb001: &drlb001 {<<: *cisco, x: "-1", y: "-1", icon: "ace"}
-drlb002: &drlb002 {<<: *cisco, x: "+1", icon: "ace"}
+dcrt001: &dcrt001 {<<: *cisco, type: icon, icon: "router"}
+dcrt002: &dcrt002 {<<: *cisco, type: icon, x: "+1", icon: "router"}
+dcrt003: &dcrt003 {<<: *cisco, type: icon, x: "-1", y: "-1", icon: "nexus7000"}
+dcrt004: &dcrt004 {<<: *cisco, type: icon, x: "+1", icon: "nexus7000"}
+dsrt001: &dsrt001 {<<: *cisco, type: icon, x: "-1", y: "-1", icon: "nexus7000"}
+dsrt002: &dsrt002 {<<: *cisco, type: icon, x: "+1", icon: "nexus7000"}
+dssw001: &dssw001 {<<: *cisco, type: icon, x: "-1", y: "-1", icon: "nexus5000"}
+dssw002: &dssw002 {<<: *cisco, type: icon, x: "+1", icon: "nexus5000"}
+dntp001: &dntp001 {<<: *stratum2, type: icon, x: "-1", y: "-1", icon: "file_server"}
+dntp002: &dntp002 {<<: *stratum2, type: icon, x: "+1", icon: "file_server"}
+dslb001: &dslb001 {<<: *cisco, type: icon, x: "-1", y: "-1", icon: "ace"}
+dslb002: &dslb002 {<<: *cisco, type: icon, x: "+1", icon: "ace"}
+drrt001: &drrt001 {<<: *cisco, type: icon, x: "+1", y: "+3", icon: "router"}
+drrt002: &drrt002 {<<: *cisco, type: icon, x: "+1", icon: "router"}
+drsw001: &drsw001 {<<: *cisco, type: icon, x: "-1", y: "-1", icon: "nexus5000"}
+drsw002: &drsw002 {<<: *cisco, type: icon, x: "+1", icon: "nexus5000"}
+dntp003: &dntp003 {<<: *stratum2, type: icon, x: "-1", y: "-1", icon: "file_server"}
+dntp004: &dntp004 {<<: *stratum2, type: icon, x: "+1", icon: "file_server"}
+drlb001: &drlb001 {<<: *cisco, type: icon, x: "-1", y: "-1", icon: "ace"}
+drlb002: &drlb002 {<<: *cisco, type: icon, x: "+1", icon: "ace"}
 
 icons:
   Stratum 1 NTP: {<<: *stratum1, x: "18", y: "19", h: 2, w: 2, textLocation: leftMiddle, icon: "file_server"}

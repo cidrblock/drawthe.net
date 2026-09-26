@@ -35,6 +35,17 @@ For embedding diagrams in Hugo posts, see [the Hugo shortcode integration](integ
 
 The browser editor validates YAML syntax and documented diagram properties against a JSON Schema. Its diagnostics panel also reports renderer warnings, including unresolved icons and overlapping groups.
 
+Reusable icon defaults can opt into strict schema validation with `type: icon`. Unknown properties on the tagged anchor and on icon mappings that inherit it are reported as editor diagnostics; untagged custom anchors remain extensible. For example:
+
+```yaml
+cisco: &cisco
+  type: icon
+  iconFamily: cisco
+  icon: router
+icons:
+  edge: {<<: *cisco, x: 1, y: 1}
+```
+
 ### npm package releases
 
 Publishing a non-prerelease GitHub Release triggers the npm publish workflow. Configure npm Trusted Publishing for GitHub Actions with organization `cidrblock`, repository `drawthe.net`, and workflow filename `publish-npm.yml`; allow direct publishing with `npm publish`. No long-lived CI token is required. Update the package version, then publish a GitHub Release tagged `v<version>` (for example, `v2.0.2`). The workflow runs lint, typecheck, and build before publishing; npm generates provenance automatically for trusted publishes.
