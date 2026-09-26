@@ -126,6 +126,7 @@ export async function draw(doc: DiagramDocument, options: DrawOptions): Promise<
     .append("svg")
     .attr("width", parentBox.width)
     .attr("height", parentBox.height)
+    .attr("viewBox", `0 0 ${parentBox.width} ${parentBox.height}`)
     .style("background-color", diagram.fill as string);
   svgRoot
     .append("rect")

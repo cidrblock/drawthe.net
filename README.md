@@ -49,8 +49,11 @@ npx drawthe-net diagrams/network.yaml docs/network.svg --width=1200 --height=800
 Stable GitHub Releases publish versioned images and update the `latest` tag in GHCR. For the first image publication, change the package visibility to **Public** in the GitHub package settings so Podman can pull it without authentication.
 
 ```sh
-# Convert YAML to SVG
+# Run the web editor at http://localhost:5173
 podman pull ghcr.io/cidrblock/drawthe.net:latest
+podman run --rm -p 5173:5173 ghcr.io/cidrblock/drawthe.net:latest ui
+
+# Convert YAML to SVG
 podman run --rm \
   --userns=keep-id \
   --user "$(id -u):$(id -g)" \
@@ -58,9 +61,6 @@ podman run --rm \
   -w /workspace \
   ghcr.io/cidrblock/drawthe.net:latest \
   diagrams/network.yaml docs/network.svg --width=1200 --height=800
-
-# Run the web editor at http://localhost:5173
-podman run --rm -p 5173:5173 ghcr.io/cidrblock/drawthe.net:latest ui
 ```
 
 Use a versioned tag such as `ghcr.io/cidrblock/drawthe.net:v2.0.2` instead of `latest` for a pinned image.

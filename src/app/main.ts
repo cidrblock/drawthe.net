@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import "../styles/app.css";
+import "../styles/print.css";
 import "../styles/notes.css";
 import ace from "ace-builds/src-noconflict/ace";
 import "ace-builds/src-noconflict/mode-yaml";
@@ -10,8 +11,6 @@ import { draw } from "../renderer/draw";
 import { createBrowserIconLoader } from "../renderer/icon-loader-browser";
 import { createBrowserRenderTarget } from "../renderer/render-target-browser";
 import type { DiagramDocument } from "../renderer/types";
-import { showAlert } from "./alerts";
-import { copyToClipboard } from "./clipboard";
 import { installKeyboardShortcuts } from "./keyboard-shortcuts";
 
 ace.config.set("useWorker", false);
@@ -19,35 +18,25 @@ ace.config.set("useWorker", false);
 const DB_URL = "https://syg5y0qnyf.execute-api.us-west-2.amazonaws.com/prod/";
 
 const svgContainer = document.getElementById("svg") as HTMLElement;
-const alertsContainer = document.getElementById("alerts") as HTMLElement;
 const editorContainer = document.getElementById("editor") as HTMLElement;
 const leftSide = document.getElementById("leftSide") as HTMLElement;
 const rightSide = document.getElementById("rightSide") as HTMLElement;
 
 const target = createBrowserRenderTarget(svgContainer);
 const iconLoader = createBrowserIconLoader();
+const printSize = { width: 1050, height: 800 };
 
 const editor = ace.edit(editorContainer);
 editor.getSession().setMode("ace/mode/yaml");
 editor.setOption("tabSize", 2);
 
-let state: "Save" | "Update" = "Save";
 let docId = window.location.hash.substring(2);
 let shown = true;
 
-function setSaveIcon(iconClass: string): void {
-  document.getElementById("saveIcon")!.className = iconClass;
-}
-
-function setState(next: "Save" | "Update"): void {
-  state = next;
-  document.getElementById("saveState")!.textContent = state;
-}
-
-function redraw(): void {
+async function redraw(renderTarget = target): Promise<void> {
   const design = (load(editor.getValue()) || {}) as DiagramDocument;
   window.design = design;
-  draw(design, { target, iconLoader });
+  await draw(design, { target: renderTarget, iconLoader });
   if (design.title?.text) {
     document.title = `drawthe.net: ${design.title.text}`;
   }
@@ -64,7 +53,6 @@ function loadYaml(url: string): Promise<void> {
 
 // --- initial load: existing saved doc (via hash), or the default example ---
 if (docId) {
-  setState("Update");
   shown = false;
   leftSide.classList.add("hidden");
   rightSide.classList.add("col-sm-12");
@@ -81,9 +69,9 @@ if (docId) {
 }
 
 // --- draw / keyboard shortcuts ---
-document.getElementById("draw")?.addEventListener("click", redraw);
+document.getElementById("draw")?.addEventListener("click", () => void redraw());
 installKeyboardShortcuts(redraw);
-window.addEventListener("resize", redraw);
+window.addEventListener("resize", () => void redraw());
 
 // --- examples dropdown ---
 document.querySelectorAll<HTMLElement>("[data-example]").forEach((item) => {
@@ -91,7 +79,6 @@ document.querySelectorAll<HTMLElement>("[data-example]").forEach((item) => {
     const file = item.dataset.example!;
     window.location.hash = "";
     docId = "";
-    setState("Save");
     void loadYaml(`examples/${file}`);
     closeDropdown(item);
   });
@@ -154,42 +141,6 @@ document.getElementById("fullScreen")?.addEventListener("click", () => {
   redraw();
 });
 
-// --- save / update to the shared backend ---
-document.getElementById("save")?.addEventListener("click", () => {
-  setSaveIcon("fa fa-hourglass-o");
-  const data = editor.getValue();
-  const request =
-    state === "Save"
-      ? fetch(DB_URL, { method: "POST", headers: { "Content-Type": "text/x-yaml" }, body: data })
-      : fetch(DB_URL + docId, { method: "PUT", headers: { "Content-Type": "text/x-yaml" }, body: data });
-
-  request
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((body) => {
-      docId = body.docId ?? docId;
-      window.location.hash = docId;
-      setSaveIcon("fa fa-check-circle");
-      setTimeout(() => {
-        setSaveIcon("fa fa-floppy-o");
-        setState("Update");
-      }, 200);
-    })
-    .catch((error) => {
-      setSaveIcon("fa fa-exclamation-triangle");
-      showAlert(alertsContainer, "danger", `Save failed: ${error.message}`);
-    });
-});
-
-document.getElementById("fork")?.addEventListener("click", () => {
-  setState("Save");
-  document.getElementById("save")?.dispatchEvent(new MouseEvent("click"));
-});
-
 // --- download the current YAML source ---
 document.getElementById("download")?.addEventListener("click", () => {
   const data = editor.getValue();
@@ -207,35 +158,6 @@ document.getElementById("download")?.addEventListener("click", () => {
   URL.revokeObjectURL(url);
 });
 
-// --- copy the shareable link ---
-document.getElementById("link")?.addEventListener("click", () => {
-  const linkTextEl = document.getElementById("linkText")!;
-  void copyToClipboard(window.location.href).then(() => {
-    linkTextEl.textContent = " Copied to clipboard";
-    setTimeout(() => {
-      linkTextEl.textContent = "Link";
-    }, 200);
-  });
-});
-
-// --- load a YAML doc from a GitHub gist URL ---
-document.getElementById("gistForm")?.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const gistUrlInput = document.getElementById("gistURL") as HTMLInputElement;
-  const parts = gistUrlInput.value.split("/");
-  const githubUser = parts[3];
-  const githubGist = parts[4];
-  fetch(`//gist.githubusercontent.com/${githubUser}/${githubGist}/raw`)
-    .then((response) => response.text())
-    .then((text) => {
-      editor.setValue(text, -1);
-      redraw();
-    });
-  gistUrlInput.value = "";
-  window.location.hash = "";
-  setState("Save");
-});
-
 // --- export the rendered diagram as a PNG ---
 document.getElementById("saveimage")?.addEventListener("click", () => {
   const svg = document.querySelector<SVGSVGElement>("svg");
@@ -245,3 +167,11 @@ document.getElementById("saveimage")?.addEventListener("click", () => {
   const title = (window.design?.title as Record<string, unknown> | undefined)?.text as string | undefined;
   saveSvgAsPng(svg, `${title || "diagram"}.png`, { scale: 4, backgroundColor: "white" });
 });
+
+document.getElementById("print")?.addEventListener("click", () => {
+  const printTarget = { ...target, getBoundingBox: () => printSize };
+  void redraw(printTarget)
+    .then(() => new Promise<void>((resolve) => requestAnimationFrame(() => resolve())))
+    .then(() => window.print());
+});
+window.addEventListener("afterprint", () => void redraw());

@@ -9,32 +9,13 @@
     <title>Decent looking diagrams for engineers</title>
 </head>
 <body>
-    <div id="alerts" class="col-sm-6 offset-sm-3"></div>
     <div class="row">
         <div class="col-sm-6" id="leftSide">
             <div class="row g-0">
                 <div class="col-sm-11 container-fluid">
-                    <button id="save" class="btn btn-black btn-sm" type="button">
-                        <span id="saveIcon" class="fa fa-floppy-o" aria-hidden="true"></span>
-                        <span id="saveState">Save</span>
-                    </button>
-                    <button id="fork" class="btn btn-black btn-sm" type="button">
-                        <span class="fa fa-code-fork" aria-hidden="true"></span> Fork
-                    </button>
                     <button id="download" class="btn btn-black btn-sm" type="button">
                         <span class="fa fa-floppy-o" aria-hidden="true"></span> Download
                     </button>
-                    <button id="link" class="btn btn-black btn-sm" type="button">
-                        <span class="fa fa-clipboard" aria-hidden="true"></span><span id="linkText">Link</span>
-                    </button>
-                    <form id="gistForm" class="d-inline-flex">
-                        <div class="input-group">
-                            <input id="gistURL" type="text" size="35" class="form-control form-control-sm" placeholder="Load from Github Gist">
-                            <button class="btn btn-black btn-sm" type="submit">
-                                <span class="fa fa-cloud-download"></span>
-                            </button>
-                        </div>
-                    </form>
                 </div>
                 <div class="col-sm-1">
                     <button id="draw" class="btn btn-black btn-sm float-end" type="button"
@@ -48,9 +29,12 @@
             </div>
         </div>
         <div class="col-sm-6" id="rightSide">
-            <div class="d-flex justify-content-end flex-wrap">
+            <div class="d-flex justify-content-end flex-wrap gap-1">
                 <button id="saveimage" type="button" class="btn btn-black btn-sm" title="Save SVG as Image">
                     <span class="fa fa-file-image-o" aria-hidden="true"></span> PNG
+                </button>
+                <button id="print" type="button" class="btn btn-black btn-sm" title="Print diagram">
+                    <span class="fa fa-print" aria-hidden="true"></span> Print
                 </button>
                 <div class="btn-group dropdown">
                     <button id="examples" type="button" class="btn btn-black btn-sm dropdown-toggle">

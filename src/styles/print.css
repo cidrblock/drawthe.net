@@ -1,0 +1,66 @@
+@page {
+  size: landscape;
+  margin: 0.25in;
+}
+
+@media print {
+  html,
+  body {
+    width: 100%;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  #rightSide,
+  #rightSide * {
+    visibility: visible !important;
+  }
+
+  #leftSide,
+  #alerts,
+  #rightSide > .d-flex {
+    display: none !important;
+  }
+
+  #rightSide {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 7.5in !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    break-inside: avoid;
+  }
+
+  #rightSide > .row {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+  }
+
+  #svg {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  #svg > svg {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
