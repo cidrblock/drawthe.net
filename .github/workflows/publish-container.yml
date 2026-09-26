@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       release_tag:
-        description: Existing release tag to publish, for example v2.0.1
+        description: Existing release tag to publish, for example v2.0.2
         required: true
         type: string
       source_ref:
@@ -56,7 +56,7 @@ jobs:
             ghcr.io/cidrblock/drawthe.net:latest
           labels: |
             org.opencontainers.image.source=https://github.com/cidrblock/drawthe.net
-            org.opencontainers.image.version=${{ steps.release.outputs.tag }}
+            org.opencontainers.image.version=${{ github.event_name == 'release' && github.event.release.tag_name || inputs.release_tag }}
             org.opencontainers.image.description=Render drawthe.net YAML diagrams to SVG
           cache-from: type=gha
           cache-to: type=gha,mode=max

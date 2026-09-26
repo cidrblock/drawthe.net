@@ -12,7 +12,7 @@ I simply wanted to be able to draw network diagrams as fast as it could be done 
 
 ## Development
 
-Requires Node.js 20+.
+Requires Node.js 20.19+, 22.12+, or 24+.
 
 ```
 npm install
@@ -35,7 +35,7 @@ For embedding diagrams in Hugo posts, see [the Hugo shortcode integration](integ
 
 ### npm package releases
 
-Publishing a non-prerelease GitHub Release triggers the npm publish workflow. Configure npm Trusted Publishing for GitHub Actions with organization `cidrblock`, repository `drawthe.net`, and workflow filename `publish-npm.yml`; allow direct publishing with `npm publish`. No long-lived CI token is required. Update the package version, then publish a GitHub Release tagged `v<version>` (for example, `v2.0.1`). The workflow runs lint, typecheck, and build before publishing; npm generates provenance automatically for trusted publishes.
+Publishing a non-prerelease GitHub Release triggers the npm publish workflow. Configure npm Trusted Publishing for GitHub Actions with organization `cidrblock`, repository `drawthe.net`, and workflow filename `publish-npm.yml`; allow direct publishing with `npm publish`. No long-lived CI token is required. Update the package version, then publish a GitHub Release tagged `v<version>` (for example, `v2.0.2`). The workflow runs lint, typecheck, and build before publishing; npm generates provenance automatically for trusted publishes.
 
 Install the package and render a diagram from another project with:
 
@@ -49,6 +49,7 @@ npx drawthe-net diagrams/network.yaml docs/network.svg --width=1200 --height=800
 Stable GitHub Releases publish versioned images and update the `latest` tag in GHCR. For the first image publication, change the package visibility to **Public** in the GitHub package settings so Podman can pull it without authentication.
 
 ```sh
+# Convert YAML to SVG
 podman pull ghcr.io/cidrblock/drawthe.net:latest
 podman run --rm \
   --userns=keep-id \
@@ -57,9 +58,12 @@ podman run --rm \
   -w /workspace \
   ghcr.io/cidrblock/drawthe.net:latest \
   diagrams/network.yaml docs/network.svg --width=1200 --height=800
+
+# Run the web editor at http://localhost:5173
+podman run --rm -p 5173:5173 ghcr.io/cidrblock/drawthe.net:latest ui
 ```
 
-Use a versioned tag such as `ghcr.io/cidrblock/drawthe.net:v2.0.1` instead of `latest` for a pinned image. The container entry point is `drawthe-net`.
+Use a versioned tag such as `ghcr.io/cidrblock/drawthe.net:v2.0.2` instead of `latest` for a pinned image.
 
 ## Quick start
 

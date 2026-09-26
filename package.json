@@ -1,6 +1,6 @@
 {
   "name": "drawthe.net",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "drawthe.net: decent looking diagrams for engineers - draw network diagrams from YAML",
   "type": "module",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "url": "git+https://github.com/cidrblock/drawthe.net.git"
   },
   "engines": {
-    "node": ">=20"
+    "node": "^20.19.0 || ^22.12.0 || >=24.0.0"
   },
   "files": [
     "bin/",
@@ -36,13 +36,10 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.1",
     "@resvg/resvg-js": "^2.6.2",
-    "ace-builds": "^1.36.5",
-    "bootstrap": "^3.4.1",
     "d3": "^7.9.0",
-    "font-awesome": "^4.7.0",
     "js-yaml": "^4.1.0",
-    "jsdom": "^25.0.1",
-    "save-svg-as-png": "^1.4.17",
+    "jsdom": "^27.4.0",
+    "sirv-cli": "^3.0.1",
     "showdown": "^2.1.0",
     "tsx": "^4.19.2",
     "zod": "^4.6.5"
@@ -55,8 +52,12 @@
     "@types/showdown": "^2.0.6",
     "@typescript-eslint/eslint-plugin": "^8.18.1",
     "@typescript-eslint/parser": "^8.18.1",
+    "ace-builds": "^1.36.5",
+    "bootstrap": "^5.3.8",
     "eslint": "^8.57.1",
+    "font-awesome": "^4.7.0",
     "prettier": "^3.4.2",
+    "save-svg-as-png": "^1.4.17",
     "svgo": "^4.1.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.7"

@@ -1,24 +1,32 @@
 /**
- * Minimal Bootstrap-3-compatible dropdown toggle (no jQuery): toggles `.open`
+ * Minimal Bootstrap-compatible dropdown toggle (no Bootstrap JavaScript): toggles `.show`
  * on the nearest `.dropdown`/`.btn-group`, and closes others on outside click.
  */
 document.addEventListener("click", (event) => {
   const target = event.target as HTMLElement;
   const toggle = target.closest(".dropdown-toggle");
-  const openDropdowns = document.querySelectorAll(".dropdown.open, .btn-group.open");
+  const openDropdowns = document.querySelectorAll(".dropdown.show, .btn-group.show");
 
   if (toggle) {
     const dropdown = toggle.closest(".dropdown, .btn-group");
     openDropdowns.forEach((el) => {
       if (el !== dropdown) {
-        el.classList.remove("open");
+        el.classList.remove("show");
+        el.querySelector(".dropdown-menu")?.classList.remove("show");
+        el.querySelector(".dropdown-toggle")?.setAttribute("aria-expanded", "false");
       }
     });
-    dropdown?.classList.toggle("open");
+    const isOpen = dropdown?.classList.toggle("show") ?? false;
+    dropdown?.querySelector(".dropdown-menu")?.classList.toggle("show", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
     return;
   }
 
   if (!target.closest(".dropdown-menu")) {
-    openDropdowns.forEach((el) => el.classList.remove("open"));
+    openDropdowns.forEach((el) => {
+      el.classList.remove("show");
+      el.querySelector(".dropdown-menu")?.classList.remove("show");
+      el.querySelector(".dropdown-toggle")?.setAttribute("aria-expanded", "false");
+    });
   }
 });

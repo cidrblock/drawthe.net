@@ -93,7 +93,7 @@ document.querySelectorAll<HTMLElement>("[data-example]").forEach((item) => {
     docId = "";
     setState("Save");
     void loadYaml(`examples/${file}`);
-    item.closest(".open")?.classList.remove("open");
+    closeDropdown(item);
   });
 });
 
@@ -101,9 +101,16 @@ document.querySelectorAll<HTMLElement>("[data-example]").forEach((item) => {
 document.querySelectorAll<HTMLElement>("[data-icon-family]").forEach((item) => {
   item.addEventListener("click", () => {
     void drawIconFamily(item.dataset.iconFamily!);
-    item.closest(".open")?.classList.remove("open");
+    closeDropdown(item);
   });
 });
+
+function closeDropdown(item: HTMLElement): void {
+  const dropdown = item.closest(".dropdown, .btn-group");
+  dropdown?.classList.remove("show");
+  dropdown?.querySelector(".dropdown-menu")?.classList.remove("show");
+  dropdown?.querySelector(".dropdown-toggle")?.setAttribute("aria-expanded", "false");
+}
 
 async function drawIconFamily(iconFamily: string): Promise<void> {
   const popup = window.open("about:blank", "_blank");
@@ -141,7 +148,7 @@ async function drawIconFamily(iconFamily: string): Promise<void> {
 document.getElementById("fullScreen")?.addEventListener("click", () => {
   shown = !shown;
   document.getElementById("fullScreenMode")!.textContent = shown ? " Hide editor" : " Show editor";
-  leftSide.classList.toggle("hidden", !shown);
+  leftSide.classList.toggle("d-none", !shown);
   rightSide.classList.toggle("col-sm-12", !shown);
   rightSide.classList.toggle("col-sm-6", shown);
   redraw();
@@ -149,7 +156,7 @@ document.getElementById("fullScreen")?.addEventListener("click", () => {
 
 // --- save / update to the shared backend ---
 document.getElementById("save")?.addEventListener("click", () => {
-  setSaveIcon("glyphicon glyphicon-hourglass");
+  setSaveIcon("fa fa-hourglass-o");
   const data = editor.getValue();
   const request =
     state === "Save"
@@ -166,14 +173,14 @@ document.getElementById("save")?.addEventListener("click", () => {
     .then((body) => {
       docId = body.docId ?? docId;
       window.location.hash = docId;
-      setSaveIcon("glyphicon glyphicon-ok-circle");
+      setSaveIcon("fa fa-check-circle");
       setTimeout(() => {
-        setSaveIcon("glyphicon glyphicon-floppy-disk");
+        setSaveIcon("fa fa-floppy-o");
         setState("Update");
       }, 200);
     })
     .catch((error) => {
-      setSaveIcon("glyphicon glyphicon-alert");
+      setSaveIcon("fa fa-exclamation-triangle");
       showAlert(alertsContainer, "danger", `Save failed: ${error.message}`);
     });
 });

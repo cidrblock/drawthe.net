@@ -26,16 +26,6 @@ body {
       margin-left: 0px;
       margin-right: 0px;
     }
-.row.no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-}
-.row.no-gutters > [class^="col-"],
-.row.no-gutters > [class*=" col-"] {
-  padding-right: 0;
-  padding-left: 0;
-}
-
 form { display: inline-block; }
 
 .btn-black {
@@ -48,7 +38,7 @@ form { display: inline-block; }
 .btn-black:focus,
 .btn-black:active,
 .btn-black.active,
-.open .dropdown-toggle.btn-black {
+.show > .dropdown-toggle.btn-black {
   color: #FFFFFF;
   background-color: #333;
   border-color: #000000;
@@ -56,7 +46,7 @@ form { display: inline-block; }
 
 .btn-black:active,
 .btn-black.active,
-.open .dropdown-toggle.btn-black {
+.show > .dropdown-toggle.btn-black {
   background-image: none;
 }
 
@@ -82,6 +72,19 @@ fieldset[disabled] .btn-black.active {
 .btn-black .badge {
   color: #000000;
   background-color: #FFFFFF;
+}
+
+.dropdown-menu [role="menuitem"] > a {
+  display: block;
+  padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+  color: var(--bs-dropdown-link-color);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-menu [role="menuitem"] > a:hover {
+  color: var(--bs-dropdown-link-hover-color);
+  background-color: var(--bs-dropdown-link-hover-bg);
 }
 
 .axisNone line{
